@@ -1,30 +1,46 @@
 import React, {useState} from 'react';
+import {Image, StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import Search from './pages/Search';
-import Insert from './pages/Insert';
-import Chat from './pages/Chat';
+import {bottomRoutesData} from '@/static/bottomRoutesData';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation(): JSX.Element {
   return (
-    <Tab.Navigator initialRouteName="Search">
-      <Tab.Screen
-        options={{title: '검색', headerShown: false}}
-        name="Search"
-        component={Search}
-      />
-      <Tab.Screen
-        options={{title: '글쓰기', headerShown: false}}
-        name="Insert"
-        component={Insert}
-      />
-      <Tab.Screen
-        options={{title: '채팅', headerShown: false}}
-        name="Chat"
-        component={Chat}
-      />
+    <Tab.Navigator initialRouteName="Home">
+      {bottomRoutesData.map((data: any, idx: number) => {
+        return (
+          <Tab.Screen
+            key={idx}
+            options={{
+              headerShown: false,
+              tabBarLabel: () => (
+                <Text style={{fontSize: 12, color: '#F7CBD9'}}>
+                  {data.name}
+                </Text>
+              ),
+              // tabBarShowLabel: false,
+              tabBarIcon: ({focused}: any) => {
+                return (
+                  <Image
+                    source={focused ? data.act : data.none}
+                    style={styles.bottomImg}
+                  />
+                );
+              },
+            }}
+            name={data.name}
+            component={data.component}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  bottomImg: {
+    width: 25,
+    height: 22,
+  },
+});

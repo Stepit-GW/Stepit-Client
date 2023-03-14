@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
-export default function Search(): JSX.Element {
+export default function Alarm(): JSX.Element {
   return (
     <SafeAreaView>
-      <Text>Search</Text>
+      <Text>Alarm</Text>
     </SafeAreaView>
   );
 }
