@@ -14,8 +14,9 @@ export default function BottomNavigation(): JSX.Element {
             key={idx}
             options={{
               headerShown: false,
-              tabBarLabel: () => (
-                <Text style={{fontSize: 12, color: '#F7CBD9'}}>
+              tabBarLabel: ({focused}) => (
+                <Text
+                  style={{fontSize: 12, color: focused ? '#F7CBD9' : 'gray'}}>
                   {data.name}
                 </Text>
               ),
