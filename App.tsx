@@ -19,15 +19,16 @@ import {
   View,
 } from 'react-native';
 
-import BottomNavigation from './src/BottomNavigation';
+import BottomNavigation from './src/components/BottomNavigation';
 import Mypage from './src/pages/Mypage';
+import TopChatNavigation from '@/components/TopNavigationChat';
 
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Search">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="root"
           component={BottomNavigation}

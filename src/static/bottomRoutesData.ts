@@ -1,8 +1,8 @@
 import Home from '@/pages/Home';
-import Chat from '@/pages/Chat';
 import Insert from '@/pages/Insert';
 import Alarm from '@/pages/Alarm';
 import Mypage from '@/pages/Mypage';
+import TopNavigationChat from '@/components/TopNavigationChat';
 
 export const bottomRoutesData = [
   {
@@ -13,7 +13,7 @@ export const bottomRoutesData = [
   },
   {
     name: '채팅',
-    component: Chat,
+    component: TopNavigationChat,
     act: require('@/assets/bottomRoutes/chat-fill.png'),
     none: require('@/assets/bottomRoutes/chat-line.png'),
   },
