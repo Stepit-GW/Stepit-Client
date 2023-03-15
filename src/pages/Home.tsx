@@ -12,7 +12,7 @@ import {
 import {
   GRAY,
   PINK0,
-  PINK2,
+  PINK3,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from '@/static/commonValue';
@@ -20,7 +20,7 @@ import {commonStyles} from '@/styels/commonStyles';
 import Charbar1 from '@/components/home/Chatbar1';
 import Charbar2 from '@/components/home/Charbar2';
 
-export default function Home(): JSX.Element {
+export default function Home({navigation}: any): JSX.Element {
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniOpacityFn = (o: number) => {
     Animated.timing(aniOpacity, {
@@ -47,21 +47,41 @@ export default function Home(): JSX.Element {
     }).start();
   };
 
+  const isValidToken = async (refreshToken: string) => {
+    // await axios
+    //   .get('http://54.180.188.181:8080/api/auth/validity', {
+    //     params: {refreshToken: refreshToken},
+    //   })
+    //   .then(({data}) => data)
+    //   .catch(err => console.log(err.response));
+  };
+
+  const getToken = async () => {
+    // const refresh = await AsyncStorage.getItem('refreshToken');
+    // if (refresh !== null) {
+    //   const data = JSON.parse(refresh);
+    //   if (!isValidToken(data)) {
+    //     navigation.navigate('Login');
+    //   }
+    // } else {
+    //   navigation.navigate('Login');
+    // }
+    navigation.navigate('Login');
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      // aniCharbarFn(SCREEN_HEIGHT / 15, 1);
-    }, 1000);
+    getToken();
   }, []);
 
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={commonStyles.containerView}>
         <Animated.View style={{left: aniLeftRight}}>
-          <Charbar1 time={1000} />
+          <Charbar1 time={500} />
         </Animated.View>
 
         <Animated.View style={{right: aniLeftRight}}>
-          <Charbar2 time={2000} />
+          <Charbar2 time={1000} />
         </Animated.View>
 
         <Pressable
@@ -99,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     borderWidth: 2,
-    borderColor: PINK2,
+    borderColor: PINK3,
     borderRadius: 18,
     backgroundColor: 'white',
   },

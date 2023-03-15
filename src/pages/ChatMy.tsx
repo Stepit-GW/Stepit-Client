@@ -1,40 +1,17 @@
 import {commonStyles} from '@/styels/commonStyles';
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-export default function ChatAll({navigation}: any): JSX.Element {
+export default function ChatMy({navigation}: any): JSX.Element {
   const chatData = [
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
-    {
-      img: require('@/assets/test.png'),
-      title: 'title',
-      contents: 'contents',
-    },
     {
       img: require('@/assets/test.png'),
       title: 'title',

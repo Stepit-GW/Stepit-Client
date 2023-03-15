@@ -22,6 +22,8 @@ import {
 import BottomNavigation from './src/components/BottomNavigation';
 import Mypage from './src/pages/Mypage';
 import TopChatNavigation from '@/components/TopNavigationChat';
+import Chatting from '@/pages/Chatting';
+import Login from '@/pages/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,15 +32,20 @@ export default function App(): JSX.Element {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="root"
+          name="Home"
           component={BottomNavigation}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="Mypage"
-          component={Mypage}
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{headerShown: false}}
-        /> */}
+        />
+        <Stack.Screen
+          name="Chatting"
+          component={Chatting}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet, View} from 'react-native';
-import {GRAY, PINK0, PINK2, SCREEN_HEIGHT} from '@/static/commonValue';
+import {GRAY, SCREEN_HEIGHT} from '@/static/commonValue';
 
 export default function Charbar1({time}: any): JSX.Element {
   const aniTop = useRef<Animated.Value>(
