@@ -5,7 +5,7 @@ import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 export default function Btn({Fn, text, style}: any): JSX.Element {
   return (
     <Pressable onPress={Fn} style={[styles.textBox, style]}>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, style]}>{text}</Text>
     </Pressable>
   );
 }

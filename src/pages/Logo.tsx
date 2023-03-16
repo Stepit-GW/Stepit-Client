@@ -9,20 +9,13 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {
-  GRAY,
-  PINK0,
-  PINK3,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from '@/static/commonValue';
+import {PINK3} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Charbar1 from '@/components/home/Chatbar1';
 import Charbar2 from '@/components/home/Charbar2';
+import Btn from '@/components/Btn';
 
-export default function Login(): JSX.Element {
-  useEffect(() => {}, []);
-
+export default function Logo({navigation}: any): JSX.Element {
   return (
     <SafeAreaView style={[commonStyles.container, {backgroundColor: PINK3}]}>
       <View
@@ -36,10 +29,22 @@ export default function Login(): JSX.Element {
           source={require('@/assets/logo-title.png')}
           style={styles.logoTitle}
         />
-        <Pressable style={styles.signup}>
-          <Text style={styles.signupText}>회원가입</Text>
-        </Pressable>
-        <Text>이미 기프투 회원이라면? 로그인</Text>
+        <Btn
+          Fn={() => {
+            navigation.navigate('SignUp');
+          }}
+          text="회원가입"
+          style={{color: '#000', backgroundColor: '#fff'}}
+        />
+        <Text>
+          이미 기프투 회원이라면?{' '}
+          <Text
+            onPress={() => {
+              navigation.navigate('SignIn');
+            }}>
+            로그인
+          </Text>
+        </Text>
       </View>
     </SafeAreaView>
   );

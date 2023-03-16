@@ -36,6 +36,7 @@ export default function Insert(): JSX.Element {
               style={styles.imgRight}
             />
           </View>
+
           <Text style={styles.input}>선물 받을 사람</Text>
           <View style={styles.textInputBox}>
             <Image
@@ -51,6 +52,7 @@ export default function Insert(): JSX.Element {
             />
             <TextInput style={styles.textInput} placeholder="instagram ID" />
           </View>
+
           <Text style={styles.input}>선물</Text>
           <View style={styles.textInputBox}>
             <Image
@@ -66,17 +68,20 @@ export default function Insert(): JSX.Element {
             />
             <TextInput style={styles.textInput} placeholder="선물 구매 링크" />
           </View>
+
           <Text style={styles.input}>이벤트 날짜</Text>
-          <RNPickerSelect
+          {/* <RNPickerSelect
             onValueChange={value => console.log(value)}
             items={[
               {label: '전체', value: '전체'},
               {label: '진행중', value: '진행중'},
               {label: '마감', value: '마감'},
             ]}
-          />
+          /> */}
+
           <Text style={styles.input}>인원</Text>
           {/* <Slider /> */}
+
           <Text style={styles.input}>이벤트 내용</Text>
           <View style={styles.textInputEventBox}>
             <Text style={styles.num}>0/100</Text>
@@ -85,6 +90,7 @@ export default function Insert(): JSX.Element {
               placeholder="이벤트 내용을 입력해주세요."
             />
           </View>
+
           <Btn Fn={() => {}} text="완료" style={{}} />
         </ScrollView>
       </View>

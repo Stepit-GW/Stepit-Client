@@ -1,10 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet, View} from 'react-native';
-import {GRAY, SCREEN_HEIGHT} from '@/static/commonValue';
+import {GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function Charbar2({time}: any): JSX.Element {
   const aniTop = useRef<Animated.Value>(
-    new Animated.Value(SCREEN_HEIGHT / 3),
+    new Animated.Value(WINDOW_HEIGHT / 3),
   ).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniCharbarFn = (t: number, o: number) => {
@@ -22,7 +22,7 @@ export default function Charbar2({time}: any): JSX.Element {
 
   useEffect(() => {
     setTimeout(() => {
-      aniCharbarFn(SCREEN_HEIGHT / 4.3, 1);
+      aniCharbarFn(WINDOW_HEIGHT / 4.3, 1);
     }, time);
   }, []);
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     height: 80,
 
     position: 'absolute',
-    top: SCREEN_HEIGHT / 3.5,
+    top: WINDOW_HEIGHT / 3.5,
     right: -30,
     borderRadius: 50,
     backgroundColor: GRAY,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     height: 50,
 
     position: 'absolute',
-    // top: SCREEN_HEIGHT / 4.3, // 3
+    // top: WINDOW_HEIGHT / 4.3, // 3
     right: 40,
   },
 });

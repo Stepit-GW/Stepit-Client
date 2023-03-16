@@ -23,7 +23,9 @@ import BottomNavigation from './src/components/BottomNavigation';
 import Mypage from './src/pages/Mypage';
 import TopChatNavigation from '@/components/TopNavigationChat';
 import Chatting from '@/pages/Chatting';
-import Login from '@/pages/Login';
+import Logo from '@/pages/Logo';
+import {signRoutesData} from '@/static/signRoutesData';
+import {mypageRoutesData} from '@/static/mypageRoutesData';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,8 +39,8 @@ export default function App(): JSX.Element {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Login"
-          component={Login}
+          name="Logo"
+          component={Logo}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -46,6 +48,28 @@ export default function App(): JSX.Element {
           component={Chatting}
           options={{headerShown: false}}
         />
+
+        {signRoutesData.map((data: any, idx: number) => {
+          return (
+            <Stack.Screen
+              key={idx}
+              name={data.name}
+              component={data.component}
+              options={{headerShown: false}}
+            />
+          );
+        })}
+
+        {mypageRoutesData.map((data: any, idx: number) => {
+          return (
+            <Stack.Screen
+              key={idx}
+              name={data.name}
+              component={data.component}
+              options={{headerShown: false}}
+            />
+          );
+        })}
       </Stack.Navigator>
     </NavigationContainer>
   );

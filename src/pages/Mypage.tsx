@@ -6,11 +6,36 @@ import {
   StyleSheet,
   Text,
   View,
+  Pressable,
 } from 'react-native';
 import {commonStyles} from '@/styels/commonStyles';
-import {GRAY, PINK3, SCREEN_WIDTH} from '@/static/commonValue';
+import {GRAY, PINK3, WINDOW_WIDTH} from '@/static/commonValue';
 
-export default function Mypage(): JSX.Element {
+export default function Mypage({navigation}: any): JSX.Element {
+  const mypageData = [
+    {
+      text: '프로필 수정',
+      img: require('@/assets/insert-insta.png'),
+      Fn: () => {
+        navigation.navigate('ProfileEdit');
+      },
+    },
+    {
+      text: '알림 설정',
+      img: require('@/assets/my-setting.png'),
+      Fn: () => {
+        navigation.navigate('AlarmSetting');
+      },
+    },
+    {
+      text: '나의 선물 기록',
+      img: require('@/assets/my-giftcard.png'),
+      Fn: () => {
+        navigation.navigate('GiftCard');
+      },
+    },
+  ];
+
   const aniTop = useRef<Animated.Value>(new Animated.Value(-447)).current;
   const aniTopFn = (t: number) => {
     Animated.timing(aniTop, {
@@ -27,7 +52,7 @@ export default function Mypage(): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
       <Animated.View
-        style={[styles.topBg, {top: aniTop, left: -(478 - SCREEN_WIDTH) / 2}]}
+        style={[styles.topBg, {top: aniTop, left: -(478 - WINDOW_WIDTH) / 2}]}
       />
       <View style={styles.box}>
         <View style={styles.imgBox}>
@@ -41,39 +66,21 @@ export default function Mypage(): JSX.Element {
           />
           <Text>skuukzky</Text>
         </View>
-        <View style={[styles.myBox, commonStyles.paddingHor]}>
-          <Image
-            source={require('@/assets/my-profile.png')}
-            style={styles.myImg}
-          />
-          <Text>프로필 수정</Text>
-          <Image
-            source={require('@/assets/right.png')}
-            style={styles.rightImg}
-          />
-        </View>
-        <View style={[styles.myBox, commonStyles.paddingHor]}>
-          <Image
-            source={require('@/assets/my-setting.png')}
-            style={styles.myImg}
-          />
-          <Text>알림 설정</Text>
-          <Image
-            source={require('@/assets/right.png')}
-            style={styles.rightImg}
-          />
-        </View>
-        <View style={[styles.myBox, commonStyles.paddingHor]}>
-          <Image
-            source={require('@/assets/my-giftcard.png')}
-            style={styles.myImg}
-          />
-          <Text>나의 선물 기록</Text>
-          <Image
-            source={require('@/assets/right.png')}
-            style={styles.rightImg}
-          />
-        </View>
+        {mypageData.map((data, idx) => {
+          return (
+            <Pressable
+              key={idx}
+              style={[styles.myBox, commonStyles.paddingHor]}
+              onPress={data.Fn}>
+              <Image source={data.img} style={styles.myImg} />
+              <Text>{data.text}</Text>
+              <Image
+                source={require('@/assets/right.png')}
+                style={styles.rightImg}
+              />
+            </Pressable>
+          );
+        })}
       </View>
     </SafeAreaView>
   );
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
   },
   instaBox: {
     marginTop: 20,
-    marginBottom: 76,
+    marginBottom: 35,
 
     flexDirection: 'row',
     alignSelf: 'center',

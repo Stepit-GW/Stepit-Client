@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
@@ -13,8 +13,9 @@ import {
   GRAY,
   PINK0,
   PINK3,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
+  TOP_MARGIN,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
 } from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Charbar1 from '@/components/home/Chatbar1';
@@ -32,7 +33,7 @@ export default function Home({navigation}: any): JSX.Element {
 
   const aniLeftRight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniMargin = useRef<Animated.Value>(
-    new Animated.Value(SCREEN_HEIGHT / 2.2),
+    new Animated.Value(WINDOW_HEIGHT / 2.2),
   ).current;
   const aniSearchFn = (m: number, lf: number) => {
     Animated.timing(aniMargin, {
@@ -56,17 +57,19 @@ export default function Home({navigation}: any): JSX.Element {
     //   .catch(err => console.log(err.response));
   };
 
+  const [test, setTest] = useState(true);
   const getToken = async () => {
     // const refresh = await AsyncStorage.getItem('refreshToken');
     // if (refresh !== null) {
     //   const data = JSON.parse(refresh);
     //   if (!isValidToken(data)) {
-    //     navigation.navigate('Login');
+    //     navigation.navigate('Logo');
     //   }
     // } else {
-    //   navigation.navigate('Login');
+    //   navigation.navigate('Logo');
     // }
-    navigation.navigate('Login');
+    if (test) {
+    } else navigation.navigate('Logo');
   };
 
   useEffect(() => {
@@ -86,7 +89,7 @@ export default function Home({navigation}: any): JSX.Element {
 
         <Pressable
           onPress={() => {
-            aniSearchFn(SCREEN_HEIGHT / 2.2, 0);
+            aniSearchFn(WINDOW_HEIGHT / 2.2, 0);
             aniOpacityFn(0);
           }}>
           <Animated.View style={[styles.back, {opacity: aniOpacity}]} />
@@ -96,7 +99,7 @@ export default function Home({navigation}: any): JSX.Element {
           <TextInput
             style={styles.input}
             onPressIn={() => {
-              aniSearchFn(SCREEN_HEIGHT / 15, -SCREEN_WIDTH);
+              aniSearchFn(TOP_MARGIN, -WINDOW_WIDTH);
               aniOpacityFn(1);
             }}
           />
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
     height: 48,
 
     position: 'absolute',
-    top: SCREEN_HEIGHT / 15,
+    top: WINDOW_HEIGHT / 15,
     backgroundColor: 'red',
   },
 });
