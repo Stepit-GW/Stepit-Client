@@ -1,3 +1,4 @@
+import {MARGIN_HOR} from '@/static/commonValue';
 import {StyleSheet} from 'react-native';
 
 export const commonStyles = StyleSheet.create({
@@ -16,14 +17,19 @@ export const commonStyles = StyleSheet.create({
     color: '#000',
   },
 
+  img: {
+    width: 40,
+    height: 40,
+  },
+
   marginHor: {
-    marginHorizontal: 38,
+    marginHorizontal: MARGIN_HOR,
   },
   marginTop: {
     marginTop: 10,
   },
 
   paddingHor: {
-    paddingHorizontal: 38,
+    paddingHorizontal: MARGIN_HOR,
   },
 });

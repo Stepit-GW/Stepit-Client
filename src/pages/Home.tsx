@@ -13,7 +13,6 @@ import {
   GRAY,
   PINK0,
   PINK3,
-  TOP_MARGIN,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
@@ -99,7 +98,7 @@ export default function Home({navigation}: any): JSX.Element {
           <TextInput
             style={styles.input}
             onPressIn={() => {
-              aniSearchFn(TOP_MARGIN, -WINDOW_WIDTH);
+              aniSearchFn(WINDOW_HEIGHT / 15, -WINDOW_WIDTH);
               aniOpacityFn(1);
             }}
           />

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
+  ScrollView,
   Image,
   Pressable,
   SafeAreaView,
@@ -8,49 +9,101 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styels/commonStyles';
-import {ScrollView} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
+import Title from '@/components/Title';
+import {GRAY, MARGIN_HOR, MARGIN_VER} from '@/static/commonValue';
+import InputMessage from '@/components/chat/InputMessage';
+
+const HiData = [
+  {name: 'My', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'a', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+  {name: 'My', chat: 'Hi1'},
+];
 
 export default function Chatting(): JSX.Element {
-  const navigation = useNavigation<any>();
-
+  const ref = useRef<any>(null);
   return (
     <SafeAreaView style={commonStyles.container}>
-      <View style={[commonStyles.containerView]}>
-        <Pressable
-          onPress={() => {
-            navigation.pop();
-          }}>
-          <Text>a</Text>
-        </Pressable>
-        <Text>Chatting</Text>
+      <View style={commonStyles.containerView}>
+        <Title text="채팅방 이름" style={commonStyles.marginHor} />
+        <View style={styles.right}>
+          <Image
+            source={require('@/assets/test-item.png')}
+            style={commonStyles.img}
+          />
+          <Image
+            source={require('@/assets/test-item.png')}
+            style={commonStyles.img}
+          />
+        </View>
+        <View style={styles.hr} />
+
+        <ScrollView
+          contentOffset={{y: HiData.length * 40}}
+          showsVerticalScrollIndicator={false}
+          style={[commonStyles.marginHor, styles.content]}>
+          {HiData.map((data, idx) => {
+            return (
+              <View
+                key={idx}
+                style={{
+                  flexDirection: data.name === 'My' ? 'row' : 'row-reverse',
+                }}>
+                <Image
+                  source={require('@/assets/test-item.png')}
+                  style={[commonStyles.img, styles.img]}
+                />
+                <Text>{data.chat}</Text>
+              </View>
+            );
+          })}
+        </ScrollView>
+
+        <InputMessage />
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  chatRoom: {},
-  scroll: {
+  hr: {
+    borderBottomWidth: 1,
+    borderBottomColor: GRAY,
+  },
+  content: {
     flex: 1,
+    marginVertical: MARGIN_VER,
+  },
+
+  right: {
+    marginTop: MARGIN_VER,
+    flexDirection: 'row',
+    position: 'absolute',
+    right: MARGIN_HOR,
   },
   img: {
-    width: 45,
-    height: 45,
-    borderRadius: 50,
-  },
-
-  chatBox: {
-    marginBottom: 42,
-    flexDirection: 'row',
-    position: 'relative',
-  },
-  chatBoxIn: {
-    width: '100%',
-  },
-
-  timeNum: {
-    position: 'absolute',
-    right: 0,
+    borderWidth: 1,
+    borderColor: GRAY,
+    borderRadius: 40,
   },
 });

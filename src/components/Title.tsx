@@ -1,46 +1,39 @@
 import React, {useEffect, useRef} from 'react';
-import {
-  Animated,
-  Image,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
-import {PINK3, TOP_MARGIN} from '@/static/commonValue';
-import {commonStyles} from '@/styels/commonStyles';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
 import {useNavigation} from '@react-navigation/native';
+import {commonStyles} from '@/styels/commonStyles';
 
 export default function Title({text, style}: any): JSX.Element {
   const navigation = useNavigation<any>();
   return (
     <Pressable
-      style={[styles.topBox, {marginTop: TOP_MARGIN}, style]}
+      style={[styles.topBox, style]}
       onPress={() => {
         navigation.pop();
       }}>
-      <Image source={require('@/assets/left.png')} style={styles.img} />
+      <Image
+        source={require('@/assets/test-item.png')}
+        style={commonStyles.img}
+      />
       <Text style={styles.text}>{text}</Text>
-      <View style={styles.img} />
+      <View style={commonStyles.img} />
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   topBox: {
-    height: 30,
+    height: TOP_HEIGHT,
+    marginVertical: MARGIN_VER,
+
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  img: {
-    width: 30,
-    height: 30,
+    alignItems: 'center',
   },
   text: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '700',
     color: '#000',
   },
 });
