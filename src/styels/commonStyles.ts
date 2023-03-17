@@ -1,4 +1,4 @@
-import {MARGIN_HOR} from '@/static/commonValue';
+import {MARGIN_HOR, MARGIN_VER} from '@/static/commonValue';
 import {StyleSheet} from 'react-native';
 
 export const commonStyles = StyleSheet.create({
@@ -11,9 +11,10 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
+    marginVertical: MARGIN_VER,
     alignSelf: 'center',
     fontSize: 20,
-    fontWeight: '500',
+    fontWeight: '700',
     color: '#000',
   },
 

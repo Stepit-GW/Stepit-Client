@@ -1,3 +1,4 @@
+import {TOP_HEIGHT} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
@@ -52,9 +53,9 @@ export default function ChatAll({navigation}: any): JSX.Element {
     },
   ];
   return (
-    <View style={[commonStyles.containerView]}>
-      <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={{height: 48}} />
+    <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+        {/* <View style={{height: 20}} /> */}
         {chatData.map((data, idx) => {
           return (
             <Pressable
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   chatBox: {
-    marginBottom: 42,
+    marginVertical: TOP_HEIGHT / 2,
     flexDirection: 'row',
     position: 'relative',
   },
