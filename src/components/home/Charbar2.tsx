@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, Image, StyleSheet, View} from 'react-native';
 import {GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function Charbar2({time}: any): JSX.Element {
@@ -28,7 +28,10 @@ export default function Charbar2({time}: any): JSX.Element {
 
   return (
     <>
-      <View style={styles.fixProfile2} />
+      <Image
+        source={require('@/assets/notfound.png')}
+        style={styles.fixProfile2}
+      />
       <Animated.Image
         source={require('@/assets/home-chatbar2.png')}
         style={[styles.fixChatbar2, {top: aniTop, opacity: aniOpacity}]}

@@ -4,6 +4,7 @@ import {
   Image,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,6 +12,8 @@ import {
 } from 'react-native';
 import {
   GRAY,
+  MARGIN_HOR,
+  MARGIN_VER,
   PINK0,
   PINK3,
   WINDOW_HEIGHT,
@@ -21,20 +24,18 @@ import Charbar1 from '@/components/home/Chatbar1';
 import Charbar2 from '@/components/home/Charbar2';
 
 export default function Home({navigation}: any): JSX.Element {
+  const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const aniOpacityFn = (o: number) => {
-    Animated.timing(aniOpacity, {
-      toValue: o,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-  };
-
   const aniLeftRight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniMargin = useRef<Animated.Value>(
     new Animated.Value(WINDOW_HEIGHT / 2.2),
   ).current;
-  const aniSearchFn = (m: number, lf: number) => {
+  const aniSearchFn = (h: number, m: number, lf: number, o: number) => {
+    Animated.timing(aniHeight, {
+      toValue: h,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
     Animated.timing(aniMargin, {
       toValue: m,
       duration: 1000,
@@ -42,6 +43,11 @@ export default function Home({navigation}: any): JSX.Element {
     }).start();
     Animated.timing(aniLeftRight, {
       toValue: lf,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+    Animated.timing(aniOpacity, {
+      toValue: o,
       duration: 1000,
       useNativeDriver: false,
     }).start();
@@ -83,13 +89,12 @@ export default function Home({navigation}: any): JSX.Element {
         </Animated.View>
 
         <Animated.View style={{right: aniLeftRight}}>
-          <Charbar2 time={1000} />
+          <Charbar2 time={1200} />
         </Animated.View>
 
         <Pressable
           onPress={() => {
-            aniSearchFn(WINDOW_HEIGHT / 2.2, 0);
-            aniOpacityFn(0);
+            aniSearchFn(0, WINDOW_HEIGHT / 2.2, 0, 0);
           }}>
           <Animated.View style={[styles.back, {opacity: aniOpacity}]} />
         </Pressable>
@@ -98,11 +103,28 @@ export default function Home({navigation}: any): JSX.Element {
           <TextInput
             style={styles.input}
             onPressIn={() => {
-              aniSearchFn(WINDOW_HEIGHT / 15, -WINDOW_WIDTH);
-              aniOpacityFn(1);
+              aniSearchFn(WINDOW_HEIGHT, MARGIN_VER, -WINDOW_WIDTH, 1); //WINDOW_HEIGHT / 15
             }}
           />
-          {/* <Text>a</Text> */}
+        </Animated.View>
+
+        <Animated.View
+          style={{
+            height: aniHeight,
+            flex: aniOpacity,
+            backgroundColor: 'white',
+          }}>
+          <ScrollView showsVerticalScrollIndicator={false}></ScrollView>
+        </Animated.View>
+
+        <Animated.View style={[styles.bottomText, {marginTop: aniMargin}]}>
+          <Text style={styles.text}>
+            선물 대상의 instagram ID를 검색해보세요.
+          </Text>
+          <Text style={styles.subText}>
+            <Text style={styles.textColor}>함께</Text> 모아{' '}
+            <Text style={styles.textColor}>선물</Text>하세요!
+          </Text>
         </Animated.View>
       </View>
     </SafeAreaView>
@@ -124,10 +146,11 @@ const styles = StyleSheet.create({
     borderColor: PINK3,
     borderRadius: 18,
     backgroundColor: 'white',
+    zIndex: 999,
   },
   gifto: {
     color: PINK0,
-    fontWeight: '400',
+    fontWeight: '600',
     fontSize: 20,
   },
   input: {
@@ -137,11 +160,33 @@ const styles = StyleSheet.create({
   },
 
   back: {
-    width: 48,
-    height: 48,
+    width: 36,
+    height: 36,
 
     position: 'absolute',
-    top: WINDOW_HEIGHT / 15,
+    top: MARGIN_VER + 6,
+    // left: MARGIN_HOR,
     backgroundColor: 'red',
+  },
+
+  text: {
+    marginVertical: 16,
+    fontSize: 12,
+    color: '#555',
+    alignSelf: 'center',
+  },
+  subText: {
+    marginVertical: 16,
+    fontSize: 14,
+    alignSelf: 'center',
+  },
+  textColor: {
+    color: PINK0,
+  },
+  bottomText: {
+    position: 'absolute',
+    paddingTop: 48,
+    alignSelf: 'center',
+    zIndex: -1,
   },
 });

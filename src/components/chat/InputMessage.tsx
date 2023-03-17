@@ -21,12 +21,12 @@ export default function InputMessage({}: any): JSX.Element {
     <View style={commonStyles.paddingHor}>
       <View style={styles.inputBox}>
         <Image
-          source={require('@/assets/test-item.png')}
+          source={require('@/assets/notfound.png')}
           style={commonStyles.img}
         />
         <TextInput style={styles.textInput} />
         <Image
-          source={require('@/assets/test-item.png')}
+          source={require('@/assets/notfound.png')}
           style={[
             commonStyles.img,
             {position: 'absolute', top: 0, right: 0, zIndex: 1},

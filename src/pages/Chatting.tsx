@@ -48,11 +48,11 @@ export default function Chatting(): JSX.Element {
         <Title text="채팅방 이름" style={commonStyles.marginHor} />
         <View style={styles.right}>
           <Image
-            source={require('@/assets/test-item.png')}
+            source={require('@/assets/notfound.png')}
             style={commonStyles.img}
           />
           <Image
-            source={require('@/assets/test-item.png')}
+            source={require('@/assets/notfound.png')}
             style={commonStyles.img}
           />
         </View>
@@ -70,7 +70,7 @@ export default function Chatting(): JSX.Element {
                   flexDirection: data.name === 'My' ? 'row' : 'row-reverse',
                 }}>
                 <Image
-                  source={require('@/assets/test-item.png')}
+                  source={require('@/assets/notfound.png')}
                   style={[commonStyles.img, styles.img]}
                 />
                 <Text>{data.chat}</Text>

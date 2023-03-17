@@ -7,9 +7,16 @@ import {
   Text,
   View,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import {commonStyles} from '@/styels/commonStyles';
-import {GRAY, PINK3, WINDOW_WIDTH} from '@/static/commonValue';
+import {
+  GRAY,
+  MARGIN_VER,
+  PINK3,
+  TOP_HEIGHT,
+  WINDOW_WIDTH,
+} from '@/static/commonValue';
 
 export default function Mypage({navigation}: any): JSX.Element {
   const mypageData = [
@@ -54,34 +61,39 @@ export default function Mypage({navigation}: any): JSX.Element {
       <Animated.View
         style={[styles.topBg, {top: aniTop, left: -(478 - WINDOW_WIDTH) / 2}]}
       />
-      <View style={styles.box}>
-        <View style={styles.imgBox}>
-          <Image source={require('@/assets/test.png')} style={styles.img} />
-        </View>
-        <Text style={styles.name}>배수지</Text>
-        <View style={styles.instaBox}>
-          <Image
-            source={require('@/assets/insert-insta.png')}
-            style={styles.instaImg}
-          />
-          <Text>skuukzky</Text>
-        </View>
+      {/* <View style={styles.box}> */}
+      <View style={styles.imgBox}>
+        <Image source={require('@/assets/notfound.png')} style={styles.img} />
+      </View>
+      <Text style={styles.name}>배수지</Text>
+      <View style={styles.instaBox}>
+        <Image
+          source={require('@/assets/insert-insta.png')}
+          style={styles.instaImg}
+        />
+        <Text>skuukzky</Text>
+      </View>
+      <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
         {mypageData.map((data, idx) => {
           return (
             <Pressable
               key={idx}
-              style={[styles.myBox, commonStyles.paddingHor]}
+              style={[commonStyles.marginHor, styles.myBox]}
               onPress={data.Fn}>
-              <Image source={data.img} style={styles.myImg} />
+              {/* <Image source={data.img} style={styles.myImg} /> */}
+              <Image
+                source={require('@/assets/notfound.png')}
+                style={[commonStyles.img, styles.myImg]}
+              />
               <Text>{data.text}</Text>
               <Image
-                source={require('@/assets/right.png')}
-                style={styles.rightImg}
+                source={require('@/assets/notfound.png')}
+                style={[commonStyles.img, styles.rightImg]}
               />
             </Pressable>
           );
         })}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -124,8 +136,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   instaBox: {
-    marginTop: 20,
-    marginBottom: 35,
+    marginTop: 10,
+    marginBottom: 20,
 
     flexDirection: 'row',
     alignSelf: 'center',
@@ -134,28 +146,22 @@ const styles = StyleSheet.create({
   instaImg: {
     width: 15,
     height: 15,
-
     marginRight: 10,
   },
 
   myBox: {
-    width: '100%',
-    height: 20,
-    marginBottom: 35,
+    height: TOP_HEIGHT,
+    marginVertical: MARGIN_VER,
 
     position: 'relative',
     flexDirection: 'row',
+    alignItems: 'center',
   },
   myImg: {
-    width: 15,
-    height: 15,
     marginRight: 15,
   },
   rightImg: {
-    width: 13,
-    height: 13,
-
     position: 'absolute',
-    right: 38,
+    right: 0,
   },
 });

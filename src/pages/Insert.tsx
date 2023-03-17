@@ -18,12 +18,7 @@ import {commonStyles} from '@/styels/commonStyles';
 export default function Insert(): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
-      <View
-        style={[
-          commonStyles.containerView,
-          commonStyles.marginTop,
-          commonStyles.marginHor,
-        ]}>
+      <View style={[commonStyles.containerView, commonStyles.marginHor]}>
         <Text style={commonStyles.title}>새 채팅방</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.imgBox}>

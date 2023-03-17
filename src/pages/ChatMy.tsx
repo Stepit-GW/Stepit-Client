@@ -14,17 +14,17 @@ import {ScrollView} from 'react-native-gesture-handler';
 export default function ChatMy({navigation}: any): JSX.Element {
   const chatData = [
     {
-      img: require('@/assets/test.png'),
+      img: require('@/assets/notfound.png'),
       title: 'title',
       contents: 'contents',
     },
     {
-      img: require('@/assets/test.png'),
+      img: require('@/assets/notfound.png'),
       title: 'title',
       contents: 'contents',
     },
     {
-      img: require('@/assets/test.png'),
+      img: require('@/assets/notfound.png'),
       title: 'title',
       contents: 'contents',
     },

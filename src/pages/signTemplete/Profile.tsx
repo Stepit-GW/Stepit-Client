@@ -9,19 +9,46 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {PINK3} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Title from '@/components/Title';
 import Btn from '@/components/Btn';
+import {BTN_HEIGHT, GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function Profile({navigation}: any): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
-        <Title text="프로필" />
+        <Title text="프로필" style={{}} />
+
+        <View style={styles.profileImgBox}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.profileImg}
+          />
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.profileImgRight}
+          />
+        </View>
+
+        <View style={styles.input}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.inputImg}
+          />
+          <TextInput style={styles.textInput} placeholder="이름" />
+        </View>
+
+        <View style={styles.input}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.inputImg}
+          />
+          <TextInput style={styles.textInput} placeholder="instagram ID" />
+        </View>
+
         <Btn
           Fn={() => {
-            // 토큰 가져오기
             navigation.popToTop();
             navigation.reset({index: 0, routes: [{name: 'Home'}]});
           }}
@@ -34,35 +61,45 @@ export default function Profile({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    alignItems: 'center',
+  profileImgBox: {
+    width: 120,
+    height: 120,
+    marginTop: 20,
+    marginBottom: 40,
+
+    overflow: 'hidden',
     alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: PINK3,
   },
-
-  logo: {
-    width: 88,
-    height: 144,
-    marginBottom: 20,
-  },
-  logoTitle: {
-    width: 92,
-    height: 20,
-    marginBottom: 200,
-  },
-
-  signup: {
+  profileImg: {
     width: '100%',
-    height: 48,
-    marginBottom: 30,
-
-    justifyContent: 'center',
-    borderRadius: 10,
-    backgroundColor: '#fff',
+    height: '100%',
+    borderRadius: 120,
   },
-  signupText: {
-    textAlign: 'center',
+  profileImgRight: {
+    width: 30,
+    height: 30,
+
+    position: 'absolute',
+    right: 5,
+    bottom: 0,
+    borderRadius: 30,
+  },
+
+  input: {
+    height: BTN_HEIGHT,
+    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: GRAY,
+    borderRadius: 10,
+  },
+  inputImg: {
+    marginHorizontal: 10,
+  },
+  textInput: {
+    width: '100%',
   },
 });

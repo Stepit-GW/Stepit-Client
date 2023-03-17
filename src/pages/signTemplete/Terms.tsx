@@ -9,21 +9,48 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {PINK3} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Title from '@/components/Title';
 import Btn from '@/components/Btn';
+import {BTN_HEIGHT, GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function Terms({navigation}: any): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
-        <Title text="회원가입" />
+        <Title text="회원가입" style={{marginBottom: WINDOW_HEIGHT / 12}} />
+
+        <View style={styles.checkBox}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.checkImg}
+          />
+          <Text style={styles.checkText}>약관 전체 동의</Text>
+        </View>
+
+        <View style={[styles.hr, {marginBottom: 27}]} />
+
+        <View style={styles.checkBox}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.checkImg}
+          />
+          <Text style={styles.checkText}>이용약관 동의(필수)</Text>
+        </View>
+
+        <View style={styles.checkBox}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.checkImg}
+          />
+          <Text style={styles.checkText}>개인정보 수집 및 이용동의(필수)</Text>
+        </View>
+
         <Btn
           Fn={() => {
             navigation.navigate('Profile');
           }}
-          text="완료"
+          text="회원가입"
           style={{}}
         />
       </View>
@@ -32,35 +59,23 @@ export default function Terms({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
+  hr: {
+    borderBottomWidth: 1,
+    borderBottomColor: GRAY,
+  },
+
+  checkBox: {
+    marginBottom: 27,
+    flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: PINK3,
   },
-
-  logo: {
-    width: 88,
-    height: 144,
-    marginBottom: 20,
-  },
-  logoTitle: {
-    width: 92,
+  checkImg: {
+    width: 20,
     height: 20,
-    marginBottom: 200,
+    marginRight: 10,
   },
-
-  signup: {
-    width: '100%',
-    height: 48,
-    marginBottom: 30,
-
-    justifyContent: 'center',
-    borderRadius: 10,
-    backgroundColor: '#fff',
-  },
-  signupText: {
-    textAlign: 'center',
+  checkText: {
+    fontSize: 14,
+    fontWeight: '500',
   },
 });

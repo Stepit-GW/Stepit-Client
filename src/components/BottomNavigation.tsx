@@ -14,13 +14,15 @@ export default function BottomNavigation(): JSX.Element {
             key={idx}
             options={{
               headerShown: false,
+              tabBarStyle: {
+                height: 65,
+              },
               tabBarLabel: ({focused}) => (
                 <Text
                   style={{fontSize: 12, color: focused ? '#F7CBD9' : 'gray'}}>
                   {data.name}
                 </Text>
               ),
-              // tabBarShowLabel: false,
               tabBarIcon: ({focused}: any) => {
                 return (
                   <Image

@@ -13,7 +13,7 @@ export default function Title({text, style}: any): JSX.Element {
         navigation.pop();
       }}>
       <Image
-        source={require('@/assets/test-item.png')}
+        source={require('@/assets/notfound.png')}
         style={commonStyles.img}
       />
       <Text style={styles.text}>{text}</Text>
