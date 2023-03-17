@@ -40,7 +40,7 @@ export default function Alarm(): JSX.Element {
               </View>
             </Pressable>
           )}
-          leftOpenValue={0}
+          disableRightSwipe={true}
           rightOpenValue={-109}
         />
       </View>

@@ -22,6 +22,7 @@ import {
 import {commonStyles} from '@/styels/commonStyles';
 import Charbar1 from '@/components/home/Chatbar1';
 import Charbar2 from '@/components/home/Charbar2';
+import HomeContents from '@/components/home/HomeContents';
 
 export default function Home({navigation}: any): JSX.Element {
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -114,7 +115,11 @@ export default function Home({navigation}: any): JSX.Element {
             flex: aniOpacity,
             backgroundColor: 'white',
           }}>
-          <ScrollView showsVerticalScrollIndicator={false}></ScrollView>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{paddingHorizontal: MARGIN_HOR - 10}}>
+            <HomeContents />
+          </ScrollView>
         </Animated.View>
 
         <Animated.View style={[styles.bottomText, {marginTop: aniMargin}]}>
@@ -183,6 +188,7 @@ const styles = StyleSheet.create({
   textColor: {
     color: PINK0,
   },
+
   bottomText: {
     position: 'absolute',
     paddingTop: 48,
