@@ -1,8 +1,8 @@
 import Home from '@/pages/Home';
-import Insert from '@/pages/Insert';
 import Alarm from '@/pages/Alarm';
 import Mypage from '@/pages/Mypage';
 import TopNavigationChat from '@/components/TopNavigationChat';
+import RoomCRUD from '@/pages/RoomCRUD';
 
 export const bottomRoutesData = [
   {
@@ -19,7 +19,7 @@ export const bottomRoutesData = [
   },
   {
     name: '등록',
-    component: Insert,
+    component: RoomCRUD,
     act: require('@/assets/bottomRoutes/insert-fill.png'),
     none: require('@/assets/bottomRoutes/insert-line.png'),
   },

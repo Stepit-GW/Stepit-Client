@@ -20,13 +20,13 @@ import {
 } from 'react-native';
 
 import BottomNavigation from './src/components/BottomNavigation';
-import Mypage from './src/pages/Mypage';
-import TopChatNavigation from '@/components/TopNavigationChat';
-import Chatting from '@/pages/Chatting';
+import Chatting from '@/pages/chatTemplete/Chatting';
 import Logo from '@/pages/Logo';
 import {signRoutesData} from '@/static/signRoutesData';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
 import {commonStyles} from '@/styels/commonStyles';
+import RoomCRUD from '@/pages/RoomCRUD';
+import {chatRoutes} from '@/static/chatRoutes';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,9 +45,21 @@ export default function App(): JSX.Element {
             component={Logo}
             options={{headerShown: false}}
           />
+
+          {chatRoutes.map((data: any, idx: number) => {
+            return (
+              <Stack.Screen
+                key={idx}
+                name={data.name}
+                component={data.component}
+                options={{headerShown: false}}
+              />
+            );
+          })}
+
           <Stack.Screen
-            name="Chatting"
-            component={Chatting}
+            name="RoomCRUD"
+            component={RoomCRUD}
             options={{headerShown: false}}
           />
 

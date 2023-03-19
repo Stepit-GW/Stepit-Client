@@ -14,12 +14,17 @@ import RNPickerSelect from 'react-native-picker-select';
 import Btn from '@/components/Btn';
 import {GRAY, PINK1, PINK4} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
+import Title from '@/components/Title';
 
-export default function Insert(): JSX.Element {
+export default function RoomCRUD({route}: any): JSX.Element {
+  const id = route.params.id;
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={[commonStyles.containerView, commonStyles.marginHor]}>
-        <Text style={commonStyles.title}>새 채팅방</Text>
+        <Title
+          text={id === 0 ? '새 채팅방' : '방정보 수정'}
+          textStyle={{fontSize: 20}}
+        />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.imgBox}>
             <Image

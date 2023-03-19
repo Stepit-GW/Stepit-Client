@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 
-export default function HomeContents(): JSX.Element {
+export default function HomeContents({setVisible}: any): JSX.Element {
   const HomeData = [
     {title: 'title', contents: 'D-5'},
     {title: 'title', contents: 'D-5'},
@@ -31,14 +31,19 @@ export default function HomeContents(): JSX.Element {
     <View style={styles.roomWrap}>
       {HomeData.map((data, idx) => {
         return (
-          <View key={idx} style={styles.roomBox}>
+          <Pressable
+            key={idx}
+            style={styles.roomBox}
+            onPress={() => {
+              setVisible(true);
+            }}>
             <Image
               source={require('@/assets/notfound.png')}
               style={styles.img}
             />
             <Text style={styles.title}>{data.title}</Text>
             <Text style={styles.day}>{data.contents}</Text>
-          </View>
+          </Pressable>
         );
       })}
     </View>

@@ -4,7 +4,7 @@ import {MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
 import {useNavigation} from '@react-navigation/native';
 import {commonStyles} from '@/styels/commonStyles';
 
-export default function Title({text, style}: any): JSX.Element {
+export default function Title({text, style, textStyle}: any): JSX.Element {
   const navigation = useNavigation<any>();
   return (
     <Pressable
@@ -16,7 +16,7 @@ export default function Title({text, style}: any): JSX.Element {
         source={require('@/assets/notfound.png')}
         style={commonStyles.img}
       />
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, textStyle]}>{text}</Text>
       <View style={commonStyles.img} />
     </Pressable>
   );

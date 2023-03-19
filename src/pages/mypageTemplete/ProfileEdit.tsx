@@ -9,16 +9,44 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {PINK3, TOP_MARGIN} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Title from '@/components/Title';
 import Btn from '@/components/Btn';
+import {BTN_HEIGHT, GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function ProfileEdit({navigation}: any): JSX.Element {
   return (
-    <SafeAreaView style={[commonStyles.container]}>
+    <SafeAreaView style={commonStyles.container}>
       <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
-        <Title text="프로필 수정" style={commonStyles.marginTop} />
+        <Title text="프로필 수정" style={{}} />
+
+        <View style={styles.profileImgBox}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.profileImg}
+          />
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.profileImgRight}
+          />
+        </View>
+
+        <View style={styles.input}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.inputImg}
+          />
+          <TextInput style={styles.textInput} placeholder="이름" />
+        </View>
+
+        <View style={styles.input}>
+          <Image
+            source={require('@/assets/notfound.png')}
+            style={styles.inputImg}
+          />
+          <TextInput style={styles.textInput} placeholder="instagram ID" />
+        </View>
+
         <Btn Fn={() => {}} text="완료" style={{}} />
       </View>
     </SafeAreaView>
@@ -26,18 +54,45 @@ export default function ProfileEdit({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  topBox: {
-    height: 30,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  profileImgBox: {
+    width: 120,
+    height: 120,
+    marginTop: 20,
+    marginBottom: 40,
+
+    overflow: 'hidden',
+    alignSelf: 'center',
   },
-  img: {
+  profileImg: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 120,
+  },
+  profileImgRight: {
     width: 30,
     height: 30,
+
+    position: 'absolute',
+    right: 5,
+    bottom: 0,
+    borderRadius: 30,
   },
-  text: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#000',
+
+  input: {
+    height: BTN_HEIGHT,
+    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: GRAY,
+    borderRadius: 10,
+  },
+  inputImg: {
+    marginHorizontal: 10,
+  },
+  textInput: {
+    width: '100%',
   },
 });

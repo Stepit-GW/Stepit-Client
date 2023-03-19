@@ -23,8 +23,11 @@ import {commonStyles} from '@/styels/commonStyles';
 import Charbar1 from '@/components/home/Chatbar1';
 import Charbar2 from '@/components/home/Charbar2';
 import HomeContents from '@/components/home/HomeContents';
+import ModalRoomDetail from '@/components/home/ModalRoomDetail';
 
 export default function Home({navigation}: any): JSX.Element {
+  const [visible, setVisible] = useState(false);
+
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniLeftRight = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -85,6 +88,8 @@ export default function Home({navigation}: any): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={commonStyles.containerView}>
+        {visible && <ModalRoomDetail setVisible={setVisible} />}
+
         <Animated.View style={{left: aniLeftRight}}>
           <Charbar1 time={500} />
         </Animated.View>
@@ -94,10 +99,14 @@ export default function Home({navigation}: any): JSX.Element {
         </Animated.View>
 
         <Pressable
+          style={{zIndex: 801}}
           onPress={() => {
             aniSearchFn(0, WINDOW_HEIGHT / 2.2, 0, 0);
           }}>
-          <Animated.View style={[styles.back, {opacity: aniOpacity}]} />
+          <Animated.Image
+            source={require('@/assets/notfound.png')}
+            style={[styles.back, {opacity: aniOpacity}]}
+          />
         </Pressable>
         <Animated.View style={[styles.search, {marginTop: aniMargin}]}>
           <Text style={styles.gifto}>GIFTo.</Text>
@@ -118,7 +127,7 @@ export default function Home({navigation}: any): JSX.Element {
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={{paddingHorizontal: MARGIN_HOR - 10}}>
-            <HomeContents />
+            <HomeContents setVisible={setVisible} />
           </ScrollView>
         </Animated.View>
 
@@ -151,7 +160,7 @@ const styles = StyleSheet.create({
     borderColor: PINK3,
     borderRadius: 18,
     backgroundColor: 'white',
-    zIndex: 999,
+    zIndex: 801,
   },
   gifto: {
     color: PINK0,
@@ -171,7 +180,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: MARGIN_VER + 6,
     // left: MARGIN_HOR,
-    backgroundColor: 'red',
   },
 
   text: {

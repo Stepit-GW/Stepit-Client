@@ -32,6 +32,14 @@ export default function BottomNavigation(): JSX.Element {
                 );
               },
             }}
+            listeners={({navigation}) => ({
+              tabPress: e => {
+                if (data.name === '등록') {
+                  e.preventDefault();
+                  navigation.navigate('RoomCRUD', {id: 0});
+                }
+              },
+            })}
             name={data.name}
             component={data.component}
           />

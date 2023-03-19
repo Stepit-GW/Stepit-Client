@@ -2,10 +2,10 @@ import {BTN_HEIGHT, PINK1} from '@/static/commonValue';
 import React from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 
-export default function Btn({Fn, text, style}: any): JSX.Element {
+export default function Btn({Fn, text, style, textStyle}: any): JSX.Element {
   return (
     <Pressable onPress={Fn} style={[styles.textBox, style]}>
-      <Text style={[styles.text, style]}>{text}</Text>
+      <Text style={[styles.text, textStyle]}>{text}</Text>
     </Pressable>
   );
 }
