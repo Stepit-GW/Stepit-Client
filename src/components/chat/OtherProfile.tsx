@@ -19,6 +19,19 @@ import {
 } from '@/static/commonValue';
 
 export default function OtherProfile({setVisible}: any): JSX.Element {
+  const aniTop = useRef<Animated.Value>(new Animated.Value(-447)).current;
+  const aniTopFn = (t: number) => {
+    Animated.timing(aniTop, {
+      toValue: t,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    aniTopFn(-157);
+  }, []);
+
   return (
     <View style={styles.profileBox}>
       <Pressable
@@ -28,8 +41,11 @@ export default function OtherProfile({setVisible}: any): JSX.Element {
         }}
       />
       <Animated.View
-        style={[styles.topBg, {top: -157, left: -(478 - WINDOW_WIDTH) / 2}]}
+        style={[styles.topBg, {top: aniTop, left: -(478 - WINDOW_WIDTH) / 2}]}
       />
+      <View style={styles.chatting}>
+        <Image source={require('@/assets/notfound.png')} />
+      </View>
       <View style={styles.imgBox}>
         <Image source={require('@/assets/notfound.png')} style={styles.img} />
       </View>
@@ -68,6 +84,12 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     alignSelf: 'center',
+  },
+  chatting: {
+    position: 'absolute',
+    top: 80,
+    alignSelf: 'center',
+    zIndex: 999,
   },
   imgBox: {
     width: 150,

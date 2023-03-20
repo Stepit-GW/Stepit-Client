@@ -3,18 +3,19 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  Slider,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
+import Slider from '@/components/Slider';
 import RNPickerSelect from 'react-native-picker-select';
 
 import Btn from '@/components/Btn';
 import {GRAY, PINK1, PINK4} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import Title from '@/components/Title';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 export default function RoomCRUD({route}: any): JSX.Element {
   const id = route.params.id;
@@ -70,17 +71,53 @@ export default function RoomCRUD({route}: any): JSX.Element {
           </View>
 
           <Text style={styles.input}>이벤트 날짜</Text>
-          {/* <RNPickerSelect
-            onValueChange={value => console.log(value)}
+
+          <RNPickerSelect
+            onValueChange={(value: any) => {
+              console.log(value);
+            }}
             items={[
               {label: '전체', value: '전체'},
               {label: '진행중', value: '진행중'},
               {label: '마감', value: '마감'},
             ]}
-          /> */}
+          />
+          <RNPickerSelect
+            onValueChange={(value: any) => {
+              console.log(value);
+            }}
+            items={[
+              {label: '전체', value: '전체'},
+              {label: '진행중', value: '진행중'},
+              {label: '마감', value: '마감'},
+            ]}
+          />
+          <RNPickerSelect
+            onValueChange={(value: any) => {
+              console.log(value);
+            }}
+            items={[
+              {label: '전체', value: '전체'},
+              {label: '진행중', value: '진행중'},
+              {label: '마감', value: '마감'},
+            ]}
+          />
 
           <Text style={styles.input}>인원</Text>
-          {/* <Slider /> */}
+          <Slider />
+          {/* <MultiSlider
+            isMarkersSeparated={true}
+            customMarkerLeft={e => {
+              return (
+                <View style={{width: 20, height: 20, backgroundColor: 'red'}} />
+              );
+            }}
+            customMarkerRight={e => {
+              return (
+                <View style={{width: 20, height: 20, backgroundColor: 'red'}} />
+              );
+            }}
+          /> */}
 
           <Text style={styles.input}>이벤트 내용</Text>
           <View style={styles.textInputEventBox}>

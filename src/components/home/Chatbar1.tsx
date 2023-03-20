@@ -22,21 +22,22 @@ export default function Charbar1({time}: any): JSX.Element {
 
   useEffect(() => {
     setTimeout(() => {
-      aniCharbarFn(WINDOW_HEIGHT / 15, 1);
+      aniCharbarFn(WINDOW_HEIGHT / 50, 1);
     }, time);
   }, []);
 
   return (
-    <>
+    <Animated.View
+      style={{position: 'absolute', top: aniTop, opacity: aniOpacity}}>
       <Image
         source={require('@/assets/notfound.png')}
         style={styles.fixProfile1}
       />
-      <Animated.Image
+      <Image
         source={require('@/assets/home-chatbar1.png')}
-        style={[styles.fixChatbar1, {top: aniTop, opacity: aniOpacity}]}
+        style={[styles.fixChatbar1, {top: WINDOW_HEIGHT / 15}]}
       />
-    </>
+    </Animated.View>
   );
 }
 

@@ -4,7 +4,7 @@ import {GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
 export default function Charbar2({time}: any): JSX.Element {
   const aniTop = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_HEIGHT / 3),
+    new Animated.Value(WINDOW_HEIGHT / 8),
   ).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniCharbarFn = (t: number, o: number) => {
@@ -22,21 +22,27 @@ export default function Charbar2({time}: any): JSX.Element {
 
   useEffect(() => {
     setTimeout(() => {
-      aniCharbarFn(WINDOW_HEIGHT / 4.3, 1);
+      aniCharbarFn(0, 1);
     }, time);
   }, []);
 
   return (
-    <>
+    <Animated.View
+      style={{
+        position: 'absolute',
+        right: 0,
+        top: aniTop,
+        opacity: aniOpacity,
+      }}>
       <Image
         source={require('@/assets/notfound.png')}
         style={styles.fixProfile2}
       />
-      <Animated.Image
+      <Image
         source={require('@/assets/home-chatbar2.png')}
-        style={[styles.fixChatbar2, {top: aniTop, opacity: aniOpacity}]}
+        style={[styles.fixChatbar2, {top: WINDOW_HEIGHT / 4.3}]}
       />
-    </>
+    </Animated.View>
   );
 }
 

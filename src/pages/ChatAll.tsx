@@ -1,4 +1,4 @@
-import {TOP_HEIGHT} from '@/static/commonValue';
+import {PINK1, PINK2, TOP_HEIGHT} from '@/static/commonValue';
 import {commonStyles} from '@/styels/commonStyles';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
@@ -66,12 +66,14 @@ export default function ChatAll({navigation}: any): JSX.Element {
               }}>
               <Image source={data.img} style={styles.img} />
               <View style={styles.chatBoxIn}>
-                <Text>{data.title}</Text>
+                <Text style={styles.title}>{data.title}</Text>
                 <Text>{data.contents}</Text>
               </View>
               <View style={styles.timeNum}>
-                <Text>time</Text>
-                <Text>num</Text>
+                <Text>4:27</Text>
+                <View style={styles.numBox}>
+                  <Text style={styles.num}>20</Text>
+                </View>
               </View>
             </Pressable>
           );
@@ -89,20 +91,44 @@ const styles = StyleSheet.create({
   img: {
     width: 45,
     height: 45,
+    marginRight: 15,
     borderRadius: 50,
   },
 
   chatBox: {
     marginVertical: TOP_HEIGHT / 2,
-    flexDirection: 'row',
     position: 'relative',
+    flexDirection: 'row',
   },
   chatBoxIn: {
     width: '100%',
+    alignSelf: 'center',
+  },
+
+  title: {
+    marginBottom: 2,
+    fontSize: 15,
+    fontWeight: '600',
   },
 
   timeNum: {
     position: 'absolute',
     right: 0,
+    alignSelf: 'center',
+  },
+  numBox: {
+    width: 20,
+    height: 20,
+    marginTop: 4,
+
+    alignSelf: 'center',
+    borderRadius: 20,
+    backgroundColor: PINK2,
+  },
+  num: {
+    lineHeight: 20,
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
