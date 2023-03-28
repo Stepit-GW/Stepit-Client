@@ -43,7 +43,7 @@ export default function Home({navigation}: any): JSX.Element {
           repeat={videoStart} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}
           muted={true}
-          controls={true} //바텀바가 나옴
+          // controls={true} //바텀바가 나옴
         />
         {/* 바텀은 멈추는 시간대를 모두 받아오고, 비율로 계산에서 그려낼거임 */}
         <Pressable

@@ -15,11 +15,10 @@ export default function BottomNavigation(): JSX.Element {
             options={{
               headerShown: false,
               tabBarStyle: {
-                height: 65,
+                // height: 65,
               },
               tabBarLabel: ({focused}) => (
-                <Text
-                  style={{fontSize: 12, color: focused ? '#F7CBD9' : 'gray'}}>
+                <Text style={{fontSize: 12, color: focused ? '#000' : 'gray'}}>
                   {data.name}
                 </Text>
               ),
@@ -32,14 +31,6 @@ export default function BottomNavigation(): JSX.Element {
                 );
               },
             }}
-            listeners={({navigation}) => ({
-              tabPress: e => {
-                if (data.name === '등록') {
-                  e.preventDefault();
-                  navigation.navigate('RoomCRUD', {id: 0});
-                }
-              },
-            })}
             name={data.name}
             component={data.component}
           />

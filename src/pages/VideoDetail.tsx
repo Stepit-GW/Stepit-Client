@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,11 +12,14 @@ import {
 } from 'react-native';
 import {commonStyles} from '@/styels/commonStyles';
 
-export default function Terms({navigation}: any): JSX.Element {
+export default function VideoDetail(): JSX.Element {
+  useEffect(() => {}, []);
+
   return (
     <SafeAreaView style={commonStyles.container}>
-      <View
-        style={[commonStyles.containerView, commonStyles.paddingHor]}></View>
+      <View style={commonStyles.containerView}>
+        <Text>VideoDetail</Text>
+      </View>
     </SafeAreaView>
   );
 }
