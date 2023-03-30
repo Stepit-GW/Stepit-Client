@@ -10,7 +10,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {commonStyles} from '@/styels/commonStyles';
+import {commonStyles} from '@/styles/commonStyles';
 
 export default function Search(): JSX.Element {
   useEffect(() => {}, []);

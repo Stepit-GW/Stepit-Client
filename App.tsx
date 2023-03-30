@@ -21,7 +21,8 @@ import {
 
 import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
-import {commonStyles} from '@/styels/commonStyles';
+import {commonStyles} from '@/styles/commonStyles';
+import {mypageRoutesData} from '@/static/mypageRoutes';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,17 @@ export default function App(): JSX.Element {
           />
 
           {signRoutesData.map((data: any, idx: number) => {
+            return (
+              <Stack.Screen
+                key={idx}
+                name={data.name}
+                component={data.component}
+                options={{headerShown: false}}
+              />
+            );
+          })}
+
+          {mypageRoutesData.map((data: any, idx: number) => {
             return (
               <Stack.Screen
                 key={idx}

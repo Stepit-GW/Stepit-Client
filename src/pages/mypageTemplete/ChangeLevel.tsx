@@ -1,22 +1,25 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import {BTN_HEIGHT, GRAY, WINDOW_HEIGHT} from '@/static/commonValue';
 
-export default function Profile(): JSX.Element {
+export default function ChangeLevel(): JSX.Element {
+  useEffect(() => {}, []);
+
   return (
     <SafeAreaView style={commonStyles.container}>
-      <View
-        style={[commonStyles.containerView, commonStyles.paddingHor]}></View>
+      <View style={commonStyles.containerView}>
+        <Text>ChangeLevel</Text>
+      </View>
     </SafeAreaView>
   );
 }

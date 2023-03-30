@@ -19,8 +19,8 @@ export const commonStyles = StyleSheet.create({
   },
 
   img: {
-    width: 38,
-    height: 38,
+    width: 24,
+    height: 24,
   },
 
   marginHor: {
