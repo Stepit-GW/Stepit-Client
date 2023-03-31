@@ -18,7 +18,7 @@ import {
 } from '@/static/commonValue';
 import Title from '@/components/Title';
 import {commonStyles} from '@/styles/commonStyles';
-import {mypageRoutesData} from '@/static/mypageRoutes';
+import {mypageRoutesData} from '@/static/mypageRoutesData';
 
 export default function Mypage({navigation}: any): JSX.Element {
   const mypageCnt = mypageRoutesData.length;
@@ -93,12 +93,18 @@ const styles = StyleSheet.create({
   contents: {
     flex: 1,
     width: '100%',
+    paddingTop: 60,
+
     alignItems: 'center',
+    // justifyContent: 'center',
+    // backgroundColor: 'red',
   },
 
   imgBox: {
     width: 100,
     height: 100,
+    marginBottom: 30,
+
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
@@ -119,9 +125,11 @@ const styles = StyleSheet.create({
 
   textBox: {
     height: 24,
+    marginBottom: 60,
 
     flexDirection: 'row',
     alignItems: 'center',
+    // backgroundColor: 'red',
   },
   text: {
     color: '#000',
@@ -132,6 +140,7 @@ const styles = StyleSheet.create({
   mypageBox: {
     width: '100%',
     height: 24,
+    marginVertical: 18,
 
     flexDirection: 'row',
     alignItems: 'center',

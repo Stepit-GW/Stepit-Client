@@ -22,6 +22,10 @@ export const commonStyles = StyleSheet.create({
     width: 24,
     height: 24,
   },
+  img100: {
+    width: '100%',
+    height: '100%',
+  },
 
   marginHor: {
     marginHorizontal: MARGIN_HOR,

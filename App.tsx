@@ -22,7 +22,7 @@ import {
 import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
 import {commonStyles} from '@/styles/commonStyles';
-import {mypageRoutesData} from '@/static/mypageRoutes';
+import {mypageRoutesData} from '@/static/mypageRoutesData';
 
 const Stack = createNativeStackNavigator();
 

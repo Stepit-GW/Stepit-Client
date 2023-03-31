@@ -11,6 +11,9 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
+import Title from '@/components/Title';
+import {MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
+import {homeDatas} from '@/static/home/homeDatas';
 // import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
@@ -21,6 +24,45 @@ export default function Home({navigation}: any): JSX.Element {
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={commonStyles.containerView}>
+        <View
+          style={[
+            commonStyles.paddingHor,
+            {marginTop: MARGIN_VER},
+            styles.titleBox,
+          ]}>
+          <View style={commonStyles.img} />
+          <Text style={styles.title}>STEPIT</Text>
+          <Image
+            source={require('@/assets/search-24.png')}
+            style={commonStyles.img}
+          />
+        </View>
+
+        <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+          {homeDatas.map((data: any, idx: number) => {
+            return (
+              <View key={idx} style={styles.scrollImgBox}>
+                <Text style={styles.scrollTitle}>맞"춤"추천</Text>
+                <ScrollView
+                  style={styles.scrollImg}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}>
+                  {data.videos.map((video: any, videoIdx: number) => {
+                    return (
+                      <View key={videoIdx} style={styles.videoBox}>
+                        <Image
+                          source={require('@/assets/notfound.png')}
+                          style={commonStyles.img100}
+                        />
+                      </View>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            );
+          })}
+        </ScrollView>
+
         {/* <Pressable
           onPress={() => {
             console.log('a');
@@ -46,12 +88,12 @@ export default function Home({navigation}: any): JSX.Element {
           // controls={true} //바텀바가 나옴
         /> */}
         {/* 바텀은 멈추는 시간대를 모두 받아오고, 비율로 계산에서 그려낼거임 */}
-        <Pressable
+        {/* <Pressable
           onPress={() => {
             setVideoStart(!videoStart);
           }}>
           <Text>버튼</Text>
-        </Pressable>
+        </Pressable> */}
 
         {/* </Pressable> */}
       </View>
@@ -60,6 +102,40 @@ export default function Home({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  titleBox: {
+    height: TOP_HEIGHT,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  title: {
+    lineHeight: 36,
+    fontWeight: '700',
+    fontSize: 30,
+  },
+
+  scroll: {
+    paddingTop: 30,
+  },
+  scrollImgBox: {
+    marginLeft: MARGIN_VER,
+    paddingBottom: 30,
+  },
+  scrollTitle: {
+    marginBottom: 20,
+  },
+  scrollImg: {},
+
+  videoBox: {
+    width: 125,
+    height: 196,
+    marginRight: MARGIN_VER,
+
+    overflow: 'hidden',
+    borderRadius: 15,
+  },
+
   fullScreen: {
     width: '100%',
     height: 300,

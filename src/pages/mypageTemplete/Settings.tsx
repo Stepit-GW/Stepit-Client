@@ -24,6 +24,7 @@ export default function Settings(): JSX.Element {
     {title: 'Wi-Fi에서만 재생', tf: true},
     {title: 'Wi-Fi에서만 다운로드', tf: true},
   ]);
+  const [resolution, setResolution] = useState(true);
 
   return (
     <SafeAreaView style={commonStyles.container}>
@@ -55,22 +56,35 @@ export default function Settings(): JSX.Element {
             </View>
           );
         })}
-        <Text style={styles.text}>해상도 설정</Text>
-        <View style={styles.box}>
+        <Text style={[styles.text, {marginBottom: 12}]}>해상도 설정</Text>
+        <Pressable
+          style={styles.box}
+          onPress={() => {
+            setResolution(!resolution);
+          }}>
           <Text>스탠다드</Text>
-          <Image
-            source={require('@/assets/mypage/check-30.png')}
-            style={styles.img}
-          />
-        </View>
-        <View style={styles.box}>
+          {resolution && (
+            <Image
+              source={require('@/assets/mypage/check-30.png')}
+              style={styles.img}
+            />
+          )}
+        </Pressable>
+        <Pressable
+          style={styles.box}
+          onPress={() => {
+            setResolution(!resolution);
+          }}>
           <Text>고화질</Text>
-          <Image
-            source={require('@/assets/mypage/check-30.png')}
-            style={styles.img}
-          />
-        </View>
-        <Text style={styles.text}>로그아웃</Text>
+          {!resolution && (
+            <Image
+              source={require('@/assets/mypage/check-30.png')}
+              style={styles.img}
+            />
+          )}
+        </Pressable>
+
+        <Text style={[styles.text, {marginTop: 30}]}>로그아웃</Text>
         <Text style={styles.text}>탈퇴</Text>
       </View>
     </SafeAreaView>
@@ -79,7 +93,9 @@ export default function Settings(): JSX.Element {
 
 const styles = StyleSheet.create({
   text: {
+    marginVertical: 20,
     lineHeight: 17,
+
     fontSize: 14,
     fontWeight: '500',
     color: '#000',
@@ -93,6 +109,10 @@ const styles = StyleSheet.create({
   },
 
   box: {
+    height: 30,
+    marginVertical: 4,
+    paddingLeft: 20,
+
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
