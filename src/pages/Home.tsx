@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
   const [videoStart, setVideoStart] = useState(false);
@@ -29,7 +29,7 @@ export default function Home({navigation}: any): JSX.Element {
             //   setVideoStart(false);
             // }, 500);
           }}> */}
-        <Video
+        {/* <Video
           source={require('@/assets/test.mp4')}
           style={styles.fullScreen}
           paused={videoStart} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
@@ -44,7 +44,7 @@ export default function Home({navigation}: any): JSX.Element {
           onAnimatedValueUpdate={() => {}}
           muted={true}
           // controls={true} //바텀바가 나옴
-        />
+        /> */}
         {/* 바텀은 멈추는 시간대를 모두 받아오고, 비율로 계산에서 그려낼거임 */}
         <Pressable
           onPress={() => {

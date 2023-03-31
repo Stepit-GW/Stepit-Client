@@ -13,15 +13,17 @@ import {
 import {commonStyles} from '@/styles/commonStyles';
 
 export default function Search(): JSX.Element {
-  useEffect(() => {}, []);
-
   return (
-    <SafeAreaView style={commonStyles.container}>
-      <View style={commonStyles.containerView}>
-        <Text>Search</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <Image source={require('@/assets/notfound.png')} style={styles.screen} />
+      <Text>Search</Text>
+    </>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    width: '100%',
+    height: '100%',
+  },
+});

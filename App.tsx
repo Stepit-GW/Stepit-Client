@@ -28,38 +28,38 @@ const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
   return (
-    <SafeAreaView style={commonStyles.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={BottomNavigation}
-            options={{headerShown: false}}
-          />
+    // <SafeAreaView style={commonStyles.container}>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={BottomNavigation}
+          options={{headerShown: false}}
+        />
 
-          {signRoutesData.map((data: any, idx: number) => {
-            return (
-              <Stack.Screen
-                key={idx}
-                name={data.name}
-                component={data.component}
-                options={{headerShown: false}}
-              />
-            );
-          })}
+        {signRoutesData.map((data: any, idx: number) => {
+          return (
+            <Stack.Screen
+              key={idx}
+              name={data.name}
+              component={data.component}
+              options={{headerShown: false}}
+            />
+          );
+        })}
 
-          {mypageRoutesData.map((data: any, idx: number) => {
-            return (
-              <Stack.Screen
-                key={idx}
-                name={data.name}
-                component={data.component}
-                options={{headerShown: false}}
-              />
-            );
-          })}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
+        {mypageRoutesData.map((data: any, idx: number) => {
+          return (
+            <Stack.Screen
+              key={idx}
+              name={data.name}
+              component={data.component}
+              options={{headerShown: false}}
+            />
+          );
+        })}
+      </Stack.Navigator>
+    </NavigationContainer>
+    // </SafeAreaView>
   );
 }
