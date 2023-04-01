@@ -23,6 +23,7 @@ import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
 import {commonStyles} from '@/styles/commonStyles';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
+import VideoDetail from '@/pages/VideoDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,12 @@ export default function App(): JSX.Element {
         <Stack.Screen
           name="Home"
           component={BottomNavigation}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="VideoDetail"
+          component={VideoDetail}
           options={{headerShown: false}}
         />
 

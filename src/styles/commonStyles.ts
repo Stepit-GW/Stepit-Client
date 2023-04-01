@@ -1,4 +1,4 @@
-import {MARGIN_HOR, MARGIN_VER} from '@/static/commonValue';
+import {MARGIN_HOR, MARGIN_VER, WINDOW_WIDTH} from '@/static/commonValue';
 import {StyleSheet} from 'react-native';
 
 export const commonStyles = StyleSheet.create({
@@ -21,6 +21,10 @@ export const commonStyles = StyleSheet.create({
   img: {
     width: 24,
     height: 24,
+  },
+  screenImg: {
+    width: WINDOW_WIDTH,
+    height: (WINDOW_WIDTH / 10) * 11,
   },
   img100: {
     width: '100%',

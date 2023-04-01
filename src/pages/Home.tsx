@@ -12,30 +12,39 @@ import {
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import Title from '@/components/Title';
-import {MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
+import {
+  MARGIN_HOR,
+  MARGIN_VER,
+  TOP_HEIGHT,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from '@/static/commonValue';
 import {homeDatas} from '@/static/home/homeDatas';
+import BottomSheet from '@/components/home/BottomSheet';
+import TitleAnimated from '@/components/home/TitleAnimated';
 // import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
-  const [videoStart, setVideoStart] = useState(false);
-
-  useEffect(() => {}, []);
+  const aniTop = useRef<Animated.Value>(
+    new Animated.Value(WINDOW_HEIGHT),
+  ).current;
+  const aniTopFn = (t: number) => {
+    Animated.timing(aniTop, {
+      toValue: t,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+  };
 
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={commonStyles.containerView}>
-        <View
-          style={[
-            commonStyles.paddingHor,
-            {marginTop: MARGIN_VER},
-            styles.titleBox,
-          ]}>
+        <TitleAnimated aniTopFn={aniTopFn} />
+
+        <View style={[commonStyles.paddingHor, styles.titleBox]}>
           <View style={commonStyles.img} />
           <Text style={styles.title}>STEPIT</Text>
-          <Image
-            source={require('@/assets/search-24.png')}
-            style={commonStyles.img}
-          />
+          <View style={commonStyles.img} />
         </View>
 
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -46,7 +55,15 @@ export default function Home({navigation}: any): JSX.Element {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {data.videos.map((video: any, videoIdx: number) => {
                     return (
-                      <View key={videoIdx} style={styles.videoBox}>
+                      <Pressable
+                        key={videoIdx}
+                        style={[
+                          styles.videoBox,
+                          {marginLeft: videoIdx === 0 ? MARGIN_VER : 0},
+                        ]}
+                        onPress={() => {
+                          navigation.navigate('VideoDetail');
+                        }}>
                         <Text style={styles.videoTitle}>{video.title}</Text>
                         <View style={styles.videoBottom}>
                           <Text style={styles.videoLeft}>{video.level}</Text>
@@ -56,7 +73,7 @@ export default function Home({navigation}: any): JSX.Element {
                           source={require('@/assets/notfound.png')}
                           style={commonStyles.img100}
                         />
-                      </View>
+                      </Pressable>
                     );
                   })}
                 </ScrollView>
@@ -64,6 +81,8 @@ export default function Home({navigation}: any): JSX.Element {
             );
           })}
         </ScrollView>
+
+        <BottomSheet aniTop={aniTop} />
       </View>
     </SafeAreaView>
   );
@@ -72,6 +91,7 @@ export default function Home({navigation}: any): JSX.Element {
 const styles = StyleSheet.create({
   titleBox: {
     height: TOP_HEIGHT,
+    marginTop: MARGIN_VER,
 
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -87,10 +107,11 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   scrollImgBox: {
-    marginLeft: MARGIN_VER,
+    // marginLeft: MARGIN_VER,
     paddingBottom: 30,
   },
   scrollTitle: {
+    marginLeft: MARGIN_VER,
     marginBottom: 20,
     lineHeight: 19,
 
