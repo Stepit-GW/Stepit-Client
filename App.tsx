@@ -24,49 +24,52 @@ import {signRoutesData} from '@/static/signRoutesData';
 import {commonStyles} from '@/styles/commonStyles';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
 import VideoDetail from '@/pages/VideoDetail';
+import {RecoilRoot} from 'recoil';
 
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
   return (
     // <SafeAreaView style={commonStyles.container}>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={BottomNavigation}
-          options={{headerShown: false}}
-        />
+    <RecoilRoot>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={BottomNavigation}
+            options={{headerShown: false}}
+          />
 
-        <Stack.Screen
-          name="VideoDetail"
-          component={VideoDetail}
-          options={{headerShown: false}}
-        />
+          <Stack.Screen
+            name="VideoDetail"
+            component={VideoDetail}
+            options={{headerShown: false}}
+          />
 
-        {signRoutesData.map((data: any, idx: number) => {
-          return (
-            <Stack.Screen
-              key={idx}
-              name={data.name}
-              component={data.component}
-              options={{headerShown: false}}
-            />
-          );
-        })}
+          {signRoutesData.map((data: any, idx: number) => {
+            return (
+              <Stack.Screen
+                key={idx}
+                name={data.name}
+                component={data.component}
+                options={{headerShown: false}}
+              />
+            );
+          })}
 
-        {mypageRoutesData.map((data: any, idx: number) => {
-          return (
-            <Stack.Screen
-              key={idx}
-              name={data.name}
-              component={data.component}
-              options={{headerShown: false}}
-            />
-          );
-        })}
-      </Stack.Navigator>
-    </NavigationContainer>
+          {mypageRoutesData.map((data: any, idx: number) => {
+            return (
+              <Stack.Screen
+                key={idx}
+                name={data.name}
+                component={data.component}
+                options={{headerShown: false}}
+              />
+            );
+          })}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </RecoilRoot>
     // </SafeAreaView>
   );
 }

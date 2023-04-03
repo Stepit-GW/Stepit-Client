@@ -20,9 +20,9 @@ export default function Settings(): JSX.Element {
   const navigation = useNavigation<any>();
 
   const [switchDatas, setSwitchDatas] = useState([
-    {title: '알림 설정', tf: true},
-    {title: 'Wi-Fi에서만 재생', tf: true},
-    {title: 'Wi-Fi에서만 다운로드', tf: true},
+    {title: '알림 설정', tf: false},
+    {title: 'Wi-Fi에서만 재생', tf: false},
+    {title: 'Wi-Fi에서만 다운로드', tf: false},
   ]);
   const [resolution, setResolution] = useState(true);
 

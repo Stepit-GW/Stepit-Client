@@ -1,6 +1,6 @@
 import Home from '@/pages/Home';
 import Mypage from '@/pages/Mypage';
-import Search from '@/pages/Search';
+import ShortVideo from '@/pages/ShortVideo';
 
 export const bottomRoutesData = [
   {
@@ -11,7 +11,7 @@ export const bottomRoutesData = [
   },
   {
     name: '탐색',
-    component: Search,
+    component: ShortVideo,
     act: require('@/assets/bottomRoutes/search-24.png'),
     none: require('@/assets/bottomRoutes/search-24.png'),
   },

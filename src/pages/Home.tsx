@@ -22,6 +22,8 @@ import {
 import {homeDatas} from '@/static/home/homeDatas';
 import BottomSheet from '@/components/home/BottomSheet';
 import TitleAnimated from '@/components/home/TitleAnimated';
+import {useRecoilState, useSetRecoilState} from 'recoil';
+import {bottomBarState} from '@/recoil/bottomBarState';
 // import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
@@ -36,10 +38,17 @@ export default function Home({navigation}: any): JSX.Element {
     }).start();
   };
 
+  const [resultDatas, setResultDatas] = useState([]);
+  const setBottomBar = useSetRecoilState(bottomBarState);
+
   return (
-    <SafeAreaView style={commonStyles.container}>
+    <SafeAreaView
+      style={commonStyles.container}
+      onLayout={e => {
+        setBottomBar(e.nativeEvent.layout.height);
+      }}>
       <View style={commonStyles.containerView}>
-        <TitleAnimated aniTopFn={aniTopFn} />
+        <TitleAnimated aniTopFn={aniTopFn} setResultDatas={setResultDatas} />
 
         <View style={[commonStyles.paddingHor, styles.titleBox]}>
           <View style={commonStyles.img} />
@@ -82,7 +91,7 @@ export default function Home({navigation}: any): JSX.Element {
           })}
         </ScrollView>
 
-        <BottomSheet aniTop={aniTop} />
+        <BottomSheet aniTop={aniTop} resultDatas={resultDatas} />
       </View>
     </SafeAreaView>
   );

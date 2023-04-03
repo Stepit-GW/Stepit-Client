@@ -26,10 +26,10 @@ export default function Switch({
       style={styles.switchWrap}
       onPress={() => {
         let lst = switchDatas;
-        lst[idx] = !switchDatas[idx];
-        if (lst[idx]) aniToggle(15, 1);
+        lst[idx].tf = !switchDatas[idx].tf;
+        console.log(lst[idx].tf);
+        if (lst[idx].tf) aniToggle(15, 1);
         else aniToggle(2, 0);
-        console.log(switchDatas[idx]);
         setSwitchDatas(lst);
       }}>
       <Animated.View style={[styles.switchBg, {opacity: aniOpacity}]} />

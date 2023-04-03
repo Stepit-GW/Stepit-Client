@@ -20,9 +20,13 @@ import {
   WINDOW_WIDTH,
 } from '@/static/commonValue';
 import {homeDatas} from '@/static/home/homeDatas';
+import {searchDatas} from '@/static/home/searchDatas';
 // import Video from 'react-native-video';
 
-export default function TitleAnimated({aniTopFn}: any): JSX.Element {
+export default function TitleAnimated({
+  aniTopFn,
+  setResultDatas,
+}: any): JSX.Element {
   const aniWidth = useRef<Animated.Value>(
     new Animated.Value(24 + MARGIN_HOR * 2),
   ).current;
@@ -52,6 +56,17 @@ export default function TitleAnimated({aniTopFn}: any): JSX.Element {
       duration: 800,
       useNativeDriver: false,
     }).start();
+  };
+
+  const searchFn = (e: any) => {
+    const word = e.nativeEvent.text;
+    const res = searchDatas.filter((v: any) => {
+      return v.keyword === word;
+    });
+    if (res.length !== 0) {
+      setResultDatas(res[0].results);
+      return;
+    } else setResultDatas([]);
   };
 
   return (
@@ -87,6 +102,8 @@ export default function TitleAnimated({aniTopFn}: any): JSX.Element {
       <Animated.View style={{width: aniWidth2}} />
       <TextInput
         style={[styles.input, {width: WINDOW_WIDTH - 48 - MARGIN_HOR}]}
+        placeholder={'걸그룹 명을 검색해 주세요'}
+        onChange={searchFn}
       />
     </Animated.View>
   );
