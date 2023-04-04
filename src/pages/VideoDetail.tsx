@@ -40,8 +40,33 @@ export default function VideoDetail(): JSX.Element {
     <>
       <View style={styles.container}>
         <LinearGradient
-          colors={['transparent', 'white']}
-          style={commonStyles.screenImg}></LinearGradient>
+          colors={['transparent', 'transparent', 'white']}
+          style={[commonStyles.screenImg, styles.linearGradient]}>
+          <Text style={styles.title}>르세라핌 - </Text>
+
+          <View style={styles.row}>
+            <Image
+              source={require('@/assets/videoDetail/video-24.png')}
+              style={commonStyles.img}
+            />
+            <Text style={styles.timeText}>1분 20초</Text>
+          </View>
+
+          <View
+            style={[
+              styles.row,
+              {marginBottom: 12, justifyContent: 'space-between'},
+            ]}>
+            <View style={styles.row}>
+              <Text style={styles.level}>상</Text>
+              <Text style={styles.level}>중</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.level}>상</Text>
+              <Text style={styles.level}>중</Text>
+            </View>
+          </View>
+        </LinearGradient>
       </View>
       <Image
         source={require('@/assets/notfound.png')}
@@ -134,8 +159,40 @@ const styles = StyleSheet.create({
     zIndex: 902,
   },
   linearGradient: {
+    paddingHorizontal: MARGIN_HOR,
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+
+  title: {
+    marginBottom: 10,
+    lineHeight: 36,
+    color: 'white',
+    fontWeight: '800',
+    fontSize: 30,
+  },
+  timeText: {
+    color: 'white',
+    lineHeight: 19,
+    fontWeight: '500',
+    fontSize: 16,
+  },
+  row: {
+    marginBottom: 18,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  level: {
+    width: 24,
+    paddingVertical: 4,
+    marginLeft: 6,
+
+    color: 'white',
+    textAlign: 'center',
+
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 12,
   },
 
   scroll: {

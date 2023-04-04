@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   text: {
-    color: '#000',
+    color: 'black',
     fontWeight: '400',
     fontSize: 14,
   },

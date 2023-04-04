@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     lineHeight: 17,
 
+    color: 'black',
     fontSize: 14,
     fontWeight: '500',
-    color: '#000',
   },
   switch: {
     width: '100%',

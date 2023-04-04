@@ -13,9 +13,9 @@ export const commonStyles = StyleSheet.create({
   title: {
     marginVertical: MARGIN_VER,
     alignSelf: 'center',
+    color: 'black',
     fontSize: 20,
     fontWeight: '700',
-    color: '#000',
   },
 
   img: {

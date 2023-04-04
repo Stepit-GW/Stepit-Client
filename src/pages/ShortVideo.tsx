@@ -38,7 +38,7 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                 <View style={styles.titleTop}>
                   <Text style={styles.level}>중</Text>
                   <Image
-                    source={require('@/assets/heart-24.png')}
+                    source={require('@/assets/heart-white-24.png')}
                     style={commonStyles.img}
                   />
                 </View>

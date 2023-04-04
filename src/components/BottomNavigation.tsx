@@ -18,7 +18,7 @@ export default function BottomNavigation(): JSX.Element {
                 // height: 65,
               },
               tabBarLabel: ({focused}) => (
-                <Text style={{fontSize: 12, color: focused ? '#000' : 'gray'}}>
+                <Text style={{fontSize: 12, color: focused ? 'black' : 'gray'}}>
                   {data.name}
                 </Text>
               ),

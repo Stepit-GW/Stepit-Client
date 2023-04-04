@@ -11,19 +11,6 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
-import {
-  MARGIN_HOR,
-  MARGIN_VER,
-  TOP_HEIGHT,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
-import {homeDatas} from '@/static/home/homeDatas';
-import BottomSheet from '@/components/home/BottomSheet';
-import TitleAnimated from '@/components/home/TitleAnimated';
-import {useRecoilState, useSetRecoilState} from 'recoil';
-import {bottomBarState} from '@/recoil/bottomBarState';
 // import Video from 'react-native-video';
 
 export default function Accodian({
@@ -51,8 +38,8 @@ export default function Accodian({
         let lst = detailDatas;
         lst[idx].tf = !detailDatas[idx].tf;
         if (lst[idx].tf) {
-          aniHeightFn(detailDatas[idx].videos.length * 76 + 10);
           setHeight(true);
+          aniHeightFn(detailDatas[idx].videos.length * 76 + 10);
         } else {
           aniHeightFn(0);
           setTimeout(() => {
@@ -63,9 +50,20 @@ export default function Accodian({
         reload();
       }}>
       <View style={styles.boxName}>
-        <Text>Step. {idx + 1}</Text>
-        <View>
-          <Text>{data.boxName}</Text>
+        <Text style={styles.step}>Step. {idx + 1}</Text>
+        <View style={styles.contents}>
+          <Text style={styles.title}>{data.boxName}</Text>
+          {data.tf ? (
+            <Image
+              source={require('@/assets/videoDetail/arrow-top-24.png')}
+              style={commonStyles.img}
+            />
+          ) : (
+            <Image
+              source={require('@/assets/videoDetail/arrow-bottom-24.png')}
+              style={commonStyles.img}
+            />
+          )}
         </View>
       </View>
       <Animated.View
@@ -84,12 +82,12 @@ export default function Accodian({
                   style={commonStyles.img100}
                 />
               </View>
-              <View>
+              <View style={{marginLeft: 15}}>
                 <Text>{data2.title}</Text>
                 <Text>{data2.time}</Text>
               </View>
               <Image
-                source={require('@/assets/mypage/heart-24.png')}
+                source={require('@/assets/heart-black-24.png')}
                 style={[commonStyles.img, styles.heartImg]}
               />
             </View>
@@ -112,11 +110,33 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 5,
   },
+
   boxName: {
     width: '100%',
     height: 68,
+    paddingHorizontal: 15,
+    justifyContent: 'center',
+
     borderRadius: 10,
     backgroundColor: '#999',
+  },
+  step: {
+    marginBottom: 10,
+    color: 'black',
+    lineHeight: 19,
+    fontSize: 16,
+    fontWeight: '300',
+  },
+  contents: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  title: {
+    color: 'black',
+    lineHeight: 19,
+    fontSize: 16,
+    fontWeight: '700',
   },
 
   video: {
