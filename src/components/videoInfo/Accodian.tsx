@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
+import {useNavigation} from '@react-navigation/native';
 // import Video from 'react-native-video';
 
 export default function Accodian({
@@ -20,6 +21,8 @@ export default function Accodian({
   setDetailData,
   reload,
 }: any): JSX.Element {
+  const navigation = useNavigation<any>();
+
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniHeightFn = (t: number) => {
@@ -55,12 +58,12 @@ export default function Accodian({
           <Text style={styles.title}>{data.boxName}</Text>
           {data.tf ? (
             <Image
-              source={require('@/assets/videoDetail/arrow-top-24.png')}
+              source={require('@/assets/video/arrow-top-24.png')}
               style={commonStyles.img}
             />
           ) : (
             <Image
-              source={require('@/assets/videoDetail/arrow-bottom-24.png')}
+              source={require('@/assets/video/arrow-bottom-24.png')}
               style={commonStyles.img}
             />
           )}
@@ -73,9 +76,12 @@ export default function Accodian({
         }}>
         {data.videos.map((data2: any, idx2: number) => {
           return (
-            <View
+            <Pressable
               key={idx2}
-              style={[styles.video, {display: height ? 'flex' : 'none'}]}>
+              style={[styles.video, {display: height ? 'flex' : 'none'}]}
+              onPress={() => {
+                navigation.navigate('VideoDetail');
+              }}>
               <View style={styles.imgBox}>
                 <Image
                   source={require('@/assets/notfound.png')}
@@ -90,7 +96,7 @@ export default function Accodian({
                 source={require('@/assets/heart-black-24.png')}
                 style={[commonStyles.img, styles.heartImg]}
               />
-            </View>
+            </Pressable>
           );
         })}
       </Animated.View>

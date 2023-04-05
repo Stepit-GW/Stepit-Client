@@ -71,7 +71,7 @@ export default function Home({navigation}: any): JSX.Element {
                           {marginLeft: videoIdx === 0 ? MARGIN_VER : 0},
                         ]}
                         onPress={() => {
-                          navigation.navigate('VideoDetail');
+                          navigation.navigate('VideoInfo');
                         }}>
                         <Text style={styles.videoTitle}>{video.title}</Text>
                         <View style={styles.videoBottom}>

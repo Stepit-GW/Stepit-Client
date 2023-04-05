@@ -26,6 +26,10 @@ export const commonStyles = StyleSheet.create({
     width: WINDOW_WIDTH,
     height: (WINDOW_WIDTH / 10) * 11,
   },
+  videoImg: {
+    width: WINDOW_WIDTH,
+    height: (WINDOW_WIDTH / 3) * 2,
+  },
   img100: {
     width: '100%',
     height: '100%',

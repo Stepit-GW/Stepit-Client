@@ -23,8 +23,10 @@ import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
 import {commonStyles} from '@/styles/commonStyles';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
-import VideoDetail from '@/pages/VideoDetail';
+import VideoInfo from '@/pages/VideoInfo';
 import {RecoilRoot} from 'recoil';
+import VideoDetail from '@/pages/VideoDetail';
+import ModalVideo from '@/components/ModalVideo';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,12 @@ export default function App(): JSX.Element {
           <Stack.Screen
             name="Home"
             component={BottomNavigation}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="VideoInfo"
+            component={VideoInfo}
             options={{headerShown: false}}
           />
 
@@ -68,6 +76,8 @@ export default function App(): JSX.Element {
             );
           })}
         </Stack.Navigator>
+
+        <ModalVideo />
       </NavigationContainer>
     </RecoilRoot>
     // </SafeAreaView>
