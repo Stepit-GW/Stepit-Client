@@ -40,7 +40,9 @@ export default function BottomSheet({aniTop, resultDatas}: any): JSX.Element {
               <View style={styles.video} key={idx}>
                 <Text style={styles.videoTitle}>{data.title}</Text>
                 <View style={styles.videoBottom}>
-                  <Text style={styles.videoLeft}>{data.level}</Text>
+                  <View style={styles.videoLeftBox}>
+                    <Text style={styles.videoLeft}>{data.level}</Text>
+                  </View>
                   <Text style={styles.videoRight}>{data.time}</Text>
                 </View>
                 <Image
@@ -106,21 +108,22 @@ const styles = StyleSheet.create({
     zIndex: 900,
     // backgroundColor: 'red',
   },
-  videoLeft: {
-    width: 20,
-    height: 20,
+  videoLeftBox: {
+    width: 24,
+    height: 24,
     marginLeft: 6,
-
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-
-    fontWeight: '500',
-    fontSize: 12,
+    justifyContent: 'center',
 
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 24,
+  },
+  videoLeft: {
+    color: 'white',
+    textAlign: 'center',
+
+    fontWeight: '500',
+    fontSize: 12,
   },
   videoRight: {
     marginRight: 6,

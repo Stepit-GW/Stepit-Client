@@ -58,8 +58,12 @@ export default function VideoInfo(): JSX.Element {
               {marginBottom: 12, justifyContent: 'space-between'},
             ]}>
             <View style={styles.row}>
-              <Text style={styles.level}>상</Text>
-              <Text style={styles.level}>중</Text>
+              <View style={[styles.levelBox, {marginRight: 10}]}>
+                <Text style={styles.level}>상</Text>
+              </View>
+              <View style={styles.levelBox}>
+                <Text style={styles.level}>중</Text>
+              </View>
             </View>
             <View style={styles.row}>
               <Image
@@ -192,23 +196,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  level: {
+  levelBox: {
     width: 36,
     height: 36,
-    paddingVertical: 4,
-    marginLeft: 10,
-
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-
-    fontWeight: '500',
-    fontSize: 16,
-    lineHeight: 19,
+    justifyContent: 'center',
 
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 36,
+  },
+  level: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 19,
   },
 
   scroll: {

@@ -75,7 +75,9 @@ export default function Home({navigation}: any): JSX.Element {
                         }}>
                         <Text style={styles.videoTitle}>{video.title}</Text>
                         <View style={styles.videoBottom}>
-                          <Text style={styles.videoLeft}>{video.level}</Text>
+                          <View style={styles.videoLeftBox}>
+                            <Text style={styles.videoLeft}>{video.level}</Text>
+                          </View>
                           <Text style={styles.videoRight}>{video.time}</Text>
                         </View>
                         <Image
@@ -147,13 +149,11 @@ const styles = StyleSheet.create({
     top: 0,
 
     color: 'white',
-    // textAlign: 'center',
     fontWeight: '800',
     fontSize: 14,
     lineHeight: 17,
 
     zIndex: 900,
-    // backgroundColor: 'red',
   },
   videoBottom: {
     width: '100%',
@@ -165,23 +165,23 @@ const styles = StyleSheet.create({
     bottom: 5,
 
     zIndex: 900,
-    // backgroundColor: 'red',
   },
-  videoLeft: {
+  videoLeftBox: {
     width: 20,
     height: 20,
     marginLeft: 6,
-
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-
-    fontWeight: '500',
-    fontSize: 12,
+    justifyContent: 'center',
 
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 20,
+  },
+  videoLeft: {
+    color: 'white',
+    textAlign: 'center',
+
+    fontWeight: '500',
+    fontSize: 12,
   },
   videoRight: {
     marginRight: 6,

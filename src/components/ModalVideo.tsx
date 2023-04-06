@@ -12,29 +12,31 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import {modalVideoState} from '@/recoil/modalVideoState';
 import {MARGIN_HOR, MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
+import {useNavigation} from '@react-navigation/native';
+import {windowState} from '@/recoil/windowState';
 
 export default function ModalVideo({}: any): JSX.Element {
-  const [modalVideo, setModalVideo] = useRecoilState(modalVideoState);
-  const {width, height} = useWindowDimensions();
-  const [orientation, setOrientation] = useState(true);
+  const navigation = useNavigation<any>();
+
+  const window = useRecoilValue(windowState);
 
   useEffect(() => {
-    if (width > height) setOrientation(false);
-    else setOrientation(true);
-  }, [width, height]);
+    // console.log(window.width);
+  }, [window]);
 
   return (
-    <Modal visible={modalVideo} animationType="slide">
-      <SafeAreaView style={[commonStyles.container, styles.container]}>
+    // <Modal visible={modalVideo} animationType="slide">
+    <SafeAreaView style={[commonStyles.container, styles.container]}>
+      <View style={styles.container}>
         {/* <View style={commonStyles.containerView}> */}
 
         <View style={styles.top}>
           <Pressable
             onPress={() => {
-              setModalVideo(false);
+              navigation.pop();
             }}>
             <Image
               source={require('@/assets/video/x-white-24.png')}
@@ -47,13 +49,23 @@ export default function ModalVideo({}: any): JSX.Element {
         <Image
           source={require('@/assets/notfound.png')}
           style={{
-            width: width < (height / 2) * 3 ? width : (height / 2) * 3,
-            height: width < (height / 2) * 3 ? (width / 3) * 2 : height,
+            width:
+              window.width < (window.height / 2) * 3
+                ? window.width
+                : (window.height / 2) * 3,
+            height:
+              window.width < (window.height / 2) * 3
+                ? (window.width / 3) * 2
+                : window.height,
             alignSelf: 'center',
           }}
         />
 
-        <View style={[styles.middleBox, orientation && {bottom: 25 + 25 + 10}]}>
+        <View
+          style={[
+            styles.middleBox,
+            window.orientation && {bottom: 25 + 25 + 10},
+          ]}>
           <Image
             source={require('@/assets/video/back-24.png')}
             style={styles.middleImg}
@@ -77,8 +89,8 @@ export default function ModalVideo({}: any): JSX.Element {
             />
           </View>
 
-          <View style={Styles(orientation).lineBox}>
-            <View style={Styles(orientation).circle} />
+          <View style={Styles(window.orientation).lineBox}>
+            <View style={Styles(window.orientation).circle} />
             <View style={[styles.line, {opacity: 0.3}]} />
 
             <View style={styles.realLineBox}>
@@ -89,7 +101,7 @@ export default function ModalVideo({}: any): JSX.Element {
             <View style={styles.realLineBox}>
               <Image
                 source={require('@/assets/video/check-22.png')}
-                style={[Styles(orientation).checks, {marginLeft: '20%'}]}
+                style={[Styles(window.orientation).checks, {marginLeft: '20%'}]}
               />
             </View>
           </View>
@@ -111,8 +123,9 @@ export default function ModalVideo({}: any): JSX.Element {
             </View>
           </View>
         </View>
-      </SafeAreaView>
-    </Modal>
+      </View>
+    </SafeAreaView>
+    // </Modal>
   );
 }
 

@@ -36,7 +36,9 @@ export default function ShortVideo({navigation}: any): JSX.Element {
               }}>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>
-                  <Text style={styles.level}>중</Text>
+                  <View style={styles.levelBox}>
+                    <Text style={styles.level}>중</Text>
+                  </View>
                   <Image
                     source={require('@/assets/heart-white-24.png')}
                     style={commonStyles.img}
@@ -74,23 +76,22 @@ const styles = StyleSheet.create({
   titleTop: {
     flexDirection: 'row',
   },
-  level: {
+  levelBox: {
     width: 24,
     height: 24,
-    marginRight: 14,
-    marginBottom: 6,
-
-    flexDirection: 'row',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 14,
+    marginRight: 15,
+    marginBottom: 10,
+    justifyContent: 'center',
 
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 24,
+  },
+  level: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: '500',
+    fontSize: 14,
   },
 
   titleBottom: {

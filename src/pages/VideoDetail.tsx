@@ -69,7 +69,7 @@ export default function VideoDetail(): JSX.Element {
             rightComponent={
               <Pressable
                 onPress={() => {
-                  setModalVideo(true);
+                  navigation.navigate('ModalVideo');
                 }}>
                 <Image
                   source={require('@/assets/screen-scaleup-24.png')}
