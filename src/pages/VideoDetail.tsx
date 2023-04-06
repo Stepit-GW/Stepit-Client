@@ -21,7 +21,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
-import Accodian from '@/components/videoInfo/Accodian';
+import Accodian from '@/components/Accodian';
 import {useSetRecoilState} from 'recoil';
 import {modalVideoState} from '@/recoil/modalVideoState';
 

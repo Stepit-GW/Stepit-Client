@@ -33,6 +33,13 @@ export default function Accodian({
     }).start();
   };
 
+  useEffect(() => {
+    if (detailDatas[idx].tf) {
+      setHeight(true);
+      aniHeightFn(detailDatas[idx].videos.length * 76 + 10);
+    }
+  }, []);
+
   return (
     <Pressable
       key={idx}
@@ -82,6 +89,7 @@ export default function Accodian({
               onPress={() => {
                 navigation.navigate('VideoDetail');
               }}>
+              {/* <View style={{marginTop: 20}}> */}
               <View style={styles.imgBox}>
                 <Image
                   source={require('@/assets/notfound.png')}
@@ -96,6 +104,7 @@ export default function Accodian({
                 source={require('@/assets/heart-black-24.png')}
                 style={[commonStyles.img, styles.heartImg]}
               />
+              {/* </View> */}
             </Pressable>
           );
         })}
@@ -147,11 +156,11 @@ const styles = StyleSheet.create({
 
   video: {
     width: '100%',
-    height: 56,
-    marginTop: 20,
+    height: 76,
+    paddingTop: 20,
     paddingHorizontal: 10,
     flexDirection: 'row',
-    // backgroundColor: '#777',
+    backgroundColor: 'white',
   },
 
   heartImg: {

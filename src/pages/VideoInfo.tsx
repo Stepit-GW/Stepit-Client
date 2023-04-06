@@ -21,7 +21,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
-import Accodian from '@/components/videoInfo/Accodian';
+import Accodian from '@/components/Accodian';
 
 export default function VideoInfo(): JSX.Element {
   const [num, setNum] = useState(0);
@@ -62,8 +62,14 @@ export default function VideoInfo(): JSX.Element {
               <Text style={styles.level}>중</Text>
             </View>
             <View style={styles.row}>
-              <Text style={styles.level}>상</Text>
-              <Text style={styles.level}>중</Text>
+              <Image
+                source={require('@/assets/download-white-24.png')}
+                style={[commonStyles.img, {marginRight: 10}]}
+              />
+              <Image
+                source={require('@/assets/heart-white-24.png')}
+                style={commonStyles.img}
+              />
             </View>
           </View>
         </LinearGradient>
@@ -87,6 +93,10 @@ export default function VideoInfo(): JSX.Element {
               <Pressable
                 onPress={() => {
                   navigation.pop();
+                  let lst = detailDatas;
+                  for (let i = 0; i < detailDatas.length; i++)
+                    lst[i].tf = false;
+                  setDetailData(lst);
                 }}>
                 <Image
                   source={require('@/assets/arrow-white-24.png')}
@@ -183,16 +193,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   level: {
-    width: 24,
+    width: 36,
+    height: 36,
     paddingVertical: 4,
-    marginLeft: 6,
+    marginLeft: 10,
 
     color: 'white',
     textAlign: 'center',
+    textAlignVertical: 'center',
+
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 19,
 
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 12,
+    borderRadius: 36,
   },
 
   scroll: {

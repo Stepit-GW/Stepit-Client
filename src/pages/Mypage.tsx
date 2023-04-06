@@ -73,7 +73,7 @@ export default function Mypage({navigation}: any): JSX.Element {
                   }}>
                   <View style={styles.mypageLeft}>
                     <Image source={data.img} style={commonStyles.img} />
-                    <Text>{data.title}</Text>
+                    <Text style={styles.mypageText}>{data.title}</Text>
                   </View>
                   <Image
                     source={require('@/assets/mypage/arrow-gray-24.png')}
@@ -149,5 +149,12 @@ const styles = StyleSheet.create({
   mypageLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  mypageText: {
+    marginLeft: 25,
+    color: 'black',
+    fontWeight: '400',
+    fontSize: 16,
+    lineHeight: 19,
   },
 });

@@ -6,6 +6,8 @@ import {bottomRoutesData} from '@/static/bottomRoutesData';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation(): JSX.Element {
+  let [iconColor, setIconColor] = useState(true);
+
   return (
     <Tab.Navigator initialRouteName="Home">
       {bottomRoutesData.map((data: any, idx: number) => {
@@ -15,17 +17,23 @@ export default function BottomNavigation(): JSX.Element {
             options={{
               headerShown: false,
               tabBarStyle: {
+                backgroundColor: data.name === '탐색' ? 'black' : 'white',
                 // height: 65,
               },
               tabBarLabel: ({focused}) => (
-                <Text style={{fontSize: 12, color: focused ? 'black' : 'gray'}}>
-                  {data.name}
-                </Text>
+                <Text style={{display: 'none'}}>{data.name}</Text>
               ),
               tabBarIcon: ({focused}: any) => {
+                if (data.name === '탐색' && focused) {
+                  iconColor = false;
+                  setIconColor(false);
+                } else {
+                  iconColor = true;
+                  setIconColor(true);
+                }
                 return (
                   <Image
-                    source={focused ? data.act : data.none}
+                    source={iconColor ? data.none : data.act}
                     style={styles.bottomImg}
                   />
                 );
@@ -42,7 +50,7 @@ export default function BottomNavigation(): JSX.Element {
 
 const styles = StyleSheet.create({
   bottomImg: {
-    width: 25,
-    height: 22,
+    width: 48,
+    height: 48,
   },
 });

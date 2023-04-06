@@ -47,8 +47,8 @@ export default function ModalVideo({}: any): JSX.Element {
         <Image
           source={require('@/assets/notfound.png')}
           style={{
-            width: orientation ? width : (height / 2) * 3,
-            height: orientation ? (width / 3) * 2 : height,
+            width: width < (height / 2) * 3 ? width : (height / 2) * 3,
+            height: width < (height / 2) * 3 ? (width / 3) * 2 : height,
             alignSelf: 'center',
           }}
         />

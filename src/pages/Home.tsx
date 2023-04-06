@@ -141,16 +141,19 @@ const styles = StyleSheet.create({
   videoTitle: {
     width: '100%',
     marginTop: 10,
+    paddingHorizontal: 6,
 
     position: 'absolute',
     top: 0,
 
     color: 'white',
-    textAlign: 'center',
+    // textAlign: 'center',
     fontWeight: '800',
-    fontSize: 10,
+    fontSize: 14,
+    lineHeight: 17,
 
     zIndex: 900,
+    // backgroundColor: 'red',
   },
   videoBottom: {
     width: '100%',
@@ -165,16 +168,20 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   videoLeft: {
-    width: 24,
-    paddingVertical: 4,
+    width: 20,
+    height: 20,
     marginLeft: 6,
 
     color: 'white',
     textAlign: 'center',
+    textAlignVertical: 'center',
+
+    fontWeight: '500',
+    fontSize: 12,
 
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 12,
+    borderRadius: 20,
   },
   videoRight: {
     marginRight: 6,

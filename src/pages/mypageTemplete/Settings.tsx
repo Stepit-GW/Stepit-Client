@@ -60,9 +60,9 @@ export default function Settings(): JSX.Element {
         <Pressable
           style={styles.box}
           onPress={() => {
-            setResolution(!resolution);
+            setResolution(true);
           }}>
-          <Text>스탠다드</Text>
+          <Text style={{color: 'black'}}>스탠다드</Text>
           {resolution && (
             <Image
               source={require('@/assets/mypage/check-30.png')}
@@ -73,9 +73,9 @@ export default function Settings(): JSX.Element {
         <Pressable
           style={styles.box}
           onPress={() => {
-            setResolution(!resolution);
+            setResolution(false);
           }}>
-          <Text>고화질</Text>
+          <Text style={{color: 'black'}}>고화질</Text>
           {!resolution && (
             <Image
               source={require('@/assets/mypage/check-30.png')}

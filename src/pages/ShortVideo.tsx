@@ -76,19 +76,21 @@ const styles = StyleSheet.create({
   },
   level: {
     width: 24,
+    height: 24,
     marginRight: 14,
     marginBottom: 6,
-    padding: 4,
 
     flexDirection: 'row',
-    justifyContent: 'center',
     textAlign: 'center',
-    alignSelf: 'center',
+    textAlignVertical: 'center',
 
     color: 'white',
+    fontWeight: '500',
+    fontSize: 14,
+
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 12,
+    borderRadius: 24,
   },
 
   titleBottom: {
