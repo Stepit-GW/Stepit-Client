@@ -46,13 +46,11 @@ export default function ModalVideo({}: any): JSX.Element {
 
         <Image
           source={require('@/assets/notfound.png')}
-          style={[
-            {
-              width: orientation ? width : (height / 2) * 3,
-              height: orientation ? (width / 3) * 2 : height,
-              alignSelf: 'center',
-            },
-          ]}
+          style={{
+            width: orientation ? width : (height / 2) * 3,
+            height: orientation ? (width / 3) * 2 : height,
+            alignSelf: 'center',
+          }}
         />
 
         <View style={[styles.middleBox, orientation && {bottom: 25 + 25 + 10}]}>
@@ -75,30 +73,24 @@ export default function ModalVideo({}: any): JSX.Element {
             <Text style={styles.topText}>0:00/15:20</Text>
             <Image
               source={require('@/assets/screen-scaleup-24.png')}
-              style={[commonStyles.img, {}]}
+              style={commonStyles.img}
             />
           </View>
 
           <View style={Styles(orientation).lineBox}>
             <View style={Styles(orientation).circle} />
-            <View style={[Styles(orientation).line, {opacity: 0.3}]} />
-            <Image
-              source={require('@/assets/screen-scaleup-24.png')}
-              style={[commonStyles.img, {display: 'none'}]}
-            />
+            <View style={[styles.line, {opacity: 0.3}]} />
 
-            <View style={styles.realLine}>
-              <View style={{width: '50%'}}>
-                <View style={[{borderWidth: 1, borderColor: 'white'}]} />
+            <View style={styles.realLineBox}>
+              <View style={{width: '20%'}}>
+                <View style={styles.realLine} />
               </View>
             </View>
-            <View style={styles.realLine}>
-              <View style={{width: '100%'}}>
-                <Image
-                  source={require('@/assets/video/check-22.png')}
-                  style={[Styles(orientation).checks, {marginLeft: '50%'}]}
-                />
-              </View>
+            <View style={styles.realLineBox}>
+              <Image
+                source={require('@/assets/video/check-22.png')}
+                style={[Styles(orientation).checks, {marginLeft: '20%'}]}
+              />
             </View>
           </View>
 
@@ -168,11 +160,23 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  realLine: {
+  line: {
+    flex: 1,
+    height: 1,
+
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  realLineBox: {
     width: '100%',
     paddingRight: 0,
     position: 'absolute',
     alignSelf: 'center',
+  },
+  realLine: {
+    borderWidth: 1,
+    borderColor: 'white',
   },
 
   middleBox: {
@@ -227,14 +231,7 @@ const Styles = (ori: boolean) =>
       borderRadius: ori ? 10 : 14,
       backgroundColor: 'white',
     },
-    line: {
-      flex: 1,
-      height: 1,
 
-      alignSelf: 'center',
-      borderWidth: 1,
-      borderColor: 'white',
-    },
     checks: {
       width: ori ? 10 : 22,
       height: ori ? 10 : 22,
