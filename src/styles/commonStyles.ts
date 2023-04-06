@@ -10,6 +10,9 @@ export const commonStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  row: {
+    flexDirection: 'row',
+  },
   title: {
     marginVertical: MARGIN_VER,
     alignSelf: 'center',
