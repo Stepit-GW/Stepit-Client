@@ -54,7 +54,11 @@ export default function Accodian({
         setDetailData(lst);
         reload();
       }}>
-      <View style={styles.boxName}>
+      <View
+        style={[
+          styles.boxName,
+          {backgroundColor: data.tf ? '#EBEBEB' : '#FBFBFB'},
+        ]}>
         <Text style={styles.step}>Step. {idx + 1}</Text>
         <View style={styles.contents}>
           <Text style={styles.title}>{data.boxName}</Text>
@@ -71,6 +75,7 @@ export default function Accodian({
           )}
         </View>
       </View>
+
       <Animated.View
         style={{
           width: '100%',
@@ -126,7 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
     borderRadius: 10,
-    backgroundColor: '#999',
   },
   step: {
     marginBottom: 10,

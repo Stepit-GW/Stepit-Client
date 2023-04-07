@@ -15,6 +15,7 @@ import Title from '@/components/Title';
 import {
   MARGIN_HOR,
   MARGIN_VER,
+  TOP_HEIGHT,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
@@ -27,6 +28,7 @@ import {useRecoilState, useRecoilValue} from 'recoil';
 import BtnVideoLine from '@/components/video/BtnVideoLine';
 import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
+import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 
 export default function VideoInfo(): JSX.Element {
   const [num, setNum] = useState(0);
@@ -85,32 +87,29 @@ export default function VideoInfo(): JSX.Element {
   const aniScreen = (vh: number, sh: number, r: number) => {
     Animated.timing(aniScreenWidth, {
       toValue: vh,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
     Animated.timing(aniScreenHeight, {
       toValue: sh,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
     Animated.timing(spinValue, {
       toValue: r,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
   };
+  const btnOpacity = {opacity: window.force ? 0 : 1};
+  const translateX = {
+    translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+  };
+  const translateY = {
+    translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+  };
   const rotate = {
-    transform: [
-      {
-        translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-      },
-      {
-        rotate: aniScreenRotate,
-      },
-      {
-        translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-      },
-    ],
+    rotate: aniScreenRotate,
   };
 
   const [preMove, setPreMove] = useState<number>(0);
@@ -120,60 +119,9 @@ export default function VideoInfo(): JSX.Element {
     setDetailData(videoDetailDatas);
   }, []);
 
-  useEffect(() => {
-    // console.log(window.width);
-  }, [window]);
-
   return (
     <>
-      <SafeAreaView
-        style={[
-          commonStyles.container,
-          styles.containerTitle,
-          {zIndex: window.force ? 0 : 999},
-        ]}>
-        <View>
-          <Title
-            style={[commonStyles.paddingHor, {marginTop: MARGIN_VER}]}
-            leftComponent={
-              <Pressable
-                onPress={() => {
-                  navigation.pop();
-                  let lst = detailDatas;
-                  for (let i = 0; i < detailDatas.length; i++)
-                    lst[i].tf = false;
-                  setDetailData(lst);
-                  setWindow({
-                    ...window,
-                    width: WINDOW_WIDTH,
-                    height: WINDOW_WIDTH,
-                    force: false,
-                  });
-                }}>
-                <Image
-                  source={require('@/assets/arrow-white-24.png')}
-                  style={commonStyles.img}
-                />
-              </Pressable>
-            }
-            rightComponent={
-              <Pressable
-                onPress={() => {
-                  navigation.pop();
-                  let lst = detailDatas;
-                  for (let i = 0; i < detailDatas.length; i++)
-                    lst[i].tf = false;
-                  setDetailData(lst);
-                }}>
-                <Image
-                  source={require('@/assets/arrow-white-24.png')}
-                  style={commonStyles.img}
-                />
-              </Pressable>
-            }
-          />
-        </View>
-      </SafeAreaView>
+      <BtnVideoTitle />
 
       <Animated.View style={[{height: aniVideoHeight}]} />
       <Animated.View
@@ -203,8 +151,8 @@ export default function VideoInfo(): JSX.Element {
               justifyContent: 'flex-end',
               opacity: aniOpacityT,
               zIndex: zIndex ? 0 : 902,
+              transform: [translateX, rotate, translateY],
             },
-            rotate,
           ]}>
           <View style={Styles(window.force).bottom}>
             <BtnVideoTimeScale aniScreen={aniScreen} />
@@ -224,8 +172,8 @@ export default function VideoInfo(): JSX.Element {
             position: 'absolute',
             backgroundColor: 'black',
             zIndex: window.force ? 901 : 0,
+            transform: [translateX, rotate, translateY],
           },
-          rotate,
         ]}>
         <Animated.Image
           source={require('@/assets/notfound.png')}
@@ -297,15 +245,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
-  videoBg: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    backgroundColor: 'black',
-    transform: [{rotate: '90deg'}],
-    zIndex: 899,
-  },
-
   scroll: {
     height: '100%',
     paddingHorizontal: MARGIN_HOR,
@@ -313,11 +252,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const Styles = (ori: boolean) =>
+const Styles = (force: boolean) =>
   StyleSheet.create({
     bottom: {
       width: '100%',
-      paddingHorizontal: ori ? MARGIN_HOR : 0,
+      paddingHorizontal: force ? MARGIN_HOR * 3 : 0,
 
       position: 'absolute',
       bottom: 0,
