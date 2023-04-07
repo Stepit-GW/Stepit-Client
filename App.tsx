@@ -24,19 +24,22 @@ import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
 import VideoInfo from '@/pages/VideoInfo';
-import {RecoilRoot, useSetRecoilState} from 'recoil';
-import VideoDetail from '@/pages/VideoDetail';
-import ModalVideo from '@/components/ModalVideo';
+import {RecoilRoot, useRecoilState, useSetRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
-  const setWindow = useSetRecoilState(windowState);
+  const [window, setWindow] = useRecoilState(windowState);
   const {width, height} = useWindowDimensions();
 
   useEffect(() => {
-    setWindow({width, height, orientation: width < height});
+    setWindow({
+      ...window,
+      width,
+      height,
+      orientation: width < (height / 2) * 3,
+    });
   }, [width, height]);
 
   return (
@@ -53,18 +56,6 @@ export default function App(): JSX.Element {
         <Stack.Screen
           name="VideoInfo"
           component={VideoInfo}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="VideoDetail"
-          component={VideoDetail}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="ModalVideo"
-          component={ModalVideo}
           options={{headerShown: false}}
         />
 

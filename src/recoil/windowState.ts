@@ -1,3 +1,4 @@
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {Dimensions} from 'react-native';
 import {atom} from 'recoil';
 
@@ -6,6 +7,7 @@ export const windowState = atom({
   default: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    orientation: true,
+    force: false,
+    orientation: false,
   },
 });

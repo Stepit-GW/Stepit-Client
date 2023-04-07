@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import {useNavigation} from '@react-navigation/native';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 // import Video from 'react-native-video';
 
 export default function Accodian({
@@ -19,9 +20,10 @@ export default function Accodian({
   data,
   detailDatas,
   setDetailData,
+  aniVideo,
   reload,
 }: any): JSX.Element {
-  const navigation = useNavigation<any>();
+  const videoHeight = (WINDOW_WIDTH / 3) * 2;
 
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -32,13 +34,6 @@ export default function Accodian({
       useNativeDriver: false,
     }).start();
   };
-
-  useEffect(() => {
-    if (detailDatas[idx].tf) {
-      setHeight(true);
-      aniHeightFn(detailDatas[idx].videos.length * 76 + 10);
-    }
-  }, []);
 
   return (
     <Pressable
@@ -87,9 +82,8 @@ export default function Accodian({
               key={idx2}
               style={[styles.video, {display: height ? 'flex' : 'none'}]}
               onPress={() => {
-                navigation.navigate('VideoDetail');
+                aniVideo(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
               }}>
-              {/* <View style={{marginTop: 20}}> */}
               <View style={styles.imgBox}>
                 <Image
                   source={require('@/assets/notfound.png')}
@@ -104,7 +98,6 @@ export default function Accodian({
                 source={require('@/assets/heart-black-24.png')}
                 style={[commonStyles.img, styles.heartImg]}
               />
-              {/* </View> */}
             </Pressable>
           );
         })}
