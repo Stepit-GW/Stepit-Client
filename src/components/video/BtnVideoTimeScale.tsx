@@ -18,6 +18,7 @@ import {
   MARGIN_HOR,
   MARGIN_VER,
   TOP_HEIGHT,
+  videoHeight2,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
@@ -38,7 +39,7 @@ export default function BtnVideoTimeScale({aniScreen}: any): JSX.Element {
     aniScreen(WINDOW_HEIGHT, WINDOW_WIDTH, 1);
   };
   const handleScaleDown = () => {
-    aniScreen(WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    aniScreen(WINDOW_WIDTH, videoHeight2, 0);
     setWindow({
       ...window,
       width: WINDOW_WIDTH,

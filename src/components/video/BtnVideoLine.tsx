@@ -1,32 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  SafeAreaView,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  Dimensions,
-  useWindowDimensions,
-} from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
-import {useRecoilState, useRecoilValue} from 'recoil';
-import {modalVideoState} from '@/recoil/modalVideoState';
-import {MARGIN_HOR, MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
+import React, {useEffect} from 'react';
+import {StyleSheet, View, Image} from 'react-native';
+import {useRecoilValue} from 'recoil';
 import {useNavigation} from '@react-navigation/native';
 import {windowState} from '@/recoil/windowState';
-import BtnVideoMove from '@/components/video/BtnVideoMove';
 
 export default function BtnVideoLine({}: any): JSX.Element {
-  const navigation = useNavigation<any>();
-
   const window = useRecoilValue(windowState);
-
-  useEffect(() => {
-    // console.log(window.width);
-  }, [window]);
 
   return (
     <View style={Styles(window.force).lineBox}>
@@ -37,13 +16,13 @@ export default function BtnVideoLine({}: any): JSX.Element {
           <View style={styles.realLine} />
         </View>
       </View>
-      <View style={[styles.realLineBox, Styles(window.force).circleCheck]}>
+      <View style={[styles.realLineBox, Styles(window.force).checkBottom]}>
         <View style={{width: '40%'}}>
           <View style={Styles(window.force).circle} />
         </View>
       </View>
 
-      <View style={[styles.realLineBox, Styles(window.force).circleCheck]}>
+      <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
         <Image
           source={require('@/assets/video/check-22.png')}
           style={[Styles(window.force).checks, {marginLeft: '20%'}]}
@@ -95,7 +74,13 @@ const Styles = (ori: boolean) =>
       width: ori ? 22 : 10,
       height: ori ? 22 : 10,
     },
-    circleCheck: {
+
+    checkBottom: {
+      position: 'absolute',
+      bottom: ori ? -6 : -3,
+      zIndex: 999,
+    },
+    circleBottom: {
       position: 'absolute',
       bottom: ori ? -10 : -3,
       zIndex: 999,

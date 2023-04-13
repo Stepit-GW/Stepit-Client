@@ -21,85 +21,13 @@ import {
 } from '@/static/commonValue';
 import {useNavigation} from '@react-navigation/native';
 import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
-import Accodian from '@/components/videoInfo/Accodian';
-import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import BtnVideoLine from '@/components/video/BtnVideoLine';
-import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
-import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 
-export default function BtnVideoTitle(): JSX.Element {
-  const [num, setNum] = useState(0);
-  const reload = () => {
-    setNum(num + 1);
-  };
+export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
   const navigation = useNavigation<any>();
-  const videoHeight = (WINDOW_WIDTH / 10) * 11;
   const [window, setWindow] = useRecoilState(windowState);
 
-  const aniVideoHeight = useRef<Animated.Value>(
-    new Animated.Value(videoHeight),
-  ).current;
-  const aniScrollHeight = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_HEIGHT - videoHeight),
-  ).current;
-  const aniOpacity = useRef<Animated.Value>(new Animated.Value(1)).current;
-  const aniOpacityT = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const aniVideo = (vh: number, sh: number, o: number, ot: number) => {
-    Animated.timing(aniVideoHeight, {
-      toValue: vh,
-      duration: 800,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(aniScrollHeight, {
-      toValue: sh,
-      duration: 800,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(aniOpacity, {
-      toValue: o,
-      duration: 800,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(aniOpacityT, {
-      toValue: ot,
-      duration: 800,
-      useNativeDriver: false,
-    }).start();
-    if (o === 1) setZIndex(true);
-    else setZIndex(false);
-  };
-  const [zIndex, setZIndex] = useState(true);
-
-  const aniScreenWidth = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_WIDTH),
-  ).current;
-  const aniScreenHeight = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_HEIGHT),
-  ).current;
-  const spinValue = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const aniScreenRotate = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '90deg'],
-  });
-  const aniScreen = (vh: number, sh: number, r: number) => {
-    Animated.timing(aniScreenWidth, {
-      toValue: vh,
-      duration: 400,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(aniScreenHeight, {
-      toValue: sh,
-      duration: 400,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(spinValue, {
-      toValue: r,
-      duration: 400,
-      useNativeDriver: false,
-    }).start();
-  };
   const btnOpacity = {opacity: window.force ? 0 : 1};
   const translateX = {
     translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
@@ -107,12 +35,7 @@ export default function BtnVideoTitle(): JSX.Element {
   const translateY = {
     translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
   };
-  const rotate = {
-    rotate: aniScreenRotate,
-  };
 
-  const [preMove, setPreMove] = useState<number>(0);
-  const [scrollH, setScrollH] = useState<number>(0);
   const [detailDatas, setDetailData] = useState<any>([]);
   useEffect(() => {
     setDetailData(videoDetailDatas);
@@ -126,7 +49,7 @@ export default function BtnVideoTitle(): JSX.Element {
         {
           width: window.width,
           height: window.force ? window.height : 0,
-          zIndex: 902,
+          zIndex: window.force ? 902 : 999,
           transform: [
             translateX,
             {rotate: window.force ? '90deg' : '0deg'},
@@ -174,16 +97,24 @@ export default function BtnVideoTitle(): JSX.Element {
             르세르팜
           </Text>
         </View>
-        <View style={commonStyles.row}>
+        <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
           {!window.force && (
             <>
-              <Pressable style={btnOpacity} onPress={() => {}}>
+              <Pressable
+                style={[btnOpacity, {marginRight: 8}]}
+                onPress={() => {
+                  console.log('거울');
+                }}>
                 <Image
                   source={require('@/assets/video/mirror-mode-24.png')}
                   style={commonStyles.img}
                 />
               </Pressable>
-              <Pressable style={btnOpacity} onPress={() => {}}>
+              <Pressable
+                style={btnOpacity}
+                onPress={() => {
+                  console.log('속도');
+                }}>
                 <Image
                   source={require('@/assets/video/double-speed-24.png')}
                   style={commonStyles.img}
@@ -191,7 +122,7 @@ export default function BtnVideoTitle(): JSX.Element {
               </Pressable>
             </>
           )}
-        </View>
+        </Animated.View>
       </View>
     </SafeAreaView>
   );

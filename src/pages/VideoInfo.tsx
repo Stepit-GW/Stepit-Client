@@ -16,6 +16,8 @@ import {
   MARGIN_HOR,
   MARGIN_VER,
   TOP_HEIGHT,
+  videoHeight1,
+  videoHeight2,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
@@ -36,14 +38,13 @@ export default function VideoInfo(): JSX.Element {
     setNum(num + 1);
   };
   const navigation = useNavigation<any>();
-  const videoHeight = (WINDOW_WIDTH / 10) * 11;
   const [window, setWindow] = useRecoilState(windowState);
 
   const aniVideoHeight = useRef<Animated.Value>(
-    new Animated.Value(videoHeight),
+    new Animated.Value(videoHeight1),
   ).current;
   const aniScrollHeight = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_HEIGHT - videoHeight),
+    new Animated.Value(WINDOW_HEIGHT - videoHeight1),
   ).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(1)).current;
   const aniOpacityT = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -77,7 +78,7 @@ export default function VideoInfo(): JSX.Element {
     new Animated.Value(WINDOW_WIDTH),
   ).current;
   const aniScreenHeight = useRef<Animated.Value>(
-    new Animated.Value(WINDOW_HEIGHT),
+    new Animated.Value(videoHeight2),
   ).current;
   const spinValue = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniScreenRotate = spinValue.interpolate({
@@ -101,7 +102,6 @@ export default function VideoInfo(): JSX.Element {
       useNativeDriver: false,
     }).start();
   };
-  const btnOpacity = {opacity: window.force ? 0 : 1};
   const translateX = {
     translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
   };
@@ -121,15 +121,13 @@ export default function VideoInfo(): JSX.Element {
 
   return (
     <>
-      <BtnVideoTitle />
-
       <Animated.View style={[{height: aniVideoHeight}]} />
       <Animated.View
         style={{
           width: '100%',
           height: aniVideoHeight,
           position: 'absolute',
-          zIndex: 902,
+          zIndex: 903,
         }}>
         <Animated.View
           style={[
@@ -150,7 +148,7 @@ export default function VideoInfo(): JSX.Element {
               height: window.force ? window.height : aniVideoHeight,
               justifyContent: 'flex-end',
               opacity: aniOpacityT,
-              zIndex: zIndex ? 0 : 902,
+              zIndex: zIndex ? 0 : 903,
               transform: [translateX, rotate, translateY],
             },
           ]}>
@@ -162,6 +160,8 @@ export default function VideoInfo(): JSX.Element {
         </Animated.View>
       </Animated.View>
 
+      <BtnVideoTitle aniOpacityT={aniOpacityT} />
+
       <Animated.View
         style={[
           {
@@ -171,7 +171,7 @@ export default function VideoInfo(): JSX.Element {
             justifyContent: 'center',
             position: 'absolute',
             backgroundColor: 'black',
-            zIndex: window.force ? 901 : 0,
+            zIndex: 901,
             transform: [translateX, rotate, translateY],
           },
         ]}>
@@ -205,7 +205,7 @@ export default function VideoInfo(): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0)
-                aniVideo(videoHeight, WINDOW_HEIGHT - videoHeight, 1, 0);
+                aniVideo(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
             }}>
             <Animated.ScrollView
               style={[styles.scroll]}
