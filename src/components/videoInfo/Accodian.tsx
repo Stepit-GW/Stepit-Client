@@ -99,10 +99,10 @@ export default function Accodian({
                 <Text>{data2.title}</Text>
                 <Text>{data2.time}</Text>
               </View>
-              <Image
+              {/* <Image
                 source={require('@/assets/heart-black-24.png')}
                 style={[commonStyles.img, styles.heartImg]}
-              />
+              /> */}
             </Pressable>
           );
         })}

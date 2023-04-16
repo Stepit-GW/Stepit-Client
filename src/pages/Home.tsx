@@ -110,6 +110,7 @@ export default function Home({navigation}: any): JSX.Element {
               </View>
             );
           })}
+          <View style={{height: 34}} />
         </ScrollView>
 
         <BottomSheet aniTop={aniTop} resultDatas={resultDatas} />
@@ -121,7 +122,6 @@ export default function Home({navigation}: any): JSX.Element {
 const styles = StyleSheet.create({
   scroll: {
     paddingTop: 34,
-    marginBottom: 34,
   },
   scrollImgBox: {
     paddingBottom: 34,

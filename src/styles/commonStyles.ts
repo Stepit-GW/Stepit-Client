@@ -1,9 +1,4 @@
-import {
-  height,
-  MARGIN_HOR,
-  MARGIN_VER,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
+import {MARGIN_HOR, MARGIN_VER, WINDOW_WIDTH} from '@/static/commonValue';
 import {Dimensions, StyleSheet} from 'react-native';
 
 export const basicDimensions = {

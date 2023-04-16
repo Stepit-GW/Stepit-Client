@@ -60,9 +60,12 @@ export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
       <View
         style={{
           width: '100%',
+          height: window.ipad ? 54 : 36,
           paddingHorizontal: window.force ? MARGIN_HOR * 3 : MARGIN_HOR,
           flexDirection: 'row',
           justifyContent: 'space-between',
+          alignItems: 'center',
+          // backgroundColor: 'red',
         }}>
         <View style={commonStyles.row}>
           {!window.force && (
@@ -81,21 +84,22 @@ export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
               }}>
               <Image
                 source={require('@/assets/arrow-white-24.png')}
-                style={commonStyles.img}
+                style={Styles(window.ipad).img}
               />
             </Pressable>
           )}
-          <Text
+          <Animated.Text
             style={{
               alignSelf: 'center',
               color: 'white',
+              opacity: aniOpacityT,
 
-              fontWeight: '600',
               fontSize: 16,
-              lineHeight: 19,
+              // fontSize: window.ipad ? 24 : 16,
+              fontWeight: '600',
             }}>
             르세르팜
-          </Text>
+          </Animated.Text>
         </View>
         <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
           {!window.force && (
@@ -107,7 +111,7 @@ export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
                 }}>
                 <Image
                   source={require('@/assets/video/mirror-mode-24.png')}
-                  style={commonStyles.img}
+                  style={Styles(window.ipad).img}
                 />
               </Pressable>
               <Pressable
@@ -117,7 +121,7 @@ export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
                 }}>
                 <Image
                   source={require('@/assets/video/double-speed-24.png')}
-                  style={commonStyles.img}
+                  style={[Styles(window.ipad).img, {marginRight: 0}]}
                 />
               </Pressable>
             </>
@@ -134,3 +138,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
+
+const Styles = (ipad: boolean) =>
+  StyleSheet.create({
+    img: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+      marginRight: ipad ? 10 : 5,
+    },
+  });

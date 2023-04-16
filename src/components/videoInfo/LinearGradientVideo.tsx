@@ -33,7 +33,7 @@ export default function LinearGradientVideo(): JSX.Element {
           </View>
         </View>
         <View style={styles.row}>
-          <Pressable
+          {/* <Pressable
             onPress={() => {
               console.log('download');
             }}>
@@ -50,7 +50,7 @@ export default function LinearGradientVideo(): JSX.Element {
               source={require('@/assets/heart-white-24.png')}
               style={commonStyles.img}
             />
-          </Pressable>
+          </Pressable> */}
         </View>
       </View>
     </LinearGradient>

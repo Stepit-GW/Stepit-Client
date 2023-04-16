@@ -30,7 +30,7 @@ export default function BtnVideoTimeScale({aniScreen}: any): JSX.Element {
 
   return (
     <View style={Styles(window.force).topBox}>
-      <Text style={styles.topText}>0:00/15:20</Text>
+      <Text style={styles.topText}>0:00 / 15:20</Text>
       {window.force ? (
         <Pressable onPress={handleScaleDown}>
           <Image
@@ -61,6 +61,7 @@ const Styles = (ori: boolean) =>
     topBox: {
       height: 24,
       paddingHorizontal: ori ? 0 : 10,
+
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',

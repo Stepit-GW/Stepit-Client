@@ -63,7 +63,7 @@ const Styles = (ori: boolean) =>
     bottomBox: {
       width: '100%',
       height: 25,
-      marginBottom: 10,
+      marginVertical: 10,
 
       flexDirection: 'row',
       justifyContent: 'center',

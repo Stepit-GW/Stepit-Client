@@ -12,21 +12,12 @@ import {
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import Title from '@/components/Title';
-import {
-  MARGIN_HOR,
-  MARGIN_VER,
-  TOP_HEIGHT,
-  videoHeight1,
-  videoHeight2,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
-import {useNavigation} from '@react-navigation/native';
+import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
 import Accodian from '@/components/videoInfo/Accodian';
 import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 import BtnVideoLine from '@/components/video/BtnVideoLine';
 import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
@@ -37,8 +28,11 @@ export default function VideoInfo(): JSX.Element {
   const reload = () => {
     setNum(num + 1);
   };
-  const navigation = useNavigation<any>();
-  const [window, setWindow] = useRecoilState(windowState);
+  const [window] = useRecoilState(windowState);
+  const videoHeight1 = window.ipad
+    ? (WINDOW_WIDTH / 4) * 3
+    : (WINDOW_WIDTH / 10) * 11;
+  const videoHeight2 = (WINDOW_WIDTH / 3) * 2;
 
   const aniVideoHeight = useRef<Animated.Value>(
     new Animated.Value(videoHeight1),
@@ -191,6 +185,7 @@ export default function VideoInfo(): JSX.Element {
                   : window.height
                 : aniVideoHeight,
             },
+            window.force && {alignSelf: 'center'},
           ]}
         />
       </Animated.View>
