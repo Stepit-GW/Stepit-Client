@@ -62,3 +62,11 @@ export const commonStyles = StyleSheet.create({
     paddingHorizontal: MARGIN_HOR,
   },
 });
+
+export const CommonStyles = (ipad: boolean) =>
+  StyleSheet.create({
+    img3_4: {
+      width: ipad ? 180 : 150,
+      height: ipad ? 240 : 200,
+    },
+  });

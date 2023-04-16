@@ -6,19 +6,9 @@
  */
 
 import React, {useEffect} from 'react';
-import type {PropsWithChildren} from 'react';
-import {CommonActions, NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {useWindowDimensions} from 'react-native';
 
 import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
@@ -38,6 +28,7 @@ export default function App(): JSX.Element {
       ...window,
       width,
       height,
+      ipad: width > 767,
       orientation: width < (height / 2) * 3,
     });
   }, [width, height]);

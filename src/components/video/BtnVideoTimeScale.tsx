@@ -1,30 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  SafeAreaView,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  Dimensions,
-  useWindowDimensions,
-} from 'react-native';
+import React from 'react';
+import {Pressable, StyleSheet, Text, View, Image} from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import {useRecoilState, useRecoilValue} from 'recoil';
-import {modalVideoState} from '@/recoil/modalVideoState';
-import {
-  MARGIN_HOR,
-  MARGIN_VER,
-  TOP_HEIGHT,
-  videoHeight2,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
-import {useNavigation} from '@react-navigation/native';
+import {useRecoilState} from 'recoil';
+import {videoHeight2, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {windowState} from '@/recoil/windowState';
-import BtnVideoMove from '@/components/video/BtnVideoMove';
 
 export default function BtnVideoTimeScale({aniScreen}: any): JSX.Element {
   const [window, setWindow] = useRecoilState(windowState);

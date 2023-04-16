@@ -1,27 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  SafeAreaView,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  Dimensions,
-  useWindowDimensions,
-} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import {useRecoilState, useRecoilValue} from 'recoil';
-import {modalVideoState} from '@/recoil/modalVideoState';
-import {MARGIN_HOR, MARGIN_VER, TOP_HEIGHT} from '@/static/commonValue';
+import {useRecoilValue} from 'recoil';
+import {MARGIN_HOR} from '@/static/commonValue';
 import {useNavigation} from '@react-navigation/native';
 import {windowState} from '@/recoil/windowState';
-import BtnVideoMove from '@/components/video/BtnVideoMove';
 
 export default function BtnVideoSetting({}: any): JSX.Element {
-  const navigation = useNavigation<any>();
-
   const window = useRecoilValue(windowState);
 
   useEffect(() => {

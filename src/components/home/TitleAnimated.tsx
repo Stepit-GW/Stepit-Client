@@ -1,37 +1,29 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  Animated,
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
+import {Animated, Pressable, StyleSheet, TextInput} from 'react-native';
 import {
   MARGIN_HOR,
   MARGIN_VER,
-  TOP_HEIGHT,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
-import {homeDatas} from '@/static/home/homeDatas';
 import {searchDatas} from '@/static/home/searchDatas';
+import {useRecoilState} from 'recoil';
+import {windowState} from '@/recoil/windowState';
 // import Video from 'react-native-video';
 
 export default function TitleAnimated({
   aniTopFn,
   setResultDatas,
 }: any): JSX.Element {
+  const [window] = useRecoilState(windowState);
+
   const aniWidth = useRef<Animated.Value>(
-    new Animated.Value(24 + MARGIN_HOR * 2),
+    new Animated.Value((window.ipad ? 40 : 24) + MARGIN_HOR * 2),
   ).current;
   const aniWidth1 = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const aniWidth2 = useRef<Animated.Value>(new Animated.Value(48)).current;
+  const aniWidth2 = useRef<Animated.Value>(
+    new Animated.Value((window.ipad ? 40 : 24) + 24),
+  ).current;
   const aniLeft = useRef<Animated.Value>(
     new Animated.Value(MARGIN_HOR),
   ).current;
@@ -72,36 +64,49 @@ export default function TitleAnimated({
   return (
     <Animated.View
       style={[
-        styles.titleAbsoluteBox,
+        Styles(window.ipad).titleAbsoluteBox,
         {width: aniWidth, paddingHorizontal: MARGIN_HOR},
       ]}>
       <Pressable
         onPress={() => {
-          aniWidthFn(24 + MARGIN_HOR * 2, 0, 48, MARGIN_HOR);
+          aniWidthFn(
+            (window.ipad ? 40 : 24) + MARGIN_HOR * 2,
+            0,
+            (window.ipad ? 40 : 24) + 24,
+            MARGIN_HOR,
+          );
           aniTopFn(WINDOW_HEIGHT);
         }}>
         <Animated.Image
           source={require('@/assets/arrow-black-24.png')}
-          style={{width: aniWidth1, height: 24}}
+          style={{width: aniWidth1, height: window.ipad ? 40 : 24}}
         />
       </Pressable>
 
       <Animated.View style={[styles.search, {left: aniLeft}]}>
         <Pressable
           onPress={() => {
-            aniWidthFn(WINDOW_WIDTH, 24, 0, MARGIN_HOR + 24 + 10);
+            aniWidthFn(
+              WINDOW_WIDTH,
+              window.ipad ? 40 : 24,
+              0,
+              MARGIN_HOR + (window.ipad ? 40 : 24) + 10,
+            );
             aniTopFn(0);
           }}>
           <Animated.Image
             source={require('@/assets/search-24.png')}
-            style={[commonStyles.img]}
+            style={[Styles(window.ipad).searchImg]}
           />
         </Pressable>
       </Animated.View>
 
       <Animated.View style={{width: aniWidth2}} />
       <TextInput
-        style={[styles.input, {width: WINDOW_WIDTH - 48 - MARGIN_HOR}]}
+        style={[
+          Styles(window.ipad).input,
+          {width: WINDOW_WIDTH - ((window.ipad ? 40 : 24) + 24) - MARGIN_HOR},
+        ]}
         placeholder={'걸그룹 명을 검색해 주세요'}
         onChange={searchFn}
       />
@@ -110,30 +115,38 @@ export default function TitleAnimated({
 }
 
 const styles = StyleSheet.create({
-  titleAbsoluteBox: {
-    height: TOP_HEIGHT,
-    marginTop: MARGIN_VER,
-
-    flexDirection: 'row',
-    alignItems: 'center',
-
-    position: 'absolute',
-    right: 0,
-    backgroundColor: 'white',
-    zIndex: 901,
-  },
-
   search: {
     position: 'absolute',
   },
-
-  input: {
-    height: 30,
-    paddingLeft: 24 + 10,
-    paddingRight: 10,
-
-    borderWidth: 1,
-    borderColor: '#CECECE',
-    borderRadius: 88,
-  },
 });
+
+export const Styles = (ipad: boolean) =>
+  StyleSheet.create({
+    titleAbsoluteBox: {
+      height: ipad ? 54 : 36,
+      marginTop: MARGIN_VER,
+
+      flexDirection: 'row',
+      alignItems: 'center',
+
+      position: 'absolute',
+      right: 0,
+      zIndex: 901,
+      backgroundColor: 'white',
+    },
+    searchImg: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+    },
+    input: {
+      height: '80%',
+      paddingLeft: (ipad ? 40 : 24) + 10,
+      paddingRight: 10,
+
+      borderWidth: 1,
+      borderColor: '#CECECE',
+      borderRadius: 88,
+
+      fontSize: ipad ? 18 : 12,
+    },
+  });

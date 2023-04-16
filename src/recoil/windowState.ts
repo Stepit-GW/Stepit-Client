@@ -7,6 +7,7 @@ export const windowState = atom({
   default: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    ipad: false,
     force: false,
     orientation: false,
   },

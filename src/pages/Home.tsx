@@ -10,7 +10,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
+import {CommonStyles, commonStyles} from '@/styles/commonStyles';
 import Title from '@/components/Title';
 import {
   MARGIN_HOR,
@@ -24,9 +24,12 @@ import BottomSheet from '@/components/home/BottomSheet';
 import TitleAnimated from '@/components/home/TitleAnimated';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import {bottomBarState} from '@/recoil/bottomBarState';
+import {windowState} from '@/recoil/windowState';
 // import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
+  const [window] = useRecoilState(windowState);
+
   const aniTop = useRef<Animated.Value>(
     new Animated.Value(WINDOW_HEIGHT),
   ).current;
@@ -50,9 +53,9 @@ export default function Home({navigation}: any): JSX.Element {
       <View style={commonStyles.containerView}>
         <TitleAnimated aniTopFn={aniTopFn} setResultDatas={setResultDatas} />
 
-        <View style={[commonStyles.paddingHor, styles.titleBox]}>
+        <View style={[commonStyles.paddingHor, Styles(window.ipad).titleBox]}>
           <View style={commonStyles.img} />
-          <Text style={styles.title}>STEPIT</Text>
+          <Text style={Styles(window.ipad).title}>STEPIT</Text>
           <View style={commonStyles.img} />
         </View>
 
@@ -60,25 +63,41 @@ export default function Home({navigation}: any): JSX.Element {
           {homeDatas.map((data: any, idx: number) => {
             return (
               <View key={idx} style={styles.scrollImgBox}>
-                <Text style={styles.scrollTitle}>{data.title}</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <Text style={Styles(window.ipad).scrollTitle}>
+                  {data.title}
+                </Text>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={{paddingLeft: MARGIN_HOR}}>
                   {data.videos.map((video: any, videoIdx: number) => {
                     return (
                       <Pressable
                         key={videoIdx}
                         style={[
-                          styles.videoBox,
-                          {marginLeft: videoIdx === 0 ? MARGIN_VER : 0},
+                          Styles(window.ipad).videoBox,
+                          {
+                            marginRight:
+                              videoIdx === data.videos.length - 1
+                                ? MARGIN_VER * 2 - 10
+                                : 10,
+                          },
                         ]}
                         onPress={() => {
                           navigation.navigate('VideoInfo');
                         }}>
-                        <Text style={styles.videoTitle}>{video.title}</Text>
+                        <Text style={Styles(window.ipad).videoTitle}>
+                          {video.title}
+                        </Text>
                         <View style={styles.videoBottom}>
-                          <View style={styles.videoLeftBox}>
-                            <Text style={styles.videoLeft}>{video.level}</Text>
+                          <View style={Styles(window.ipad).videoLeftBox}>
+                            <Text style={Styles(window.ipad).videoLeft}>
+                              {video.level}
+                            </Text>
                           </View>
-                          <Text style={styles.videoRight}>{video.time}</Text>
+                          <Text style={Styles(window.ipad).videoRight}>
+                            {video.time}
+                          </Text>
                         </View>
                         <Image
                           source={require('@/assets/notfound.png')}
@@ -100,101 +119,97 @@ export default function Home({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  titleBox: {
-    height: TOP_HEIGHT,
-    marginTop: MARGIN_VER,
-
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  title: {
-    color: 'black',
-    lineHeight: 36,
-    fontWeight: '700',
-    fontSize: 30,
-  },
-
   scroll: {
-    paddingTop: 30,
+    paddingTop: 34,
+    marginBottom: 34,
   },
   scrollImgBox: {
-    // marginLeft: MARGIN_VER,
-    paddingBottom: 30,
-  },
-  scrollTitle: {
-    marginLeft: MARGIN_VER,
-    marginBottom: 20,
-    lineHeight: 19,
-
-    color: 'black',
-    fontSize: 16,
-    fontWeight: '700',
+    paddingBottom: 34,
   },
 
-  videoBox: {
-    width: 125,
-    height: 196,
-    marginRight: MARGIN_VER,
-
-    overflow: 'hidden',
-    borderRadius: 15,
-  },
-  videoTitle: {
-    width: '100%',
-    marginTop: 10,
-    paddingHorizontal: 6,
-
-    position: 'absolute',
-    top: 0,
-
-    color: 'white',
-    fontWeight: '800',
-    fontSize: 14,
-    lineHeight: 17,
-
-    zIndex: 900,
-  },
   videoBottom: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
     position: 'absolute',
     bottom: 5,
-
     zIndex: 900,
-  },
-  videoLeftBox: {
-    width: 20,
-    height: 20,
-    marginLeft: 6,
-    justifyContent: 'center',
-
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 20,
-  },
-  videoLeft: {
-    color: 'white',
-    textAlign: 'center',
-
-    fontWeight: '500',
-    fontSize: 12,
-  },
-  videoRight: {
-    marginRight: 6,
-    color: 'white',
   },
 
   fullScreen: {
     width: '100%',
     height: 300,
-    // position: 'absolute',
-    // top: 0,
-    // left: 0,
-    // bottom: 0,
-    // right: 0,
   },
 });
+
+const Styles = (ipad: boolean) =>
+  StyleSheet.create({
+    titleBox: {
+      height: ipad ? 54 : 36,
+      marginTop: MARGIN_VER,
+
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    title: {
+      color: 'black',
+      lineHeight: ipad ? 54 : 36,
+      fontWeight: '700',
+      fontSize: ipad ? 45 : 30,
+    },
+
+    scrollTitle: {
+      marginLeft: MARGIN_VER,
+      marginBottom: 20,
+
+      color: 'black',
+      fontSize: ipad ? 25 : 16,
+      fontWeight: '700',
+    },
+    videoTitle: {
+      width: '100%',
+      marginTop: 10,
+      paddingHorizontal: 6,
+
+      position: 'absolute',
+      top: 0,
+
+      color: 'white',
+      fontWeight: '800',
+      fontSize: ipad ? 20 : 14,
+
+      zIndex: 900,
+    },
+    videoLeftBox: {
+      width: ipad ? 30 : 20,
+      height: ipad ? 30 : 20,
+      marginLeft: 6,
+
+      justifyContent: 'center',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 20,
+    },
+    videoLeft: {
+      color: 'white',
+      textAlign: 'center',
+      fontWeight: '500',
+      fontSize: ipad ? 18 : 12,
+    },
+    videoRight: {
+      marginRight: 6,
+      color: 'white',
+      fontSize: ipad ? 18 : 12,
+    },
+
+    videoBox: {
+      width: ipad ? 180 : 150,
+      height: ipad ? 240 : 200,
+      marginRight: 10,
+
+      overflow: 'hidden',
+      borderRadius: 15,
+    },
+  });
