@@ -22,6 +22,7 @@ import BtnVideoLine from '@/components/video/BtnVideoLine';
 import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
+import BtnVideoPlay from '@/components/video/BtnVideoPlay';
 
 export default function VideoInfo(): JSX.Element {
   const [num, setNum] = useState(0);
@@ -122,6 +123,7 @@ export default function VideoInfo(): JSX.Element {
           height: aniVideoHeight,
           position: 'absolute',
           zIndex: 903,
+          // backgroundColor: 'red',
         }}>
         <Animated.View
           style={[
@@ -141,12 +143,14 @@ export default function VideoInfo(): JSX.Element {
               width: window.force ? window.width : '100%',
               height: window.force ? window.height : aniVideoHeight,
               justifyContent: 'flex-end',
+
               opacity: aniOpacityT,
               zIndex: zIndex ? 0 : 903,
               transform: [translateX, rotate, translateY],
             },
           ]}>
           <View style={Styles(window.force).bottom}>
+            <BtnVideoPlay />
             <BtnVideoTimeScale aniScreen={aniScreen} />
             <BtnVideoLine />
             <BtnVideoSetting />
