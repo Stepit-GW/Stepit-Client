@@ -24,6 +24,8 @@ import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
+import Tutorial from '@/components/videoInfo/Tutorial';
+import VideoScreen from '@/components/videoInfo/VideoScreen';
 
 export default function VideoInfo(): JSX.Element {
   const [num, setNum] = useState(0);
@@ -172,39 +174,12 @@ export default function VideoInfo(): JSX.Element {
 
       <BtnVideoTitle aniOpacityT={aniOpacityT} />
 
-      <Animated.View
-        style={[
-          {
-            width: aniScreenWidth,
-            height: aniScreenHeight,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            position: 'absolute',
-            backgroundColor: 'black',
-            zIndex: 901,
-            transform: [translateX, rotate, translateY],
-          },
-        ]}>
-        <Animated.Image
-          source={require('@/assets/notfound.png')}
-          style={[
-            commonStyles.screenImg,
-            {
-              width: window.force
-                ? window.orientation
-                  ? window.width
-                  : (window.height / 2) * 3
-                : '100%',
-              height: window.force
-                ? window.orientation
-                  ? (window.width / 3) * 2
-                  : window.height
-                : aniVideoFnHeight,
-            },
-            window.force && {alignSelf: 'center'},
-          ]}
-        />
-      </Animated.View>
+      <VideoScreen
+        aniScreenWidth={aniScreenWidth}
+        aniScreenHeight={aniScreenHeight}
+        aniScreenRotate={aniScreenRotate}
+        aniVideoFnHeight={aniVideoFnHeight}
+      />
 
       <SafeAreaView style={commonStyles.container}>
         <View style={commonStyles.containerView}>
@@ -252,30 +227,7 @@ export default function VideoInfo(): JSX.Element {
                 top: aniTop,
               },
             ]}>
-            <View style={Styles(window.ipad, window.force).tutorialTitle}>
-              <View />
-              {img ? (
-                <Pressable
-                  onPress={() => {
-                    aniTopFn(0, false);
-                  }}>
-                  <Image
-                    source={require('@/assets/video/arrow-top-24.png')}
-                    style={Styles(window.ipad, window.force).tutorialImg}
-                  />
-                </Pressable>
-              ) : (
-                <Pressable
-                  onPress={() => {
-                    aniTopFn(startTop - 100, true);
-                  }}>
-                  <Image
-                    source={require('@/assets/video/arrow-bottom-24.png')}
-                    style={Styles(window.ipad, window.force).tutorialImg}
-                  />
-                </Pressable>
-              )}
-            </View>
+            <Tutorial img={img} aniTopFn={aniTopFn} />
           </Animated.View>
         </View>
       </SafeAreaView>
