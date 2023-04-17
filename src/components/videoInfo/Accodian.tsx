@@ -13,6 +13,8 @@ import {
 import {commonStyles} from '@/styles/commonStyles';
 import {useNavigation} from '@react-navigation/native';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
+import {useRecoilState} from 'recoil';
+import {videoTutorialState} from '@/recoil/videoTutorialState';
 // import Video from 'react-native-video';
 
 export default function Accodian({
@@ -20,11 +22,14 @@ export default function Accodian({
   data,
   detailDatas,
   setDetailData,
-  aniVideo,
+  aniVideoFn,
+  aniTopFn,
   reload,
 }: any): JSX.Element {
+  const [, setVideoTutorial] = useRecoilState(videoTutorialState);
   const videoHeight = (WINDOW_WIDTH / 3) * 2;
 
+  const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniHeightFn = (t: number) => {
@@ -87,7 +92,14 @@ export default function Accodian({
               key={idx2}
               style={[styles.video, {display: height ? 'flex' : 'none'}]}
               onPress={() => {
-                aniVideo(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
+                if (data.boxName === '튜토리얼') {
+                  setVideoTutorial(true);
+                  aniTopFn(0, false);
+                } else {
+                  setVideoTutorial(false);
+                  aniTopFn(startTop, true);
+                }
+                aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
               }}>
               <View style={styles.imgBox}>
                 <Image

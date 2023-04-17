@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -35,7 +36,7 @@ export default function VideoInfo(): JSX.Element {
     : (WINDOW_WIDTH / 10) * 11;
   const videoHeight2 = (WINDOW_WIDTH / 3) * 2;
 
-  const aniVideoHeight = useRef<Animated.Value>(
+  const aniVideoFnHeight = useRef<Animated.Value>(
     new Animated.Value(videoHeight1),
   ).current;
   const aniScrollHeight = useRef<Animated.Value>(
@@ -43,8 +44,8 @@ export default function VideoInfo(): JSX.Element {
   ).current;
   const aniOpacity = useRef<Animated.Value>(new Animated.Value(1)).current;
   const aniOpacityT = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const aniVideo = (vh: number, sh: number, o: number, ot: number) => {
-    Animated.timing(aniVideoHeight, {
+  const aniVideoFn = (vh: number, sh: number, o: number, ot: number) => {
+    Animated.timing(aniVideoFnHeight, {
       toValue: vh,
       duration: 800,
       useNativeDriver: false,
@@ -107,6 +108,18 @@ export default function VideoInfo(): JSX.Element {
     rotate: aniScreenRotate,
   };
 
+  const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
+  const [img, setImg] = useState(false);
+  const aniTop = useRef<Animated.Value>(new Animated.Value(startTop)).current;
+  const aniTopFn = (t: number, b: boolean) => {
+    Animated.timing(aniTop, {
+      toValue: t,
+      duration: 400,
+      useNativeDriver: false,
+    }).start();
+    setImg(b);
+  };
+
   const [preMove, setPreMove] = useState<number>(0);
   const [scrollH, setScrollH] = useState<number>(0);
   const [detailDatas, setDetailData] = useState<any>([]);
@@ -116,20 +129,19 @@ export default function VideoInfo(): JSX.Element {
 
   return (
     <>
-      <Animated.View style={[{height: aniVideoHeight}]} />
+      <Animated.View style={[{height: aniVideoFnHeight}]} />
       <Animated.View
         style={{
           width: '100%',
-          height: aniVideoHeight,
+          height: aniVideoFnHeight,
           position: 'absolute',
           zIndex: 903,
-          // backgroundColor: 'red',
         }}>
         <Animated.View
           style={[
             styles.videoInfo,
             {
-              height: aniVideoHeight,
+              height: aniVideoFnHeight,
               opacity: aniOpacity,
               zIndex: zIndex ? 902 : 0,
             },
@@ -141,7 +153,7 @@ export default function VideoInfo(): JSX.Element {
             styles.videoInfo,
             {
               width: window.force ? window.width : '100%',
-              height: window.force ? window.height : aniVideoHeight,
+              height: window.force ? window.height : aniVideoFnHeight,
               justifyContent: 'flex-end',
 
               opacity: aniOpacityT,
@@ -149,7 +161,7 @@ export default function VideoInfo(): JSX.Element {
               transform: [translateX, rotate, translateY],
             },
           ]}>
-          <View style={Styles(window.force).bottom}>
+          <View style={Styles(window.ipad, window.force).bottom}>
             <BtnVideoPlay />
             <BtnVideoTimeScale aniScreen={aniScreen} />
             <BtnVideoLine />
@@ -187,7 +199,7 @@ export default function VideoInfo(): JSX.Element {
                 ? window.orientation
                   ? (window.width / 3) * 2
                   : window.height
-                : aniVideoHeight,
+                : aniVideoFnHeight,
             },
             window.force && {alignSelf: 'center'},
           ]}
@@ -203,8 +215,10 @@ export default function VideoInfo(): JSX.Element {
             }}
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
-              if (preMove - move < 0 && scrollH <= 0)
-                aniVideo(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
+              if (preMove - move < 0 && scrollH <= 0) {
+                aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
+                aniTopFn(startTop, true);
+              }
             }}>
             <Animated.ScrollView
               style={[styles.scroll]}
@@ -221,12 +235,47 @@ export default function VideoInfo(): JSX.Element {
                     data={data}
                     detailDatas={detailDatas}
                     setDetailData={setDetailData}
-                    aniVideo={aniVideo}
+                    aniVideoFn={aniVideoFn}
+                    aniTopFn={aniTopFn}
                     reload={reload}
                   />
                 );
               })}
+              <View style={{height: 150}} />
             </Animated.ScrollView>
+          </Animated.View>
+
+          <Animated.View
+            style={[
+              styles.tutorial,
+              {
+                top: aniTop,
+              },
+            ]}>
+            <View style={Styles(window.ipad, window.force).tutorialTitle}>
+              <View />
+              {img ? (
+                <Pressable
+                  onPress={() => {
+                    aniTopFn(0, false);
+                  }}>
+                  <Image
+                    source={require('@/assets/video/arrow-top-24.png')}
+                    style={Styles(window.ipad, window.force).tutorialImg}
+                  />
+                </Pressable>
+              ) : (
+                <Pressable
+                  onPress={() => {
+                    aniTopFn(startTop - 100, true);
+                  }}>
+                  <Image
+                    source={require('@/assets/video/arrow-bottom-24.png')}
+                    style={Styles(window.ipad, window.force).tutorialImg}
+                  />
+                </Pressable>
+              )}
+            </View>
           </Animated.View>
         </View>
       </SafeAreaView>
@@ -249,9 +298,29 @@ const styles = StyleSheet.create({
     paddingHorizontal: MARGIN_HOR,
     backgroundColor: 'white',
   },
+
+  tutorial: {
+    width: '100%',
+    height: WINDOW_HEIGHT,
+
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(16, 24, 64, 0.5)',
+        shadowOpacity: 0.3,
+        shadowOffset: {
+          height: -5,
+          width: 0,
+        },
+      },
+    }),
+
+    position: 'absolute',
+    backgroundColor: 'white',
+    // backgroundColor: 'green',
+  },
 });
 
-const Styles = (force: boolean) =>
+const Styles = (ipad: boolean, force: boolean) =>
   StyleSheet.create({
     bottom: {
       width: '100%',
@@ -259,5 +328,18 @@ const Styles = (force: boolean) =>
 
       position: 'absolute',
       bottom: 0,
+    },
+
+    tutorialTitle: {
+      height: ipad ? 54 : 36,
+
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    tutorialImg: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+      marginRight: MARGIN_HOR,
     },
   });

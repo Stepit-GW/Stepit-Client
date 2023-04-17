@@ -9,10 +9,6 @@ import {windowState} from '@/recoil/windowState';
 export default function BtnVideoSetting({}: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
-  useEffect(() => {
-    // console.log(window.width);
-  }, [window]);
-
   return (
     <View style={Styles(window.force).bottomBox}>
       <View style={styles.bottomBtn}>
