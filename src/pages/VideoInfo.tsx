@@ -12,10 +12,7 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
 import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
-import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
-import Accodian from '@/components/videoInfo/Accodian';
 import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState} from 'recoil';
@@ -25,6 +22,9 @@ import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
 import Tutorial from '@/components/videoInfo/Tutorial';
+import {videoIdFilter} from '@/utils/videoFilter';
+import Accodian from '@/components/videoInfo/Accodian';
+import {videoDatas} from '@/static/videoDatas';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
 export default function VideoInfo(): JSX.Element {
@@ -124,9 +124,19 @@ export default function VideoInfo(): JSX.Element {
 
   const [preMove, setPreMove] = useState<number>(0);
   const [scrollH, setScrollH] = useState<number>(0);
-  const [detailDatas, setDetailData] = useState<any>([]);
+
+  const [videoScreen, setVideoScreen] = useState<any>({
+    url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
+  });
+  const [videoData, setVideoData] = useState<any>({stage: []});
+  const [videoStageTf, setVideoStageTf] = useState<any>([]);
   useEffect(() => {
-    setDetailData(videoDetailDatas);
+    const video = videoIdFilter(999, (res: any) => setVideoScreen(res))[0];
+    url: setVideoData(video);
+
+    let videoStageTf = [];
+    for (let i = 0; i < video.stage.length; i++) videoStageTf.push(false);
+    setVideoStageTf(videoStageTf);
   }, []);
 
   return (
@@ -175,6 +185,7 @@ export default function VideoInfo(): JSX.Element {
       <BtnVideoTitle aniOpacityT={aniOpacityT} />
 
       <VideoScreen
+        videoScreen={videoScreen}
         aniScreenWidth={aniScreenWidth}
         aniScreenHeight={aniScreenHeight}
         aniScreenRotate={aniScreenRotate}
@@ -191,6 +202,9 @@ export default function VideoInfo(): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
+                const dummy = videoIdFilter(999, (res: any) =>
+                  setVideoScreen(res),
+                )[0];
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
               }
@@ -202,21 +216,22 @@ export default function VideoInfo(): JSX.Element {
                 setScrollH(e.nativeEvent.contentOffset.y);
               }}>
               <View style={{height: 20}} />
-              {detailDatas.map((data: any, idx: number) => {
+              {videoData.stage.map((data: any, idx: number) => {
                 return (
                   <Accodian
                     key={idx}
                     idx={idx}
+                    setVideoScreen={setVideoScreen}
                     data={data}
-                    detailDatas={detailDatas}
-                    setDetailData={setDetailData}
+                    videoStageTf={videoStageTf}
+                    setVideoStageTf={setVideoStageTf}
                     aniVideoFn={aniVideoFn}
                     aniTopFn={aniTopFn}
                     reload={reload}
                   />
                 );
               })}
-              <View style={{height: 150}} />
+              <View style={{height: 150, backgroundColor: 'white'}} />
             </Animated.ScrollView>
           </Animated.View>
 

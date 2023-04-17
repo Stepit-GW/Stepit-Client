@@ -15,13 +15,15 @@ import {useNavigation} from '@react-navigation/native';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {useRecoilState} from 'recoil';
 import {videoTutorialState} from '@/recoil/videoTutorialState';
+import {videoIdFilter} from '@/utils/videoFilter';
 // import Video from 'react-native-video';
 
 export default function Accodian({
   idx,
+  setVideoScreen,
   data,
-  detailDatas,
-  setDetailData,
+  videoStageTf,
+  setVideoStageTf,
   aniVideoFn,
   aniTopFn,
   reload,
@@ -45,29 +47,29 @@ export default function Accodian({
       key={idx}
       style={styles.accodian}
       onPress={() => {
-        let lst = detailDatas;
-        lst[idx].tf = !detailDatas[idx].tf;
-        if (lst[idx].tf) {
+        let lst = videoStageTf;
+        lst[idx] = !videoStageTf[idx];
+        if (lst[idx]) {
           setHeight(true);
-          aniHeightFn(detailDatas[idx].videos.length * 76 + 10);
+          aniHeightFn(data.videoDetails.length * 76 + 10);
         } else {
           aniHeightFn(0);
           setTimeout(() => {
             setHeight(false);
           }, 500);
         }
-        setDetailData(lst);
+        setVideoStageTf(lst);
         reload();
       }}>
       <View
         style={[
           styles.boxName,
-          {backgroundColor: data.tf ? '#EBEBEB' : '#FBFBFB'},
+          {backgroundColor: videoStageTf[idx] ? '#EBEBEB' : '#FBFBFB'},
         ]}>
         <Text style={styles.step}>Step. {idx + 1}</Text>
         <View style={styles.contents}>
-          <Text style={styles.title}>{data.boxName}</Text>
-          {data.tf ? (
+          <Text style={styles.title}>{data.stageTitle}</Text>
+          {videoStageTf[idx] ? (
             <Image
               source={require('@/assets/video/arrow-top-24.png')}
               style={commonStyles.img}
@@ -86,13 +88,13 @@ export default function Accodian({
           width: '100%',
           height: aniHeight,
         }}>
-        {data.videos.map((data2: any, idx2: number) => {
+        {data.videoDetails.map((data2: any, idx2: number) => {
           return (
             <Pressable
               key={idx2}
               style={[styles.video, {display: height ? 'flex' : 'none'}]}
               onPress={() => {
-                if (data.boxName === '튜토리얼') {
+                if (data.stageTitle === '튜토리얼') {
                   setVideoTutorial(true);
                   aniTopFn(0, false);
                 } else {
@@ -100,10 +102,13 @@ export default function Accodian({
                   aniTopFn(startTop, true);
                 }
                 aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
+                const dummy = videoIdFilter(data2.id, (res: any) =>
+                  setVideoScreen(res),
+                )[0];
               }}>
               <View style={styles.imgBox}>
                 <Image
-                  source={require('@/assets/notfound.png')}
+                  source={{uri: data2.imgUrl}}
                   style={commonStyles.img100}
                 />
               </View>
@@ -111,10 +116,6 @@ export default function Accodian({
                 <Text>{data2.title}</Text>
                 <Text>{data2.time}</Text>
               </View>
-              {/* <Image
-                source={require('@/assets/heart-black-24.png')}
-                style={[commonStyles.img, styles.heartImg]}
-              /> */}
             </Pressable>
           );
         })}
