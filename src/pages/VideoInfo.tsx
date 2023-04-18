@@ -126,12 +126,17 @@ export default function VideoInfo(): JSX.Element {
   const [scrollH, setScrollH] = useState<number>(0);
 
   const [videoScreen, setVideoScreen] = useState<any>({
+    kind: 'step',
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
   });
+  const [videoPause, setVideoPause] = useState<any>(false);
   const [videoData, setVideoData] = useState<any>({stage: []});
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
   useEffect(() => {
-    const video = videoIdFilter(999, (res: any) => setVideoScreen(res))[0];
+    const video = videoIdFilter(999, (res: any) => {
+      setVideoScreen(res);
+      setVideoPause(false);
+    })[0];
     url: setVideoData(video);
 
     let videoStageTf = [];
@@ -174,7 +179,10 @@ export default function VideoInfo(): JSX.Element {
             },
           ]}>
           <View style={Styles(window.ipad, window.force).bottom}>
-            <BtnVideoPlay />
+            <BtnVideoPlay
+              videoPause={videoPause}
+              setVideoPause={setVideoPause}
+            />
             <BtnVideoTimeScale aniScreen={aniScreen} />
             <BtnVideoLine />
             <BtnVideoSetting />
@@ -185,6 +193,7 @@ export default function VideoInfo(): JSX.Element {
       <BtnVideoTitle aniOpacityT={aniOpacityT} />
 
       <VideoScreen
+        videoPause={videoPause}
         videoScreen={videoScreen}
         aniScreenWidth={aniScreenWidth}
         aniScreenHeight={aniScreenHeight}
@@ -202,9 +211,10 @@ export default function VideoInfo(): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
-                const dummy = videoIdFilter(999, (res: any) =>
-                  setVideoScreen(res),
-                )[0];
+                const dummy = videoIdFilter(999, (res: any) => {
+                  setVideoScreen(res);
+                  setVideoPause(false);
+                })[0];
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
               }
@@ -222,6 +232,7 @@ export default function VideoInfo(): JSX.Element {
                     key={idx}
                     idx={idx}
                     setVideoScreen={setVideoScreen}
+                    setVideoPause={setVideoPause}
                     data={data}
                     videoStageTf={videoStageTf}
                     setVideoStageTf={setVideoStageTf}

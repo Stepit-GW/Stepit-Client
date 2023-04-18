@@ -6,9 +6,9 @@ import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
-import {videoIdFilter} from '@/utils/videoFilter';
 
 export default function VideoScreen({
+  videoPause,
   videoScreen,
   aniScreenWidth,
   aniScreenHeight,
@@ -34,7 +34,6 @@ export default function VideoScreen({
   };
 
   useEffect(() => {
-    console.log(videoScreen);
     reload();
   }, [videoScreen]);
 
@@ -73,15 +72,18 @@ export default function VideoScreen({
             uri: videoScreen.url,
           }}
           style={{width: '100%', height: '100%'}}
-          paused={false} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+          paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
           onLoad={(e: any) => {
-            // console.log(e);
-            // setTimeout(() => {
-            //   setVideoStart(true);
-            // }, 5000);
+            if (videoScreen.stopTime !== undefined) {
+              console.log('튜토리얼');
+              // console.log(e);
+              // setTimeout(() => {
+              //   setVideoStart(true);
+              // }, 5000);
+            }
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
-          repeat={true} // video가 끝나면 다시 재생할 지 여부
+          repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}
           muted={true}
           controls={false} //바텀바가 나옴

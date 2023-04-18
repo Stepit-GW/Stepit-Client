@@ -21,6 +21,7 @@ import {videoIdFilter} from '@/utils/videoFilter';
 export default function Accodian({
   idx,
   setVideoScreen,
+  setVideoPause,
   data,
   videoStageTf,
   setVideoStageTf,
@@ -102,9 +103,10 @@ export default function Accodian({
                   aniTopFn(startTop, true);
                 }
                 aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
-                const dummy = videoIdFilter(data2.id, (res: any) =>
-                  setVideoScreen(res),
-                )[0];
+                const dummy = videoIdFilter(data2.id, (res: any) => {
+                  setVideoScreen(res);
+                  setVideoPause(false);
+                })[0];
               }}>
               <View style={styles.imgBox}>
                 <Image

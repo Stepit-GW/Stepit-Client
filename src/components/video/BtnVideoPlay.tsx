@@ -4,7 +4,10 @@ import {useRecoilValue} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import {WINDOW_WIDTH} from '@/static/commonValue';
 
-export default function BtnVideoPlay(): JSX.Element {
+export default function BtnVideoPlay({
+  videoPause,
+  setVideoPause,
+}: any): JSX.Element {
   const window = useRecoilValue(windowState);
   const videoHeight1 = window.force
     ? window.ipad
@@ -19,12 +22,25 @@ export default function BtnVideoPlay(): JSX.Element {
       <View />
       <Pressable
         onPress={() => {
-          console.log('play');
+          setVideoPause(!videoPause);
         }}>
-        <Image
-          source={require('@/assets/video/start-24.png')}
-          style={{width: window.ipad ? 40 : 24, height: window.ipad ? 40 : 24}}
-        />
+        {videoPause ? (
+          <Image
+            source={require('@/assets/video/start-24.png')}
+            style={{
+              width: window.ipad ? 40 : 24,
+              height: window.ipad ? 40 : 24,
+            }}
+          />
+        ) : (
+          <Image
+            source={require('@/assets/video/back-24.png')}
+            style={{
+              width: window.ipad ? 40 : 24,
+              height: window.ipad ? 40 : 24,
+            }}
+          />
+        )}
       </Pressable>
       <View />
     </View>
