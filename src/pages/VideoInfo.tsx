@@ -17,7 +17,7 @@ import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState} from 'recoil';
 import BtnVideoLine from '@/components/video/BtnVideoLine';
-import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
+import BtncurrentTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
@@ -100,15 +100,20 @@ export default function VideoInfo(): JSX.Element {
       useNativeDriver: false,
     }).start();
   };
-  const translateX = {
-    translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
-  const translateY = {
-    translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
-  const rotate = {
-    rotate: aniScreenRotate,
-  };
+  const rotate = [
+    {translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2},
+    {rotate: aniScreenRotate},
+    {translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2},
+  ];
+  // const translateX = {
+  //   translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+  // };
+  // const translateY = {
+  //   translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+  // };
+  // const rotate = {
+  //   rotate: aniScreenRotate,
+  // };
 
   const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
   const [img, setImg] = useState(false);
@@ -130,6 +135,8 @@ export default function VideoInfo(): JSX.Element {
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
   });
   const [videoPause, setVideoPause] = useState<any>(false);
+  const [allTime, setAllTime] = useState<any>(0);
+  const [currentTime, setCurrentTime] = useState<any>(0);
   const [videoData, setVideoData] = useState<any>({stage: []});
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
   useEffect(() => {
@@ -175,7 +182,7 @@ export default function VideoInfo(): JSX.Element {
 
               opacity: aniOpacityT,
               zIndex: zIndex ? 0 : 903,
-              transform: [translateX, rotate, translateY],
+              transform: rotate,
             },
           ]}>
           <View style={Styles(window.ipad, window.force).bottom}>
@@ -183,8 +190,8 @@ export default function VideoInfo(): JSX.Element {
               videoPause={videoPause}
               setVideoPause={setVideoPause}
             />
-            <BtnVideoTimeScale aniScreen={aniScreen} />
-            <BtnVideoLine />
+            <BtncurrentTimeScale aniScreen={aniScreen} />
+            <BtnVideoLine currentTime={currentTime} allTime={allTime} />
             <BtnVideoSetting />
           </View>
         </Animated.View>
@@ -194,10 +201,12 @@ export default function VideoInfo(): JSX.Element {
 
       <VideoScreen
         videoPause={videoPause}
+        setCurrentTime={setCurrentTime}
+        setAllTime={setAllTime}
         videoScreen={videoScreen}
         aniScreenWidth={aniScreenWidth}
         aniScreenHeight={aniScreenHeight}
-        aniScreenRotate={aniScreenRotate}
+        rotate={rotate}
         aniVideoFnHeight={aniVideoFnHeight}
       />
 

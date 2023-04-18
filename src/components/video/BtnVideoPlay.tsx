@@ -26,7 +26,7 @@ export default function BtnVideoPlay({
         }}>
         {videoPause ? (
           <Image
-            source={require('@/assets/video/start-24.png')}
+            source={require('@/assets/video/stop-36.png')}
             style={{
               width: window.ipad ? 40 : 24,
               height: window.ipad ? 40 : 24,
@@ -34,7 +34,7 @@ export default function BtnVideoPlay({
           />
         ) : (
           <Image
-            source={require('@/assets/video/back-24.png')}
+            source={require('@/assets/video/start-36.png')}
             style={{
               width: window.ipad ? 40 : 24,
               height: window.ipad ? 40 : 24,

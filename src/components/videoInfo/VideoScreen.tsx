@@ -9,10 +9,12 @@ import Video from 'react-native-video';
 
 export default function VideoScreen({
   videoPause,
+  setCurrentTime,
+  setAllTime,
   videoScreen,
   aniScreenWidth,
   aniScreenHeight,
-  aniScreenRotate,
+  rotate,
   aniVideoFnHeight,
 }: any): JSX.Element {
   const [num, setNum] = useState<number>(0);
@@ -21,21 +23,10 @@ export default function VideoScreen({
   };
 
   const [window] = useRecoilState(windowState);
-  const [videoStart, setVideoStart] = useState(true);
-
-  const translateX = {
-    translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
-  const translateY = {
-    translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
-  const rotate = {
-    rotate: aniScreenRotate,
-  };
 
   useEffect(() => {
     reload();
-  }, [videoScreen]);
+  }, [videoScreen, videoPause]);
 
   return (
     <Animated.View
@@ -50,23 +41,27 @@ export default function VideoScreen({
 
           backgroundColor: 'black',
           zIndex: 901,
-          transform: [translateX, rotate, translateY],
+          transform: rotate,
         },
       ]}>
       <Animated.View
-        style={{
-          width: window.force
-            ? window.orientation
-              ? window.width
-              : (window.height / 2) * 3
-            : '100%',
-          height: window.force
-            ? window.orientation
-              ? (window.width / 3) * 2
-              : window.height
-            : aniVideoFnHeight,
-          backgroundColor: 'black',
-        }}>
+        style={[
+          {
+            width: window.force
+              ? window.orientation
+                ? window.width
+                : (window.height / 2) * 3
+              : '100%',
+            height: window.force
+              ? window.orientation
+                ? (window.width / 3) * 2
+                : window.height
+              : aniVideoFnHeight,
+
+            backgroundColor: 'black',
+          },
+          window.force && {alignSelf: 'center'},
+        ]}>
         <Video
           source={{
             uri: videoScreen.url,
@@ -75,14 +70,11 @@ export default function VideoScreen({
           paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
           onLoad={(e: any) => {
-            if (videoScreen.stopTime !== undefined) {
-              console.log('튜토리얼');
-              // console.log(e);
-              // setTimeout(() => {
-              //   setVideoStart(true);
-              // }, 5000);
-            }
+            setAllTime(e.duration);
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
+          onProgress={(e: any) => {
+            setCurrentTime(e.currentTime);
+          }}
           repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}
           muted={true}
@@ -92,19 +84,3 @@ export default function VideoScreen({
     </Animated.View>
   );
 }
-
-const Styles = (ipad: boolean, force: boolean) =>
-  StyleSheet.create({
-    tutorialTitle: {
-      height: ipad ? 54 : 36,
-
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    tutorialImg: {
-      width: ipad ? 40 : 24,
-      height: ipad ? 40 : 24,
-      marginRight: MARGIN_HOR,
-    },
-  });

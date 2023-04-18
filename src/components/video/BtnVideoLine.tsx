@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {useNavigation} from '@react-navigation/native';
 import {windowState} from '@/recoil/windowState';
 
-export default function BtnVideoLine({}: any): JSX.Element {
+export default function BtnVideoLine({currentTime, allTime}: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
   return (
@@ -12,22 +11,28 @@ export default function BtnVideoLine({}: any): JSX.Element {
       <View style={styles.line} />
 
       <View style={styles.realLineBox}>
-        <View style={{width: '40%'}}>
+        <View style={{width: (currentTime / allTime) * 100 + '%'}}>
           <View style={styles.realLine} />
         </View>
       </View>
       <View style={[styles.realLineBox, Styles(window.force).checkBottom]}>
-        <View style={{width: '40%'}}>
+        <View style={{width: (currentTime / allTime) * 100 + '%'}}>
           <View style={Styles(window.force).circle} />
         </View>
       </View>
 
+      {/* <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
+        <Image
+          source={require('@/assets/video/check-22.png')}
+          style={[Styles(window.force).checks, {marginLeft: '40%'}]}
+        />
+      </View>
       <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
         <Image
           source={require('@/assets/video/check-22.png')}
-          style={[Styles(window.force).checks, {marginLeft: '20%'}]}
+          style={[Styles(window.force).checks, {marginLeft: '80%'}]}
         />
-      </View>
+      </View> */}
     </View>
   );
 }
