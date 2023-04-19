@@ -8,9 +8,12 @@ import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
 
 export default function VideoScreen({
+  videoRef,
   videoPause,
+  setVideoPause,
   setCurrentTime,
   setAllTime,
+  stopTime,
   videoScreen,
   aniScreenWidth,
   aniScreenHeight,
@@ -23,6 +26,7 @@ export default function VideoScreen({
   };
 
   const [window] = useRecoilState(windowState);
+  const [stopT, setStopT] = useState<any>(0);
 
   useEffect(() => {
     reload();
@@ -63,6 +67,7 @@ export default function VideoScreen({
           window.force && {alignSelf: 'center'},
         ]}>
         <Video
+          ref={videoRef}
           source={{
             uri: videoScreen.url,
           }}
@@ -71,9 +76,20 @@ export default function VideoScreen({
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
           onLoad={(e: any) => {
             setAllTime(e.duration);
+            // videoRef.current.seek(6);
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
           onProgress={(e: any) => {
             setCurrentTime(e.currentTime);
+            if (stopTime !== undefined) {
+              for (let i = 0; i < stopTime.length; i++)
+                if (
+                  stopT !== Math.round(e.currentTime) &&
+                  stopTime[i].time === Math.round(e.currentTime)
+                ) {
+                  setVideoPause(true);
+                  setStopT(Math.round(e.currentTime));
+                }
+            }
           }}
           repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}

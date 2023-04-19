@@ -24,7 +24,6 @@ import BtnVideoPlay from '@/components/video/BtnVideoPlay';
 import Tutorial from '@/components/videoInfo/Tutorial';
 import {videoIdFilter} from '@/utils/videoFilter';
 import Accodian from '@/components/videoInfo/Accodian';
-import {videoDatas} from '@/static/videoDatas';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
 export default function VideoInfo(): JSX.Element {
@@ -32,6 +31,7 @@ export default function VideoInfo(): JSX.Element {
   const reload = () => {
     setNum(num + 1);
   };
+  const videoRef = useRef<any>(null);
   const [window] = useRecoilState(windowState);
   const videoHeight1 = window.ipad
     ? (WINDOW_WIDTH / 4) * 3
@@ -134,9 +134,11 @@ export default function VideoInfo(): JSX.Element {
     kind: 'step',
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
   });
+
   const [videoPause, setVideoPause] = useState<any>(false);
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
+  const [stopTime, setStopTime] = useState<any>(undefined);
   const [videoData, setVideoData] = useState<any>({stage: []});
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
   useEffect(() => {
@@ -187,11 +189,29 @@ export default function VideoInfo(): JSX.Element {
           ]}>
           <View style={Styles(window.ipad, window.force).bottom}>
             <BtnVideoPlay
+              videoRef={videoRef}
               videoPause={videoPause}
               setVideoPause={setVideoPause}
+              radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
             />
-            <BtncurrentTimeScale aniScreen={aniScreen} />
-            <BtnVideoLine currentTime={currentTime} allTime={allTime} />
+            <BtncurrentTimeScale
+              aniScreen={aniScreen}
+              moveTime={[
+                String(Math.floor(currentTime / 60)).padStart(1, '0'),
+                String(Math.round(currentTime % 60)).padStart(2, '0'),
+              ]}
+              fixTime={[
+                String(Math.floor(allTime / 60)).padStart(1, '0'),
+                String(Math.round(allTime % 60)).padStart(2, '0'),
+              ]}
+            />
+            <BtnVideoLine
+              videoRef={videoRef}
+              setVideoPause={setVideoPause}
+              currentTime={Math.round(currentTime)}
+              allTime={Math.round(allTime)}
+              stopTime={stopTime}
+            />
             <BtnVideoSetting />
           </View>
         </Animated.View>
@@ -200,9 +220,12 @@ export default function VideoInfo(): JSX.Element {
       <BtnVideoTitle aniOpacityT={aniOpacityT} />
 
       <VideoScreen
+        videoRef={videoRef}
         videoPause={videoPause}
+        setVideoPause={setVideoPause}
         setCurrentTime={setCurrentTime}
         setAllTime={setAllTime}
+        stopTime={stopTime}
         videoScreen={videoScreen}
         aniScreenWidth={aniScreenWidth}
         aniScreenHeight={aniScreenHeight}
@@ -242,6 +265,7 @@ export default function VideoInfo(): JSX.Element {
                     idx={idx}
                     setVideoScreen={setVideoScreen}
                     setVideoPause={setVideoPause}
+                    setStopTime={setStopTime}
                     data={data}
                     videoStageTf={videoStageTf}
                     setVideoStageTf={setVideoStageTf}

@@ -59,7 +59,23 @@ export const videoDatas = [
               'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
             url: 'https://www.dropbox.com/s/6q43hqareld9rsm/videoDetail4.mp4?raw=1',
             allTime: 15000,
-            stopTime: [],
+            stopTime: [
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+              },
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+              },
+            ],
           },
         ],
       },

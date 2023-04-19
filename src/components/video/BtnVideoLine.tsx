@@ -1,9 +1,15 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, Image, Pressable, Text} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 
-export default function BtnVideoLine({currentTime, allTime}: any): JSX.Element {
+export default function BtnVideoLine({
+  videoRef,
+  setVideoPause,
+  currentTime,
+  allTime,
+  stopTime,
+}: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
   return (
@@ -21,6 +27,30 @@ export default function BtnVideoLine({currentTime, allTime}: any): JSX.Element {
         </View>
       </View>
 
+      {stopTime !== undefined &&
+        stopTime.map((data: any, idx: number) => {
+          return (
+            <Pressable
+              key={idx}
+              style={[styles.realLineBox, Styles(window.force).circleBottom]}
+              onPress={() => {
+                videoRef.current.seek(data.time);
+                setTimeout(() => {
+                  setVideoPause(true);
+                }, 200);
+              }}>
+              <Image
+                source={require('@/assets/video/check-22.png')}
+                style={[
+                  Styles(window.force).checks,
+                  {
+                    left: (data.time / allTime) * 100 + '%',
+                  },
+                ]}
+              />
+            </Pressable>
+          );
+        })}
       {/* <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
         <Image
           source={require('@/assets/video/check-22.png')}

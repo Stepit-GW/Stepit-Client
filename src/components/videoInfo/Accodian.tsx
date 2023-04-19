@@ -22,6 +22,7 @@ export default function Accodian({
   idx,
   setVideoScreen,
   setVideoPause,
+  setStopTime,
   data,
   videoStageTf,
   setVideoStageTf,
@@ -98,9 +99,11 @@ export default function Accodian({
                 if (data.stageTitle === '튜토리얼') {
                   setVideoTutorial(true);
                   aniTopFn(0, false);
+                  setStopTime(data.videoDetails[0].stopTime);
                 } else {
                   setVideoTutorial(false);
                   aniTopFn(startTop, true);
+                  setStopTime(undefined);
                 }
                 aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
                 const dummy = videoIdFilter(data2.id, (res: any) => {

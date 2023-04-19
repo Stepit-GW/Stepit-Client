@@ -5,7 +5,11 @@ import {useRecoilState} from 'recoil';
 import {videoHeight2, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {windowState} from '@/recoil/windowState';
 
-export default function BtnVideoTimeScale({aniScreen}: any): JSX.Element {
+export default function BtnVideoTimeScale({
+  aniScreen,
+  moveTime,
+  fixTime,
+}: any): JSX.Element {
   const [window, setWindow] = useRecoilState(windowState);
   const handleScaleUp = () => {
     setWindow({
@@ -30,7 +34,9 @@ export default function BtnVideoTimeScale({aniScreen}: any): JSX.Element {
 
   return (
     <View style={Styles(window.force).topBox}>
-      <Text style={styles.topText}>0:00 / 15:20</Text>
+      <Text style={styles.topText}>
+        {moveTime[0]}:{moveTime[1]} / {fixTime[0]}:{fixTime[1]}
+      </Text>
       {window.force ? (
         <Pressable onPress={handleScaleDown}>
           <Image

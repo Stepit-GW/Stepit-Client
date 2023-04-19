@@ -39,10 +39,10 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                   <View style={styles.levelBox}>
                     <Text style={styles.level}>중</Text>
                   </View>
-                  <Image
+                  {/* <Image
                     source={require('@/assets/heart-white-24.png')}
                     style={commonStyles.img}
-                  />
+                  /> */}
                 </View>
 
                 <View style={styles.titleBottom}>
