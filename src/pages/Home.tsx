@@ -84,7 +84,7 @@ export default function Home({navigation}: any): JSX.Element {
                           },
                         ]}
                         onPress={() => {
-                          navigation.navigate('VideoInfo');
+                          navigation.navigate('VideoInfo', {id: 999});
                         }}>
                         <Text style={Styles(window.ipad).videoTitle}>
                           {video.title}

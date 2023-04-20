@@ -14,8 +14,10 @@ import BottomNavigation from './src/components/BottomNavigation';
 import {signRoutesData} from '@/static/signRoutesData';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
 import VideoInfo from '@/pages/VideoInfo';
-import {RecoilRoot, useRecoilState, useSetRecoilState} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
+import CameraScreen from '@/components/camera/CameraScreen';
+import VideoTutorial from '@/pages/VideoTutorial';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,8 +47,19 @@ export default function App(): JSX.Element {
         />
 
         <Stack.Screen
+          name="CameraScreen"
+          component={CameraScreen}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
           name="VideoInfo"
           component={VideoInfo}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="VideoTutorial"
+          component={VideoTutorial}
           options={{headerShown: false}}
         />
 

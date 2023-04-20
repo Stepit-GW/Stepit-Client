@@ -32,7 +32,7 @@ export default function ShortVideo({navigation}: any): JSX.Element {
             <Pressable
               key={idx}
               onPress={() => {
-                navigation.navigate('VideoInfo');
+                navigation.navigate('VideoInfo', {id: 999});
               }}>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>

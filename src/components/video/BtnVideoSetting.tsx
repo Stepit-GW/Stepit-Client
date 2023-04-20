@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import {useRecoilValue} from 'recoil';
 import {MARGIN_HOR} from '@/static/commonValue';
-import {useNavigation} from '@react-navigation/native';
 import {windowState} from '@/recoil/windowState';
 
 export default function BtnVideoSetting({}: any): JSX.Element {

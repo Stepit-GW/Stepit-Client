@@ -61,7 +61,6 @@ export default function VideoScreen({
                 ? (window.width / 3) * 2
                 : window.height
               : aniVideoFnHeight,
-
             backgroundColor: 'black',
           },
           window.force && {alignSelf: 'center'},
@@ -80,16 +79,16 @@ export default function VideoScreen({
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
           onProgress={(e: any) => {
             setCurrentTime(e.currentTime);
-            if (stopTime !== undefined) {
-              for (let i = 0; i < stopTime.length; i++)
-                if (
-                  stopT !== Math.round(e.currentTime) &&
-                  stopTime[i].time === Math.round(e.currentTime)
-                ) {
-                  setVideoPause(true);
-                  setStopT(Math.round(e.currentTime));
-                }
-            }
+            // if (stopTime !== undefined) {
+            //   for (let i = 0; i < stopTime.length; i++)
+            //     if (
+            //       stopT !== Math.round(e.currentTime) &&
+            //       stopTime[i].time === Math.round(e.currentTime)
+            //     ) {
+            //       setVideoPause(true);
+            //       setStopT(Math.round(e.currentTime));
+            //     }
+            // }
           }}
           repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}

@@ -26,7 +26,8 @@ import {videoIdFilter} from '@/utils/videoFilter';
 import Accodian from '@/components/videoInfo/Accodian';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
-export default function VideoInfo(): JSX.Element {
+export default function VideoInfo({route}: any): JSX.Element {
+  const id = route.params.id;
   const [num, setNum] = useState(0);
   const reload = () => {
     setNum(num + 1);
@@ -105,15 +106,6 @@ export default function VideoInfo(): JSX.Element {
     {rotate: aniScreenRotate},
     {translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2},
   ];
-  // const translateX = {
-  //   translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  // };
-  // const translateY = {
-  //   translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  // };
-  // const rotate = {
-  //   rotate: aniScreenRotate,
-  // };
 
   const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
   const [img, setImg] = useState(false);
@@ -143,7 +135,7 @@ export default function VideoInfo(): JSX.Element {
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
   const [videoStopTimeTf, setVideoStopTimeTf] = useState<any>([]);
   useEffect(() => {
-    const video = videoIdFilter(999, (res: any) => {
+    const video = videoIdFilter(id, (res: any) => {
       setVideoScreen(res);
       setVideoPause(false);
     })[0];
@@ -252,7 +244,7 @@ export default function VideoInfo(): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
-                const dummy = videoIdFilter(999, (res: any) => {
+                const dummy = videoIdFilter(id, (res: any) => {
                   setVideoScreen(res);
                   setVideoPause(false);
                 })[0];
@@ -333,6 +325,7 @@ export default function VideoInfo(): JSX.Element {
                       setVideoStopTimeTf={setVideoStopTimeTf}
                       setVideoScreen={setVideoScreen}
                       setVideoPause={setVideoPause}
+                      currentTime={currentTime}
                       reload={reload}
                     />
                   );

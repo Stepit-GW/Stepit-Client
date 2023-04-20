@@ -8,11 +8,9 @@ import {
   Text,
   View,
 } from 'react-native';
-import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
-import {useRecoilState} from 'recoil';
-import {windowState} from '@/recoil/windowState';
+import {MARGIN_HOR, WINDOW_HEIGHT} from '@/static/commonValue';
 import {commonStyles} from '@/styles/commonStyles';
-import {videoIdFilter} from '@/utils/videoFilter';
+import {useNavigation} from '@react-navigation/native';
 // import Video from 'react-native-video';
 
 export default function Tutorial({
@@ -23,10 +21,12 @@ export default function Tutorial({
   setVideoStopTimeTf,
   setVideoScreen,
   setVideoPause,
+  currentTime,
   reload,
 }: any): JSX.Element {
-  const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
-  const [window] = useRecoilState(windowState);
+  const navigation = useNavigation<any>();
+  const minute = Math.floor(currentTime / 60);
+  const seconde = Math.round(currentTime % 60);
 
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -48,10 +48,10 @@ export default function Tutorial({
         if (lst[idx]) {
           setHeight(true);
           aniHeightFn(data.videoTimes.length * 76 + 10);
-          videoRef.current.seek(data.time);
-          setTimeout(() => {
-            setVideoPause(true);
-          }, 200);
+          // videoRef.current.seek(data.time);
+          // setTimeout(() => {
+          //   setVideoPause(true);
+          // }, 200);
         } else {
           aniHeightFn(0);
           setTimeout(() => {
@@ -65,7 +65,12 @@ export default function Tutorial({
         style={[
           styles.boxName,
           {
-            backgroundColor: videoStopTimeTf[idx] ? '#EBEBEB' : '#FBFBFB',
+            backgroundColor:
+              minute * 60 + seconde >= data.time
+                ? '#B0B0B0'
+                : videoStopTimeTf[idx]
+                ? '#EBEBEB'
+                : '#FBFBFB',
           },
         ]}>
         <Text style={styles.step}>Tag. {idx + 1}</Text>
@@ -104,20 +109,7 @@ export default function Tutorial({
                 },
               ]}
               onPress={() => {
-                // if (data.stageTitle === '튜토리얼') {
-                //   setVideoTutorial(true);
-                //   aniTopFn(0, false);
-                //   setStopTime(data.videoDetails[0].stopTime);
-                // } else {
-                //   setVideoTutorial(false);
-                //   aniTopFn(startTop, true);
-                //   setStopTime(undefined);
-                // }
-                // aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
-                // const dummy = videoIdFilter(data2.id, (res: any) => {
-                //   setVideoScreen(res);
-                //   setVideoPause(false);
-                // })[0];
+                navigation.navigate('VideoTutorial', {id: data2.id});
               }}>
               <View style={styles.imgBox}>
                 <Image

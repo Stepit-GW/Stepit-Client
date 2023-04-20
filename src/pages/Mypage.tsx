@@ -1,21 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import {
-  Animated,
   Image,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
   Pressable,
-  ScrollView,
 } from 'react-native';
-import {
-  GRAY,
-  MARGIN_VER,
-  PINK3,
-  TOP_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
+import {MARGIN_VER} from '@/static/commonValue';
 import Title from '@/components/Title';
 import {commonStyles} from '@/styles/commonStyles';
 import {mypageRoutesData} from '@/static/mypageRoutesData';
@@ -83,6 +75,13 @@ export default function Mypage({navigation}: any): JSX.Element {
               )
             );
           })}
+
+          <Pressable
+            onPress={() => {
+              navigation.navigate('CameraScreen');
+            }}>
+            <Text>Camera</Text>
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
