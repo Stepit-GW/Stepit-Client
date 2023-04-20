@@ -141,6 +141,7 @@ export default function VideoInfo(): JSX.Element {
   const [stopTime, setStopTime] = useState<any>(undefined);
   const [videoData, setVideoData] = useState<any>({stage: []});
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
+  const [videoStopTimeTf, setVideoStopTimeTf] = useState<any>([]);
   useEffect(() => {
     const video = videoIdFilter(999, (res: any) => {
       setVideoScreen(res);
@@ -149,8 +150,16 @@ export default function VideoInfo(): JSX.Element {
     url: setVideoData(video);
 
     let videoStageTf = [];
-    for (let i = 0; i < video.stage.length; i++) videoStageTf.push(false);
+    let videoStopTimeTf = [];
+    for (let i = 0; i < video.stage.length; i++) {
+      videoStageTf.push(false);
+      const videoStopTime = video.stage[i].videoDetails[0].stopTime;
+      if (videoStopTime !== undefined)
+        for (let j = 0; j < videoStopTime.length; j++)
+          videoStopTimeTf.push(false);
+    }
     setVideoStageTf(videoStageTf);
+    setVideoStopTimeTf(videoStopTimeTf);
   }, []);
 
   return (
@@ -279,6 +288,7 @@ export default function VideoInfo(): JSX.Element {
             </Animated.ScrollView>
           </Animated.View>
 
+          {/*  */}
           <Animated.View
             style={[
               styles.tutorial,
@@ -286,7 +296,49 @@ export default function VideoInfo(): JSX.Element {
                 top: aniTop,
               },
             ]}>
-            <Tutorial img={img} aniTopFn={aniTopFn} />
+            <View style={Styles(window.ipad, window.force).tutorialTitle}>
+              <View />
+              {img ? (
+                <Pressable
+                  onPress={() => {
+                    aniTopFn(0, false);
+                  }}>
+                  <Image
+                    source={require('@/assets/video/arrow-top-24.png')}
+                    style={Styles(window.ipad, window.force).tutorialImg}
+                  />
+                </Pressable>
+              ) : (
+                <Pressable
+                  onPress={() => {
+                    aniTopFn(startTop - 100, true);
+                  }}>
+                  <Image
+                    source={require('@/assets/video/arrow-bottom-24.png')}
+                    style={Styles(window.ipad, window.force).tutorialImg}
+                  />
+                </Pressable>
+              )}
+            </View>
+            <View style={styles.tutorialList}>
+              {stopTime !== undefined &&
+                stopTime.map((data: any, idx: number) => {
+                  return (
+                    <Tutorial
+                      key={idx}
+                      idx={idx}
+                      data={data}
+                      videoRef={videoRef}
+                      videoStopTimeTf={videoStopTimeTf}
+                      setVideoStopTimeTf={setVideoStopTimeTf}
+                      setVideoScreen={setVideoScreen}
+                      setVideoPause={setVideoPause}
+                      reload={reload}
+                    />
+                  );
+                })}
+              <View style={{height: WINDOW_HEIGHT, backgroundColor: 'white'}} />
+            </View>
           </Animated.View>
         </View>
       </SafeAreaView>
@@ -328,6 +380,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'white',
     // backgroundColor: 'green',
+  },
+  tutorialList: {
+    width: '100%',
+    height: WINDOW_HEIGHT,
+    paddingHorizontal: MARGIN_HOR,
+    backgroundColor: 'white',
   },
 });
 
