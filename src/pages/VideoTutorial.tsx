@@ -126,7 +126,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={1} />
+      <BtnVideoTitle aniOpacityT={1} _onSpeechEnd={() => {}} />
 
       <VideoScreen
         videoRef={videoRef}
@@ -140,6 +140,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
         aniScreenHeight={aniScreenHeight}
         rotate={rotate}
         aniVideoFnHeight={videoHeight}
+        _onRecordVoice={() => {}}
       />
 
       <SafeAreaView style={commonStyles.container}></SafeAreaView>

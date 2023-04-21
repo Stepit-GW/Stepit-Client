@@ -23,6 +23,7 @@ export default function Tutorial({
   setVideoPause,
   currentTime,
   reload,
+  _onSpeechEnd,
 }: any): JSX.Element {
   const navigation = useNavigation<any>();
   const minute = Math.floor(currentTime / 60);
@@ -109,6 +110,7 @@ export default function Tutorial({
                 },
               ]}
               onPress={() => {
+                // _onSpeechEnd();
                 navigation.navigate('VideoTutorial', {id: data2.id});
               }}>
               <View style={styles.imgBox}>

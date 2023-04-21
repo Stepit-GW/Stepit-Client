@@ -3,7 +3,6 @@ import {Animated, StyleSheet, Text} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
-import Voice from 'react-native-voice';
 
 export default function VideoScreen({
   videoRef,
@@ -17,7 +16,6 @@ export default function VideoScreen({
   aniScreenHeight,
   rotate,
   aniVideoFnHeight,
-  _onSpeechEnd,
   _onRecordVoice,
 }: any): JSX.Element {
   const [num, setNum] = useState<number>(0);
@@ -28,7 +26,7 @@ export default function VideoScreen({
   const [window] = useRecoilState(windowState);
 
   useEffect(() => {
-    if (!(videoScreen.kind !== 'detail')) _onRecordVoice();
+    if (videoScreen.kind === 'detail') _onRecordVoice();
     reload();
   }, [videoScreen]);
 

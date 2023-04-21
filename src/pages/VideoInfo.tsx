@@ -159,18 +159,10 @@ export default function VideoInfo({route}: any): JSX.Element {
   //record
   const [isRecord, setIsRecord] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
-  const voiceLabel = text
-    ? text
-    : isRecord
-    ? 'Say something...'
-    : 'press Start button';
-
   const _onSpeechStart = () => {
-    console.log('onSpeechStart');
     setText('');
   };
   const _onSpeechResults = (event: any) => {
-    console.log('onSpeechResults');
     const text = event.value[0].split(' ');
     if (
       text[text.length - 1] === '멈춰' ||
@@ -181,7 +173,6 @@ export default function VideoInfo({route}: any): JSX.Element {
     else if (text[text.length - 1] === '시작') setVideoPause(false);
   };
   const _onSpeechError = (event: any) => {
-    console.log('_onSpeechError');
     console.log(event.error);
   };
   const _onRecordVoice = () => {
@@ -189,14 +180,11 @@ export default function VideoInfo({route}: any): JSX.Element {
     setIsRecord(true);
   };
   const _onSpeechEnd = () => {
-    console.log('onSpeechEnd');
     Voice.stop();
     setIsRecord(false);
   };
 
   useEffect(() => {
-    if (!(videoScreen.kind !== 'detail')) _onRecordVoice();
-
     Voice.onSpeechStart = _onSpeechStart;
     Voice.onSpeechEnd = _onSpeechEnd;
     Voice.onSpeechResults = _onSpeechResults;
@@ -285,7 +273,6 @@ export default function VideoInfo({route}: any): JSX.Element {
         aniScreenHeight={aniScreenHeight}
         rotate={rotate}
         aniVideoFnHeight={aniVideoFnHeight}
-        _onSpeechEnd={_onSpeechEnd}
         _onRecordVoice={_onRecordVoice}
       />
 
@@ -383,6 +370,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                       setVideoPause={setVideoPause}
                       currentTime={currentTime}
                       reload={reload}
+                      _onSpeechEnd={_onSpeechEnd}
                     />
                   );
                 })}
