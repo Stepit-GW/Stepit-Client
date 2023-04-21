@@ -26,6 +26,8 @@ import {videoIdFilter} from '@/utils/videoFilter';
 import Accodian from '@/components/videoInfo/Accodian';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
+import Voice from 'react-native-voice';
+
 export default function VideoInfo({route}: any): JSX.Element {
   const id = route.params.id;
   const [num, setNum] = useState(0);
@@ -154,6 +156,57 @@ export default function VideoInfo({route}: any): JSX.Element {
     setVideoStopTimeTf(videoStopTimeTf);
   }, []);
 
+  //record
+  const [isRecord, setIsRecord] = useState<boolean>(false);
+  const [text, setText] = useState<string>('');
+  const voiceLabel = text
+    ? text
+    : isRecord
+    ? 'Say something...'
+    : 'press Start button';
+
+  const _onSpeechStart = () => {
+    console.log('onSpeechStart');
+    setText('');
+  };
+  const _onSpeechResults = (event: any) => {
+    console.log('onSpeechResults');
+    const text = event.value[0].split(' ');
+    if (
+      text[text.length - 1] === '멈춰' ||
+      text[text.length - 1] === '멍청' ||
+      text[text.length - 1] === '정지'
+    )
+      setVideoPause(true);
+    else if (text[text.length - 1] === '시작') setVideoPause(false);
+  };
+  const _onSpeechError = (event: any) => {
+    console.log('_onSpeechError');
+    console.log(event.error);
+  };
+  const _onRecordVoice = () => {
+    Voice.start('ko-KR'); // en-US
+    setIsRecord(true);
+  };
+  const _onSpeechEnd = () => {
+    console.log('onSpeechEnd');
+    Voice.stop();
+    setIsRecord(false);
+  };
+
+  useEffect(() => {
+    if (!(videoScreen.kind !== 'detail')) _onRecordVoice();
+
+    Voice.onSpeechStart = _onSpeechStart;
+    Voice.onSpeechEnd = _onSpeechEnd;
+    Voice.onSpeechResults = _onSpeechResults;
+    Voice.onSpeechError = _onSpeechError;
+
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners);
+    };
+  }, []);
+
   return (
     <>
       <Animated.View style={[{height: aniVideoFnHeight}]} />
@@ -218,7 +271,7 @@ export default function VideoInfo({route}: any): JSX.Element {
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={aniOpacityT} />
+      <BtnVideoTitle aniOpacityT={aniOpacityT} _onSpeechEnd={_onSpeechEnd} />
 
       <VideoScreen
         videoRef={videoRef}
@@ -232,6 +285,8 @@ export default function VideoInfo({route}: any): JSX.Element {
         aniScreenHeight={aniScreenHeight}
         rotate={rotate}
         aniVideoFnHeight={aniVideoFnHeight}
+        _onSpeechEnd={_onSpeechEnd}
+        _onRecordVoice={_onRecordVoice}
       />
 
       <SafeAreaView style={commonStyles.container}>
@@ -250,6 +305,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                 })[0];
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
+                _onSpeechEnd();
               }
             }}>
             <Animated.ScrollView

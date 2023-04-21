@@ -1,11 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Animated, StyleSheet} from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
-import {useNavigation} from '@react-navigation/native';
-import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
+import {Animated, StyleSheet, Text} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
+import Voice from 'react-native-voice';
 
 export default function VideoScreen({
   videoRef,
@@ -19,6 +17,8 @@ export default function VideoScreen({
   aniScreenHeight,
   rotate,
   aniVideoFnHeight,
+  _onSpeechEnd,
+  _onRecordVoice,
 }: any): JSX.Element {
   const [num, setNum] = useState<number>(0);
   const reload = () => {
@@ -26,11 +26,11 @@ export default function VideoScreen({
   };
 
   const [window] = useRecoilState(windowState);
-  const [stopT, setStopT] = useState<any>(0);
 
   useEffect(() => {
+    if (!(videoScreen.kind !== 'detail')) _onRecordVoice();
     reload();
-  }, [videoScreen, videoPause]);
+  }, [videoScreen]);
 
   return (
     <Animated.View

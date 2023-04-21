@@ -24,7 +24,10 @@ import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
-export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
+export default function BtnVideoTitle({
+  aniOpacityT,
+  _onSpeechEnd,
+}: any): JSX.Element {
   const navigation = useNavigation<any>();
   const [window, setWindow] = useRecoilState(windowState);
 
@@ -71,6 +74,7 @@ export default function BtnVideoTitle({aniOpacityT}: any): JSX.Element {
           {!window.force && (
             <Pressable
               onPress={() => {
+                _onSpeechEnd();
                 navigation.pop();
                 let lst = detailDatas;
                 for (let i = 0; i < detailDatas.length; i++) lst[i].tf = false;
