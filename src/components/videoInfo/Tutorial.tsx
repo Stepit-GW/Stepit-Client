@@ -23,7 +23,7 @@ export default function Tutorial({
   setVideoPause,
   currentTime,
   reload,
-  _onSpeechEnd,
+  _Voice,
 }: any): JSX.Element {
   const navigation = useNavigation<any>();
   const minute = Math.floor(currentTime / 60);
@@ -110,8 +110,11 @@ export default function Tutorial({
                 },
               ]}
               onPress={() => {
-                // _onSpeechEnd();
-                navigation.navigate('VideoTutorial', {id: data2.id});
+                // _Voice();
+                setVideoPause(true);
+                navigation.navigate('VideoTutorial', {
+                  id: data2.id,
+                });
               }}>
               <View style={styles.imgBox}>
                 <Image
@@ -181,12 +184,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  heartImg: {
-    position: 'absolute',
-    right: 10,
-    alignSelf: 'center',
-  },
-
   tutorial: {
     width: '100%',
     height: WINDOW_HEIGHT,
@@ -195,19 +192,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
-
-const Styles = (ipad: boolean) =>
-  StyleSheet.create({
-    tutorialTitle: {
-      height: ipad ? 54 : 36,
-
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    tutorialImg: {
-      width: ipad ? 40 : 24,
-      height: ipad ? 40 : 24,
-      marginRight: MARGIN_HOR,
-    },
-  });

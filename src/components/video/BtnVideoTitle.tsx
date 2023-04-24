@@ -1,140 +1,114 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {windowState} from '@/recoil/windowState';
+import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
+import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
+import {commonStyles} from '@/styles/commonStyles';
+import {useNavigation} from '@react-navigation/native';
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+} from 'react';
 import {
   Animated,
   Image,
   Pressable,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
-import {
-  MARGIN_HOR,
-  MARGIN_VER,
-  TOP_HEIGHT,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/static/commonValue';
-import {useNavigation} from '@react-navigation/native';
-import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
-import {windowState} from '@/recoil/windowState';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 
-export default function BtnVideoTitle({
-  aniOpacityT,
-  _onSpeechEnd,
-}: any): JSX.Element {
-  const navigation = useNavigation<any>();
-  const [window, setWindow] = useRecoilState(windowState);
+const BtnVideoTitle = React.forwardRef(
+  ({children, aniOpacityT, _Speech}: any, ref): any => {
+    const navigation = useNavigation<any>();
+    const [window, setWindow] = useRecoilState(windowState);
 
-  const btnOpacity = {opacity: window.force ? 0 : 1};
-  const translateX = {
-    translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
-  const translateY = {
-    translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
-  };
+    const translateX = {
+      translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+    };
+    const translateY = {
+      translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
+    };
 
-  const [detailDatas, setDetailData] = useState<any>([]);
-  useEffect(() => {
-    setDetailData(videoDetailDatas);
-  }, []);
+    const [detailDatas, setDetailData] = useState<any>([]);
+    useEffect(() => {
+      setDetailData(videoDetailDatas);
+    }, []);
 
-  return (
-    <SafeAreaView
-      style={[
-        commonStyles.container,
-        styles.containerTitle,
-        {
-          width: window.width,
-          height: window.force ? window.height : 0,
-          zIndex: window.force ? 902 : 999,
-          transform: [
-            translateX,
-            {rotate: window.force ? '90deg' : '0deg'},
-            translateY,
-          ],
-        },
-      ]}>
-      <View
-        style={{
-          width: '100%',
-          height: window.ipad ? 54 : 36,
-          paddingHorizontal: window.force ? MARGIN_HOR * 3 : MARGIN_HOR,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          // backgroundColor: 'red',
-        }}>
-        <View style={commonStyles.row}>
-          {!window.force && (
-            <Pressable
-              onPress={() => {
-                _onSpeechEnd();
-                navigation.pop();
-                let lst = detailDatas;
-                for (let i = 0; i < detailDatas.length; i++) lst[i].tf = false;
-                setDetailData(lst);
-                setWindow({
-                  ...window,
-                  width: WINDOW_WIDTH,
-                  height: WINDOW_WIDTH,
-                  force: false,
-                });
-              }}>
-              <Image
-                source={require('@/assets/arrow-white-24.png')}
-                style={Styles(window.ipad).img}
-              />
-            </Pressable>
-          )}
-          <Animated.Text
-            style={{
-              alignSelf: 'center',
-              color: 'white',
-              opacity: aniOpacityT,
-
-              fontSize: 16,
-              // fontSize: window.ipad ? 24 : 16,
-              fontWeight: '600',
-            }}>
-            르세르팜
-          </Animated.Text>
-        </View>
-        <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
-          {!window.force && (
-            <>
+    return (
+      <SafeAreaView
+        style={[
+          commonStyles.container,
+          styles.containerTitle,
+          {
+            width: window.width,
+            height: window.force ? window.height : 0,
+            zIndex: window.force ? 902 : 999,
+            transform: [
+              translateX,
+              {rotate: window.force ? '90deg' : '0deg'},
+              translateY,
+            ],
+          },
+        ]}>
+        <View
+          style={{
+            width: '100%',
+            height: window.ipad ? 54 : 36,
+            paddingHorizontal: window.force ? MARGIN_HOR * 3 : MARGIN_HOR,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            // backgroundColor: 'red',
+          }}>
+          <View style={commonStyles.row}>
+            {!window.force && (
               <Pressable
-                style={[btnOpacity, {marginRight: 8}]}
                 onPress={() => {
-                  console.log('거울');
+                  _Speech();
+                  navigation.pop();
+                  let lst = detailDatas;
+                  for (let i = 0; i < detailDatas.length; i++)
+                    lst[i].tf = false;
+                  setDetailData(lst);
+                  setWindow({
+                    ...window,
+                    width: WINDOW_WIDTH,
+                    height: WINDOW_WIDTH,
+                    force: false,
+                  });
                 }}>
                 <Image
-                  source={require('@/assets/video/mirror-mode-24.png')}
+                  source={require('@/assets/arrow-white-24.png')}
                   style={Styles(window.ipad).img}
                 />
               </Pressable>
-              <Pressable
-                style={btnOpacity}
-                onPress={() => {
-                  console.log('속도');
-                }}>
-                <Image
-                  source={require('@/assets/video/double-speed-24.png')}
-                  style={[Styles(window.ipad).img, {marginRight: 0}]}
-                />
-              </Pressable>
-            </>
-          )}
-        </Animated.View>
-      </View>
-    </SafeAreaView>
-  );
-}
+            )}
+            <Animated.Text
+              style={{
+                alignSelf: 'center',
+                color: 'white',
+                opacity: aniOpacityT,
+
+                fontSize: 16,
+                // fontSize: window.ipad ? 24 : 16,
+                fontWeight: '600',
+              }}>
+              르세르팜
+            </Animated.Text>
+          </View>
+          <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
+            {children}
+          </Animated.View>
+        </View>
+      </SafeAreaView>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   containerTitle: {
@@ -151,3 +125,5 @@ const Styles = (ipad: boolean) =>
       marginRight: ipad ? 10 : 5,
     },
   });
+
+export default BtnVideoTitle;

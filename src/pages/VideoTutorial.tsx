@@ -1,5 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Animated, Platform, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  Animated,
+  Image,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 
@@ -14,12 +22,15 @@ import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
+// import Voice from 'react-native-voice';
+
 export default function VideoTutorial({route}: any): JSX.Element {
   const id = route.params.id;
 
   const videoRef = useRef<any>(null);
   const [window] = useRecoilState(windowState);
   const videoHeight = (WINDOW_WIDTH / 3) * 2;
+  const btnOpacity = {opacity: window.force ? 0 : 1};
 
   const [zIndex, setZIndex] = useState(true);
 
@@ -62,6 +73,8 @@ export default function VideoTutorial({route}: any): JSX.Element {
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
   });
 
+  const [rate, setRate] = useState<number>(1);
+  const [mirror, setMirror] = useState<boolean>(false);
   const [videoPause, setVideoPause] = useState<any>(false);
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
@@ -73,6 +86,49 @@ export default function VideoTutorial({route}: any): JSX.Element {
     })[0];
     url: setVideoData(video);
   }, []);
+
+  //record
+  // const [isRecord, setIsRecord] = useState<boolean>(false);
+  // const [text, setText] = useState<string>('');
+  // const _onSpeechStart = () => {
+  //   console.log('_onSpeechStart2');
+  //   setText('');
+  // };
+  // const _onSpeechResults = (event: any) => {
+  //   console.log('_onSpeechResults2');
+  //   const text = event.value[0].split(' ');
+  //   if (
+  //     text[text.length - 1] === '멈춰' ||
+  //     text[text.length - 1] === '멍청' ||
+  //     text[text.length - 1] === '정지'
+  //   )
+  //     setVideoPause(true);
+  //   else if (text[text.length - 1] === '시작') setVideoPause(false);
+  // };
+  // const _onSpeechError = (event: any) => {
+  //   console.log(event.error);
+  // };
+  // const _onRecordVoice = () => {
+  //   console.log('onRecordVoice2');
+  //   Voice.start('ko-KR'); // en-US
+  //   setIsRecord(true);
+  // };
+  // const _onSpeechEnd = () => {
+  //   console.log('_onSpeechEnd2');
+  //   Voice.stop();
+  //   setIsRecord(false);
+  // };
+
+  // useEffect(() => {
+  //   Voice.onSpeechStart = _onSpeechStart;
+  //   Voice.onSpeechEnd = _onSpeechEnd;
+  //   Voice.onSpeechResults = _onSpeechResults;
+  //   Voice.onSpeechError = _onSpeechError;
+
+  //   return () => {
+  //     Voice.destroy().then(Voice.removeAllListeners);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -126,9 +182,36 @@ export default function VideoTutorial({route}: any): JSX.Element {
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={1} _onSpeechEnd={() => {}} />
+      <BtnVideoTitle aniOpacityT={1} _Speech={() => {}}>
+        {!window.force && (
+          <>
+            <Pressable
+              style={[btnOpacity, {marginRight: 8}]}
+              onPress={() => {
+                setMirror(!mirror);
+              }}>
+              <Image
+                source={require('@/assets/video/mirror-mode-24.png')}
+                style={Styles(window.ipad, true).img}
+              />
+            </Pressable>
+            <Pressable
+              style={btnOpacity}
+              onPress={() => {
+                console.log('속도');
+              }}>
+              <Image
+                source={require('@/assets/video/double-speed-24.png')}
+                style={[Styles(window.ipad, true).img, {marginRight: 0}]}
+              />
+            </Pressable>
+          </>
+        )}
+      </BtnVideoTitle>
 
       <VideoScreen
+        rate={rate}
+        mirror={mirror}
         videoRef={videoRef}
         videoPause={videoPause}
         setVideoPause={setVideoPause}
@@ -140,7 +223,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
         aniScreenHeight={aniScreenHeight}
         rotate={rotate}
         aniVideoFnHeight={videoHeight}
-        _onRecordVoice={() => {}}
+        _Voice={() => {}}
       />
 
       <SafeAreaView style={commonStyles.container}></SafeAreaView>
@@ -212,5 +295,11 @@ const Styles = (ipad: boolean, force: boolean) =>
       width: ipad ? 40 : 24,
       height: ipad ? 40 : 24,
       marginRight: MARGIN_HOR,
+    },
+
+    img: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+      marginRight: ipad ? 10 : 5,
     },
   });

@@ -5,6 +5,8 @@ import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
 
 export default function VideoScreen({
+  rate,
+  mirror,
   videoRef,
   videoPause,
   setVideoPause,
@@ -16,7 +18,7 @@ export default function VideoScreen({
   aniScreenHeight,
   rotate,
   aniVideoFnHeight,
-  _onRecordVoice,
+  _Voice,
 }: any): JSX.Element {
   const [num, setNum] = useState<number>(0);
   const reload = () => {
@@ -26,7 +28,7 @@ export default function VideoScreen({
   const [window] = useRecoilState(windowState);
 
   useEffect(() => {
-    if (videoScreen.kind === 'detail') _onRecordVoice();
+    if (videoScreen.kind === 'detail') _Voice();
     reload();
   }, [videoScreen]);
 
@@ -62,6 +64,7 @@ export default function VideoScreen({
             backgroundColor: 'black',
           },
           window.force && {alignSelf: 'center'},
+          mirror && {transform: [{rotateY: '180deg'}]},
         ]}>
         <Video
           ref={videoRef}
@@ -71,6 +74,7 @@ export default function VideoScreen({
           style={{width: '100%', height: '100%'}}
           paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
+          rate={rate}
           onLoad={(e: any) => {
             setAllTime(e.duration);
             // videoRef.current.seek(6);

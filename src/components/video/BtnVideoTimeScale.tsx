@@ -9,6 +9,7 @@ export default function BtnVideoTimeScale({
   aniScreen,
   moveTime,
   fixTime,
+  rateShow,
 }: any): JSX.Element {
   const [window, setWindow] = useRecoilState(windowState);
   const handleScaleUp = () => {
@@ -32,28 +33,30 @@ export default function BtnVideoTimeScale({
     });
   };
 
-  return (
-    <View style={Styles(window.force).topBox}>
-      <Text style={styles.topText}>
-        {moveTime[0]}:{moveTime[1]} / {fixTime[0]}:{fixTime[1]}
-      </Text>
-      {window.force ? (
-        <Pressable onPress={handleScaleDown}>
-          <Image
-            source={require('@/assets/video/screen-scaledown-24.png')}
-            style={commonStyles.img}
-          />
-        </Pressable>
-      ) : (
-        <Pressable onPress={handleScaleUp}>
-          <Image
-            source={require('@/assets/video/screen-scaleup-24.png')}
-            style={commonStyles.img}
-          />
-        </Pressable>
-      )}
-    </View>
-  );
+  if (rateShow) return <></>;
+  else
+    return (
+      <View style={Styles(window.force).topBox}>
+        <Text style={styles.topText}>
+          {moveTime[0]}:{moveTime[1]} / {fixTime[0]}:{fixTime[1]}
+        </Text>
+        {window.force ? (
+          <Pressable onPress={handleScaleDown}>
+            <Image
+              source={require('@/assets/video/screen-scaledown-24.png')}
+              style={commonStyles.img}
+            />
+          </Pressable>
+        ) : (
+          <Pressable onPress={handleScaleUp}>
+            <Image
+              source={require('@/assets/video/screen-scaleup-24.png')}
+              style={commonStyles.img}
+            />
+          </Pressable>
+        )}
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({

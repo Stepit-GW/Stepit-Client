@@ -5,7 +5,13 @@ import {useRecoilValue} from 'recoil';
 import {MARGIN_HOR} from '@/static/commonValue';
 import {windowState} from '@/recoil/windowState';
 
-export default function BtnVideoSetting({}: any): JSX.Element {
+export default function BtnVideoSetting({
+  setRate,
+  mirror,
+  setMirror,
+  rateShow,
+  setRateShow,
+}: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
   return (
@@ -15,14 +21,26 @@ export default function BtnVideoSetting({}: any): JSX.Element {
           source={require('@/assets/video/mirror-mode-24.png')}
           style={{width: window.ipad ? 40 : 24, height: window.ipad ? 40 : 24}}
         />
-        <Text style={styles.bottomText}>거울모드</Text>
+        <Text
+          style={styles.bottomText}
+          onPress={() => {
+            setMirror(!mirror);
+          }}>
+          거울모드
+        </Text>
       </View>
       <View style={styles.bottomBtn}>
         <Image
           source={require('@/assets/video/double-speed-24.png')}
           style={{width: window.ipad ? 40 : 24, height: window.ipad ? 40 : 24}}
         />
-        <Text style={styles.bottomText}>배속(1.0x)</Text>
+        <Text
+          style={styles.bottomText}
+          onPress={() => {
+            setRateShow(!rateShow);
+          }}>
+          배속(1.0x)
+        </Text>
       </View>
     </View>
   );

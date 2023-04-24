@@ -40,6 +40,7 @@ export default function VideoInfo({route}: any): JSX.Element {
     ? (WINDOW_WIDTH / 4) * 3
     : (WINDOW_WIDTH / 10) * 11;
   const videoHeight2 = (WINDOW_WIDTH / 3) * 2;
+  const btnOpacity = {opacity: window.force ? 0 : 1};
 
   const aniVideoFnHeight = useRef<Animated.Value>(
     new Animated.Value(videoHeight1),
@@ -129,6 +130,10 @@ export default function VideoInfo({route}: any): JSX.Element {
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
   });
 
+  // 0.25 0.5 0.75 1.0 1.25 1.5 1.75 2.0
+  const [rate, setRate] = useState<number>(1);
+  const [rateShow, setRateShow] = useState<boolean>(false);
+  const [mirror, setMirror] = useState<boolean>(false);
   const [videoPause, setVideoPause] = useState<any>(false);
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
@@ -160,9 +165,11 @@ export default function VideoInfo({route}: any): JSX.Element {
   const [isRecord, setIsRecord] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
   const _onSpeechStart = () => {
+    console.log('_onSpeechStart');
     setText('');
   };
   const _onSpeechResults = (event: any) => {
+    console.log('_onSpeechResults');
     const text = event.value[0].split(' ');
     if (
       text[text.length - 1] === '멈춰' ||
@@ -176,10 +183,12 @@ export default function VideoInfo({route}: any): JSX.Element {
     console.log(event.error);
   };
   const _onRecordVoice = () => {
+    console.log('_Voice');
     Voice.start('ko-KR'); // en-US
     setIsRecord(true);
   };
   const _onSpeechEnd = () => {
+    console.log('_onSpeechEnd');
     Voice.stop();
     setIsRecord(false);
   };
@@ -246,6 +255,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                 String(Math.floor(allTime / 60)).padStart(1, '0'),
                 String(Math.round(allTime % 60)).padStart(2, '0'),
               ]}
+              rateShow={rateShow}
             />
             <BtnVideoLine
               videoRef={videoRef}
@@ -253,15 +263,51 @@ export default function VideoInfo({route}: any): JSX.Element {
               currentTime={Math.round(currentTime)}
               allTime={Math.round(allTime)}
               stopTime={stopTime}
+              rate={rate}
+              setRate={setRate}
+              rateShow={rateShow}
             />
-            <BtnVideoSetting />
+            <BtnVideoSetting
+              setRate={setRate}
+              mirror={mirror}
+              setMirror={setMirror}
+              rateShow={rateShow}
+              setRateShow={setRateShow}
+            />
           </View>
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={aniOpacityT} _onSpeechEnd={_onSpeechEnd} />
+      <BtnVideoTitle aniOpacityT={aniOpacityT} _Speech={_onSpeechEnd}>
+        {!window.force && (
+          <>
+            <Pressable
+              style={[btnOpacity, {marginRight: 8}]}
+              onPress={() => {
+                setMirror(!mirror);
+              }}>
+              <Image
+                source={require('@/assets/video/mirror-mode-24.png')}
+                style={Styles(window.ipad, true).img}
+              />
+            </Pressable>
+            <Pressable
+              style={btnOpacity}
+              onPress={() => {
+                setRateShow(!rateShow);
+              }}>
+              <Image
+                source={require('@/assets/video/double-speed-24.png')}
+                style={[Styles(window.ipad, true).img, {marginRight: 0}]}
+              />
+            </Pressable>
+          </>
+        )}
+      </BtnVideoTitle>
 
       <VideoScreen
+        rate={rate}
+        mirror={mirror}
         videoRef={videoRef}
         videoPause={videoPause}
         setVideoPause={setVideoPause}
@@ -273,7 +319,7 @@ export default function VideoInfo({route}: any): JSX.Element {
         aniScreenHeight={aniScreenHeight}
         rotate={rotate}
         aniVideoFnHeight={aniVideoFnHeight}
-        _onRecordVoice={_onRecordVoice}
+        _Voice={_onRecordVoice}
       />
 
       <SafeAreaView style={commonStyles.container}>
@@ -370,7 +416,10 @@ export default function VideoInfo({route}: any): JSX.Element {
                       setVideoPause={setVideoPause}
                       currentTime={currentTime}
                       reload={reload}
-                      _onSpeechEnd={_onSpeechEnd}
+                      _Voice={() => {
+                        // _onRecordVoice();
+                        // _onSpeechStart();
+                      }}
                     />
                   );
                 })}
@@ -447,5 +496,11 @@ const Styles = (ipad: boolean, force: boolean) =>
       width: ipad ? 40 : 24,
       height: ipad ? 40 : 24,
       marginRight: MARGIN_HOR,
+    },
+
+    img: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+      marginRight: ipad ? 10 : 5,
     },
   });
