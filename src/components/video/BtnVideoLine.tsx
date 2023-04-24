@@ -27,31 +27,40 @@ export default function BtnVideoLine({
               Styles(window.force).checkBottom,
               styles.rateLineBox,
             ]}>
-            {[0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2].map(
-              (data: any, idx: number) => {
-                return (
-                  <Pressable
-                    key={idx}
+            {[
+              '0.25',
+              '0.50',
+              '0.75',
+              '1.00',
+              '1.25',
+              '1.50',
+              '1.75',
+              '2.00',
+            ].map((data: any, idx: number) => {
+              return (
+                <Pressable
+                  key={idx}
+                  style={[
+                    styles.rateCircleBox,
+                    idx === 0 && {marginLeft: 15},
+                    idx === 7 && {marginRight: 15},
+                  ]}
+                  onPress={() => {
+                    setRate(Number(data));
+                  }}>
+                  <Text style={styles.rateText}>
+                    {data === 1
+                      ? `${window.force ? `(기본)` : ``}`
+                      : data + 'x'}
+                  </Text>
+                  <View
                     style={[
-                      styles.rateCircleBox,
-                      idx === 0 && {marginLeft: 15},
-                      idx === 7 && {marginRight: 15},
+                      RateStyle(window.force, rate === Number(data)).rateCircle,
                     ]}
-                    onPress={() => {
-                      setRate(data);
-                    }}>
-                    <Text style={styles.rateText}>
-                      {data === 1 ? '1.0x (기본)' : data + 'x'}
-                    </Text>
-                    <View
-                      style={[
-                        RateStyle(window.force, rate === data).rateCircle,
-                      ]}
-                    />
-                  </Pressable>
-                );
-              },
-            )}
+                  />
+                </Pressable>
+              );
+            })}
           </View>
         </>
       ) : (
@@ -93,18 +102,6 @@ export default function BtnVideoLine({
             </Pressable>
           );
         })}
-      {/* <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
-        <Image
-          source={require('@/assets/video/check-22.png')}
-          style={[Styles(window.force).checks, {marginLeft: '40%'}]}
-        />
-      </View>
-      <View style={[styles.realLineBox, Styles(window.force).circleBottom]}>
-        <Image
-          source={require('@/assets/video/check-22.png')}
-          style={[Styles(window.force).checks, {marginLeft: '80%'}]}
-        />
-      </View> */}
     </View>
   );
 }
@@ -114,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 1,
 
-    opacity: 1,
+    opacity: 0.5,
     alignSelf: 'flex-end',
     borderWidth: 1,
     borderColor: 'white',
@@ -129,15 +126,14 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     borderWidth: 1,
-    backgroundColor: 'blue',
   },
   rateText: {
     marginBottom: 5,
-    color: 'red',
+    color: 'white', //line
     fontWeight: '700',
   },
   rateCircleBox: {
-    width: 70,
+    // width: 70,
     height: 30,
     alignItems: 'center',
     // backgroundColor: 'blue',
@@ -151,7 +147,7 @@ const styles = StyleSheet.create({
   },
   realLine: {
     borderWidth: 1,
-    borderColor: 'red',
+    borderColor: 'white', //line
   },
 });
 
@@ -169,7 +165,7 @@ const Styles = (ori: boolean) =>
       height: ori ? 14 : 10,
       alignSelf: 'flex-end',
       borderRadius: ori ? 14 : 10,
-      backgroundColor: 'red',
+      backgroundColor: 'white', //line
     },
     checks: {
       width: ori ? 22 : 10,
@@ -195,8 +191,8 @@ const RateStyle = (ori: boolean, rate: boolean) =>
       height: ori ? 14 : 10,
 
       borderWidth: 2,
-      borderColor: 'red',
+      borderColor: 'white', //line
       borderRadius: ori ? 14 : 10,
-      backgroundColor: 'red',
+      backgroundColor: 'white', //line
     },
   });

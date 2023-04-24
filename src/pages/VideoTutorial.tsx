@@ -281,7 +281,7 @@ const Styles = (ipad: boolean, force: boolean) =>
       paddingHorizontal: force ? MARGIN_HOR * 3 : 0,
 
       position: 'absolute',
-      bottom: 0,
+      bottom: 15,
     },
 
     tutorialTitle: {
