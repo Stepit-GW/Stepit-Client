@@ -277,7 +277,12 @@ export default function VideoInfo({route}: any): JSX.Element {
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={aniOpacityT} _Speech={_onSpeechEnd}>
+      <BtnVideoTitle
+        title={videoScreen.title}
+        aniOpacityT={aniOpacityT}
+        _Speech={_onSpeechEnd}
+        videoStageTf={videoStageTf}
+        setVideoStageTf={setVideoStageTf}>
         {!window.force && (
           <>
             <Pressable

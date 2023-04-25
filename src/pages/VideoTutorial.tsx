@@ -192,7 +192,12 @@ export default function VideoTutorial({route}: any): JSX.Element {
         </Animated.View>
       </Animated.View>
 
-      <BtnVideoTitle aniOpacityT={1} _Speech={() => {}}>
+      <BtnVideoTitle
+        title={videoScreen.title}
+        aniOpacityT={1}
+        _Speech={() => {}}
+        videoStageTf={[]}
+        setVideoStageTf={() => {}}>
         {!window.force && (
           <>
             <Pressable

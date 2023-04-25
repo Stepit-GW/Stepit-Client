@@ -1,6 +1,5 @@
 import {windowState} from '@/recoil/windowState';
 import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
-import {videoDetailDatas} from '@/static/videoDetail/videoDetailDatas';
 import {commonStyles} from '@/styles/commonStyles';
 import {useNavigation} from '@react-navigation/native';
 import React, {
@@ -23,7 +22,10 @@ import {
 import {useRecoilState} from 'recoil';
 
 const BtnVideoTitle = React.forwardRef(
-  ({children, aniOpacityT, _Speech}: any, ref): any => {
+  (
+    {children, title, aniOpacityT, _Speech, videoStageTf, setVideoStageTf}: any,
+    ref,
+  ): any => {
     const navigation = useNavigation<any>();
     const [window, setWindow] = useRecoilState(windowState);
 
@@ -33,11 +35,6 @@ const BtnVideoTitle = React.forwardRef(
     const translateY = {
       translateX: (WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
     };
-
-    const [detailDatas, setDetailData] = useState<any>([]);
-    useEffect(() => {
-      setDetailData(videoDetailDatas);
-    }, []);
 
     return (
       <SafeAreaView
@@ -71,10 +68,10 @@ const BtnVideoTitle = React.forwardRef(
                 onPress={() => {
                   _Speech();
                   navigation.pop();
-                  let lst = detailDatas;
-                  for (let i = 0; i < detailDatas.length; i++)
+                  let lst = videoStageTf;
+                  for (let i = 0; i < videoStageTf.length; i++)
                     lst[i].tf = false;
-                  setDetailData(lst);
+                  setVideoStageTf(lst);
                   setWindow({
                     ...window,
                     width: WINDOW_WIDTH,
@@ -98,7 +95,7 @@ const BtnVideoTitle = React.forwardRef(
                 // fontSize: window.ipad ? 24 : 16,
                 fontWeight: '600',
               }}>
-              르세르팜
+              {title}
             </Animated.Text>
           </View>
           <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
