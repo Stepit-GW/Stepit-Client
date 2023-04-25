@@ -68,29 +68,19 @@ export default function VideoScreen({
         ]}>
         <Video
           ref={videoRef}
-          source={{
-            uri: videoScreen.url,
-          }}
+          source={videoScreen.testUrl}
+          // source={{
+          //   uri: video.url,
+          // }}
           style={{width: '100%', height: '100%'}}
           paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
           rate={rate}
           onLoad={(e: any) => {
             setAllTime(e.duration);
-            // videoRef.current.seek(6);
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
           onProgress={(e: any) => {
             setCurrentTime(e.currentTime);
-            // if (stopTime !== undefined) {
-            //   for (let i = 0; i < stopTime.length; i++)
-            //     if (
-            //       stopT !== Math.round(e.currentTime) &&
-            //       stopTime[i].time === Math.round(e.currentTime)
-            //     ) {
-            //       setVideoPause(true);
-            //       setStopT(Math.round(e.currentTime));
-            //     }
-            // }
           }}
           repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}

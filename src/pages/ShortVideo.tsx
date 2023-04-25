@@ -1,7 +1,3 @@
-import {bottomBarState} from '@/recoil/bottomBarState';
-import {WINDOW_HEIGHT} from '@/static/commonValue';
-import {shortVideoDatas} from '@/static/shortVideo/shortVideoDatas';
-import {commonStyles} from '@/styles/commonStyles';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
@@ -14,7 +10,14 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import Video from 'react-native-video';
 import {useRecoilValue} from 'recoil';
+
+import {bottomBarState} from '@/recoil/bottomBarState';
+import {WINDOW_HEIGHT} from '@/static/commonValue';
+import {videoShortDatas} from '@/static/videoDatas';
+import {commonStyles} from '@/styles/commonStyles';
+import {videoIdFilter} from '@/utils/videoFilter';
 
 export default function ShortVideo({navigation}: any): JSX.Element {
   const bottomBar = useRecoilValue(bottomBarState);
@@ -27,22 +30,22 @@ export default function ShortVideo({navigation}: any): JSX.Element {
         scrollEventThrottle={200}
         decelerationRate="fast"
         showsVerticalScrollIndicator={false}>
-        {shortVideoDatas.map((data: any, idx: number) => {
+        {videoShortDatas.map((data: any, idx: number) => {
+          const videoRef = useRef<any>(null);
+          const video = videoIdFilter(data);
+
           return (
             <Pressable
               key={idx}
               onPress={() => {
-                navigation.navigate('VideoInfo', {id: 999});
-              }}>
+                navigation.navigate('VideoInfo', {id: video.id});
+              }}
+              style={{backgroundColor: 'black'}}>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>
                   <View style={styles.levelBox}>
                     <Text style={styles.level}>중</Text>
                   </View>
-                  {/* <Image
-                    source={require('@/assets/heart-white-24.png')}
-                    style={commonStyles.img}
-                  /> */}
                 </View>
 
                 <View style={styles.titleBottom}>
@@ -50,10 +53,23 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                   <Text style={styles.titleBtn}>배우기</Text>
                 </View>
               </View>
-              <Image
-                source={require('@/assets/notfound.png')}
-                style={Styles(bottomBar).screen}
-              />
+
+              <View style={Styles(bottomBar).screen}>
+                <Video
+                  ref={videoRef}
+                  source={video.testUrl}
+                  // source={{
+                  //   uri: video.url,
+                  // }}
+                  style={{width: '100%', height: '100%'}}
+                  paused={!(video.shortId === idx)} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+                  resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
+                  // repeat={video.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
+                  onAnimatedValueUpdate={() => {}}
+                  muted={true}
+                  controls={false} //바텀바가 나옴
+                />
+              </View>
             </Pressable>
           );
         })}
@@ -66,6 +82,7 @@ const styles = StyleSheet.create({
   screen: {
     width: '100%',
     height: WINDOW_HEIGHT,
+    backgroundColor: 'black',
   },
   titleBox: {
     width: '100%',

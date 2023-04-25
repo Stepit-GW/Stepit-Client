@@ -44,12 +44,6 @@ export default function CameraScreen(): JSX.Element {
   const _onRecordVoice = () => {
     Voice.start('ko-KR'); // en-US
     setIsRecord(true);
-    console.log(isRecord);
-    // setTimeout(() => {
-    //   Voice.stop();
-    //   setIsRecord(false);
-    //   console.log(isRecord);
-    // }, 10000);
   };
 
   useEffect(() => {

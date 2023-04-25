@@ -47,12 +47,6 @@ export default function App(): JSX.Element {
         />
 
         <Stack.Screen
-          name="CameraScreen"
-          component={CameraScreen}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
           name="VideoInfo"
           component={VideoInfo}
           options={{headerShown: false}}

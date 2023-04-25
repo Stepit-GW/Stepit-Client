@@ -71,20 +71,20 @@ export default function VideoTutorial({route}: any): JSX.Element {
   const [videoScreen, setVideoScreen] = useState<any>({
     kind: 'step',
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
+    testUrl: require('@/assets/notfound.mp4'),
   });
 
   const [rate, setRate] = useState<number>(1);
+  const [rateShow, setRateShow] = useState<boolean>(false);
   const [mirror, setMirror] = useState<boolean>(false);
   const [videoPause, setVideoPause] = useState<any>(false);
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
   const [videoData, setVideoData] = useState<any>({stage: []});
   useEffect(() => {
-    const video = videoIdFilter(id, (res: any) => {
-      setVideoScreen(res);
-      setVideoPause(false);
-    })[0];
-    url: setVideoData(video);
+    // const video = videoIdFilter({id: id});
+    // url: setVideoData(video);
+    setVideoScreen(videoIdFilter({id: id, kind: 'detail'}));
   }, []);
 
   //record
@@ -169,6 +169,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
                 String(Math.floor(allTime / 60)).padStart(1, '0'),
                 String(Math.round(allTime % 60)).padStart(2, '0'),
               ]}
+              rateShow={rateShow}
             />
             <BtnVideoLine
               videoRef={videoRef}
@@ -176,8 +177,17 @@ export default function VideoTutorial({route}: any): JSX.Element {
               currentTime={Math.round(currentTime)}
               allTime={Math.round(allTime)}
               stopTime={undefined}
+              rate={rate}
+              setRate={setRate}
+              rateShow={rateShow}
             />
-            <BtnVideoSetting />
+            <BtnVideoSetting
+              rate={rate}
+              mirror={mirror}
+              setMirror={setMirror}
+              rateShow={rateShow}
+              setRateShow={setRateShow}
+            />
           </View>
         </Animated.View>
       </Animated.View>
@@ -198,7 +208,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
             <Pressable
               style={btnOpacity}
               onPress={() => {
-                console.log('속도');
+                setRateShow(!rateShow);
               }}>
               <Image
                 source={require('@/assets/video/double-speed-24.png')}
@@ -278,7 +288,7 @@ const Styles = (ipad: boolean, force: boolean) =>
   StyleSheet.create({
     bottom: {
       width: '100%',
-      paddingHorizontal: force ? MARGIN_HOR * 3 : 0,
+      paddingHorizontal: force ? MARGIN_HOR * 3 : MARGIN_HOR,
 
       position: 'absolute',
       bottom: 15,

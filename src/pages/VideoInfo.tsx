@@ -22,7 +22,7 @@ import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
 import Tutorial from '@/components/videoInfo/Tutorial';
-import {videoIdFilter} from '@/utils/videoFilter';
+import {videoDetailFilter, videoIdFilter} from '@/utils/videoFilter';
 import Accodian from '@/components/videoInfo/Accodian';
 import VideoScreen from '@/components/videoInfo/VideoScreen';
 
@@ -128,6 +128,7 @@ export default function VideoInfo({route}: any): JSX.Element {
   const [videoScreen, setVideoScreen] = useState<any>({
     kind: 'step',
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
+    testUrl: require('@/assets/notfound.mp4'),
   });
 
   // 0.25 0.5 0.75 1.0 1.25 1.5 1.75 2.0
@@ -142,11 +143,9 @@ export default function VideoInfo({route}: any): JSX.Element {
   const [videoStageTf, setVideoStageTf] = useState<any>([]);
   const [videoStopTimeTf, setVideoStopTimeTf] = useState<any>([]);
   useEffect(() => {
-    const video = videoIdFilter(id, (res: any) => {
-      setVideoScreen(res);
-      setVideoPause(false);
-    })[0];
+    const video = videoDetailFilter(id, (res: any) => {});
     url: setVideoData(video);
+    setVideoScreen(videoIdFilter(video));
 
     let videoStageTf = [];
     let videoStopTimeTf = [];
@@ -268,7 +267,7 @@ export default function VideoInfo({route}: any): JSX.Element {
               rateShow={rateShow}
             />
             <BtnVideoSetting
-              setRate={setRate}
+              rate={rate}
               mirror={mirror}
               setMirror={setMirror}
               rateShow={rateShow}
@@ -332,10 +331,10 @@ export default function VideoInfo({route}: any): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
-                const dummy = videoIdFilter(id, (res: any) => {
-                  setVideoScreen(res);
-                  setVideoPause(false);
-                })[0];
+                // const dummy = videoDetailFilter(id, (res: any) => {
+                //   setVideoScreen(res);
+                //   setVideoPause(false);
+                // })[0];
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
                 _onSpeechEnd();
@@ -395,7 +394,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                     aniTopFn(startTop - 100, true);
                   }}>
                   <Image
-                    source={require('@/assets/video/arrow-bottom-24.png')}
+                    source={require('@/assets/video/x-24.png')}
                     style={Styles(window.ipad, window.force).tutorialImg}
                   />
                 </Pressable>

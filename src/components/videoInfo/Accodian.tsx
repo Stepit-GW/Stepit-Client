@@ -106,10 +106,12 @@ export default function Accodian({
                   setStopTime(undefined);
                 }
                 aniVideoFn(videoHeight, WINDOW_HEIGHT - videoHeight, 0, 1);
-                const dummy = videoIdFilter(data2.id, (res: any) => {
-                  setVideoScreen(res);
-                  setVideoPause(false);
-                })[0];
+                setVideoScreen(videoIdFilter(data2));
+                setVideoPause(false);
+                // const dummy = videoIdFilter(data2.id, (res: any) => {
+                //   setVideoScreen(res);
+                //   setVideoPause(false);
+                // })[0];
               }}>
               <View style={styles.imgBox}>
                 <Image

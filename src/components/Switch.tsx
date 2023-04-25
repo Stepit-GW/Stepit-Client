@@ -27,7 +27,6 @@ export default function Switch({
       onPress={() => {
         let lst = switchDatas;
         lst[idx].tf = !switchDatas[idx].tf;
-        console.log(lst[idx].tf);
         if (lst[idx].tf) aniToggle(15, 1);
         else aniToggle(2, 0);
         setSwitchDatas(lst);

@@ -6,7 +6,7 @@ import {MARGIN_HOR} from '@/static/commonValue';
 import {windowState} from '@/recoil/windowState';
 
 export default function BtnVideoSetting({
-  setRate,
+  rate,
   mirror,
   setMirror,
   rateShow,
@@ -39,7 +39,7 @@ export default function BtnVideoSetting({
           onPress={() => {
             setRateShow(!rateShow);
           }}>
-          배속(1.0x)
+          배속({rate}x)
         </Text>
       </View>
     </View>
