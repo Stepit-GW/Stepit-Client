@@ -12,7 +12,7 @@ export const videoIdFilter = (videoInfo: any) => {
 };
 
 export const videoDetailFilter = (id: number, Fn: Function) => {
-  let video = videoDetailDatas.filter((data: any) => {
+  const video = videoDetailDatas.filter((data: any) => {
     if (data.id === id) {
       return data;
     }

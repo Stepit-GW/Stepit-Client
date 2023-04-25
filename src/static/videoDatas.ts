@@ -95,6 +95,501 @@ export const videoShortDatas = [
 
 export const videoDetailDatas = [
   {
+    id: 994,
+    kind: 'step',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 998,
+            kind: 'detail',
+          },
+          {
+            id: 997,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 2,
+        stageTitle: '기본기',
+        videoDetails: [
+          {
+            id: 996,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 3,
+        stageTitle: '튜토리얼',
+        videoDetails: [
+          {
+            id: 995,
+            kind: 'detail',
+            stopTime: [
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 998,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 997,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageId: 4,
+        stageTitle: '춤 완성',
+        videoDetails: [
+          {
+            id: 994,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 5,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 993,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 995,
+    kind: 'step',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 998,
+            kind: 'detail',
+          },
+          {
+            id: 997,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 2,
+        stageTitle: '기본기',
+        videoDetails: [
+          {
+            id: 996,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 3,
+        stageTitle: '튜토리얼',
+        videoDetails: [
+          {
+            id: 995,
+            kind: 'detail',
+            stopTime: [
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 998,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 997,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageId: 4,
+        stageTitle: '춤 완성',
+        videoDetails: [
+          {
+            id: 994,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 5,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 993,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 996,
+    kind: 'step',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 998,
+            kind: 'detail',
+          },
+          {
+            id: 997,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 2,
+        stageTitle: '기본기',
+        videoDetails: [
+          {
+            id: 996,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 3,
+        stageTitle: '튜토리얼',
+        videoDetails: [
+          {
+            id: 995,
+            kind: 'detail',
+            stopTime: [
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 998,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 997,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageId: 4,
+        stageTitle: '춤 완성',
+        videoDetails: [
+          {
+            id: 994,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 5,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 993,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 997,
+    kind: 'step',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 998,
+            kind: 'detail',
+          },
+          {
+            id: 997,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 2,
+        stageTitle: '기본기',
+        videoDetails: [
+          {
+            id: 996,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 3,
+        stageTitle: '튜토리얼',
+        videoDetails: [
+          {
+            id: 995,
+            kind: 'detail',
+            stopTime: [
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 998,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 997,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageId: 4,
+        stageTitle: '춤 완성',
+        videoDetails: [
+          {
+            id: 994,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 5,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 993,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 998,
+    kind: 'step',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 998,
+            kind: 'detail',
+          },
+          {
+            id: 997,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 2,
+        stageTitle: '기본기',
+        videoDetails: [
+          {
+            id: 996,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 3,
+        stageTitle: '튜토리얼',
+        videoDetails: [
+          {
+            id: 995,
+            kind: 'detail',
+            stopTime: [
+              {
+                time: 3,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 998,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 997,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 5,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 10,
+                imgUrl:
+                  'https://images.velog.io/images/dahunyoo/post/98d7a547-d297-46cf-a515-1ed0596c1056/QA___Test.png',
+                videoTimes: [
+                  {
+                    id: 996,
+                    kind: 'detail',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageId: 4,
+        stageTitle: '춤 완성',
+        videoDetails: [
+          {
+            id: 994,
+            kind: 'detail',
+          },
+        ],
+      },
+      {
+        stageId: 5,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 993,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: 999,
     kind: 'step',
     stage: [

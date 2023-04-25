@@ -376,8 +376,21 @@ export default function VideoInfo({route}: any): JSX.Element {
                 top: aniTop,
               },
             ]}>
-            <View style={Styles(window.ipad, window.force).tutorialTitle}>
-              <View />
+            <Pressable
+              style={Styles(window.ipad, window.force).tutorialTitle}
+              onPress={() => {
+                if (img) aniTopFn(0, false);
+                else aniTopFn(startTop - 100, true);
+              }}>
+              <View
+                style={{
+                  width: 64,
+                  height: 5,
+                  borderRadius: 5,
+                  backgroundColor: '#DCDCDC',
+                }}
+              />
+              {/* <View />
               {img ? (
                 <Pressable
                   onPress={() => {
@@ -398,8 +411,8 @@ export default function VideoInfo({route}: any): JSX.Element {
                     style={Styles(window.ipad, window.force).tutorialImg}
                   />
                 </Pressable>
-              )}
-            </View>
+              )} */}
+            </Pressable>
             <View style={styles.tutorialList}>
               {stopTime !== undefined &&
                 stopTime.map((data: any, idx: number) => {
@@ -488,7 +501,7 @@ const Styles = (ipad: boolean, force: boolean) =>
       height: ipad ? 54 : 36,
 
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
     },
     tutorialImg: {
