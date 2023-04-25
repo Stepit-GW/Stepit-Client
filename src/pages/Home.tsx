@@ -36,7 +36,7 @@ export default function Home({navigation}: any): JSX.Element {
   const aniTopFn = (t: number) => {
     Animated.timing(aniTop, {
       toValue: t,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
   };

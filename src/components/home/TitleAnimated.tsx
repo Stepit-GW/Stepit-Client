@@ -30,22 +30,22 @@ export default function TitleAnimated({
   const aniWidthFn = (w: number, w1: number, w2: number, l: number) => {
     Animated.timing(aniWidth, {
       toValue: w,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
     Animated.timing(aniWidth1, {
       toValue: w1,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
     Animated.timing(aniWidth2, {
       toValue: w2,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
     Animated.timing(aniLeft, {
       toValue: l,
-      duration: 800,
+      duration: 400,
       useNativeDriver: false,
     }).start();
   };

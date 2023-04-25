@@ -479,7 +479,7 @@ const Styles = (ipad: boolean, force: boolean) =>
   StyleSheet.create({
     bottom: {
       width: '100%',
-      paddingHorizontal: force ? MARGIN_HOR * 3 : 0,
+      paddingHorizontal: force ? MARGIN_HOR * 3 : MARGIN_HOR,
 
       position: 'absolute',
       bottom: 15,

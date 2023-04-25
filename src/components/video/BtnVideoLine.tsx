@@ -78,7 +78,8 @@ export default function BtnVideoLine({
         </>
       )}
 
-      {stopTime !== undefined &&
+      {!rateShow &&
+        stopTime !== undefined &&
         stopTime.map((data: any, idx: number) => {
           return (
             <Pressable
