@@ -22,6 +22,8 @@ import {videoIdFilter} from '@/utils/videoFilter';
 export default function ShortVideo({navigation}: any): JSX.Element {
   const bottomBar = useRecoilValue(bottomBarState);
 
+  const [page, setPage] = useState<number>(0);
+
   return (
     <>
       <ScrollView
@@ -29,10 +31,18 @@ export default function ShortVideo({navigation}: any): JSX.Element {
         pagingEnabled
         scrollEventThrottle={200}
         decelerationRate="fast"
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+        onScroll={e => {
+          const scroll = e.nativeEvent.contentOffset.y;
+          setPage(scroll);
+        }}>
         {videoShortDatas.map((data: any, idx: number) => {
           const videoRef = useRef<any>(null);
           const video = videoIdFilter(data);
+
+          useEffect(() => {
+            if (page % bottomBar === 0) videoRef.current.seek(0);
+          }, [page]);
 
           return (
             <Pressable
@@ -49,7 +59,7 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                 </View>
 
                 <View style={styles.titleBottom}>
-                  <Text style={styles.title}>르세라핌 - Antifragile</Text>
+                  <Text style={styles.title}>{video.title}</Text>
                   <Text style={styles.titleBtn}>배우기</Text>
                 </View>
               </View>
@@ -62,9 +72,9 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                   //   uri: video.url,
                   // }}
                   style={{width: '100%', height: '100%'}}
-                  paused={!(video.shortId === idx)} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+                  paused={!(page === idx * bottomBar)} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
                   resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
-                  // repeat={video.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
+                  repeat={true} // video가 끝나면 다시 재생할 지 여부
                   onAnimatedValueUpdate={() => {}}
                   muted={true}
                   controls={false} //바텀바가 나옴
