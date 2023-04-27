@@ -11,16 +11,20 @@ import {
   View,
 } from 'react-native';
 import Video from 'react-native-video';
-import {useRecoilValue} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {bottomBarState} from '@/recoil/bottomBarState';
 import {WINDOW_HEIGHT} from '@/static/commonValue';
 import {videoShortDatas} from '@/static/videoDatas';
 import {commonStyles} from '@/styles/commonStyles';
 import {videoIdFilter} from '@/utils/videoFilter';
+import {windowState} from '@/recoil/windowState';
+import {videoShortState} from '@/recoil/videoShortState';
 
-export default function ShortVideo({navigation}: any): JSX.Element {
+export default function VideoShort({navigation}: any): JSX.Element {
   const bottomBar = useRecoilValue(bottomBarState);
+  const [window, setWindow] = useRecoilState(windowState);
+  const [videoShortTf, setVideoShortTf] = useRecoilState(videoShortState);
 
   const [page, setPage] = useState<number>(0);
 
@@ -41,14 +45,41 @@ export default function ShortVideo({navigation}: any): JSX.Element {
           const video = videoIdFilter(data);
 
           useEffect(() => {
-            if (page % bottomBar === 0) videoRef.current.seek(0);
+            // console.log(!(page === idx * bottomBar));
+            if (page === idx * bottomBar) {
+              if (idx === 0)
+                setVideoShortTf([false, true, true, true, true, true]);
+              else if (idx === 1)
+                setVideoShortTf([true, false, true, true, true, true]);
+              else if (idx === 2)
+                setVideoShortTf([true, true, false, true, true, true]);
+              else if (idx === 3)
+                setVideoShortTf([true, true, true, false, true, true]);
+              else if (idx === 4)
+                setVideoShortTf([true, true, true, true, false, true]);
+              else if (idx === 5)
+                setVideoShortTf([true, true, true, true, true, false]);
+
+              videoRef.current.seek(0);
+            }
           }, [page]);
 
           return (
             <Pressable
               key={idx}
               onPress={() => {
-                navigation.navigate('VideoInfo', {id: video.id});
+                if (idx === 0)
+                  setVideoShortTf([false, true, true, true, true, true]);
+                else if (idx === 1)
+                  setVideoShortTf([true, false, true, true, true, true]);
+                else if (idx === 2)
+                  setVideoShortTf([true, true, false, true, true, true]);
+                else if (idx === 3)
+                  setVideoShortTf([true, true, true, false, true, true]);
+                else if (idx === 4)
+                  setVideoShortTf([true, true, true, true, false, true]);
+                else if (idx === 5)
+                  setVideoShortTf([true, true, true, true, true, false]);
               }}
               style={{backgroundColor: 'black'}}>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
@@ -59,8 +90,18 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                 </View>
 
                 <View style={styles.titleBottom}>
-                  <Text style={styles.title}>{video.title}</Text>
-                  <Text style={styles.titleBtn}>배우기</Text>
+                  <Text
+                    style={[styles.title, {fontSize: window.ipad ? 30 : 20}]}>
+                    {video.title}
+                  </Text>
+                  <Text
+                    style={styles.titleBtn}
+                    onPress={() => {
+                      setVideoShortTf([true, true, true, true, true, true]);
+                      navigation.navigate('VideoInfo', {id: video.id});
+                    }}>
+                    배우기
+                  </Text>
                 </View>
               </View>
 
@@ -71,12 +112,21 @@ export default function ShortVideo({navigation}: any): JSX.Element {
                   // source={{
                   //   uri: video.url,
                   // }}
-                  style={{width: '100%', height: '100%'}}
-                  paused={!(page === idx * bottomBar)} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0.8,
+                    // backgroundColor: 'black',
+                  }}
+                  paused={videoShortTf[idx]} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
                   resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
+                  volume={1.0}
+                  ignoreSilentSwitch={'ignore'}
+                  playWhenInactive={true}
+                  playInBackground={true}
                   repeat={true} // video가 끝나면 다시 재생할 지 여부
                   onAnimatedValueUpdate={() => {}}
-                  muted={true}
+                  muted={false}
                   controls={false} //바텀바가 나옴
                 />
               </View>
@@ -127,10 +177,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    lineHeight: 29,
+    lineHeight: 34,
     color: 'white',
     fontWeight: '800',
-    fontSize: 24,
   },
   titleBtn: {
     width: 61,

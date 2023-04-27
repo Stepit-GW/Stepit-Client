@@ -19,12 +19,13 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
-import {homeDatas} from '@/static/home/homeDatas';
 import BottomSheet from '@/components/home/BottomSheet';
 import TitleAnimated from '@/components/home/TitleAnimated';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import {bottomBarState} from '@/recoil/bottomBarState';
 import {windowState} from '@/recoil/windowState';
+import {videoHomeDatas} from '@/static/videoDatas';
+import {videoIdFilter} from '@/utils/videoFilter';
 // import Video from 'react-native-video';
 
 export default function Home({navigation}: any): JSX.Element {
@@ -44,6 +45,17 @@ export default function Home({navigation}: any): JSX.Element {
   const [resultDatas, setResultDatas] = useState([]);
   const setBottomBar = useSetRecoilState(bottomBarState);
 
+  const [videoDatas, setVideoDatas] = useState<any>(videoHomeDatas);
+  useEffect(() => {
+    const homeVideos = videoHomeDatas;
+    for (let i = 0; i < homeVideos.length; i++) {
+      const homeVideo = homeVideos[i].videos;
+      for (let j = 0; j < homeVideo.length; j++)
+        homeVideo[j] = videoIdFilter(homeVideo[j]);
+    }
+    setVideoDatas(homeVideos);
+  }, []);
+
   return (
     <SafeAreaView
       style={commonStyles.container}
@@ -60,7 +72,7 @@ export default function Home({navigation}: any): JSX.Element {
         </View>
 
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-          {homeDatas.map((data: any, idx: number) => {
+          {videoDatas.map((data: any, idx: number) => {
             return (
               <View key={idx} style={styles.scrollImgBox}>
                 <Text style={Styles(window.ipad).scrollTitle}>
@@ -79,12 +91,16 @@ export default function Home({navigation}: any): JSX.Element {
                           {
                             marginRight:
                               videoIdx === data.videos.length - 1
-                                ? MARGIN_VER * 2 - 10
+                                ? window.ipad
+                                  ? (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                                  : MARGIN_VER * 2 - 10
+                                : window.ipad
+                                ? (WINDOW_WIDTH - 4 * 180 - 40) / 3
                                 : 10,
                           },
                         ]}
                         onPress={() => {
-                          navigation.navigate('VideoInfo', {id: 999});
+                          navigation.navigate('VideoInfo', {id: video.id});
                         }}>
                         <Text style={Styles(window.ipad).videoTitle}>
                           {video.title}
@@ -99,9 +115,10 @@ export default function Home({navigation}: any): JSX.Element {
                             {video.time}
                           </Text>
                         </View>
+
                         <Image
-                          source={require('@/assets/notfound.png')}
-                          style={commonStyles.img100}
+                          source={{uri: video.imgUrl}}
+                          style={[commonStyles.img100, {opacity: 0.8}]}
                         />
                       </Pressable>
                     );
@@ -157,7 +174,7 @@ const Styles = (ipad: boolean) =>
       color: 'black',
       lineHeight: ipad ? 54 : 36,
       fontWeight: '700',
-      fontSize: ipad ? 45 : 30,
+      fontSize: ipad ? 35 : 30,
     },
 
     scrollTitle: {
@@ -165,7 +182,7 @@ const Styles = (ipad: boolean) =>
       marginBottom: 20,
 
       color: 'black',
-      fontSize: ipad ? 25 : 16,
+      fontSize: ipad ? 22 : 16,
       fontWeight: '700',
     },
     videoTitle: {
@@ -207,9 +224,9 @@ const Styles = (ipad: boolean) =>
     videoBox: {
       width: ipad ? 180 : 150,
       height: ipad ? 240 : 200,
-      marginRight: 10,
 
       overflow: 'hidden',
       borderRadius: 15,
+      backgroundColor: 'black',
     },
   });

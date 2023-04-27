@@ -32,7 +32,7 @@ export default function BtnVideoPlay({
               videoRef.current.seek(0);
             }}>
             <Image
-              source={require('@/assets/video/front-24.png')}
+              source={require('@/assets/video/replay-36.png')}
               style={{
                 width: window.ipad ? 40 : 24,
                 height: window.ipad ? 40 : 24,

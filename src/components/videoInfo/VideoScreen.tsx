@@ -72,10 +72,14 @@ export default function VideoScreen({
           // source={{
           //   uri: video.url,
           // }}
-          style={{width: '100%', height: '100%'}}
+          style={{width: '100%', height: '100%', opacity: 0.8}}
           paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
           rate={rate}
+          volume={1.0}
+          ignoreSilentSwitch={'ignore'}
+          playWhenInactive={true}
+          playInBackground={true}
           onLoad={(e: any) => {
             setAllTime(e.duration);
           }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
@@ -84,7 +88,7 @@ export default function VideoScreen({
           }}
           repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}
-          muted={true}
+          muted={false}
           controls={false} //바텀바가 나옴
         />
       </Animated.View>

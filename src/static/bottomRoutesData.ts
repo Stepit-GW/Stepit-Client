@@ -1,6 +1,6 @@
 import Home from '@/pages/Home';
 import Mypage from '@/pages/Mypage';
-import ShortVideo from '@/pages/ShortVideo';
+import VideoShort from '@/pages/VideoShort';
 
 export const bottomRoutesData = [
   {
@@ -11,7 +11,7 @@ export const bottomRoutesData = [
   },
   {
     name: '탐색',
-    component: ShortVideo,
+    component: VideoShort,
     act: require('@/assets/bottomRoutes/short-video-white-48.png'),
     none: require('@/assets/bottomRoutes/short-video-48.png'),
   },

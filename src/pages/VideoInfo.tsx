@@ -170,13 +170,18 @@ export default function VideoInfo({route}: any): JSX.Element {
   const _onSpeechResults = (event: any) => {
     console.log('_onSpeechResults');
     const text = event.value[0].split(' ');
+    console.log(text);
     if (
       text[text.length - 1] === '멈춰' ||
       text[text.length - 1] === '멍청' ||
       text[text.length - 1] === '정지'
     )
       setVideoPause(true);
-    else if (text[text.length - 1] === '시작') setVideoPause(false);
+    else if (
+      text[text.length - 1] === '시작' ||
+      text[text.length - 1] === '재생'
+    )
+      setVideoPause(false);
   };
   const _onSpeechError = (event: any) => {
     console.log(event.error);
@@ -222,7 +227,7 @@ export default function VideoInfo({route}: any): JSX.Element {
               zIndex: zIndex ? 902 : 0,
             },
           ]}>
-          <LinearGradientVideo />
+          <LinearGradientVideo title={videoScreen.title} />
         </Animated.View>
         <Animated.View
           style={[

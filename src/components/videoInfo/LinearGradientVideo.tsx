@@ -4,12 +4,12 @@ import {commonStyles} from '@/styles/commonStyles';
 import {MARGIN_HOR} from '@/static/commonValue';
 import LinearGradient from 'react-native-linear-gradient';
 
-export default function LinearGradientVideo(): JSX.Element {
+export default function LinearGradientVideo({title}: any): JSX.Element {
   return (
     <LinearGradient
       colors={['transparent', 'transparent', 'white']}
       style={[commonStyles.screenImg, styles.linearGradient]}>
-      <Text style={styles.title}>르세라핌 - </Text>
+      <Text style={styles.title}>{title}</Text>
 
       <View style={styles.row}>
         <Image

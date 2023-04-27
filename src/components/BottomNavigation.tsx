@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text} from 'react-native';
+import {Image, Platform, StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {bottomRoutesData} from '@/static/bottomRoutesData';
-import Home from '@/pages/Home';
-import ShortVideo from '@/pages/ShortVideo';
-import Mypage from '@/pages/Mypage';
+import {useSetRecoilState} from 'recoil';
+import {videoShortState} from '@/recoil/videoShortState';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation(): JSX.Element {
   const [iconColor, setIconColor] = useState(false);
+  const setVideoShortTf = useSetRecoilState(videoShortState);
+
   useEffect(() => {}, [iconColor]);
   return (
     <Tab.Navigator initialRouteName="Home">
@@ -18,11 +19,24 @@ export default function BottomNavigation(): JSX.Element {
           <Tab.Screen
             key={idx}
             options={{
+              unmountOnBlur: true,
               headerShown: false,
               tabBarStyle: {
-                paddingTop: 10,
+                // paddingTop: 10,
+                paddingBottom: 5,
+                // borderColor: 'red',
+                // ...Platform.select({
+                //   ios: {
+                //     shadowColor: 'red',
+                //     shadowOpacity: 0.3,
+                //     shadowOffset: {
+                //       height: 0,
+                //       width: 0,
+                //     },
+                //   },
+                // }),
                 backgroundColor: data.name === '탐색' ? 'black' : 'white',
-                // height: 65,
+                height: 62,
               },
               tabBarLabel: ({focused}) => (
                 <Text style={{display: 'none'}}>{data.name}</Text>
@@ -40,6 +54,9 @@ export default function BottomNavigation(): JSX.Element {
               tabPress: e => {
                 if (data.name === '탐색') setIconColor(true);
                 else setIconColor(false);
+                if (data.name === '홈') {
+                  setVideoShortTf([true, true, true, true, true, true]);
+                }
               },
             })}
             name={data.name}
