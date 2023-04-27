@@ -30,6 +30,7 @@ import Voice from 'react-native-voice';
 
 export default function VideoInfo({route}: any): JSX.Element {
   const id = route.params.id;
+  const shortId = route.params.shortId;
   const [num, setNum] = useState(0);
   const reload = () => {
     setNum(num + 1);
@@ -287,7 +288,8 @@ export default function VideoInfo({route}: any): JSX.Element {
         aniOpacityT={aniOpacityT}
         _Speech={_onSpeechEnd}
         videoStageTf={videoStageTf}
-        setVideoStageTf={setVideoStageTf}>
+        setVideoStageTf={setVideoStageTf}
+        shortId={shortId}>
         {!window.force && (
           <>
             <Pressable

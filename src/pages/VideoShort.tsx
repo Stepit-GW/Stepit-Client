@@ -98,7 +98,10 @@ export default function VideoShort({navigation}: any): JSX.Element {
                     style={styles.titleBtn}
                     onPress={() => {
                       setVideoShortTf([true, true, true, true, true, true]);
-                      navigation.navigate('VideoInfo', {id: video.id});
+                      navigation.navigate('VideoInfo', {
+                        id: video.id,
+                        shortId: idx,
+                      });
                     }}>
                     배우기
                   </Text>

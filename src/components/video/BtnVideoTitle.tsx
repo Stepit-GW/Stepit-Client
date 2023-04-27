@@ -1,15 +1,9 @@
+import {videoShortState} from '@/recoil/videoShortState';
 import {windowState} from '@/recoil/windowState';
 import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import {commonStyles} from '@/styles/commonStyles';
 import {useNavigation} from '@react-navigation/native';
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-} from 'react';
+import React from 'react';
 import {
   Animated,
   Image,
@@ -23,11 +17,20 @@ import {useRecoilState} from 'recoil';
 
 const BtnVideoTitle = React.forwardRef(
   (
-    {children, title, aniOpacityT, _Speech, videoStageTf, setVideoStageTf}: any,
+    {
+      children,
+      title,
+      aniOpacityT,
+      _Speech,
+      videoStageTf,
+      setVideoStageTf,
+      shortId,
+    }: any,
     ref,
   ): any => {
     const navigation = useNavigation<any>();
     const [window, setWindow] = useRecoilState(windowState);
+    const [, setVideoShortTf] = useRecoilState(videoShortState);
 
     const translateX = {
       translateX: -(WINDOW_HEIGHT - WINDOW_WIDTH) / 2,
@@ -66,6 +69,20 @@ const BtnVideoTitle = React.forwardRef(
             {!window.force && (
               <Pressable
                 onPress={() => {
+                  if (shortId !== undefined)
+                    if (shortId === 0)
+                      setVideoShortTf([false, true, true, true, true, true]);
+                    else if (shortId === 1)
+                      setVideoShortTf([true, false, true, true, true, true]);
+                    else if (shortId === 2)
+                      setVideoShortTf([true, true, false, true, true, true]);
+                    else if (shortId === 3)
+                      setVideoShortTf([true, true, true, false, true, true]);
+                    else if (shortId === 4)
+                      setVideoShortTf([true, true, true, true, false, true]);
+                    else if (shortId === 5)
+                      setVideoShortTf([true, true, true, true, true, false]);
+
                   _Speech();
                   navigation.pop();
                   let lst = videoStageTf;
