@@ -2,7 +2,7 @@ export const videoDatas = [
   // 윤경님 기본기
   {
     id: 1,
-    title: '아이솔레이션',
+    title: '아이솔레이션 - 목',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/stretching.mp4'),
@@ -37,6 +37,27 @@ export const videoDatas = [
   },
   {
     id: 6,
+    title: '팔 뻗기',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/arm_straight.mp4'),
+  },
+  {
+    id: 7,
+    title: '아이솔레이션',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/isolation_4_pre.mp4'),
+  },
+  {
+    id: 8,
+    title: '웨이브',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/wave.mp4'),
+  },
+  {
+    id: 9,
     title: '팔 뻗기',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
@@ -176,7 +197,7 @@ export const videoDatas = [
 export const videoHomeDatas = [
   {
     title: '기본기 뽀개뽀개',
-    videos: [{id: 1}, {id: 5}, {id: 6}],
+    videos: [{id: 7}, {id: 8}, {id: 9}],
   },
   {
     title: 'MZ들은 고개를 들어주세요',
@@ -225,7 +246,7 @@ export const videoShortDatas = [
 
 export const videoDetailDatas = [
   {
-    id: 1,
+    id: 7,
     kind: 'Lesson',
     stage: [
       {
@@ -271,7 +292,7 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 5,
+    id: 8,
     kind: 'Lesson',
     stage: [
       {
@@ -287,7 +308,7 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 6,
+    id: 9,
     kind: 'Lesson',
     stage: [
       {
@@ -324,6 +345,14 @@ export const videoDetailDatas = [
             id: 6,
             kind: 'detail',
           },
+          {
+            id: 5,
+            kind: 'detail',
+          },
+          {
+            id: 4,
+            kind: 'detail',
+          },
         ],
       },
       {
@@ -338,11 +367,7 @@ export const videoDetailDatas = [
                 time: 0,
                 videoTimes: [
                   {
-                    id: 998,
-                    kind: 'detail',
-                  },
-                  {
-                    id: 997,
+                    id: 6,
                     kind: 'detail',
                   },
                 ],
@@ -351,25 +376,29 @@ export const videoDetailDatas = [
                 time: 6,
                 videoTimes: [
                   {
-                    id: 996,
+                    id: 5,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 6,
                     kind: 'detail',
                   },
                 ],
               },
               {
-                time: 10,
+                time: 50,
                 videoTimes: [
                   {
-                    id: 996,
+                    id: 4,
                     kind: 'detail',
                   },
                 ],
               },
               {
-                time: 14,
+                time: 100,
                 videoTimes: [
                   {
-                    id: 996,
+                    id: 6,
                     kind: 'detail',
                   },
                 ],
@@ -383,7 +412,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 800,
             kind: 'detail',
           },
         ],
@@ -409,7 +438,15 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 996,
+            id: 4,
+            kind: 'detail',
+          },
+          {
+            id: 6,
+            kind: 'detail',
+          },
+          {
+            id: 2,
             kind: 'detail',
           },
         ],
@@ -423,32 +460,45 @@ export const videoDetailDatas = [
             kind: 'detail',
             stopTime: [
               {
+                time: 1,
+                videoTimes: [
+                  {
+                    id: 4,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 6,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
                 time: 3,
                 videoTimes: [
                   {
-                    id: 998,
+                    id: 4,
                     kind: 'detail',
                   },
                   {
-                    id: 997,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 5,
-                videoTimes: [
-                  {
-                    id: 996,
+                    id: 2,
                     kind: 'detail',
                   },
                 ],
               },
               {
-                time: 10,
+                time: 4,
                 videoTimes: [
                   {
-                    id: 996,
+                    id: 4,
+                    kind: 'detail',
+                  },
+                ],
+              },
+              {
+                time: 6,
+                videoTimes: [
+                  {
+                    id: 4,
                     kind: 'detail',
                   },
                 ],
@@ -462,7 +512,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 801,
             kind: 'detail',
           },
         ],
@@ -541,7 +591,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 802,
             kind: 'detail',
           },
         ],
@@ -620,7 +670,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 803,
             kind: 'detail',
           },
         ],
@@ -708,7 +758,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 804,
             kind: 'detail',
           },
         ],
@@ -796,7 +846,7 @@ export const videoDetailDatas = [
         stageTitle: '춤 완성',
         videoDetails: [
           {
-            id: 994,
+            id: 805,
             kind: 'detail',
           },
         ],

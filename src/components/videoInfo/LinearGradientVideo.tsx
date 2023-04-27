@@ -4,12 +4,12 @@ import {commonStyles} from '@/styles/commonStyles';
 import {MARGIN_HOR} from '@/static/commonValue';
 import LinearGradient from 'react-native-linear-gradient';
 
-export default function LinearGradientVideo({title}: any): JSX.Element {
+export default function LinearGradientVideo({videoScreen}: any): JSX.Element {
   return (
     <LinearGradient
       colors={['transparent', 'transparent', 'white']}
       style={[commonStyles.screenImg, styles.linearGradient]}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{videoScreen.title}</Text>
 
       <View style={styles.row}>
         <Image
@@ -24,14 +24,13 @@ export default function LinearGradientVideo({title}: any): JSX.Element {
           styles.row,
           {marginBottom: 12, justifyContent: 'space-between'},
         ]}>
-        <View style={styles.row}>
-          <View style={[styles.levelBox, {marginRight: 10}]}>
-            <Text style={styles.level}>상</Text>
+        {videoScreen.level !== undefined && (
+          <View style={styles.row}>
+            <View style={[styles.levelBox, {marginRight: 10}]}>
+              <Text style={styles.level}>{videoScreen.level}</Text>
+            </View>
           </View>
-          <View style={styles.levelBox}>
-            <Text style={styles.level}>중</Text>
-          </View>
-        </View>
+        )}
         <View style={styles.row}>
           {/* <Pressable
             onPress={() => {

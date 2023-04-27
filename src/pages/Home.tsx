@@ -102,9 +102,24 @@ export default function Home({navigation}: any): JSX.Element {
                         onPress={() => {
                           navigation.navigate('VideoInfo', {id: video.id});
                         }}>
-                        <Text style={Styles(window.ipad).videoTitle}>
-                          {video.title}
-                        </Text>
+                        {data.title === '기본기 뽀개뽀개' ? (
+                          <Text
+                            style={[
+                              Styles(window.ipad).videoTitle,
+                              {
+                                height: '100%',
+                                marginTop: 0,
+                                paddingTop: window.ipad ? 110 : 95,
+                                textAlign: 'center',
+                              },
+                            ]}>
+                            {video.title}
+                          </Text>
+                        ) : (
+                          <Text style={Styles(window.ipad).videoTitle}>
+                            {video.title}
+                          </Text>
+                        )}
                         <View style={styles.videoBottom}>
                           {video.level !== undefined && (
                             <View style={Styles(window.ipad).videoLeftBox}>
@@ -151,8 +166,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+
     position: 'absolute',
-    bottom: 5,
+    left: 3,
+    bottom: 9,
     zIndex: 900,
   },
 
@@ -189,8 +206,8 @@ const Styles = (ipad: boolean) =>
     },
     videoTitle: {
       width: '100%',
-      marginTop: 10,
-      paddingHorizontal: 6,
+      marginTop: 7,
+      paddingHorizontal: 10,
 
       position: 'absolute',
       top: 0,
@@ -232,3 +249,5 @@ const Styles = (ipad: boolean) =>
       backgroundColor: 'black',
     },
   });
+
+const TitleStyle = () => StyleSheet.create({});

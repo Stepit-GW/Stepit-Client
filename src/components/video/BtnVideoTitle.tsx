@@ -25,6 +25,8 @@ const BtnVideoTitle = React.forwardRef(
       videoStageTf,
       setVideoStageTf,
       shortId,
+      videoStopTimeTf,
+      setVideoStopTimeTf,
     }: any,
     ref,
   ): any => {
@@ -89,6 +91,12 @@ const BtnVideoTitle = React.forwardRef(
                   for (let i = 0; i < videoStageTf.length; i++)
                     lst[i].tf = false;
                   setVideoStageTf(lst);
+                  if (videoStopTimeTf !== undefined) {
+                    let lst = videoStopTimeTf;
+                    for (let i = 0; i < videoStopTimeTf.length; i++)
+                      lst[i].tf = false;
+                    setVideoStopTimeTf(lst);
+                  }
                   setWindow({
                     ...window,
                     width: WINDOW_WIDTH,

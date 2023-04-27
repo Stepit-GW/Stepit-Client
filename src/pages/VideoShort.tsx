@@ -68,24 +68,26 @@ export default function VideoShort({navigation}: any): JSX.Element {
             <Pressable
               key={idx}
               onPress={() => {
-                if (idx === 0)
-                  setVideoShortTf([false, true, true, true, true, true]);
-                else if (idx === 1)
-                  setVideoShortTf([true, false, true, true, true, true]);
-                else if (idx === 2)
-                  setVideoShortTf([true, true, false, true, true, true]);
-                else if (idx === 3)
-                  setVideoShortTf([true, true, true, false, true, true]);
-                else if (idx === 4)
-                  setVideoShortTf([true, true, true, true, false, true]);
-                else if (idx === 5)
-                  setVideoShortTf([true, true, true, true, true, false]);
+                if (videoShortTf[idx]) {
+                  if (idx === 0)
+                    setVideoShortTf([false, true, true, true, true, true]);
+                  else if (idx === 1)
+                    setVideoShortTf([true, false, true, true, true, true]);
+                  else if (idx === 2)
+                    setVideoShortTf([true, true, false, true, true, true]);
+                  else if (idx === 3)
+                    setVideoShortTf([true, true, true, false, true, true]);
+                  else if (idx === 4)
+                    setVideoShortTf([true, true, true, true, false, true]);
+                  else if (idx === 5)
+                    setVideoShortTf([true, true, true, true, true, false]);
+                } else setVideoShortTf([true, true, true, true, true, true]);
               }}
               style={{backgroundColor: 'black'}}>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>
                   <View style={styles.levelBox}>
-                    <Text style={styles.level}>중</Text>
+                    <Text style={styles.level}>{video.level}</Text>
                   </View>
                 </View>
 

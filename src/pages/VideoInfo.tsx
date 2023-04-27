@@ -228,7 +228,7 @@ export default function VideoInfo({route}: any): JSX.Element {
               zIndex: zIndex ? 902 : 0,
             },
           ]}>
-          <LinearGradientVideo title={videoScreen.title} />
+          <LinearGradientVideo videoScreen={videoScreen} />
         </Animated.View>
         <Animated.View
           style={[
@@ -289,6 +289,8 @@ export default function VideoInfo({route}: any): JSX.Element {
         _Speech={_onSpeechEnd}
         videoStageTf={videoStageTf}
         setVideoStageTf={setVideoStageTf}
+        videoStopTimeTf={videoStopTimeTf}
+        setVideoStopTimeTf={setVideoStopTimeTf}
         shortId={shortId}>
         {!window.force && (
           <>
@@ -389,67 +391,47 @@ export default function VideoInfo({route}: any): JSX.Element {
                 top: aniTop,
               },
             ]}>
-            <Pressable
-              style={Styles(window.ipad, window.force).tutorialTitle}
-              onPress={() => {
-                if (img) aniTopFn(0, false);
-                else aniTopFn(startTop - 100, true);
-              }}>
-              <View
-                style={{
-                  width: 64,
-                  height: 5,
-                  borderRadius: 5,
-                  backgroundColor: '#DCDCDC',
-                }}
-              />
-              {/* <View />
-              {img ? (
-                <Pressable
-                  onPress={() => {
-                    aniTopFn(0, false);
-                  }}>
-                  <Image
-                    source={require('@/assets/video/arrow-top-24.png')}
-                    style={Styles(window.ipad, window.force).tutorialImg}
-                  />
-                </Pressable>
-              ) : (
-                <Pressable
-                  onPress={() => {
-                    aniTopFn(startTop - 100, true);
-                  }}>
-                  <Image
-                    source={require('@/assets/video/x-24.png')}
-                    style={Styles(window.ipad, window.force).tutorialImg}
-                  />
-                </Pressable>
-              )} */}
-            </Pressable>
-            <View style={styles.tutorialList}>
-              {stopTime !== undefined &&
-                stopTime.map((data: any, idx: number) => {
-                  return (
-                    <Tutorial
-                      key={idx}
-                      idx={idx}
-                      data={data}
-                      videoRef={videoRef}
-                      videoStopTimeTf={videoStopTimeTf}
-                      setVideoStopTimeTf={setVideoStopTimeTf}
-                      setVideoScreen={setVideoScreen}
-                      setVideoPause={setVideoPause}
-                      currentTime={currentTime}
-                      reload={reload}
-                      _Voice={() => {
-                        // _onRecordVoice();
-                        // _onSpeechStart();
-                      }}
-                    />
-                  );
-                })}
-              <View style={{height: WINDOW_HEIGHT, backgroundColor: 'white'}} />
-            </View>
+            <ScrollView>
+              <Pressable
+                style={Styles(window.ipad, window.force).tutorialTitle}
+                onPress={() => {
+                  if (img) aniTopFn(0, false);
+                  else aniTopFn(startTop - 100, true);
+                }}>
+                <View
+                  style={{
+                    width: 64,
+                    height: 5,
+                    borderRadius: 5,
+                    backgroundColor: '#DCDCDC',
+                  }}
+                />
+              </Pressable>
+              <View style={styles.tutorialList}>
+                {stopTime !== undefined &&
+                  stopTime.map((data: any, idx: number) => {
+                    return (
+                      <Tutorial
+                        key={idx}
+                        idx={idx}
+                        data={data}
+                        videoRef={videoRef}
+                        videoStopTimeTf={videoStopTimeTf}
+                        setVideoStopTimeTf={setVideoStopTimeTf}
+                        setVideoScreen={setVideoScreen}
+                        setVideoPause={setVideoPause}
+                        currentTime={currentTime}
+                        reload={reload}
+                        _Voice={() => {
+                          // _onRecordVoice();
+                          // _onSpeechStart();
+                        }}
+                      />
+                    );
+                  })}
+                <View style={{height: 150, backgroundColor: 'white'}} />
+              </View>
+            </ScrollView>
           </Animated.View>
         </View>
       </SafeAreaView>
@@ -475,26 +457,26 @@ const styles = StyleSheet.create({
 
   tutorial: {
     width: '100%',
-    height: WINDOW_HEIGHT,
+    height: WINDOW_HEIGHT - (WINDOW_WIDTH * 2) / 3,
 
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(16, 24, 64, 0.5)',
-        shadowOpacity: 0.3,
+        shadowOpacity: 1,
         shadowOffset: {
-          height: -5,
+          height: -1,
           width: 0,
         },
       },
     }),
 
     position: 'absolute',
+    borderRadius: 10,
     backgroundColor: 'white',
     // backgroundColor: 'green',
   },
   tutorialList: {
     width: '100%',
-    height: WINDOW_HEIGHT,
     paddingHorizontal: MARGIN_HOR,
     backgroundColor: 'white',
   },

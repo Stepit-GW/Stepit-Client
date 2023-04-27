@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
@@ -26,8 +26,6 @@ export default function Tutorial({
   _Voice,
 }: any): JSX.Element {
   const navigation = useNavigation<any>();
-  const minute = Math.floor(currentTime / 60);
-  const seconde = Math.round(currentTime % 60);
 
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
@@ -38,6 +36,21 @@ export default function Tutorial({
       useNativeDriver: false,
     }).start();
   };
+
+  useEffect(() => {
+    let lst = videoStopTimeTf;
+    const minute = Math.floor(currentTime / 60);
+    const seconde = Math.round(currentTime % 60);
+    if (minute * 60 + seconde == data.time && !lst[idx]) {
+      lst[idx] = true;
+      if (lst[idx]) {
+        setHeight(true);
+        aniHeightFn(data.videoTimes.length * 76 + 10);
+      }
+      setVideoStopTimeTf(lst);
+      reload();
+    }
+  }, [currentTime]);
 
   return (
     <Pressable
@@ -67,11 +80,10 @@ export default function Tutorial({
           styles.boxName,
           {
             backgroundColor:
-              minute * 60 + seconde >= data.time
-                ? '#B0B0B0'
-                : videoStopTimeTf[idx]
-                ? '#EBEBEB'
-                : '#FBFBFB',
+              // minute * 60 + seconde >= data.time
+              //   ? '#B0B0B0'
+              //   :
+              videoStopTimeTf[idx] ? '#EBEBEB' : '#FBFBFB',
           },
         ]}>
         <Text style={styles.step}>Tag. {idx + 1}</Text>
