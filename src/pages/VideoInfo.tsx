@@ -127,7 +127,7 @@ export default function VideoInfo({route}: any): JSX.Element {
   const [scrollH, setScrollH] = useState<number>(0);
 
   const [videoScreen, setVideoScreen] = useState<any>({
-    kind: 'step',
+    kind: 'Step',
     url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
     testUrl: require('@/assets/notfound.mp4'),
   });
@@ -364,6 +364,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                   <Accodian
                     key={idx}
                     idx={idx}
+                    videoScreen={videoScreen}
                     setVideoScreen={setVideoScreen}
                     setVideoPause={setVideoPause}
                     setStopTime={setStopTime}

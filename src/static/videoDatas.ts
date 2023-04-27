@@ -9,17 +9,38 @@ export const videoDatas = [
   },
   {
     id: 2,
-    title: '웨이브',
+    title: '아이솔레이션 - 어깨',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/stretching.mp4'),
   },
   {
     id: 3,
-    title: '팔 뻗기',
+    title: '아이솔레이션 - 가슴',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/stretching.mp4'),
+  },
+  {
+    id: 4,
+    title: '아이솔레이션 - 골반',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/isolation_4.mp4'),
+  },
+  {
+    id: 5,
+    title: '웨이브',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/wave.mp4'),
+  },
+  {
+    id: 6,
+    title: '팔 뻗기',
+    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/arm_straight.mp4'),
   },
   // 윤경님 기본
   {
@@ -48,6 +69,7 @@ export const videoDatas = [
   {
     id: 800,
     title: 'Ne-YO - Because Of You',
+    level: '하',
     imgUrl: 'https://i.ibb.co/LQrdzRx/Because-Of-You.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave.mp4'),
@@ -55,6 +77,7 @@ export const videoDatas = [
   {
     id: 801,
     title: '지수 - 꽃',
+    level: '중',
     imgUrl: 'https://i.ibb.co/DYpWNSh/image.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave2.mp4'),
@@ -62,6 +85,7 @@ export const videoDatas = [
   {
     id: 802,
     title: '뉴진스 - Hype boy',
+    level: '상',
     imgUrl: 'https://i.ibb.co/W0TnrXx/Rectangle-1215-2.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave3.mp4'),
@@ -69,6 +93,7 @@ export const videoDatas = [
   {
     id: 803,
     title: '부석순 - 파이팅해야지',
+    level: '중',
     imgUrl: 'https://i.ibb.co/G7sGNnC/Rectangle-1215-3.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave4.mp4'),
@@ -76,6 +101,7 @@ export const videoDatas = [
   {
     id: 804,
     title: 'Aryu Kee - see tinh',
+    level: '하',
     imgUrl: 'https://i.ibb.co/TmShVHR/Rectangle-1215-1.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave5.mp4'),
@@ -83,6 +109,7 @@ export const videoDatas = [
   {
     id: 805,
     title: 'The Beatnuts - Se Acabo',
+    level: '하',
     imgUrl: 'https://i.ibb.co/mXRpJcv/Rectangle-1215.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/instasave6.mp4'),
@@ -149,7 +176,7 @@ export const videoDatas = [
 export const videoHomeDatas = [
   {
     title: '기본기 뽀개뽀개',
-    videos: [{id: 1}, {id: 2}, {id: 3}],
+    videos: [{id: 1}, {id: 5}, {id: 6}],
   },
   {
     title: 'MZ들은 고개를 들어주세요',
@@ -199,86 +226,44 @@ export const videoShortDatas = [
 export const videoDetailDatas = [
   {
     id: 1,
-    kind: 'step',
+    kind: 'Lesson',
     stage: [
       {
         stageId: 1,
-        stageTitle: '스트레칭',
+        stageTitle: '아이솔레이션 - 목',
         videoDetails: [
           {
-            id: 100,
+            id: 1,
             kind: 'detail',
           },
         ],
       },
       {
-        stageId: 2,
-        stageTitle: '기본기',
+        stageId: 1,
+        stageTitle: '아이솔레이션 - 어깨',
         videoDetails: [
           {
-            id: 996,
+            id: 1,
             kind: 'detail',
           },
         ],
       },
       {
-        stageId: 3,
-        stageTitle: '튜토리얼',
+        stageId: 1,
+        stageTitle: '아이솔레이션 - 가슴',
         videoDetails: [
           {
-            id: 200,
+            id: 1,
             kind: 'detail',
-            stopTime: [
-              {
-                time: 0,
-                videoTimes: [
-                  {
-                    id: 998,
-                    kind: 'detail',
-                  },
-                  {
-                    id: 997,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 6,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 10,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 14,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-            ],
           },
         ],
       },
       {
-        stageId: 4,
-        stageTitle: '춤 완성',
+        stageId: 1,
+        stageTitle: '아이솔레이션 - 골반',
         videoDetails: [
           {
-            id: 994,
+            id: 4,
             kind: 'detail',
           },
         ],
@@ -286,87 +271,15 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 2,
-    kind: 'step',
+    id: 5,
+    kind: 'Lesson',
     stage: [
       {
         stageId: 1,
-        stageTitle: '스트레칭',
+        stageTitle: '웨이브',
         videoDetails: [
           {
-            id: 100,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 2,
-        stageTitle: '기본기',
-        videoDetails: [
-          {
-            id: 996,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 3,
-        stageTitle: '튜토리얼',
-        videoDetails: [
-          {
-            id: 200,
-            kind: 'detail',
-            stopTime: [
-              {
-                time: 0,
-                videoTimes: [
-                  {
-                    id: 998,
-                    kind: 'detail',
-                  },
-                  {
-                    id: 997,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 6,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 10,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 14,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        stageId: 4,
-        stageTitle: '춤 완성',
-        videoDetails: [
-          {
-            id: 994,
+            id: 5,
             kind: 'detail',
           },
         ],
@@ -374,87 +287,15 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 3,
-    kind: 'step',
+    id: 6,
+    kind: 'Lesson',
     stage: [
       {
         stageId: 1,
-        stageTitle: '스트레칭',
+        stageTitle: '팔 뻗기',
         videoDetails: [
           {
-            id: 100,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 2,
-        stageTitle: '기본기',
-        videoDetails: [
-          {
-            id: 996,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 3,
-        stageTitle: '튜토리얼',
-        videoDetails: [
-          {
-            id: 200,
-            kind: 'detail',
-            stopTime: [
-              {
-                time: 0,
-                videoTimes: [
-                  {
-                    id: 998,
-                    kind: 'detail',
-                  },
-                  {
-                    id: 997,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 6,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 10,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-              {
-                time: 14,
-                videoTimes: [
-                  {
-                    id: 996,
-                    kind: 'detail',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        stageId: 4,
-        stageTitle: '춤 완성',
-        videoDetails: [
-          {
-            id: 994,
+            id: 6,
             kind: 'detail',
           },
         ],
@@ -463,7 +304,7 @@ export const videoDetailDatas = [
   },
   {
     id: 800,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -480,7 +321,7 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 996,
+            id: 6,
             kind: 'detail',
           },
         ],
@@ -551,7 +392,7 @@ export const videoDetailDatas = [
   },
   {
     id: 801,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -630,7 +471,7 @@ export const videoDetailDatas = [
   },
   {
     id: 802,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -709,7 +550,7 @@ export const videoDetailDatas = [
   },
   {
     id: 803,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -788,7 +629,7 @@ export const videoDetailDatas = [
   },
   {
     id: 804,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -876,7 +717,7 @@ export const videoDetailDatas = [
   },
   {
     id: 805,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -964,7 +805,7 @@ export const videoDetailDatas = [
   },
   {
     id: 994,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -1047,7 +888,7 @@ export const videoDetailDatas = [
   },
   {
     id: 995,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -1130,7 +971,7 @@ export const videoDetailDatas = [
   },
   {
     id: 996,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -1213,7 +1054,7 @@ export const videoDetailDatas = [
   },
   {
     id: 997,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -1296,7 +1137,7 @@ export const videoDetailDatas = [
   },
   {
     id: 998,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,
@@ -1379,7 +1220,7 @@ export const videoDetailDatas = [
   },
   {
     id: 999,
-    kind: 'step',
+    kind: 'Step',
     stage: [
       {
         stageId: 1,

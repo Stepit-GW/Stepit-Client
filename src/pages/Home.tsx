@@ -106,11 +106,13 @@ export default function Home({navigation}: any): JSX.Element {
                           {video.title}
                         </Text>
                         <View style={styles.videoBottom}>
-                          <View style={Styles(window.ipad).videoLeftBox}>
-                            <Text style={Styles(window.ipad).videoLeft}>
-                              {video.level}
-                            </Text>
-                          </View>
+                          {video.level !== undefined && (
+                            <View style={Styles(window.ipad).videoLeftBox}>
+                              <Text style={Styles(window.ipad).videoLeft}>
+                                {video.level}
+                              </Text>
+                            </View>
+                          )}
                           <Text style={Styles(window.ipad).videoRight}>
                             {video.time}
                           </Text>

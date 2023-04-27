@@ -20,6 +20,7 @@ import {videoIdFilter} from '@/utils/videoFilter';
 
 export default function Accodian({
   idx,
+  videoScreen,
   setVideoScreen,
   setVideoPause,
   setStopTime,
@@ -68,7 +69,9 @@ export default function Accodian({
           styles.boxName,
           {backgroundColor: videoStageTf[idx] ? '#EBEBEB' : '#FBFBFB'},
         ]}>
-        <Text style={styles.step}>Step. {idx + 1}</Text>
+        <Text style={styles.step}>
+          {videoScreen.kind}. {idx + 1}
+        </Text>
         <View style={styles.contents}>
           <Text style={styles.title}>{data.stageTitle}</Text>
           {videoStageTf[idx] ? (

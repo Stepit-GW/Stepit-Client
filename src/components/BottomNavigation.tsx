@@ -22,19 +22,7 @@ export default function BottomNavigation(): JSX.Element {
               unmountOnBlur: true,
               headerShown: false,
               tabBarStyle: {
-                // paddingTop: 10,
                 paddingBottom: 5,
-                // borderColor: 'red',
-                // ...Platform.select({
-                //   ios: {
-                //     shadowColor: 'red',
-                //     shadowOpacity: 0.3,
-                //     shadowOffset: {
-                //       height: 0,
-                //       width: 0,
-                //     },
-                //   },
-                // }),
                 backgroundColor: data.name === '탐색' ? 'black' : 'white',
                 height: 62,
               },
@@ -53,8 +41,8 @@ export default function BottomNavigation(): JSX.Element {
             listeners={() => ({
               tabPress: e => {
                 if (data.name === '탐색') setIconColor(true);
-                else setIconColor(false);
-                if (data.name === '홈') {
+                else {
+                  setIconColor(false);
                   setVideoShortTf([true, true, true, true, true, true]);
                 }
               },
