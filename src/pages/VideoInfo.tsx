@@ -174,13 +174,22 @@ export default function VideoInfo({route}: any): JSX.Element {
     console.log(text);
     if (
       text[text.length - 1] === '멈춰' ||
+      text[text.length - 1] === '먼저' ||
       text[text.length - 1] === '멍청' ||
-      text[text.length - 1] === '정지'
+      text[text.length - 1] === '정지' ||
+      text[text.length - 1] === '정지해'
     )
       setVideoPause(true);
     else if (
       text[text.length - 1] === '시작' ||
-      text[text.length - 1] === '재생'
+      text[text.length - 1] === '시장' ||
+      text[text.length - 1] === '시작해' ||
+      text[text.length - 1] === '재생' ||
+      text[text.length - 1] === '재생해줘' ||
+      text[text.length - 1] === '재생해' ||
+      text[text.length - 1] === '틀어줘' ||
+      text[text.length - 1] === '다시' ||
+      text[text.length - 1] === '영상재생'
     )
       setVideoPause(false);
   };
@@ -345,10 +354,7 @@ export default function VideoInfo({route}: any): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
-                // const dummy = videoDetailFilter(id, (res: any) => {
-                //   setVideoScreen(res);
-                //   setVideoPause(false);
-                // })[0];
+                setVideoScreen(videoIdFilter(videoData));
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
                 _onSpeechEnd();
@@ -366,7 +372,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                   <Accodian
                     key={idx}
                     idx={idx}
-                    videoScreen={videoScreen}
+                    videoScreen={videoData}
                     setVideoScreen={setVideoScreen}
                     setVideoPause={setVideoPause}
                     setStopTime={setStopTime}
@@ -391,22 +397,22 @@ export default function VideoInfo({route}: any): JSX.Element {
                 top: aniTop,
               },
             ]}>
-            <ScrollView>
-              <Pressable
-                style={Styles(window.ipad, window.force).tutorialTitle}
-                onPress={() => {
-                  if (img) aniTopFn(0, false);
-                  else aniTopFn(startTop - 100, true);
-                }}>
-                <View
-                  style={{
-                    width: 64,
-                    height: 5,
-                    borderRadius: 5,
-                    backgroundColor: '#DCDCDC',
-                  }}
-                />
-              </Pressable>
+            <Pressable
+              style={Styles(window.ipad, window.force).tutorialTitle}
+              onPress={() => {
+                if (img) aniTopFn(0, false);
+                else aniTopFn(startTop - 100, true);
+              }}>
+              <View
+                style={{
+                  width: 64,
+                  height: 5,
+                  borderRadius: 5,
+                  backgroundColor: '#DCDCDC',
+                }}
+              />
+            </Pressable>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <View style={styles.tutorialList}>
                 {stopTime !== undefined &&
                   stopTime.map((data: any, idx: number) => {
@@ -471,7 +477,7 @@ const styles = StyleSheet.create({
     }),
 
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: 28,
     backgroundColor: 'white',
     // backgroundColor: 'green',
   },
@@ -498,6 +504,9 @@ const Styles = (ipad: boolean, force: boolean) =>
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+
+      // position: 'absolute',
+      // top: 0,
     },
     tutorialImg: {
       width: ipad ? 40 : 24,

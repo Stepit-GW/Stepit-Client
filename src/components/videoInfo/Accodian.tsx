@@ -130,7 +130,7 @@ export default function Accodian({
           );
         })}
       </Animated.View>
-      <View style={{height: 10, backgroundColor: 'white'}} />
+      <View style={{height: 18, backgroundColor: 'white'}} />
     </Pressable>
   );
 }
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
 
   boxName: {
     width: '100%',
-    height: 68,
+    height: 76,
     paddingHorizontal: 15,
     justifyContent: 'center',
 
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'black',
     lineHeight: 19,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '700',
   },
 

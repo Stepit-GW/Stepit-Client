@@ -235,7 +235,7 @@ const Styles = (ipad: boolean) =>
       fontSize: ipad ? 18 : 12,
     },
     videoRight: {
-      marginRight: 6,
+      marginRight: 14,
       color: 'white',
       fontSize: ipad ? 18 : 12,
     },

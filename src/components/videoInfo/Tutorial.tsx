@@ -143,7 +143,7 @@ export default function Tutorial({
         })}
         <View style={{height: 150, backgroundColor: 'white'}} />
       </Animated.View>
-      <View style={{height: 10, backgroundColor: 'white'}} />
+      <View style={{height: 18, backgroundColor: 'white'}} />
     </Pressable>
   );
 }
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 
   boxName: {
     width: '100%',
-    height: 68,
+    height: 76,
     paddingHorizontal: 15,
     justifyContent: 'center',
 

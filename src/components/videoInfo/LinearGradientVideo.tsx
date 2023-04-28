@@ -12,11 +12,30 @@ export default function LinearGradientVideo({videoScreen}: any): JSX.Element {
       <Text style={styles.title}>{videoScreen.title}</Text>
 
       <View style={styles.row}>
-        <Image
-          source={require('@/assets/video/video-24.png')}
-          style={commonStyles.img}
-        />
-        <Text style={styles.timeText}>1분 20초</Text>
+        {videoScreen.time !== undefined && (
+          <>
+            <Image
+              source={require('@/assets/video/video-24.png')}
+              style={commonStyles.img}
+            />
+            <Text style={styles.timeText}>
+              &nbsp;
+              {videoScreen.time.split(':')[0] +
+                '분 ' +
+                videoScreen.time.split(':')[1] +
+                '초'}
+            </Text>
+          </>
+        )}
+        {videoScreen.allTime !== undefined && (
+          <>
+            <Image
+              source={require('@/assets/video/time-24.png')}
+              style={[commonStyles.img, {marginLeft: 14}]}
+            />
+            <Text style={styles.timeText}>{videoScreen.allTime + '분'}</Text>
+          </>
+        )}
       </View>
 
       <View
