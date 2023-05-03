@@ -249,5 +249,3 @@ const Styles = (ipad: boolean) =>
       backgroundColor: 'black',
     },
   });
-
-const TitleStyle = () => StyleSheet.create({});

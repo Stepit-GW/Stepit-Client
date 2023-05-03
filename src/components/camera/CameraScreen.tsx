@@ -1,25 +1,44 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Button, Pressable, Text, View} from 'react-native';
-import VideoRecorder from 'react-native-beautiful-video-recorder';
-// import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import {Animated, Button, Pressable, Text, View, Image} from 'react-native';
+import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import BtnVideoTitle from '@/components/video/BtnVideoTitle';
+import {useNavigation} from '@react-navigation/native';
 
 export default function CameraScreen(): JSX.Element {
-  const cameraRef = useRef(null);
-  const videoRecord = async () => {
-    if (cameraRef && cameraRef.current) {
-      cameraRef.current.open({maxLength: 5}, (data: any) => {
-        console.log('captured data', data); // data.uri is the file path
-      });
-    }
-  };
+  const navigate = useNavigation<any>();
+  const devices = useCameraDevices('wide-angle-camera');
+  const device = devices.back;
+
+  if (device == null)
+    return (
+      <>
+        <Pressable
+          style={{position: 'absolute', top: 100}}
+          onPress={() => {
+            navigate.pop();
+          }}>
+          <Image source={require('@/assets/arrow-black-24.png')} />
+        </Pressable>
+        <Text style={{position: 'absolute', top: 200, fontSize: 40}}>
+          device fail
+        </Text>
+      </>
+    );
   return (
     <>
-      <View>
-        <VideoRecorder ref={cameraRef} />
-        <Pressable onPress={() => videoRecord()} style={{marginTop: 100}}>
-          <Text>Open Recorder</Text>
-        </Pressable>
-      </View>
+      <Camera
+        style={{width: '100%', height: '100%'}}
+        device={device}
+        isActive={true}
+      />
+
+      <Pressable
+        style={{position: 'absolute', top: 100}}
+        onPress={() => {
+          navigate.pop();
+        }}>
+        <Image source={require('@/assets/arrow-black-24.png')} />
+      </Pressable>
     </>
   );
 }
