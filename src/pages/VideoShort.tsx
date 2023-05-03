@@ -28,6 +28,15 @@ export default function VideoShort({navigation}: any): JSX.Element {
 
   const [page, setPage] = useState<number>(0);
 
+  const videoShortFn = (idx: any) => {
+    if (idx === 0) setVideoShortTf([false, true, true, true, true, true]);
+    else if (idx === 1) setVideoShortTf([true, false, true, true, true, true]);
+    else if (idx === 2) setVideoShortTf([true, true, false, true, true, true]);
+    else if (idx === 3) setVideoShortTf([true, true, true, false, true, true]);
+    else if (idx === 4) setVideoShortTf([true, true, true, true, false, true]);
+    else if (idx === 5) setVideoShortTf([true, true, true, true, true, false]);
+  };
+
   return (
     <>
       <ScrollView
@@ -45,21 +54,8 @@ export default function VideoShort({navigation}: any): JSX.Element {
           const video = videoIdFilter(data);
 
           useEffect(() => {
-            // console.log(!(page === idx * bottomBar));
             if (page === idx * bottomBar) {
-              if (idx === 0)
-                setVideoShortTf([false, true, true, true, true, true]);
-              else if (idx === 1)
-                setVideoShortTf([true, false, true, true, true, true]);
-              else if (idx === 2)
-                setVideoShortTf([true, true, false, true, true, true]);
-              else if (idx === 3)
-                setVideoShortTf([true, true, true, false, true, true]);
-              else if (idx === 4)
-                setVideoShortTf([true, true, true, true, false, true]);
-              else if (idx === 5)
-                setVideoShortTf([true, true, true, true, true, false]);
-
+              videoShortFn(idx);
               videoRef.current.seek(0);
             }
           }, [page]);
@@ -69,21 +65,25 @@ export default function VideoShort({navigation}: any): JSX.Element {
               key={idx}
               onPress={() => {
                 if (videoShortTf[idx]) {
-                  if (idx === 0)
-                    setVideoShortTf([false, true, true, true, true, true]);
-                  else if (idx === 1)
-                    setVideoShortTf([true, false, true, true, true, true]);
-                  else if (idx === 2)
-                    setVideoShortTf([true, true, false, true, true, true]);
-                  else if (idx === 3)
-                    setVideoShortTf([true, true, true, false, true, true]);
-                  else if (idx === 4)
-                    setVideoShortTf([true, true, true, true, false, true]);
-                  else if (idx === 5)
-                    setVideoShortTf([true, true, true, true, true, false]);
+                  videoShortFn(idx);
                 } else setVideoShortTf([true, true, true, true, true, true]);
               }}
               style={{backgroundColor: 'black'}}>
+              <Pressable
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  zIndex: 999,
+                }}
+                onPress={() => {
+                  setVideoShortTf([true, true, true, true, true, true]);
+                  navigation.navigate('CameraScreen', {
+                    id: video.id,
+                    shortId: idx,
+                  });
+                }}>
+                <Image source={require('@/assets/arrow-white-24.png')} />
+              </Pressable>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>
                   <View style={styles.levelBox}>

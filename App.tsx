@@ -16,7 +16,7 @@ import {mypageRoutesData} from '@/static/mypageRoutesData';
 import VideoInfo from '@/pages/VideoInfo';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
-import CameraScreen from '@/components/camera/CameraScreen';
+import CameraScreen from '@/pages/CameraScreen';
 import VideoTutorial from '@/pages/VideoTutorial';
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +37,6 @@ export default function App(): JSX.Element {
 
   return (
     // <SafeAreaView style={commonStyles.container}>
-
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen

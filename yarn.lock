@@ -6177,7 +6177,7 @@ react-native-anchor-point@^1.0.6:
 
 react-native-beautiful-video-recorder@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.npmjs.org/react-native-beautiful-video-recorder/-/react-native-beautiful-video-recorder-2.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-native-beautiful-video-recorder/-/react-native-beautiful-video-recorder-2.0.1.tgz#3e66176edf2ad5a1af32091fbdbf193ab5be0b0a"
   integrity sha512-2oTn42B5+Uv0y6ulCsZgIfUeJjriLgvDJ71b5uJiAPb/lLTVZtBI1Td14M7PanYd0Bw77SGgH/UFcBqxd5dZgw==
   dependencies:
     moment "2.24.0"
