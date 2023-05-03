@@ -177,6 +177,8 @@ export default function VideoInfo({route}: any): JSX.Element {
       text[text.length - 1] === '먼저' ||
       text[text.length - 1] === '멍청' ||
       text[text.length - 1] === '정지' ||
+      text[text.length - 1] === '중지' ||
+      text[text.length - 1] === '중지해' ||
       text[text.length - 1] === '정지해'
     )
       setVideoPause(true);
@@ -184,9 +186,11 @@ export default function VideoInfo({route}: any): JSX.Element {
       text[text.length - 1] === '시작' ||
       text[text.length - 1] === '시장' ||
       text[text.length - 1] === '시작해' ||
+      text[text.length - 1] === '실행' ||
       text[text.length - 1] === '재생' ||
       text[text.length - 1] === '재생해줘' ||
       text[text.length - 1] === '재생해' ||
+      text[text.length - 1] === '영상틀어줘' ||
       text[text.length - 1] === '틀어줘' ||
       text[text.length - 1] === '다시' ||
       text[text.length - 1] === '영상재생'

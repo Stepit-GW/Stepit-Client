@@ -1,82 +1,82 @@
 export const videoDatas = [
-  // 윤경님 기본기
+  // 윤경님-트레일러
   {
     id: 1,
-    title: '아이솔레이션 - 목',
+    title: '스트레칭',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/stretching.mp4'),
+    testUrl: require('@/assets/videoTest/stretching_pre.mp4'),
   },
   {
     id: 2,
-    title: '아이솔레이션 - 어깨',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/stretching.mp4'),
-  },
-  {
-    id: 3,
-    title: '아이솔레이션 - 가슴',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/stretching.mp4'),
-  },
-  {
-    id: 4,
-    title: '아이솔레이션 - 골반',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/isolation_4.mp4'),
-  },
-  {
-    id: 5,
-    title: '웨이브',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/wave.mp4'),
-  },
-  {
-    id: 6,
-    title: '팔 뻗기',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/arm_straight.mp4'),
-  },
-  {
-    id: 7,
     title: '아이솔레이션',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/isolation_4_pre.mp4'),
   },
   {
-    id: 8,
+    id: 3,
     title: '웨이브',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/wave.mp4'),
   },
   {
-    id: 9,
+    id: 4,
     title: '팔 뻗기',
     imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/arm_straight.mp4'),
   },
-  {
-    id: 10,
-    title: '스트레칭',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
-    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    testUrl: require('@/assets/videoTest/stretching_pre.mp4'),
-  },
-  // 윤경님 기본
+  // 윤경님 기본기
   {
     id: 100,
     title: '스트레칭',
-    imgUrl: 'https://i.ibb.co/5s1b4zv/Group-4001.png',
+    imgUrl: 'https://i.ibb.co/GxDpnJm/Group-4010.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
     testUrl: require('@/assets/videoTest/stretching.mp4'),
+  },
+  {
+    id: 101,
+    title: '아이솔레이션 - 목',
+    imgUrl: 'https://i.ibb.co/0nCjxD4/Group-4028.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/stretching.mp4'),
+  },
+  {
+    id: 102,
+    title: '아이솔레이션 - 어깨',
+    imgUrl: 'https://i.ibb.co/F43r3bH/Group-4029.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/stretching.mp4'),
+  },
+  {
+    id: 103,
+    title: '아이솔레이션 - 가슴',
+    imgUrl: 'https://i.ibb.co/Gd140Mp/Group-4031.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/stretching.mp4'),
+  },
+  {
+    id: 104,
+    title: '아이솔레이션 - 골반',
+    imgUrl: 'https://i.ibb.co/sjHMt49/Group-4025-1.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/isolation_4.mp4'),
+  },
+  {
+    id: 105,
+    title: '웨이브',
+    imgUrl: 'https://i.ibb.co/jbQZxL7/Group-4026.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/wave.mp4'),
+  },
+  {
+    id: 106,
+    title: '팔 뻗기',
+    imgUrl: 'https://i.ibb.co/JRJ6H6b/Group-4027.png',
+    url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
+    testUrl: require('@/assets/videoTest/arm_straight.mp4'),
   },
   // 윤경님 튜토리얼
   {
@@ -159,7 +159,7 @@ export const videoDatas = [
 export const videoHomeDatas = [
   {
     title: '기본기 뽀개뽀개',
-    videos: [{id: 10}, {id: 7}, {id: 8}, {id: 9}],
+    videos: [{id: 1}, {id: 2}, {id: 3}, {id: 4}],
   },
   {
     title: 'K-POP 나도 아이돌~',
@@ -208,7 +208,23 @@ export const videoShortDatas = [
 
 export const videoDetailDatas = [
   {
-    id: 7,
+    id: 1,
+    kind: 'Lesson',
+    stage: [
+      {
+        stageId: 1,
+        stageTitle: '스트레칭',
+        videoDetails: [
+          {
+            id: 100,
+            kind: 'detail',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
     kind: 'Lesson',
     stage: [
       {
@@ -216,7 +232,7 @@ export const videoDetailDatas = [
         stageTitle: '아이솔레이션 - 목',
         videoDetails: [
           {
-            id: 1,
+            id: 101,
             kind: 'detail',
           },
         ],
@@ -226,7 +242,7 @@ export const videoDetailDatas = [
         stageTitle: '아이솔레이션 - 어깨',
         videoDetails: [
           {
-            id: 1,
+            id: 102,
             kind: 'detail',
           },
         ],
@@ -236,7 +252,7 @@ export const videoDetailDatas = [
         stageTitle: '아이솔레이션 - 가슴',
         videoDetails: [
           {
-            id: 1,
+            id: 103,
             kind: 'detail',
           },
         ],
@@ -246,7 +262,7 @@ export const videoDetailDatas = [
         stageTitle: '아이솔레이션 - 골반',
         videoDetails: [
           {
-            id: 4,
+            id: 104,
             kind: 'detail',
           },
         ],
@@ -254,7 +270,7 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 8,
+    id: 3,
     kind: 'Lesson',
     stage: [
       {
@@ -262,7 +278,7 @@ export const videoDetailDatas = [
         stageTitle: '웨이브',
         videoDetails: [
           {
-            id: 5,
+            id: 105,
             kind: 'detail',
           },
         ],
@@ -270,7 +286,7 @@ export const videoDetailDatas = [
     ],
   },
   {
-    id: 9,
+    id: 4,
     kind: 'Lesson',
     stage: [
       {
@@ -278,7 +294,7 @@ export const videoDetailDatas = [
         stageTitle: '팔 뻗기',
         videoDetails: [
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
         ],
@@ -320,15 +336,19 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
           {
-            id: 5,
+            id: 103,
             kind: 'detail',
           },
           {
-            id: 4,
+            id: 105,
+            kind: 'detail',
+          },
+          {
+            id: 104,
             kind: 'detail',
           },
         ],
@@ -345,7 +365,11 @@ export const videoDetailDatas = [
                 time: 5,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 103,
                     kind: 'detail',
                   },
                 ],
@@ -354,7 +378,7 @@ export const videoDetailDatas = [
                 time: 138,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -363,7 +387,7 @@ export const videoDetailDatas = [
                 time: 151,
                 videoTimes: [
                   {
-                    id: 5,
+                    id: 105,
                     kind: 'detail',
                   },
                 ],
@@ -372,7 +396,11 @@ export const videoDetailDatas = [
                 time: 237,
                 videoTimes: [
                   {
-                    id: 3,
+                    id: 103,
+                    kind: 'detail',
+                  },
+                  {
+                    id: 104,
                     kind: 'detail',
                   },
                 ],
@@ -412,15 +440,15 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 4,
+            id: 104,
             kind: 'detail',
           },
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
           {
-            id: 5,
+            id: 105,
             kind: 'detail',
           },
         ],
@@ -437,7 +465,7 @@ export const videoDetailDatas = [
                 time: 52,
                 videoTimes: [
                   {
-                    id: 4,
+                    id: 104,
                     kind: 'detail',
                   },
                 ],
@@ -446,7 +474,7 @@ export const videoDetailDatas = [
                 time: 108,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -455,7 +483,7 @@ export const videoDetailDatas = [
                 time: 196,
                 videoTimes: [
                   {
-                    id: 4,
+                    id: 104,
                     kind: 'detail',
                   },
                 ],
@@ -464,7 +492,7 @@ export const videoDetailDatas = [
                 time: 226,
                 videoTimes: [
                   {
-                    id: 5,
+                    id: 105,
                     kind: 'detail',
                   },
                 ],
@@ -473,7 +501,7 @@ export const videoDetailDatas = [
                 time: 258,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -482,7 +510,7 @@ export const videoDetailDatas = [
                 time: 346,
                 videoTimes: [
                   {
-                    id: 4,
+                    id: 104,
                     kind: 'detail',
                   },
                 ],
@@ -491,7 +519,7 @@ export const videoDetailDatas = [
                 time: 388,
                 videoTimes: [
                   {
-                    id: 4,
+                    id: 104,
                     kind: 'detail',
                   },
                 ],
@@ -531,7 +559,7 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
         ],
@@ -548,11 +576,11 @@ export const videoDetailDatas = [
                 time: 3,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -561,7 +589,7 @@ export const videoDetailDatas = [
                 time: 5,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -570,7 +598,7 @@ export const videoDetailDatas = [
                 time: 10,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -610,7 +638,7 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
         ],
@@ -627,11 +655,11 @@ export const videoDetailDatas = [
                 time: 3,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -640,7 +668,7 @@ export const videoDetailDatas = [
                 time: 5,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -649,7 +677,7 @@ export const videoDetailDatas = [
                 time: 10,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -706,11 +734,11 @@ export const videoDetailDatas = [
                 time: 0,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -719,7 +747,7 @@ export const videoDetailDatas = [
                 time: 6,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -728,7 +756,7 @@ export const videoDetailDatas = [
                 time: 10,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -737,7 +765,7 @@ export const videoDetailDatas = [
                 time: 14,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -777,7 +805,7 @@ export const videoDetailDatas = [
         stageTitle: '기본기',
         videoDetails: [
           {
-            id: 6,
+            id: 106,
             kind: 'detail',
           },
         ],
@@ -794,11 +822,11 @@ export const videoDetailDatas = [
                 time: 0,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -807,7 +835,7 @@ export const videoDetailDatas = [
                 time: 6,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -816,7 +844,7 @@ export const videoDetailDatas = [
                 time: 10,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],
@@ -825,7 +853,7 @@ export const videoDetailDatas = [
                 time: 14,
                 videoTimes: [
                   {
-                    id: 6,
+                    id: 106,
                     kind: 'detail',
                   },
                 ],

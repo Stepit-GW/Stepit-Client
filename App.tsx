@@ -57,6 +57,12 @@ export default function App(): JSX.Element {
           options={{headerShown: false}}
         />
 
+        <Stack.Screen
+          name="CameraScreen"
+          component={CameraScreen}
+          options={{headerShown: false}}
+        />
+
         {signRoutesData.map((data: any, idx: number) => {
           return (
             <Stack.Screen

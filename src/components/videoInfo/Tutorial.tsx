@@ -53,28 +53,7 @@ export default function Tutorial({
   }, [currentTime]);
 
   return (
-    <Pressable
-      key={idx}
-      style={styles.accodian}
-      onPress={() => {
-        let lst = videoStopTimeTf;
-        lst[idx] = !videoStopTimeTf[idx];
-        if (lst[idx]) {
-          setHeight(true);
-          aniHeightFn(data.videoTimes.length * 76 + 10);
-          // videoRef.current.seek(data.time);
-          // setTimeout(() => {
-          //   setVideoPause(true);
-          // }, 200);
-        } else {
-          aniHeightFn(0);
-          setTimeout(() => {
-            setHeight(false);
-          }, 500);
-        }
-        setVideoStopTimeTf(lst);
-        reload();
-      }}>
+    <Pressable key={idx} style={styles.accodian} onPress={() => {}}>
       <View
         style={[
           styles.boxName,
@@ -88,21 +67,45 @@ export default function Tutorial({
         ]}>
         <Text style={styles.step}>Tag. {idx + 1}</Text>
         <View style={styles.contents}>
-          <Text style={styles.title}>
+          <Text
+            style={[styles.title, {width: '90%'}]}
+            onPress={() => {
+              videoRef.current.seek(data.time);
+            }}>
             {Math.floor(data.time / 60)}:
             {String(Math.round(data.time % 60)).padStart(2, '0')}
           </Text>
-          {videoStopTimeTf[idx] ? (
-            <Image
-              source={require('@/assets/video/arrow-top-24.png')}
-              style={commonStyles.img}
-            />
-          ) : (
-            <Image
-              source={require('@/assets/video/arrow-bottom-24.png')}
-              style={commonStyles.img}
-            />
-          )}
+          <Pressable
+            onPress={() => {
+              let lst = videoStopTimeTf;
+              lst[idx] = !videoStopTimeTf[idx];
+              if (lst[idx]) {
+                setHeight(true);
+                aniHeightFn(data.videoTimes.length * 76 + 10);
+                // setTimeout(() => {
+                //   setVideoPause(true);
+                // }, 200);
+              } else {
+                aniHeightFn(0);
+                setTimeout(() => {
+                  setHeight(false);
+                }, 500);
+              }
+              setVideoStopTimeTf(lst);
+              reload();
+            }}>
+            {videoStopTimeTf[idx] ? (
+              <Image
+                source={require('@/assets/video/arrow-top-24.png')}
+                style={commonStyles.img}
+              />
+            ) : (
+              <Image
+                source={require('@/assets/video/arrow-bottom-24.png')}
+                style={commonStyles.img}
+              />
+            )}
+          </Pressable>
         </View>
       </View>
 
