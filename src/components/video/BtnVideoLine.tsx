@@ -26,6 +26,7 @@ export default function BtnVideoLine({
               styles.realLineBox,
               Styles(window.force).checkBottom,
               styles.rateLineBox,
+              window.force && {top: -5},
             ]}>
             {[
               '0.25',
@@ -139,16 +140,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'blue',
   },
+  realLine: {
+    borderWidth: 1,
+    borderColor: 'white', //line
+  },
 
   realLineBox: {
     width: '100%',
     paddingRight: 0,
     position: 'absolute',
     alignSelf: 'flex-end',
-  },
-  realLine: {
-    borderWidth: 1,
-    borderColor: 'white', //line
   },
 });
 
@@ -183,6 +184,13 @@ const Styles = (ori: boolean) =>
       bottom: ori ? -10 : -3,
       zIndex: 999,
     },
+
+    realLineBox: {
+      width: '100%',
+      paddingRight: 0,
+      position: 'absolute',
+      alignSelf: 'flex-end',
+    },
   });
 
 const RateStyle = (ori: boolean, rate: boolean) =>
@@ -195,5 +203,16 @@ const RateStyle = (ori: boolean, rate: boolean) =>
       borderColor: 'white', //line
       borderRadius: ori ? 14 : 10,
       backgroundColor: 'white', //line
+    },
+  });
+
+const RateStyle2 = (rate: boolean) =>
+  StyleSheet.create({
+    realLineBox: {
+      width: '100%',
+      paddingRight: 0,
+      position: 'absolute',
+      top: rate ? 0 : -5,
+      alignSelf: 'flex-end',
     },
   });

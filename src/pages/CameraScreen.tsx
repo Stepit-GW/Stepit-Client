@@ -41,9 +41,11 @@ import {
   View,
   Image,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import Video from 'react-native-video';
-// import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import Share from 'react-native-share';
+
 import {RNCamera} from 'react-native-camera';
 import {useRecoilState} from 'recoil';
 import {videoIdFilter} from '@/utils/videoFilter';
@@ -53,18 +55,19 @@ import {
   MARGIN_VER,
   MARGIN_HOR,
 } from '@/static/commonValue';
-// import {request, PERMISSIONS} from 'react-native-permissions';
 
 export default function CameraScreen({navigation, route}: any): JSX.Element {
   const id = route.params.id;
   const shortId = route.params.shortId;
+  const [num, setNum] = useState(0);
   const [, setVideoShortTf] = useRecoilState(videoShortState);
 
   const videoRef = useRef<any>(null);
   const video = videoIdFilter({id: id});
   const [allTime, setAllTime] = useState<number>(0);
 
-  const [isRecording, setIsRecording] = useState(false);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [videoPause, setVideoPause] = useState<boolean>(true);
   const [cameraRef, setCameraRef] = useState(null);
   const [count, setCount] = useState<number>(4);
 
@@ -73,8 +76,10 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
       return;
     }
     if (isRecording) {
-      cameraRef.stopRecording();
+      const result = cameraRef.stopRecording();
+      console.log(result);
       setIsRecording(false);
+      setVideoPause(true);
     } else {
       setCount(3);
       setTimeout(() => {
@@ -85,6 +90,16 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
       }, 2000);
       setTimeout(async () => {
         setIsRecording(true);
+        setTimeout(() => {
+          setVideoPause(false);
+        }, 500);
+
+        setNum(num + 1);
+        // if (num === 0)
+        //   setTimeout(() => {
+        //     setIsRecording(true);
+        //     setNum(num + 1);
+        //   }, 500);
         videoRef.current.seek(0);
         console.log(allTime);
         setCount(4);
@@ -101,6 +116,36 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
       }, 3000);
     }
   }
+
+  const myCustomShare = async () => {
+    const baseImage = 'https://i.ibb.co/5s1b4zv/Group-4001.png';
+    const baseVideo =
+      'file:///var/mobile/Containers/Data/Application/74EEA989-F061-4159-B39D-1E09E56D3815/Library/Caches/Camera/C659C600-EDC6-4026-BBC3-A4E1AFB68743.mov';
+    // const cache = await RNFetchBlob.config({
+    //   fileCache: true,
+    //   appendExt: 'mp4',
+    // }).fetch('GET', 'YOUR OWN REMOTE VIDEO URL', {});
+    // const gallery = await CameraRoll.save(cache.path(), 'video');
+    // cache.flush();
+
+    const shareOptions = {
+      subject: 'StepIT',
+      message: 'StepIT',
+      email: 'yeju1019@gmail.com',
+      social: Share.Social.EMAIL,
+      type: 'application/octet-stream',
+      url: baseImage,
+      // type: 'video/*',
+      // whatsAppNumber: '01022359031',
+      // filename: 'test',
+    };
+
+    try {
+      const shareResponse = await Share.shareSingle(shareOptions);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -127,6 +172,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             }}
             onPress={() => {
               navigation.pop();
+              setIsRecording(false);
               setTimeout(() => {
                 if (shortId !== undefined)
                   if (shortId === 0)
@@ -144,7 +190,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
               }, 1000);
             }}>
             <Image
-              source={require('@/assets/arrow-black-24.png')}
+              source={require('@/assets/arrow-white-24.png')}
               style={{width: 24, height: 24}}
             />
           </Pressable>
@@ -178,7 +224,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             onLoad={(e: any) => {
               setAllTime(e.duration);
             }}
-            paused={!isRecording} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+            paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
             resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
             volume={1.0}
             ignoreSilentSwitch={'ignore'}
@@ -194,6 +240,13 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
               <Text style={styles.countText}>{count}</Text>
             </View>
           )}
+          <Pressable
+            style={{position: 'absolute', top: 200}}
+            onPress={() => {
+              myCustomShare();
+            }}>
+            <Text style={styles.countText}>Share</Text>
+          </Pressable>
           <Pressable
             style={styles.recoding}
             onPress={() => {
@@ -251,6 +304,7 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   countText: {
+    color: 'white',
     fontSize: 40,
     textAlign: 'center',
   },

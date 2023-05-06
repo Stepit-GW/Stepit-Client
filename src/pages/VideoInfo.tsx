@@ -35,6 +35,7 @@ export default function VideoInfo({route}: any): JSX.Element {
   const reload = () => {
     setNum(num + 1);
   };
+
   const videoRef = useRef<any>(null);
   const [window] = useRecoilState(windowState);
   const videoHeight1 = window.ipad
@@ -125,6 +126,8 @@ export default function VideoInfo({route}: any): JSX.Element {
 
   const [preMove, setPreMove] = useState<number>(0);
   const [scrollH, setScrollH] = useState<number>(0);
+  const [scrollH2, setScrollH2] = useState<number>(0);
+  const [preTransY2, setPreTransY2] = useState<number>(0);
 
   const [videoScreen, setVideoScreen] = useState<any>({
     kind: 'Step',
@@ -393,20 +396,26 @@ export default function VideoInfo({route}: any): JSX.Element {
             </Animated.ScrollView>
           </Animated.View>
 
-          {/*  */}
+          {/* Tutorial */}
           <Animated.View
             style={[
               styles.tutorial,
               {
                 top: aniTop,
               },
-            ]}>
-            <Pressable
-              style={Styles(window.ipad, window.force).tutorialTitle}
-              onPress={() => {
-                if (img) aniTopFn(0, false);
-                else aniTopFn(startTop - 100, true);
-              }}>
+            ]}
+            onTouchStart={e => {
+              setPreTransY2(e.nativeEvent.pageY);
+            }}
+            onTouchMove={e => {
+              const move = e.nativeEvent.pageY;
+              if (preTransY2 - move <= 0 && scrollH2 <= 0) {
+                aniTopFn(startTop - 100, true);
+              } else if (preTransY2 - move > 0) {
+                aniTopFn(0, false);
+              }
+            }}>
+            <Pressable style={Styles(window.ipad, window.force).tutorialTitle}>
               <View
                 style={{
                   width: 64,
@@ -416,7 +425,11 @@ export default function VideoInfo({route}: any): JSX.Element {
                 }}
               />
             </Pressable>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              onScroll={e => {
+                setScrollH2(e.nativeEvent.contentOffset.y);
+              }}>
               <View style={styles.tutorialList}>
                 {stopTime !== undefined &&
                   stopTime.map((data: any, idx: number) => {
