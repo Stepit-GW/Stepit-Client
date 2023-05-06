@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Image, Pressable, Text} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {windowState} from '@/recoil/windowState';
+import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 
 export default function BtnVideoLine({
   videoRef,
+  videoScreen,
   setVideoPause,
   currentTime,
   allTime,
@@ -12,6 +14,7 @@ export default function BtnVideoLine({
   rate,
   setRate,
   rateShow,
+  aniOpacityTimeFn,
 }: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
@@ -71,7 +74,29 @@ export default function BtnVideoLine({
               <View style={styles.realLine} />
             </View>
           </View>
-          <View style={[styles.realLineBox, Styles(window.force).checkBottom]}>
+          <View
+            style={[styles.realLineBox, Styles(window.force).checkBottom]}
+            onTouchMove={e => {
+              if (window.force) {
+                const stair = WINDOW_HEIGHT / allTime;
+                const move = e.nativeEvent.pageY;
+
+                console.log(move / stair);
+                videoRef.current.seek(Math.round(move / stair));
+              } else {
+                const stair = WINDOW_WIDTH / allTime;
+                const move = e.nativeEvent.pageX;
+
+                console.log(move / stair);
+                videoRef.current.seek(Math.round(move / stair));
+              }
+              aniOpacityTimeFn(1);
+            }}
+            onTouchEnd={() => {
+              setTimeout(() => {
+                aniOpacityTimeFn(0);
+              }, 5000);
+            }}>
             <View style={{width: (currentTime / allTime) * 100 + '%'}}>
               <View style={Styles(window.force).circle} />
             </View>
@@ -182,7 +207,7 @@ const Styles = (ori: boolean) =>
     circleBottom: {
       position: 'absolute',
       bottom: ori ? -10 : -3,
-      zIndex: 999,
+      zIndex: 998,
     },
 
     realLineBox: {

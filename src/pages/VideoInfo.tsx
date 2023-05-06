@@ -309,6 +309,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                 rate={rate}
                 setRate={setRate}
                 rateShow={rateShow}
+                aniOpacityTimeFn={aniOpacityTimeFn}
               />
               <BtnVideoSetting
                 rate={rate}
