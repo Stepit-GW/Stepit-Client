@@ -138,7 +138,7 @@ export default function VideoInfo({route}: any): JSX.Element {
   // 0.25 0.5 0.75 1.0 1.25 1.5 1.75 2.0
   const [rate, setRate] = useState<number>(1);
   const [rateShow, setRateShow] = useState<boolean>(false);
-  const [mirror, setMirror] = useState<boolean>(false);
+  let [mirror, setMirror] = useState<boolean>(false);
   const [videoPause, setVideoPause] = useState<any>(false);
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
@@ -187,18 +187,27 @@ export default function VideoInfo({route}: any): JSX.Element {
       setVideoPause(true);
     else if (
       text[text.length - 1] === '시작' ||
+      text[text.length - 1] === '시작해' ||
       text[text.length - 1] === '시장' ||
       text[text.length - 1] === '시작해' ||
       text[text.length - 1] === '실행' ||
+      text[text.length - 1] === '실행해' ||
       text[text.length - 1] === '재생' ||
       text[text.length - 1] === '재생해줘' ||
       text[text.length - 1] === '재생해' ||
       text[text.length - 1] === '영상틀어줘' ||
+      text[text.length - 1] === '영상시작' ||
       text[text.length - 1] === '틀어줘' ||
+      text[text.length - 1] === '틀어' ||
       text[text.length - 1] === '다시' ||
       text[text.length - 1] === '영상재생'
     )
       setVideoPause(false);
+    else if (text[text.length - 1] === '거울') {
+      mirror = !mirror;
+      setMirror(mirror);
+    }
+    reload();
   };
   const _onSpeechError = (event: any) => {
     console.log(event.error);

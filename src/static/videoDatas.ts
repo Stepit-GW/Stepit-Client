@@ -102,8 +102,8 @@ export const videoDatas = [
     allTime: '21 ~ 22',
     imgUrl: 'https://i.ibb.co/LQrdzRx/Because-Of-You.png',
     url: 'https://www.dropbox.com/s/1atyu36qpmazzbu/videoDetail6.mp4?raw=1',
-    // testUrl: require('@/assets/videoTest/instasave.mp4'),
-    testUrl: require('@/assets/notfound.mp4'),
+    testUrl: require('@/assets/videoTest/instasave.mp4'),
+    // testUrl: require('@/assets/notfound.mp4'),
     // testUrl: require('@/assets/test_1hours.mp4'),
   },
   {
