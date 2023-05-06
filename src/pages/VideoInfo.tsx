@@ -17,7 +17,7 @@ import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState} from 'recoil';
 import BtnVideoLine from '@/components/video/BtnVideoLine';
-import BtncurrentTimeScale from '@/components/video/BtnVideoTimeScale';
+import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
@@ -214,11 +214,24 @@ export default function VideoInfo({route}: any): JSX.Element {
     setIsRecord(false);
   };
 
+  const aniOpacityTime = useRef<Animated.Value>(new Animated.Value(1)).current;
+  const aniOpacityTimeFn = (o: number) => {
+    Animated.timing(aniOpacityTime, {
+      toValue: o,
+      duration: 400,
+      useNativeDriver: false,
+    }).start();
+  };
+
   useEffect(() => {
     Voice.onSpeechStart = _onSpeechStart;
     Voice.onSpeechEnd = _onSpeechEnd;
     Voice.onSpeechResults = _onSpeechResults;
     Voice.onSpeechError = _onSpeechError;
+
+    // setTimeout(() => {
+    //   aniOpacityTimeFn(0);
+    // }, 3000);
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -259,43 +272,53 @@ export default function VideoInfo({route}: any): JSX.Element {
               transform: rotate,
             },
           ]}>
-          <View style={Styles(window.ipad, window.force).bottom}>
-            <BtnVideoPlay
-              videoRef={videoRef}
-              videoPause={videoPause}
-              setVideoPause={setVideoPause}
-              radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
-            />
-            <BtncurrentTimeScale
-              aniScreen={aniScreen}
-              moveTime={[
-                String(Math.floor(currentTime / 60)).padStart(1, '0'),
-                String(Math.round(currentTime % 60)).padStart(2, '0'),
-              ]}
-              fixTime={[
-                String(Math.floor(allTime / 60)).padStart(1, '0'),
-                String(Math.round(allTime % 60)).padStart(2, '0'),
-              ]}
-              rateShow={rateShow}
-            />
-            <BtnVideoLine
-              videoRef={videoRef}
-              setVideoPause={setVideoPause}
-              currentTime={Math.round(currentTime)}
-              allTime={Math.round(allTime)}
-              stopTime={stopTime}
-              rate={rate}
-              setRate={setRate}
-              rateShow={rateShow}
-            />
-            <BtnVideoSetting
-              rate={rate}
-              mirror={mirror}
-              setMirror={setMirror}
-              rateShow={rateShow}
-              setRateShow={setRateShow}
-            />
-          </View>
+          <Pressable
+            style={Styles(window.ipad, window.force).bottom}
+            onPress={() => {
+              aniOpacityTimeFn(1);
+              setTimeout(() => {
+                aniOpacityTimeFn(0);
+              }, 5000);
+            }}>
+            <Animated.View style={{opacity: aniOpacityTime}}>
+              <BtnVideoPlay
+                videoRef={videoRef}
+                videoPause={videoPause}
+                setVideoPause={setVideoPause}
+                radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
+              />
+              <BtnVideoTimeScale
+                aniScreen={aniScreen}
+                moveTime={[
+                  String(Math.floor(currentTime / 60)).padStart(1, '0'),
+                  String(Math.round(currentTime % 60)).padStart(2, '0'),
+                ]}
+                fixTime={[
+                  String(Math.floor(allTime / 60)).padStart(1, '0'),
+                  String(Math.round(allTime % 60)).padStart(2, '0'),
+                ]}
+                rateShow={rateShow}
+                aniOpacityTimeFn={aniOpacityTimeFn}
+              />
+              <BtnVideoLine
+                videoRef={videoRef}
+                setVideoPause={setVideoPause}
+                currentTime={Math.round(currentTime)}
+                allTime={Math.round(allTime)}
+                stopTime={stopTime}
+                rate={rate}
+                setRate={setRate}
+                rateShow={rateShow}
+              />
+              <BtnVideoSetting
+                rate={rate}
+                mirror={mirror}
+                setMirror={setMirror}
+                rateShow={rateShow}
+                setRateShow={setRateShow}
+              />
+            </Animated.View>
+          </Pressable>
         </Animated.View>
       </Animated.View>
 
@@ -334,6 +357,7 @@ export default function VideoInfo({route}: any): JSX.Element {
         )}
       </BtnVideoTitle>
 
+      {/* <Pressable style={{}}> */}
       <VideoScreen
         rate={rate}
         mirror={mirror}
@@ -349,7 +373,9 @@ export default function VideoInfo({route}: any): JSX.Element {
         rotate={rotate}
         aniVideoFnHeight={aniVideoFnHeight}
         _Voice={_onRecordVoice}
+        // aniOpacityTimeFn={aniOpacityTimeFn}
       />
+      {/* </Pressable> */}
 
       <SafeAreaView style={commonStyles.container}>
         <View style={commonStyles.containerView}>
@@ -389,6 +415,7 @@ export default function VideoInfo({route}: any): JSX.Element {
                     aniVideoFn={aniVideoFn}
                     aniTopFn={aniTopFn}
                     reload={reload}
+                    aniOpacityTimeFn={aniOpacityTimeFn}
                   />
                 );
               })}

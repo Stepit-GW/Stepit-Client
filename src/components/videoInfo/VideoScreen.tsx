@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Animated, StyleSheet, Text} from 'react-native';
+import {Animated, StyleSheet, Text, Pressable} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import Video from 'react-native-video';
@@ -69,6 +69,9 @@ export default function VideoScreen({
         <Video
           ref={videoRef}
           source={videoScreen.testUrl}
+          // onPress={() => {
+          //   console.log('VideoScreen');
+          // }}
           // source={{
           //   uri: video.url,
           // }}
