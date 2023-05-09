@@ -1,36 +1,3 @@
-// import {commonStyles} from '@/styles/commonStyles';
-// import React, {useEffect, useRef, useState} from 'react';
-// import {Button, Image, Pressable, SafeAreaView, Text, View} from 'react-native';
-// import VideoRecorder from 'react-native-beautiful-video-recorder';
-// // import {Camera, useCameraDevices} from 'react-native-vision-camera';
-
-// export default function CameraScreen(): JSX.Element {
-//   const cameraRef = useRef(null);
-//   const videoRecord = async () => {
-//     if (cameraRef && cameraRef.current) {
-//       cameraRef.current.open({maxLength: 5}, (data: any) => {
-//         console.log('captured data', data); // data.uri is the file path
-//       });
-//     }
-//   };
-
-//   useEffect(() => {
-//     videoRecord();
-//   }, []);
-
-//   return (
-//     <SafeAreaView style={commonStyles.container}>
-//       <View style={commonStyles.containerView}>
-//         <VideoRecorder ref={cameraRef} style={{height: 100}} />
-//         <Image
-//           style={{position: 'absolute', top: 100, zIndex: 999}}
-//           source={require('@/assets/arrow-black-24.png')}
-//         />
-//       </View>
-//     </SafeAreaView>
-//   );
-// }
-
 import {videoShortState} from '@/recoil/videoShortState';
 import React, {useEffect, useRef, useState} from 'react';
 import {
@@ -42,6 +9,7 @@ import {
   Image,
   StyleSheet,
   Platform,
+  // CameraRoll,
 } from 'react-native';
 import Video from 'react-native-video';
 import Share from 'react-native-share';
@@ -55,6 +23,7 @@ import {
   MARGIN_VER,
   MARGIN_HOR,
 } from '@/static/commonValue';
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 
 export default function CameraScreen({navigation, route}: any): JSX.Element {
   const id = route.params.id;
@@ -101,7 +70,6 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
         //     setNum(num + 1);
         //   }, 500);
         videoRef.current.seek(0);
-        console.log(allTime);
         setCount(4);
         const options = {
           quality: RNCamera.Constants.VideoQuality['1080p'],
@@ -113,6 +81,12 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
         // }, allTime * 1000);
         const data = await cameraRef.recordAsync(options);
         console.log('Video recorded at', data.uri);
+        if (data.uri) {
+          console.log('complete');
+          console.log(CameraRoll);
+          const result = await CameraRoll.save(data.uri);
+          //   console.log(result);
+        }
       }, 3000);
     }
   }
@@ -146,6 +120,12 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
       console.log(error);
     }
   };
+
+  // const onSave = async () => {
+  //   const uri = await getPhotoUri();
+  //   const result = await CameraRoll.save(uri);
+  //   console.log('🐤result', result);
+  // };
 
   return (
     <View style={{flex: 1}}>
@@ -240,13 +220,13 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
               <Text style={styles.countText}>{count}</Text>
             </View>
           )}
-          <Pressable
+          {/* <Pressable
             style={{position: 'absolute', top: 200}}
             onPress={() => {
               myCustomShare();
             }}>
             <Text style={styles.countText}>Share</Text>
-          </Pressable>
+          </Pressable> */}
           <Pressable
             style={styles.recoding}
             onPress={() => {
