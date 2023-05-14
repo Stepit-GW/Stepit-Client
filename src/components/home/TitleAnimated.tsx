@@ -14,6 +14,7 @@ import {windowState} from '@/recoil/windowState';
 export default function TitleAnimated({
   aniTopFn,
   setResultDatas,
+  aniOpacity,
 }: any): JSX.Element {
   const [window] = useRecoilState(windowState);
 
@@ -60,12 +61,13 @@ export default function TitleAnimated({
       return;
     } else setResultDatas([]);
   };
+  const [color, setColor] = useState(false);
 
   return (
     <Animated.View
       style={[
-        Styles(window.ipad).titleAbsoluteBox,
-        {width: aniWidth, paddingHorizontal: MARGIN_HOR},
+        Styles(window.ipad, color).titleAbsoluteBox,
+        {width: aniWidth, paddingHorizontal: MARGIN_HOR, opacity: aniOpacity},
       ]}>
       <Pressable
         onPress={() => {
@@ -76,6 +78,7 @@ export default function TitleAnimated({
             MARGIN_HOR,
           );
           aniTopFn(WINDOW_HEIGHT);
+          setColor(false);
         }}>
         <Animated.Image
           source={require('@/assets/arrow-black-24.png')}
@@ -93,10 +96,17 @@ export default function TitleAnimated({
               MARGIN_HOR + (window.ipad ? 40 : 24) + 10,
             );
             aniTopFn(0);
+            setTimeout(() => {
+              setColor(true);
+            }, 400);
           }}>
           <Animated.Image
-            source={require('@/assets/search-24.png')}
-            style={[Styles(window.ipad).searchImg]}
+            source={{
+              uri: color
+                ? 'https://i.ibb.co/4T8GXJB/search-24.png'
+                : 'https://i.ibb.co/L5rnNq4/search-white-24.png',
+            }}
+            style={[Styles(window.ipad, color).searchImg]}
           />
         </Pressable>
       </Animated.View>
@@ -104,7 +114,7 @@ export default function TitleAnimated({
       <Animated.View style={{width: aniWidth2}} />
       <TextInput
         style={[
-          Styles(window.ipad).input,
+          Styles(window.ipad, color).input,
           {width: WINDOW_WIDTH - ((window.ipad ? 40 : 24) + 24) - MARGIN_HOR},
         ]}
         placeholder={'걸그룹 명을 검색해 주세요'}
@@ -120,11 +130,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Styles = (ipad: boolean) =>
+export const Styles = (ipad: boolean, color: boolean) =>
   StyleSheet.create({
     titleAbsoluteBox: {
       height: ipad ? 54 : 36,
-      marginTop: MARGIN_VER,
+      marginTop: MARGIN_VER * 2,
 
       flexDirection: 'row',
       alignItems: 'center',
@@ -132,7 +142,7 @@ export const Styles = (ipad: boolean) =>
       position: 'absolute',
       right: 0,
       zIndex: 901,
-      backgroundColor: 'white',
+      backgroundColor: 'transparent',
     },
     searchImg: {
       width: ipad ? 40 : 24,

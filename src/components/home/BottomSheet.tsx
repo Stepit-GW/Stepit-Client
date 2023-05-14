@@ -11,7 +11,6 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
 import {
   MARGIN_HOR,
   MARGIN_VER,
@@ -19,8 +18,6 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
-import {homeDatas} from '@/static/home/homeDatas';
-import {searchDatas} from '@/static/home/searchDatas';
 // import Video from 'react-native-video';
 
 export default function BottomSheet({aniTop, resultDatas}: any): JSX.Element {
@@ -32,6 +29,7 @@ export default function BottomSheet({aniTop, resultDatas}: any): JSX.Element {
         position: 'absolute',
         top: aniTop,
         backgroundColor: 'white',
+        zIndex: 1,
       }}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.scrollBox}>
@@ -60,7 +58,7 @@ export default function BottomSheet({aniTop, resultDatas}: any): JSX.Element {
 
 const styles = StyleSheet.create({
   scroll: {
-    marginTop: MARGIN_VER + TOP_HEIGHT + 20,
+    marginTop: MARGIN_VER * 2 + TOP_HEIGHT + 20,
   },
   scrollBox: {
     paddingHorizontal: MARGIN_HOR,
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 17,
 
-    zIndex: 900,
+    zIndex: 901,
   },
   videoBottom: {
     width: '100%',
@@ -105,7 +103,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
 
-    zIndex: 900,
+    zIndex: 901,
     // backgroundColor: 'red',
   },
   videoLeftBox: {

@@ -14,7 +14,7 @@ import Video from 'react-native-video';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {bottomBarState} from '@/recoil/bottomBarState';
-import {WINDOW_HEIGHT} from '@/static/commonValue';
+import {MARGIN_VER, WINDOW_HEIGHT} from '@/static/commonValue';
 import {videoShortDatas} from '@/static/videoDatas';
 import {commonStyles} from '@/styles/commonStyles';
 import {videoIdFilter} from '@/utils/videoFilter';
@@ -82,7 +82,15 @@ export default function VideoShort({navigation}: any): JSX.Element {
                     shortId: idx,
                   });
                 }}>
-                <Image source={require('@/assets/arrow-white-24.png')} />
+                <Image
+                  source={require('@/assets/video/camera-24.png')}
+                  style={{
+                    width: 24,
+                    height: 24,
+                    marginTop: MARGIN_VER * 2,
+                    marginRight: MARGIN_VER,
+                  }}
+                />
               </Pressable>
               <View style={[commonStyles.paddingHor, styles.titleBox]}>
                 <View style={styles.titleTop}>

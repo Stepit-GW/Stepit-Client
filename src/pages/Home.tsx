@@ -11,7 +11,6 @@ import {
   View,
 } from 'react-native';
 import {CommonStyles, commonStyles} from '@/styles/commonStyles';
-import Title from '@/components/Title';
 import {
   MARGIN_HOR,
   MARGIN_VER,
@@ -28,6 +27,8 @@ import {videoHomeDatas} from '@/static/videoDatas';
 import {videoIdFilter} from '@/utils/videoFilter';
 // import Video from 'react-native-video';
 
+import {SliderBox} from 'react-native-image-slider-box';
+
 export default function Home({navigation}: any): JSX.Element {
   const [window] = useRecoilState(windowState);
 
@@ -38,6 +39,14 @@ export default function Home({navigation}: any): JSX.Element {
     Animated.timing(aniTop, {
       toValue: t,
       duration: 400,
+      useNativeDriver: false,
+    }).start();
+  };
+  const aniOpacity = useRef<Animated.Value>(new Animated.Value(1)).current;
+  const aniOpacityFn = (o: number, time: number) => {
+    Animated.timing(aniOpacity, {
+      toValue: o,
+      duration: time,
       useNativeDriver: false,
     }).start();
   };
@@ -56,22 +65,65 @@ export default function Home({navigation}: any): JSX.Element {
     setVideoDatas(homeVideos);
   }, []);
 
+  const [scroll, setScroll] = useState<number>(0);
+
   return (
-    <SafeAreaView
+    <View
       style={commonStyles.container}
       onLayout={e => {
         setBottomBar(e.nativeEvent.layout.height);
       }}>
       <View style={commonStyles.containerView}>
-        <TitleAnimated aniTopFn={aniTopFn} setResultDatas={setResultDatas} />
-
-        <View style={[commonStyles.paddingHor, Styles(window.ipad).titleBox]}>
+        <Animated.View
+          style={[
+            commonStyles.paddingHor,
+            Styles(window.ipad).titleBox,
+            {opacity: aniOpacity},
+          ]}>
           <View style={commonStyles.img} />
           <Text style={Styles(window.ipad).title}>STEPIT</Text>
           <View style={commonStyles.img} />
-        </View>
+        </Animated.View>
+        <TitleAnimated
+          aniTopFn={aniTopFn}
+          setResultDatas={setResultDatas}
+          aniOpacity={aniOpacity}
+        />
 
-        <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          style={styles.scroll}
+          showsVerticalScrollIndicator={false}
+          // onTouchMove={e => {
+          //   console.log(scroll);
+          //   // const move = e.nativeEvent.pageY;
+          //   // console.log(move);
+          //   // console.log(move > WINDOW_HEIGHT * 0.5);
+          //   // if (move > WINDOW_HEIGHT * 0.5) aniOpacityFn(1, 400);
+          // }}
+          onScroll={e => {
+            const move = e.nativeEvent.contentOffset.y;
+            // console.log(move);
+            if (move <= 0) aniOpacityFn(1, 0);
+            else aniOpacityFn(0, 400);
+            setScroll(move);
+          }}>
+          <View style={styles.slider}>
+            <SliderBox
+              style={{width: '100%', height: '100%', opacity: 1}}
+              images={[
+                'https://i.ibb.co/LQrdzRx/Because-Of-You.png',
+                'https://i.ibb.co/DYpWNSh/image.png',
+                'https://i.ibb.co/LQrdzRx/Because-Of-You.png',
+                'https://i.ibb.co/DYpWNSh/image.png',
+              ]}
+              onCurrentImagePressed={(idx: number) => {
+                console.log(idx);
+              }}
+              autoplay
+              circleLoop
+            />
+          </View>
+
           {videoDatas.map((data: any, idx: number) => {
             return (
               <View key={idx} style={styles.scrollImgBox}>
@@ -149,13 +201,19 @@ export default function Home({navigation}: any): JSX.Element {
 
         <BottomSheet aniTop={aniTop} resultDatas={resultDatas} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   scroll: {
-    paddingTop: 34,
+    // paddingTop: 34,
+  },
+  slider: {
+    width: WINDOW_WIDTH,
+    height: (WINDOW_WIDTH / 3) * 2,
+    marginBottom: 48,
+    backgroundColor: 'white',
   },
   scrollImgBox: {
     paddingBottom: 34,
@@ -182,15 +240,22 @@ const styles = StyleSheet.create({
 const Styles = (ipad: boolean) =>
   StyleSheet.create({
     titleBox: {
-      height: ipad ? 54 : 36,
-      marginTop: MARGIN_VER,
+      width: '100%',
+      height: (ipad ? 54 : 36) + MARGIN_VER * 2,
+      paddingTop: MARGIN_VER * 2,
+      // marginTop: MARGIN_VER,
+
+      position: 'absolute',
+      top: 0,
 
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      // justifyContent: 'space-between',
       alignItems: 'center',
+      backgroundColor: 'transparent',
+      zIndex: 1,
     },
     title: {
-      color: 'black',
+      color: 'white',
       lineHeight: ipad ? 54 : 36,
       fontWeight: '700',
       fontSize: ipad ? 35 : 30,
