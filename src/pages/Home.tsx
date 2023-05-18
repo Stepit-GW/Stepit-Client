@@ -28,6 +28,7 @@ import {videoIdFilter} from '@/utils/videoFilter';
 // import Video from 'react-native-video';
 
 import {SliderBox} from 'react-native-image-slider-box';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function Home({navigation}: any): JSX.Element {
   const [window] = useRecoilState(windowState);
@@ -66,6 +67,7 @@ export default function Home({navigation}: any): JSX.Element {
   }, []);
 
   const [scroll, setScroll] = useState<number>(0);
+  const [dotStyle, setDotStyle] = useState<any>(0);
 
   return (
     <View
@@ -75,13 +77,12 @@ export default function Home({navigation}: any): JSX.Element {
       }}>
       <View style={commonStyles.containerView}>
         <Animated.View
-          style={[
-            commonStyles.paddingHor,
-            Styles(window.ipad).titleBox,
-            {opacity: aniOpacity},
-          ]}>
+          style={[Styles(window.ipad).titleBox, {opacity: aniOpacity}]}>
           <View style={commonStyles.img} />
-          <Text style={Styles(window.ipad).title}>STEPIT</Text>
+          <Image
+            style={Styles(window.ipad).title}
+            source={require('@/assets/logo.png')}
+          />
           <View style={commonStyles.img} />
         </Animated.View>
         <TitleAnimated
@@ -103,7 +104,7 @@ export default function Home({navigation}: any): JSX.Element {
           onScroll={e => {
             const move = e.nativeEvent.contentOffset.y;
             // console.log(move);
-            if (move <= 0) aniOpacityFn(1, 0);
+            if (move <= 0) aniOpacityFn(1, 400);
             else aniOpacityFn(0, 400);
             setScroll(move);
           }}>
@@ -116,12 +117,56 @@ export default function Home({navigation}: any): JSX.Element {
                 'https://i.ibb.co/LQrdzRx/Because-Of-You.png',
                 'https://i.ibb.co/DYpWNSh/image.png',
               ]}
-              onCurrentImagePressed={(idx: number) => {
-                console.log(idx);
+              currentImageEmitter={(idx: number) => {
+                setDotStyle(idx);
               }}
+              dotColor={'#757575'}
+              inactiveDotColor={'#C7C7C7'}
               autoplay
               circleLoop
             />
+            <LinearGradient
+              colors={['transparent', 'transparent', 'white']}
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                bottom: 0,
+              }}>
+              <Pressable
+                style={{width: '100%', height: '100%'}}
+                onTouchStart={e => {
+                  // console.log(e.nativeEvent.pageX);
+                }}
+                onTouchEnd={e => {
+                  // console.log(e.nativeEvent.pageX);
+                }}
+                onPress={() => {
+                  console.log(dotStyle);
+                }}
+              />
+            </LinearGradient>
+          </View>
+          <View
+            style={{
+              marginBottom: 18,
+              flexDirection: 'row',
+              alignSelf: 'center',
+            }}>
+            {[...Array(4)].map((data: any, idx: number) => {
+              return (
+                <View
+                  key={idx}
+                  style={{
+                    width: 7,
+                    height: 7,
+                    marginHorizontal: 5,
+                    borderRadius: 7,
+                    backgroundColor: dotStyle === idx ? '#757575' : '#C7C7C7',
+                  }}
+                />
+              );
+            })}
           </View>
 
           {videoDatas.map((data: any, idx: number) => {
@@ -168,21 +213,26 @@ export default function Home({navigation}: any): JSX.Element {
                             {video.title}
                           </Text>
                         ) : (
-                          <Text style={Styles(window.ipad).videoTitle}>
-                            {video.title}
-                          </Text>
+                          <></>
+                          // <Text style={Styles(window.ipad).videoTitle}>
+                          //   {video.title}
+                          // </Text>
                         )}
                         <View style={styles.videoBottom}>
+                          {idx !== 0 && (
+                            <Text style={Styles(window.ipad).videoLeft}>
+                              {video.title === 'Because Of You'
+                                ? 'Because...'
+                                : video.title}
+                            </Text>
+                          )}
                           {video.level !== undefined && (
-                            <View style={Styles(window.ipad).videoLeftBox}>
-                              <Text style={Styles(window.ipad).videoLeft}>
+                            <View style={Styles(window.ipad).videoRightBox}>
+                              <Text style={Styles(window.ipad).videoRight}>
                                 {video.level}
                               </Text>
                             </View>
                           )}
-                          <Text style={Styles(window.ipad).videoRight}>
-                            {video.time}
-                          </Text>
                         </View>
 
                         <Image
@@ -212,7 +262,7 @@ const styles = StyleSheet.create({
   slider: {
     width: WINDOW_WIDTH,
     height: (WINDOW_WIDTH / 3) * 2,
-    marginBottom: 48,
+    marginBottom: 18,
     backgroundColor: 'white',
   },
   scrollImgBox: {
@@ -243,22 +293,18 @@ const Styles = (ipad: boolean) =>
       width: '100%',
       height: (ipad ? 54 : 36) + MARGIN_VER * 2,
       paddingTop: MARGIN_VER * 2,
-      // marginTop: MARGIN_VER,
 
       position: 'absolute',
       top: 0,
 
       flexDirection: 'row',
-      // justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: 'transparent',
       zIndex: 1,
     },
     title: {
-      color: 'white',
-      lineHeight: ipad ? 54 : 36,
-      fontWeight: '700',
-      fontSize: ipad ? 35 : 30,
+      width: ipad ? 120 : 80,
+      height: ipad ? 32 : 20,
     },
 
     scrollTitle: {
@@ -283,26 +329,27 @@ const Styles = (ipad: boolean) =>
 
       zIndex: 900,
     },
-    videoLeftBox: {
+    videoRightBox: {
       width: ipad ? 30 : 20,
       height: ipad ? 30 : 20,
-      marginLeft: 6,
+      marginRight: 14,
 
       justifyContent: 'center',
       borderColor: 'white',
       borderWidth: 1,
       borderRadius: 20,
     },
-    videoLeft: {
+    videoRight: {
       color: 'white',
       textAlign: 'center',
       fontWeight: '500',
       fontSize: ipad ? 18 : 12,
     },
-    videoRight: {
-      marginRight: 14,
+    videoLeft: {
+      marginLeft: 6,
       color: 'white',
-      fontSize: ipad ? 18 : 12,
+      fontWeight: '800',
+      fontSize: ipad ? 24 : 18,
     },
 
     videoBox: {

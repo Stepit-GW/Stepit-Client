@@ -24,12 +24,14 @@ import {
   MARGIN_HOR,
 } from '@/static/commonValue';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import {windowState} from '@/recoil/windowState';
 
 export default function CameraScreen({navigation, route}: any): JSX.Element {
   const id = route.params.id;
   const shortId = route.params.shortId;
   const [num, setNum] = useState(0);
   const [, setVideoShortTf] = useRecoilState(videoShortState);
+  const [window, setWindow] = useRecoilState(windowState);
 
   const videoRef = useRef<any>(null);
   const video = videoIdFilter({id: id});
@@ -40,55 +42,55 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
   const [cameraRef, setCameraRef] = useState(null);
   const [count, setCount] = useState<number>(4);
 
+  const [timeId, setTimeId] = useState(0);
   async function handleRecordButton() {
-    if (!cameraRef) {
-      return;
-    }
-    if (isRecording) {
-      const result = cameraRef.stopRecording();
-      console.log(result);
-      setIsRecording(false);
-      setVideoPause(true);
-    } else {
-      setCount(3);
-      setTimeout(() => {
-        setCount(2);
-      }, 1000);
-      setTimeout(() => {
-        setCount(1);
-      }, 2000);
-      setTimeout(async () => {
-        setIsRecording(true);
+    try {
+      if (!cameraRef) {
+        return;
+      }
+      if (isRecording) {
+        clearTimeout(timeId);
+        const result = cameraRef.stopRecording();
+        setIsRecording(false);
+        setVideoPause(true);
+      } else {
+        setCount(3);
         setTimeout(() => {
-          setVideoPause(false);
-        }, 500);
+          setCount(2);
+        }, 1000);
+        setTimeout(() => {
+          setCount(1);
+        }, 2000);
+        setTimeout(async () => {
+          setIsRecording(true);
+          setTimeout(() => {
+            setVideoPause(false);
+          }, 500);
 
-        setNum(num + 1);
-        // if (num === 0)
-        //   setTimeout(() => {
-        //     setIsRecording(true);
-        //     setNum(num + 1);
-        //   }, 500);
-        videoRef.current.seek(0);
-        setCount(4);
-        const options = {
-          quality: RNCamera.Constants.VideoQuality['1080p'],
-          maxDuration: 100000, //allTime
-        };
-        // setTimeout(() => {
-        //   cameraRef.stopRecording();
-        //   setIsRecording(false);
-        // }, allTime * 1000);
-        const data = await cameraRef.recordAsync(options);
-        console.log('Video recorded at', data.uri);
-        if (data.uri) {
-          console.log('complete');
-          console.log(CameraRoll);
-          const result = await CameraRoll.save(data.uri);
-          //   console.log(result);
-        }
-      }, 3000);
-    }
+          setNum(num + 1);
+          videoRef.current.seek(0);
+          setCount(4);
+          const options = {
+            quality: RNCamera.Constants.VideoQuality['1080p'],
+            maxDuration: 100000, //allTime
+          };
+          const timeId2 = setTimeout(() => {
+            console.log('a');
+            const result = cameraRef.stopRecording();
+            setIsRecording(false);
+            setVideoPause(true);
+          }, allTime * 1000);
+          setTimeId(timeId2);
+
+          const data = await cameraRef.recordAsync(options);
+          if (data.uri) {
+            console.log('complete');
+            console.log(CameraRoll);
+            const result = await CameraRoll.save(data.uri);
+          }
+        }, 3000);
+      }
+    } catch (err) {}
   }
 
   const myCustomShare = async () => {
@@ -171,7 +173,10 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             }}>
             <Image
               source={require('@/assets/arrow-white-24.png')}
-              style={{width: 24, height: 24}}
+              style={{
+                width: window.ipad ? 48 : 24,
+                height: window.ipad ? 48 : 24,
+              }}
             />
           </Pressable>
           <View

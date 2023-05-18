@@ -96,7 +96,8 @@ export const videoDatas = [
   // 쇼츠
   {
     id: 800,
-    title: 'Ne-YO - Because Of You',
+    title: 'Because Of You',
+    singer: 'Ne-YO',
     level: '하',
     time: '0:37',
     allTime: '21 ~ 22',
@@ -108,7 +109,8 @@ export const videoDatas = [
   },
   {
     id: 801,
-    title: '지수 - 꽃',
+    title: '꽃',
+    singer: '지수',
     level: '중',
     time: '0:23',
     allTime: '0',
@@ -118,7 +120,8 @@ export const videoDatas = [
   },
   {
     id: 802,
-    title: '뉴진스 - Hype boy',
+    title: 'Hype boy',
+    singer: '뉴진스',
     level: '상',
     time: '0:30',
     allTime: '22 ~ 23',
@@ -128,7 +131,8 @@ export const videoDatas = [
   },
   {
     id: 803,
-    title: '부석순 - 파이팅해야지',
+    title: '파이팅해야지',
+    singer: '부석순',
     level: '중',
     time: '0:19',
     allTime: '0',
@@ -138,7 +142,8 @@ export const videoDatas = [
   },
   {
     id: 804,
-    title: 'Aryu Kee - see tinh',
+    title: 'see tinh',
+    singer: 'Aryu Kee',
     level: '하',
     time: '0:11',
     allTime: '0',
@@ -148,7 +153,8 @@ export const videoDatas = [
   },
   {
     id: 805,
-    title: 'The Beatnuts - Se Acabo',
+    title: 'Se Acabo',
+    singer: 'The Beatnuts',
     level: '하',
     time: '0:30',
     allTime: '0',
@@ -168,7 +174,7 @@ export const videoHomeDatas = [
     videos: [{id: 801}, {id: 802}, {id: 803}],
   },
   {
-    title: 'MZ들은 고개를 들어주세요',
+    title: 'MZ들은 고개를 들어주세요..★',
     videos: [{id: 800}, {id: 804}, {id: 805}, {id: 803}],
   },
   {

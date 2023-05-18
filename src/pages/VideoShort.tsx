@@ -14,7 +14,7 @@ import Video from 'react-native-video';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {bottomBarState} from '@/recoil/bottomBarState';
-import {MARGIN_VER, WINDOW_HEIGHT} from '@/static/commonValue';
+import {MARGIN_HOR, MARGIN_VER, WINDOW_HEIGHT} from '@/static/commonValue';
 import {videoShortDatas} from '@/static/videoDatas';
 import {commonStyles} from '@/styles/commonStyles';
 import {videoIdFilter} from '@/utils/videoFilter';
@@ -88,7 +88,7 @@ export default function VideoShort({navigation}: any): JSX.Element {
                     width: 24,
                     height: 24,
                     marginTop: MARGIN_VER * 2,
-                    marginRight: MARGIN_VER,
+                    marginRight: MARGIN_HOR,
                   }}
                 />
               </Pressable>
