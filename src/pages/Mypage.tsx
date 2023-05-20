@@ -33,56 +33,6 @@ export default function Mypage({navigation}: any): JSX.Element {
             </Pressable>
           }
         />
-        <View style={styles.contents}>
-          <View style={styles.imgBox}>
-            <Image
-              source={require('@/assets/mypage/profile-100.png')}
-              style={styles.img}
-            />
-            <Image
-              source={require('@/assets/mypage/profile-add-20.png')}
-              style={styles.rightImg}
-            />
-          </View>
-
-          <View style={styles.textBox}>
-            <View style={commonStyles.img} />
-            <Text style={styles.text}>{'@' + 'aaaaaaaaaaaaaaa'}</Text>
-            <Image
-              source={require('@/assets/mypage/pencil-24.png')}
-              style={commonStyles.img}
-            />
-          </View>
-
-          {mypageRoutesData.map((data: any, idx: number) => {
-            return (
-              mypageCnt !== idx + 1 && (
-                <Pressable
-                  key={idx}
-                  style={styles.mypageBox}
-                  onPress={() => {
-                    navigation.navigate(data.navi);
-                  }}>
-                  <View style={styles.mypageLeft}>
-                    <Image source={data.img} style={commonStyles.img} />
-                    <Text style={styles.mypageText}>{data.title}</Text>
-                  </View>
-                  <Image
-                    source={require('@/assets/mypage/arrow-gray-24.png')}
-                    style={commonStyles.img}
-                  />
-                </Pressable>
-              )
-            );
-          })}
-
-          <Pressable
-            onPress={() => {
-              navigation.navigate('CameraScreen');
-            }}>
-            <Text>Camera</Text>
-          </Pressable>
-        </View>
       </View>
     </SafeAreaView>
   );

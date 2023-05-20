@@ -26,6 +26,7 @@ import {
 } from '@/static/commonValue';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {windowState} from '@/recoil/windowState';
+import {galleryState} from '@/recoil/galleryState';
 
 LogBox.ignoreAllLogs();
 
@@ -35,6 +36,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
   const [num, setNum] = useState(0);
   const [, setVideoShortTf] = useRecoilState(videoShortState);
   const [window, setWindow] = useRecoilState(windowState);
+  const [gallery, setGallery] = useRecoilState(galleryState);
 
   const videoRef = useRef<any>(null);
   const video = videoIdFilter({id: id});
@@ -78,7 +80,6 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             maxDuration: 100000, //allTime
           };
           const timeId2 = setTimeout(() => {
-            console.log('a');
             const result = cameraRef.stopRecording();
             setIsRecording(false);
             setVideoPause(true);
@@ -86,9 +87,23 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
           setTimeId(timeId2);
 
           const data = await cameraRef.recordAsync(options);
+
+          // const pastGalleryList: any = gallery.filter((data: any) => {
+          //   return data.id !== id;
+          // });
+          // let newGallery: any = gallery.filter((data: any) => {
+          //   return data.id === id;
+          // });
+          // if (newGallery.length === 1) {
+          //   newGallery[0].uriLst.append(data.uri);
+          //   pastGalleryList.unshift(newGallery[0]);
+          // } else {
+          //   pastGalleryList.unshift({id: id, uriLst: [data.uri]});
+          // }
+          // console.log(pastGalleryList);
+          // setGallery(pastGalleryList);
+
           if (data.uri) {
-            console.log('complete');
-            console.log(CameraRoll);
             const result = await CameraRoll.save(data.uri);
           }
         }, 3000);
@@ -131,9 +146,9 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
   //   const result = await CameraRoll.save(uri);
   //   console.log('🐤result', result);
   // };
-  useEffect(() => {
-    LogBox.ignoreAllLogs();
-  }, []);
+  // useEffect(() => {
+  //   LogBox.ignoreAllLogs();
+  // }, []);
 
   return (
     <View style={{flex: 1}}>

@@ -120,8 +120,8 @@ export default function Home({navigation}: any): JSX.Element {
               currentImageEmitter={(idx: number) => {
                 setDotStyle(idx);
               }}
-              dotColor={'#757575'}
-              inactiveDotColor={'#C7C7C7'}
+              dotColor={'transparent'}
+              inactiveDotColor={'transparent'}
               autoplay
               circleLoop
             />
