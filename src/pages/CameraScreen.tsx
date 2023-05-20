@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Platform,
   // CameraRoll,
+  LogBox,
 } from 'react-native';
 import Video from 'react-native-video';
 import Share from 'react-native-share';
@@ -25,6 +26,8 @@ import {
 } from '@/static/commonValue';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {windowState} from '@/recoil/windowState';
+
+LogBox.ignoreAllLogs();
 
 export default function CameraScreen({navigation, route}: any): JSX.Element {
   const id = route.params.id;
@@ -128,12 +131,15 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
   //   const result = await CameraRoll.save(uri);
   //   console.log('🐤result', result);
   // };
+  useEffect(() => {
+    LogBox.ignoreAllLogs();
+  }, []);
 
   return (
     <View style={{flex: 1}}>
       <RNCamera
         style={{flex: 1}}
-        type={RNCamera.Constants.Type.back}
+        type={RNCamera.Constants.Type.front}
         ref={(ref: any) => {
           setCameraRef(ref);
         }}>
