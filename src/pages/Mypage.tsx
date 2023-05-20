@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -7,81 +7,78 @@ import {
   View,
   Pressable,
 } from 'react-native';
-import {MARGIN_VER} from '@/static/commonValue';
+import {MARGIN_VER, TOP_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import Title from '@/components/Title';
 import {commonStyles} from '@/styles/commonStyles';
-import {mypageRoutesData} from '@/static/mypageRoutesData';
+import {useRecoilState} from 'recoil';
+import {galleryState} from '@/recoil/galleryState';
+import {windowState} from '@/recoil/windowState';
+import {videoDetailFilter, videoIdFilter} from '@/utils/videoFilter';
 
 export default function Mypage({navigation}: any): JSX.Element {
-  const mypageCnt = mypageRoutesData.length;
+  const [window, setWindow] = useRecoilState(windowState);
+  const [gallery, setGallery] = useRecoilState(galleryState);
 
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
-        <Title
-          style={{marginTop: MARGIN_VER}}
-          leftComponent={<></>}
-          rightComponent={
-            <Pressable
-              onPress={() => {
-                navigation.navigate(mypageRoutesData[mypageCnt - 1].navi);
-              }}>
-              <Image
-                source={mypageRoutesData[mypageCnt - 1].img}
-                style={commonStyles.img}
-              />
-            </Pressable>
-          }
-        />
-        <View style={styles.contents}>
-          <View style={styles.imgBox}>
-            <Image
-              source={require('@/assets/mypage/profile-100.png')}
-              style={styles.img}
-            />
-            <Image
-              source={require('@/assets/mypage/profile-add-20.png')}
-              style={styles.rightImg}
-            />
-          </View>
+        <View style={styles.title}>
+          <View />
+          <Text style={styles.titleText}>내 앨범</Text>
+          <View />
+        </View>
 
-          <View style={styles.textBox}>
-            <View style={commonStyles.img} />
-            <Text style={styles.text}>{'@' + 'aaaaaaaaaaaaaaa'}</Text>
-            <Image
-              source={require('@/assets/mypage/pencil-24.png')}
-              style={commonStyles.img}
-            />
-          </View>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+          {gallery.map((data: any, idx: number) => {
+            const video = videoIdFilter({id: data.id});
 
-          {mypageRoutesData.map((data: any, idx: number) => {
             return (
-              mypageCnt !== idx + 1 && (
-                <Pressable
-                  key={idx}
-                  style={styles.mypageBox}
-                  onPress={() => {
-                    navigation.navigate(data.navi);
-                  }}>
-                  <View style={styles.mypageLeft}>
-                    <Image source={data.img} style={commonStyles.img} />
-                    <Text style={styles.mypageText}>{data.title}</Text>
-                  </View>
-                  <Image
-                    source={require('@/assets/mypage/arrow-gray-24.png')}
-                    style={commonStyles.img}
-                  />
-                </Pressable>
-              )
+              <Pressable
+                key={idx}
+                style={[
+                  Styles(window.ipad).videoBox,
+                  {
+                    marginBottom: 25,
+                    marginRight:
+                      idx === gallery.length - 1
+                        ? window.ipad
+                          ? idx % 4 === 3
+                            ? 0
+                            : (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                          : MARGIN_VER * 2 - 10
+                        : window.ipad
+                        ? idx % 4 === 3
+                          ? 0
+                          : (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                        : 10,
+                  },
+                ]}
+                onPress={() => {
+                  navigation.navigate('GalleryDetail', {galleryIdx: idx});
+                }}>
+                <View style={styles.videoBottom}>
+                  <Text style={Styles(window.ipad).videoLeft}>
+                    {video.title === 'Because Of You'
+                      ? 'Because...'
+                      : video.title}
+                  </Text>
+
+                  {/* {video.level !== undefined && (
+                    <View style={Styles(window.ipad).videoRightBox}>
+                      <Text style={Styles(window.ipad).videoRight}>
+                        {video.level}
+                      </Text>
+                    </View>
+                  )} */}
+                </View>
+
+                <Image
+                  source={{uri: video.imgUrl}}
+                  style={[commonStyles.img100, {opacity: 0.8}]}
+                />
+              </Pressable>
             );
           })}
-
-          <Pressable
-            onPress={() => {
-              navigation.navigate('CameraScreen');
-            }}>
-            <Text>Camera</Text>
-          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -89,71 +86,104 @@ export default function Mypage({navigation}: any): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  contents: {
-    flex: 1,
+  title: {
     width: '100%',
-    paddingTop: 60,
-
-    alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor: 'red',
-  },
-
-  imgBox: {
-    width: 100,
-    height: 100,
-    marginBottom: 30,
-
-    overflow: 'hidden',
-    backgroundColor: 'transparent',
-  },
-  img: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-  },
-  rightImg: {
-    width: 20,
-    height: 20,
-
-    position: 'absolute',
-    right: 5,
-    bottom: 0,
-    zIndex: 900,
-  },
-
-  textBox: {
-    height: 24,
-    marginBottom: 60,
-
-    flexDirection: 'row',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-  },
-  text: {
-    color: 'black',
-    fontWeight: '400',
-    fontSize: 14,
-  },
-
-  mypageBox: {
-    width: '100%',
-    height: 24,
-    marginVertical: 18,
+    height: TOP_HEIGHT,
+    marginBottom: MARGIN_VER,
 
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  mypageLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  mypageText: {
-    marginLeft: 25,
-    color: 'black',
-    fontWeight: '400',
+  titleText: {
     fontSize: 16,
-    lineHeight: 19,
+    fontWeight: '700',
+  },
+
+  videoBottom: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
+    position: 'absolute',
+    left: 3,
+    bottom: 9,
+    zIndex: 900,
   },
 });
+
+const Styles = (ipad: boolean) =>
+  StyleSheet.create({
+    titleBox: {
+      width: '100%',
+      height: (ipad ? 54 : 36) + MARGIN_VER * 2,
+      paddingTop: MARGIN_VER * 2,
+
+      position: 'absolute',
+      top: 0,
+
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      zIndex: 1,
+    },
+    title: {
+      width: ipad ? 120 : 80,
+      height: ipad ? 32 : 20,
+    },
+
+    scrollTitle: {
+      marginLeft: MARGIN_VER,
+      marginBottom: 20,
+
+      color: 'black',
+      fontSize: ipad ? 22 : 16,
+      fontWeight: '700',
+    },
+    videoTitle: {
+      width: '100%',
+      marginTop: 7,
+      paddingHorizontal: 10,
+
+      position: 'absolute',
+      top: 0,
+
+      color: 'white',
+      fontWeight: '800',
+      fontSize: ipad ? 20 : 14,
+
+      zIndex: 900,
+    },
+    videoRightBox: {
+      width: ipad ? 30 : 20,
+      height: ipad ? 30 : 20,
+      marginRight: 14,
+
+      justifyContent: 'center',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 20,
+    },
+    videoRight: {
+      color: 'white',
+      textAlign: 'center',
+      fontWeight: '500',
+      fontSize: ipad ? 18 : 12,
+    },
+    videoLeft: {
+      marginLeft: 6,
+      color: 'white',
+      fontWeight: '800',
+      fontSize: ipad ? 24 : 18,
+    },
+
+    videoBox: {
+      width: ipad ? 180 : 150,
+      height: ipad ? 240 : 200,
+
+      overflow: 'hidden',
+      borderRadius: 15,
+      backgroundColor: 'black',
+    },
+  });

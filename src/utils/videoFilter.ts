@@ -20,8 +20,6 @@ export const videoDetailFilter = (id: number, Fn: Function) => {
     }
   })[0];
 
-  console.log(video);
-
   for (let i = 0; i < video.stage.length; i++) {
     const videoDetail = video.stage[i].videoDetails;
     for (let j = 0; j < videoDetail.length; j++)

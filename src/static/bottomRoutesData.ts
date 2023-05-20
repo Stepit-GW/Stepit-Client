@@ -15,10 +15,10 @@ export const bottomRoutesData = [
     act: require('@/assets/bottomRoutes/short-video-white-48.png'),
     none: require('@/assets/bottomRoutes/short-video-48.png'),
   },
-  // {
-  //   name: '마이페이지',
-  //   component: Mypage,
-  //   act: require('@/assets/bottomRoutes/mypage-white-48.png'),
-  //   none: require('@/assets/bottomRoutes/mypage-48.png'),
-  // },
+  {
+    name: '마이페이지',
+    component: Mypage,
+    act: require('@/assets/bottomRoutes/mypage-white-48.png'),
+    none: require('@/assets/bottomRoutes/mypage-48.png'),
+  },
 ];

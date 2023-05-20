@@ -120,13 +120,27 @@ export default function Home({navigation}: any): JSX.Element {
               currentImageEmitter={(idx: number) => {
                 setDotStyle(idx);
               }}
-              dotColor={'#757575'}
-              inactiveDotColor={'#C7C7C7'}
+              dotColor={'white'}
+              inactiveDotColor={'rgba(0, 0, 0, 0.6)'}
+              dotStyle={{
+                width: 10,
+                height: 10,
+                marginBottom: 24,
+                borderRadius: 10,
+              }}
               autoplay
               circleLoop
             />
             <LinearGradient
-              colors={['transparent', 'transparent', 'white']}
+              colors={[
+                'rgba(255, 255, 255, 0)',
+                'rgba(255, 255, 255, 0)',
+                'rgba(255, 255, 255, 0)',
+                'rgba(255, 255, 255, 0.1)',
+                'rgba(255, 255, 255, 0.1)',
+                'rgba(255, 255, 255, 0.1)',
+                'rgba(255, 255, 255, 1)',
+              ]}
               style={{
                 width: '100%',
                 height: '100%',
@@ -147,7 +161,7 @@ export default function Home({navigation}: any): JSX.Element {
               />
             </LinearGradient>
           </View>
-          <View
+          {/* <View
             style={{
               marginBottom: 18,
               flexDirection: 'row',
@@ -167,7 +181,7 @@ export default function Home({navigation}: any): JSX.Element {
                 />
               );
             })}
-          </View>
+          </View> */}
 
           {videoDatas.map((data: any, idx: number) => {
             return (

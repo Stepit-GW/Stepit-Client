@@ -11,13 +11,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useWindowDimensions} from 'react-native';
 
 import BottomNavigation from './src/components/BottomNavigation';
-import {signRoutesData} from '@/static/signRoutesData';
-import {mypageRoutesData} from '@/static/mypageRoutesData';
 import VideoInfo from '@/pages/VideoInfo';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 import CameraScreen from '@/pages/CameraScreen';
 import VideoTutorial from '@/pages/VideoTutorial';
+import GalleryDetail from '@/pages/GalleryDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,27 +61,11 @@ export default function App(): JSX.Element {
           options={{headerShown: false}}
         />
 
-        {signRoutesData.map((data: any, idx: number) => {
-          return (
-            <Stack.Screen
-              key={idx}
-              name={data.name}
-              component={data.component}
-              options={{headerShown: false}}
-            />
-          );
-        })}
-
-        {mypageRoutesData.map((data: any, idx: number) => {
-          return (
-            <Stack.Screen
-              key={idx}
-              name={data.name}
-              component={data.component}
-              options={{headerShown: false}}
-            />
-          );
-        })}
+        <Stack.Screen
+          name="GalleryDetail"
+          component={GalleryDetail}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     // </SafeAreaView>

@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Platform,
   // CameraRoll,
+  LogBox,
 } from 'react-native';
 import Video from 'react-native-video';
 import Share from 'react-native-share';
@@ -23,8 +24,10 @@ import {
   MARGIN_VER,
   MARGIN_HOR,
 } from '@/static/commonValue';
-import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {windowState} from '@/recoil/windowState';
+import {galleryState} from '@/recoil/galleryState';
+
+LogBox.ignoreAllLogs();
 
 export default function CameraScreen({navigation, route}: any): JSX.Element {
   const id = route.params.id;
@@ -32,6 +35,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
   const [num, setNum] = useState(0);
   const [, setVideoShortTf] = useRecoilState(videoShortState);
   const [window, setWindow] = useRecoilState(windowState);
+  const [gallery, setGallery] = useRecoilState(galleryState);
 
   const videoRef = useRef<any>(null);
   const video = videoIdFilter({id: id});
@@ -75,7 +79,6 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             maxDuration: 100000, //allTime
           };
           const timeId2 = setTimeout(() => {
-            console.log('a');
             const result = cameraRef.stopRecording();
             setIsRecording(false);
             setVideoPause(true);
@@ -83,57 +86,38 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
           setTimeId(timeId2);
 
           const data = await cameraRef.recordAsync(options);
-          if (data.uri) {
-            console.log('complete');
-            console.log(CameraRoll);
-            const result = await CameraRoll.save(data.uri);
+
+          const pastGalleryList: any = gallery.filter((data: any) => {
+            return data.id !== id;
+          });
+          let newGallery: any = gallery.filter((data: any) => {
+            return data.id === id;
+          });
+          if (newGallery.length === 1) {
+            let newUriLst = [...newGallery[0].uriLst, data.uri];
+            newGallery[0].uriLst = newUriLst;
+            pastGalleryList.unshift(newGallery[0]);
+          } else {
+            pastGalleryList.unshift({
+              id: id,
+              uriLst: [video.testUrl, data.uri],
+            });
           }
+          setGallery(pastGalleryList);
+
+          // if (data.uri) {
+          //   const result = await CameraRoll.save(data.uri);
+          // }
         }, 3000);
       }
     } catch (err) {}
   }
 
-  const myCustomShare = async () => {
-    const baseImage = 'https://i.ibb.co/5s1b4zv/Group-4001.png';
-    const baseVideo =
-      'file:///var/mobile/Containers/Data/Application/74EEA989-F061-4159-B39D-1E09E56D3815/Library/Caches/Camera/C659C600-EDC6-4026-BBC3-A4E1AFB68743.mov';
-    // const cache = await RNFetchBlob.config({
-    //   fileCache: true,
-    //   appendExt: 'mp4',
-    // }).fetch('GET', 'YOUR OWN REMOTE VIDEO URL', {});
-    // const gallery = await CameraRoll.save(cache.path(), 'video');
-    // cache.flush();
-
-    const shareOptions = {
-      subject: 'StepIT',
-      message: 'StepIT',
-      email: 'yeju1019@gmail.com',
-      social: Share.Social.EMAIL,
-      type: 'application/octet-stream',
-      url: baseImage,
-      // type: 'video/*',
-      // whatsAppNumber: '01022359031',
-      // filename: 'test',
-    };
-
-    try {
-      const shareResponse = await Share.shareSingle(shareOptions);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // const onSave = async () => {
-  //   const uri = await getPhotoUri();
-  //   const result = await CameraRoll.save(uri);
-  //   console.log('🐤result', result);
-  // };
-
   return (
     <View style={{flex: 1}}>
       <RNCamera
         style={{flex: 1}}
-        type={RNCamera.Constants.Type.back}
+        type={RNCamera.Constants.Type.front}
         ref={(ref: any) => {
           setCameraRef(ref);
         }}>
