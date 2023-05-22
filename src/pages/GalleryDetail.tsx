@@ -34,101 +34,30 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
   const [gallery, setGallery] = useRecoilState(galleryState);
   const [currentIdx, setCurrentIdx] = useState(0);
 
+  const scrollRef = useRef<any>();
   const videoRef = useRef<any>();
   const [videoPause, setVideoPause] = useState(true);
-  const [videoScreen, setVideoScreen] = useState<any>({
-    kind: 'Step',
-    url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
-    testUrl: require('@/assets/notfound.mp4'),
-  });
+
+  useEffect(() => {
+    scrollRef.current.scrollTo({y: 0});
+  }, []);
 
   return (
-    <SafeAreaView style={commonStyles.container}>
-      <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
-        <View style={styles.topBox}>
-          <Pressable
-            style={{marginRight: MARGIN_HOR}}
-            onPress={() => {
-              navigation.pop();
-            }}>
-            <Image
-              source={require('@/assets/arrow-black-24.png')}
-              style={commonStyles.img}
-            />
-          </Pressable>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {gallery[galleryIdx].uriLst.map((data: any, idx: number) => {
-              return (
-                <Pressable
-                  key={idx}
-                  style={[
-                    Styles(window.ipad).topBox,
-                    currentIdx === idx
-                      ? styles.topBox2
-                      : Styles(window.ipad).topBox,
-                  ]}
-                  onPress={() => {
-                    setCurrentIdx(idx);
-                    setVideoPause(true);
-                  }}>
-                  <Text
-                    style={
-                      currentIdx === idx ? styles.boxText2 : styles.boxText
-                    }>
-                    {idx === 0 ? 'S' : idx}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </ScrollView>
-        </View>
-
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-
-            justifyContent: 'center',
-            borderRadius: 10,
-            backgroundColor: 'black',
+    // <SafeAreaView style={commonStyles.container}>
+    <View style={commonStyles.containerView}>
+      <View style={styles.topBox}>
+        <Pressable
+          style={{marginRight: MARGIN_HOR}}
+          onPress={() => {
+            navigation.pop();
           }}>
-          {/* <View
-            style={{
-              width: WINDOW_WIDTH - MARGIN_HOR * 2,
-              height: videoHeight2,
-              backgroundColor: 'black',
-            }}> */}
-          <Video
-            ref={videoRef}
-            source={
-              currentIdx === 0
-                ? gallery[galleryIdx].uriLst[currentIdx]
-                : {uri: gallery[galleryIdx].uriLst[currentIdx]}
-            }
-            style={{
-              width: '100%',
-              height: '100%',
-              opacity: 0.8,
-              borderRadius: 10,
-            }}
-            paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
-            resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
-            volume={1.0}
-            ignoreSilentSwitch={'ignore'}
-            playWhenInactive={true}
-            playInBackground={true}
-            repeat={true} // video가 끝나면 다시 재생할 지 여부
-            onAnimatedValueUpdate={() => {}}
-            muted={false}
-            controls={false} //바텀바가 나옴
+          <Image
+            source={require('@/assets/arrow-white-24.png')}
+            style={Styles(window.ipad).img}
           />
-          {/* </View> */}
-        </View>
-
-        <View style={styles.bottomBox}>
-          {currentIdx === 0 ? (
-            <View />
-          ) : (
+        </Pressable>
+        {currentIdx !== 0 && (
+          <View style={styles.topBoxRight}>
             <Pressable
               style={{marginRight: MARGIN_HOR}}
               onPress={async () => {
@@ -142,61 +71,147 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
                 }
               }}>
               <Image
-                source={require('@/assets/mypage/download-black-24.png')}
+                source={require('@/assets/mypage/download-white-24.png')}
                 style={commonStyles.img}
               />
             </Pressable>
-          )}
-          <Pressable
-            style={{marginRight: MARGIN_HOR}}
-            onPress={() => {
-              setVideoPause(!videoPause);
-            }}>
-            <Image
-              source={
-                videoPause
-                  ? require('@/assets/mypage/start-black-24.png')
-                  : require('@/assets/search-24.png')
-              }
-              style={commonStyles.img}
-            />
-          </Pressable>
-          {currentIdx === 0 ? (
-            <View />
-          ) : (
             <Pressable
-              style={{marginRight: MARGIN_HOR}}
+              style={{paddingRight: MARGIN_HOR * 2}}
               onPress={() => {
                 let newGallery = gallery;
-                newGallery[galleryIdx].uriLst = gallery[
-                  galleryIdx
-                ].uriLst.filter((data: any, idx: number) => {
-                  return idx !== currentIdx;
-                });
-                setGallery(newGallery);
-                setCurrentIdx(0);
+                if (newGallery[galleryIdx].uriLst.length === 2) {
+                  newGallery = newGallery.filter((data: any) => {
+                    return data.id !== gallery[galleryIdx].id;
+                  });
+                  setGallery(newGallery);
+                  navigation.pop();
+                } else {
+                  console.log('b');
+                  newGallery[galleryIdx].uriLst = gallery[
+                    galleryIdx
+                  ].uriLst.filter((data: any, idx: number) => {
+                    return idx !== currentIdx;
+                  });
+                  setGallery(newGallery);
+                  setCurrentIdx(0);
+                }
               }}>
               <Image
-                source={require('@/assets/mypage/trash-black-24.png')}
+                source={require('@/assets/mypage/trash-white-24.png')}
                 style={commonStyles.img}
               />
             </Pressable>
-          )}
-        </View>
+            {/* <Pressable style={{marginRight: MARGIN_HOR}} onPress={() => {}}>
+              <Image
+                source={require('@/assets/none-24.png')}
+                style={commonStyles.img}
+              />
+            </Pressable> */}
+          </View>
+        )}
       </View>
-    </SafeAreaView>
+
+      <Pressable
+        style={{
+          flex: 1,
+          width: '100%',
+
+          justifyContent: 'center',
+          backgroundColor: 'black',
+        }}
+        onPress={() => {
+          setVideoPause(!videoPause);
+        }}>
+        <Video
+          ref={videoRef}
+          source={
+            currentIdx === 0
+              ? gallery[galleryIdx].uriLst[currentIdx]
+              : {uri: gallery[galleryIdx].uriLst[currentIdx]}
+          }
+          style={{
+            width: '100%',
+            height: '100%',
+            opacity: 0.8,
+          }}
+          paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
+          resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
+          volume={1.0}
+          ignoreSilentSwitch={'ignore'}
+          playWhenInactive={true}
+          playInBackground={true}
+          repeat={true} // video가 끝나면 다시 재생할 지 여부
+          onAnimatedValueUpdate={() => {}}
+          muted={false}
+          controls={false} //바텀바가 나옴
+        />
+      </Pressable>
+
+      <View style={styles.topScroll}>
+        <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
+          {gallery[galleryIdx].uriLst.map((data: any, idx: number) => {
+            return (
+              <Pressable
+                key={idx}
+                style={[
+                  Styles(window.ipad).topBox,
+                  currentIdx === idx
+                    ? styles.topBox2
+                    : Styles(window.ipad).topBox,
+                ]}
+                onPress={() => {
+                  setCurrentIdx(idx);
+                  setVideoPause(true);
+                }}>
+                <Text
+                  style={currentIdx === idx ? styles.boxText2 : styles.boxText}>
+                  {idx === 0 ? 'S' : idx}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+        {/* <View style={{width: '100%', height: '100%', backgroundColor: 'red'}} /> */}
+      </View>
+    </View>
+    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   topBox: {
-    marginTop: MARGIN_VER,
+    width: '100%',
+    marginTop: MARGIN_VER * 2,
     marginBottom: 25,
+    marginHorizontal: MARGIN_HOR,
+
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+
+    position: 'absolute',
+    zIndex: 999,
   },
+  topBoxRight: {
+    flexDirection: 'row',
+    marginRight: MARGIN_HOR,
+  },
+
+  topScroll: {
+    height: '100%',
+    marginRight: MARGIN_HOR,
+    marginBottom: 30,
+
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+
+    zIndex: 999,
+    transform: [{scaleY: -1}],
+  },
+
   topBox2: {
-    backgroundColor: 'black',
+    backgroundColor: 'rgb(180, 180, 180)',
   },
   bottomBox: {
     marginVertical: 34,
@@ -212,7 +227,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   boxText: {
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     fontWeight: '700',
   },
@@ -221,12 +236,22 @@ const styles = StyleSheet.create({
 const Styles = (ipad: boolean) =>
   StyleSheet.create({
     topBox: {
-      width: ipad ? 100 : 52,
-      height: ipad ? 36 : 22,
-      marginRight: ipad ? MARGIN_HOR : 8,
+      width: ipad ? 40 : 40,
+      height: ipad ? 40 : 40,
+      marginBottom: 20,
+      // marginRight: ipad ? MARGIN_HOR : 8,
       justifyContent: 'center',
 
+      borderColor: 'white',
       borderWidth: 1,
-      borderRadius: 5,
+      borderRadius: 40,
+
+      transform: [{scaleY: -1}],
+    },
+
+    img: {
+      width: ipad ? 40 : 24,
+      height: ipad ? 40 : 24,
+      marginRight: ipad ? 10 : 5,
     },
   });

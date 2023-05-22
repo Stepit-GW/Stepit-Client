@@ -132,7 +132,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             style={{
               width: '100%',
               height: 24,
-              marginTop: MARGIN_VER * 3,
+              marginTop: MARGIN_VER * 2,
               marginLeft: MARGIN_HOR,
               position: 'absolute',
             }}
