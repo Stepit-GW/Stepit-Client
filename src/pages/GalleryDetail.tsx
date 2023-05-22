@@ -27,6 +27,7 @@ import {windowState} from '@/recoil/windowState';
 
 import Video from 'react-native-video';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import BtnVideoLine from '@/components/video/BtnVideoLine';
 
 export default function GalleryDetail({route, navigation}: any): JSX.Element {
   const galleryIdx = route.params.galleryIdx;
@@ -37,6 +38,8 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
   const scrollRef = useRef<any>();
   const videoRef = useRef<any>();
   const [videoPause, setVideoPause] = useState(true);
+  const [allTime, setAllTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     scrollRef.current.scrollTo({y: 0});
@@ -101,12 +104,6 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
                 style={commonStyles.img}
               />
             </Pressable>
-            {/* <Pressable style={{marginRight: MARGIN_HOR}} onPress={() => {}}>
-              <Image
-                source={require('@/assets/none-24.png')}
-                style={commonStyles.img}
-              />
-            </Pressable> */}
           </View>
         )}
       </View>
@@ -133,6 +130,12 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
             width: '100%',
             height: '100%',
             opacity: 0.8,
+          }}
+          onLoad={(e: any) => {
+            setAllTime(e.duration);
+          }} // 미디어가 로드되고 재생할 준비가 되면 호출되는 콜백 함수입니다.
+          onProgress={(e: any) => {
+            setCurrentTime(e.currentTime);
           }}
           paused={videoPause} // 재생/중지 여부, 디비에서 시간을 보내주고 setTimeout이용해서 그 시간 지날때마다 멈춰줌
           resizeMode={'cover'} // 프레임이 비디오 크기와 일치하지 않을 때 비디오 크기를 조정하는 방법을 결정합니다. cover : 비디오의 크기를 유지하면서 최대한 맞게
@@ -173,6 +176,27 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
         </ScrollView>
         {/* <View style={{width: '100%', height: '100%', backgroundColor: 'red'}} /> */}
       </View>
+      <View
+        style={{
+          width: '100%',
+          paddingHorizontal: MARGIN_HOR,
+
+          position: 'absolute',
+          bottom: 34,
+          zIndex: 999,
+        }}>
+        <BtnVideoLine
+          videoRef={videoRef}
+          setVideoPause={setVideoPause}
+          currentTime={Math.round(currentTime)}
+          allTime={Math.round(allTime)}
+          stopTime={undefined}
+          rate={1}
+          setRate={() => {}}
+          rateShow={false}
+          aniOpacityTimeFn={() => {}}
+        />
+      </View>
     </View>
     // </SafeAreaView>
   );
@@ -200,7 +224,7 @@ const styles = StyleSheet.create({
   topScroll: {
     height: '100%',
     marginRight: MARGIN_HOR,
-    marginBottom: 30,
+    marginBottom: 64,
 
     position: 'absolute',
     right: 0,

@@ -103,6 +103,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
               uriLst: [video.testUrl, data.uri],
             });
           }
+          console.log(data.uri);
           setGallery(pastGalleryList);
 
           // if (data.uri) {

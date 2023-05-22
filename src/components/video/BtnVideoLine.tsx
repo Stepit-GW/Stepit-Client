@@ -6,7 +6,6 @@ import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 
 export default function BtnVideoLine({
   videoRef,
-  videoScreen,
   setVideoPause,
   currentTime,
   allTime,
@@ -87,7 +86,6 @@ export default function BtnVideoLine({
                 const stair = WINDOW_WIDTH / allTime;
                 const move = e.nativeEvent.pageX;
 
-                console.log(move / stair);
                 videoRef.current.seek(Math.round(move / stair));
               }
               aniOpacityTimeFn(1);
@@ -225,19 +223,8 @@ const RateStyle = (ori: boolean, rate: boolean) =>
       height: ori ? 14 : 10,
 
       borderWidth: 2,
-      borderColor: 'white', //line
+      borderColor: 'red', //line
       borderRadius: ori ? 14 : 10,
-      backgroundColor: 'white', //line
-    },
-  });
-
-const RateStyle2 = (rate: boolean) =>
-  StyleSheet.create({
-    realLineBox: {
-      width: '100%',
-      paddingRight: 0,
-      position: 'absolute',
-      top: rate ? 0 : -5,
-      alignSelf: 'flex-end',
+      // backgroundColor: 'red', //line
     },
   });
