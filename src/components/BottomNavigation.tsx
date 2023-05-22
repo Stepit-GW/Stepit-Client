@@ -32,7 +32,15 @@ export default function BottomNavigation(): JSX.Element {
               tabBarIcon: ({focused}: any) => {
                 return (
                   <Image
-                    source={iconColor ? data.act : data.none}
+                    source={
+                      focused
+                        ? iconColor
+                          ? data.whiteAct
+                          : data.act
+                        : iconColor
+                        ? data.whiteNone
+                        : data.none
+                    }
                     style={styles.bottomImg}
                   />
                 );

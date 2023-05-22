@@ -150,7 +150,6 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
           <Pressable
             style={{marginRight: MARGIN_HOR}}
             onPress={() => {
-              // navigation.pop();
               setVideoPause(!videoPause);
             }}>
             <Image
@@ -168,7 +167,14 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
             <Pressable
               style={{marginRight: MARGIN_HOR}}
               onPress={() => {
-                // navigation.pop();
+                let newGallery = gallery;
+                newGallery[galleryIdx].uriLst = gallery[
+                  galleryIdx
+                ].uriLst.filter((data: any, idx: number) => {
+                  return idx !== currentIdx;
+                });
+                setGallery(newGallery);
+                setCurrentIdx(0);
               }}>
               <Image
                 source={require('@/assets/mypage/trash-black-24.png')}
