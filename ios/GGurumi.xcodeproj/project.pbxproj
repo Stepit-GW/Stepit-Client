@@ -11,39 +11,30 @@
 		05F186A35B4D4793A164B218 /* flower.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 33585FC96EF74699BD73BA7F /* flower.mp4 */; };
 		063F6EEC2C0D4DE7AEF1B5DD /* arrow-top-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 21564CFB3983465388644309 /* arrow-top-24.png */; };
 		06AABD778B524350908816C2 /* instasave6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C1441ADE823847B6A6D680CE /* instasave6.mp4 */; };
-		0C80B921A6F3F58F76C31292 /* libPods-GGurumi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-GGurumi.a */; };
 		0E7307B364AE4F65B740C032 /* home-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9DE5C7AED54C958498B8AD /* home-white-48.png */; };
 		1080C1177532478F94762F55 /* isolation_4_pre.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D894D7CD103148EAB8618434 /* isolation_4_pre.mp4 */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		188B2DC963A04641A122F7FF /* test7.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3E71F0B5422D42C1980CD8BB /* test7.mp4 */; };
 		2133DC900AAD4B8DB8C763C8 /* mirror-mode-24.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE2DCB01CC94013A973CA9E /* mirror-mode-24.png */; };
 		24AE0E2637764EA189BCF566 /* instasave.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = EAC49FF0059B4E1D8321D17D /* instasave.mp4 */; };
 		2D7BC9E778734D8FA8148037 /* stop-36.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A4A5F914134761A74AAF5C /* stop-36.png */; };
 		30AC8683863E49F08DB6976D /* start-36.png in Resources */ = {isa = PBXBuildFile; fileRef = E29D693DDFCA4BD8A606F440 /* start-36.png */; };
 		3B1F845D0BF74C4AB7D26D4B /* screen-scaledown-24.png in Resources */ = {isa = PBXBuildFile; fileRef = DB02854BD7F842F3B0716E55 /* screen-scaledown-24.png */; };
 		40C493229E5845C2B88BE2B3 /* pencil-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 741591898A5C4EED86CC6D49 /* pencil-24.png */; };
-		40CB437A78824F46AD763D4D /* short-video-48.png in Resources */ = {isa = PBXBuildFile; fileRef = F76ABAB507734337868F96BE /* short-video-48.png */; };
 		41BD52F721604EFA82D5E797 /* instasave5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 980349E92B984896A9FE41B6 /* instasave5.mp4 */; };
 		439A85EA8DAD4D85B7AE7F13 /* heart-fill-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE978EDC1B54CFD8ECD97E7 /* heart-fill-24.png */; };
-		45E4043BF2CE4C298245CA5A /* test4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = EE6E62CE5C4F4A41AF2A2E22 /* test4.mp4 */; };
 		48BB9E4914474D07BB9C453E /* replay-36.png in Resources */ = {isa = PBXBuildFile; fileRef = C71D81873A774B54B9C238FB /* replay-36.png */; };
 		5B6937D112AC4C94842A2F37 /* logout-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1CDC81B2634E8795998CAD /* logout-24.png */; };
 		5E87EB2E7F8144EC974CCBF2 /* x-24.png in Resources */ = {isa = PBXBuildFile; fileRef = F735F53CA5444F56B513C01B /* x-24.png */; };
-		63A45E8D53D843CD8C7C3816 /* test9.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1672DEFC253840D2A5A8D15A /* test9.mp4 */; };
+		63F7396FC28758E433816404 /* libPods-GGurumi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFC84ED56447295BC8DBCFF /* libPods-GGurumi.a */; };
 		650713E00AEF45DABD8885B8 /* instasave3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AE0C409C63EC4626AF357AE2 /* instasave3.mp4 */; };
 		732124CA0E974536BDACA096 /* notfound.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5215875AE44E4B0195D2E1E6 /* notfound.mp4 */; };
 		76112D71A23441F5BFB295ED /* back-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C02B76DB3994071B62BFA78 /* back-24.png */; };
-		7699B88040F8A987B510C191 /* libPods-GGurumi-GGurumiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-GGurumi-GGurumiTests.a */; };
-		7A45317A5C7A418BA071E17B /* test10.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B52709CEE05148EEA3FB0792 /* test10.mp4 */; };
 		7E38D556D04A491DB74EB5A0 /* heart-white-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 382D4F2840BF43E8AAEABA11 /* heart-white-24.png */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		85567BDC504548669AC65092 /* profile-100.png in Resources */ = {isa = PBXBuildFile; fileRef = AD76564B4AB44E14A491426C /* profile-100.png */; };
 		8E6F19FC01E64F99B5F0E0C0 /* Because_of_you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = EA4600F9CEF6430C8E2343F2 /* Because_of_you.mp4 */; };
-		94606A048B3142DAA45B9012 /* short-video-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 94291AF47D374ABD90365EC9 /* short-video-white-48.png */; };
-		9BF7FE690CF340AB9888EF51 /* test5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B81CE856037C4692819BBF54 /* test5.mp4 */; };
-		9CBDE3B20BC94B5A9471C744 /* test6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2D24F09A86644C3BF05E9E0 /* test6.mp4 */; };
 		9FCBB4C65E4846A69413542E /* check-22.png in Resources */ = {isa = PBXBuildFile; fileRef = A78E9A71D73B43D8A9EA9085 /* check-22.png */; };
 		A1FB0D9BC8F34DB581991D7B /* arrow-black-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E27A4AB9C74B688BD89CC6 /* arrow-black-24.png */; };
 		A7119A4083044216A33EBC13 /* mypage-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 24B643090DA7404497AEF6EA /* mypage-48.png */; };
@@ -52,15 +43,12 @@
 		B5FBB195DFA24E5DAC7B5E73 /* arrow-gray-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F055138822C43639DA75BE2 /* arrow-gray-24.png */; };
 		B628A5D3992F42AC8E77E0CC /* instasave2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 92032950F8A0478289EEB4B3 /* instasave2.mp4 */; };
 		B6B60E2140D047C38FB0661C /* instasave4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6B667A332EF1455BAEB887C0 /* instasave4.mp4 */; };
-		B6F02FA60BA74025A5856B4C /* test3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8561EF1504574321901B505F /* test3.mp4 */; };
 		B72ED55BB7A742848AAA998D /* isolation_4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1587F8411CF94C54ABE6CB37 /* isolation_4.mp4 */; };
 		B87004C26EF941C4A012A6CC /* arrow-bottom-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC948E56211406DAF7ADDFE /* arrow-bottom-24.png */; };
 		BD68DD50BD454428A50C32A9 /* arm_straight.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 25A339361FD9418DADA89A4E /* arm_straight.mp4 */; };
 		BFF173468A55485E88B20268 /* screen-scaleup-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 41415556B9AC47B88F67683B /* screen-scaleup-24.png */; };
-		C7205DED40A7498795DC7FD7 /* test2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D93EDCD412EF409A8FD1D7F0 /* test2.mp4 */; };
 		C8078EBC7CAC42569F26CFC6 /* heart-black-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 5942512AEBDD4C58A96515BD /* heart-black-24.png */; };
 		C82E5F404A72477A8FE82DF7 /* video-24.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6B2A6594F4C11882F63DF /* video-24.png */; };
-		C961B56F306A4A94A11FC52A /* download-24.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0D982A6D384973AB95A854 /* download-24.png */; };
 		CDCD12B139EF44C9B9AE7997 /* stretching.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A23BE8E629374173936C658F /* stretching.mp4 */; };
 		D18E5F360BC14A4BB199F40D /* check-30.png in Resources */ = {isa = PBXBuildFile; fileRef = E55718AC21774828B18493D6 /* check-30.png */; };
 		DAA917721BD34262B86751C3 /* setting-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 39DFB92FDE5147BC9A71C228 /* setting-24.png */; };
@@ -75,8 +63,7 @@
 		E8024F381CBF4CF4B8C2CFF6 /* mypage-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A7B3CC67F54EFEB3EAD692 /* mypage-white-48.png */; };
 		E8652C5967E543A29963F6C7 /* home-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BF752674664ECE8937B6FD /* home-48.png */; };
 		F153FAB83B584BF4A973005A /* notfound.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A04684D64046149D180C2E /* notfound.png */; };
-		F6916DD39BBE46CBAE78F250 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4AA60E2FF09D4AA5A6D6D845 /* test1.mp4 */; };
-		F79C24E591084A59B145A938 /* test8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C5B134622C4F4C349BD815EF /* test8.mp4 */; };
+		F54AED8ABD91BD2341561C07 /* libPods-GGurumi-GGurumiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0027B07CD173DA2418B79C37 /* libPods-GGurumi-GGurumiTests.a */; };
 		F8DE31BC118C4B84B6BDEF0B /* download-white-24.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EB0AE845AB4FD2A1974BC3 /* download-white-24.png */; };
 /* End PBXBuildFile section */
 
@@ -91,10 +78,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0027B07CD173DA2418B79C37 /* libPods-GGurumi-GGurumiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GGurumi-GGurumiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A4A5F914134761A74AAF5C /* stop-36.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "stop-36.png"; path = "../src/assets/video/stop-36.png"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* GGurumiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GGurumiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* GGurumiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGurumiTests.m; sourceTree = "<group>"; };
+		01478A32B9EE338E69DD8A6C /* Pods-GGurumi-GGurumiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi-GGurumiTests.release.xcconfig"; path = "Target Support Files/Pods-GGurumi-GGurumiTests/Pods-GGurumi-GGurumiTests.release.xcconfig"; sourceTree = "<group>"; };
 		04E27A4AB9C74B688BD89CC6 /* arrow-black-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "arrow-black-24.png"; path = "../src/assets/arrow-black-24.png"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GGurumi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGurumi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GGurumi/AppDelegate.h; sourceTree = "<group>"; };
@@ -103,9 +92,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GGurumi/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GGurumi/main.m; sourceTree = "<group>"; };
 		1587F8411CF94C54ABE6CB37 /* isolation_4.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = isolation_4.mp4; path = ../src/assets/videoTest/isolation_4.mp4; sourceTree = "<group>"; };
-		1672DEFC253840D2A5A8D15A /* test9.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test9.mp4; path = ../src/assets/test9.mp4; sourceTree = "<group>"; };
 		18BF752674664ECE8937B6FD /* home-48.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "home-48.png"; path = "../src/assets/bottomRoutes/home-48.png"; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-GGurumi-GGurumiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GGurumi-GGurumiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21564CFB3983465388644309 /* arrow-top-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "arrow-top-24.png"; path = "../src/assets/video/arrow-top-24.png"; sourceTree = "<group>"; };
 		2384B50ADDAF469DB14D9B0A /* front-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "front-24.png"; path = "../src/assets/video/front-24.png"; sourceTree = "<group>"; };
 		24B643090DA7404497AEF6EA /* mypage-48.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "mypage-48.png"; path = "../src/assets/bottomRoutes/mypage-48.png"; sourceTree = "<group>"; };
@@ -114,17 +101,11 @@
 		33585FC96EF74699BD73BA7F /* flower.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = flower.mp4; path = ../src/assets/videoTest/flower.mp4; sourceTree = "<group>"; };
 		382D4F2840BF43E8AAEABA11 /* heart-white-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "heart-white-24.png"; path = "../src/assets/heart-white-24.png"; sourceTree = "<group>"; };
 		39DFB92FDE5147BC9A71C228 /* setting-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "setting-24.png"; path = "../src/assets/mypage/setting-24.png"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-GGurumi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi.debug.xcconfig"; path = "Target Support Files/Pods-GGurumi/Pods-GGurumi.debug.xcconfig"; sourceTree = "<group>"; };
-		3E71F0B5422D42C1980CD8BB /* test7.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test7.mp4; path = ../src/assets/test7.mp4; sourceTree = "<group>"; };
 		41415556B9AC47B88F67683B /* screen-scaleup-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "screen-scaleup-24.png"; path = "../src/assets/video/screen-scaleup-24.png"; sourceTree = "<group>"; };
-		4AA60E2FF09D4AA5A6D6D845 /* test1.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test1.mp4; path = ../src/assets/test1.mp4; sourceTree = "<group>"; };
 		4BDC90E92C054DDA8206B3B4 /* double-speed-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "double-speed-24.png"; path = "../src/assets/video/double-speed-24.png"; sourceTree = "<group>"; };
 		5215875AE44E4B0195D2E1E6 /* notfound.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = notfound.mp4; path = ../src/assets/notfound.mp4; sourceTree = "<group>"; };
 		5380C33492A742ADB8F865F2 /* search-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "search-24.png"; path = "../src/assets/search-24.png"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-GGurumi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi.release.xcconfig"; path = "Target Support Files/Pods-GGurumi/Pods-GGurumi.release.xcconfig"; sourceTree = "<group>"; };
 		5942512AEBDD4C58A96515BD /* heart-black-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "heart-black-24.png"; path = "../src/assets/heart-black-24.png"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi-GGurumiTests.debug.xcconfig"; path = "Target Support Files/Pods-GGurumi-GGurumiTests/Pods-GGurumi-GGurumiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-GGurumi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GGurumi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		601BB83329F3406CBF7122AD /* wave.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = wave.mp4; path = ../src/assets/videoTest/wave.mp4; sourceTree = "<group>"; };
 		682A600B9D0F4432A37FB6AC /* stretching_pre.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = stretching_pre.mp4; path = ../src/assets/videoTest/stretching_pre.mp4; sourceTree = "<group>"; };
 		6B667A332EF1455BAEB887C0 /* instasave4.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave4.mp4; path = ../src/assets/videoTest/instasave4.mp4; sourceTree = "<group>"; };
@@ -134,14 +115,13 @@
 		7F055138822C43639DA75BE2 /* arrow-gray-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "arrow-gray-24.png"; path = "../src/assets/mypage/arrow-gray-24.png"; sourceTree = "<group>"; };
 		81A04684D64046149D180C2E /* notfound.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = notfound.png; path = ../src/assets/notfound.png; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GGurumi/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8561EF1504574321901B505F /* test3.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test3.mp4; path = ../src/assets/test3.mp4; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-GGurumi-GGurumiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi-GGurumiTests.release.xcconfig"; path = "Target Support Files/Pods-GGurumi-GGurumiTests/Pods-GGurumi-GGurumiTests.release.xcconfig"; sourceTree = "<group>"; };
 		8BC948E56211406DAF7ADDFE /* arrow-bottom-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "arrow-bottom-24.png"; path = "../src/assets/video/arrow-bottom-24.png"; sourceTree = "<group>"; };
+		8CFC84ED56447295BC8DBCFF /* libPods-GGurumi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GGurumi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92032950F8A0478289EEB4B3 /* instasave2.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave2.mp4; path = ../src/assets/videoTest/instasave2.mp4; sourceTree = "<group>"; };
-		94291AF47D374ABD90365EC9 /* short-video-white-48.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "short-video-white-48.png"; path = "../src/assets/bottomRoutes/short-video-white-48.png"; sourceTree = "<group>"; };
 		980349E92B984896A9FE41B6 /* instasave5.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave5.mp4; path = ../src/assets/videoTest/instasave5.mp4; sourceTree = "<group>"; };
 		9C02B76DB3994071B62BFA78 /* back-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "back-24.png"; path = "../src/assets/video/back-24.png"; sourceTree = "<group>"; };
 		9E1CDC81B2634E8795998CAD /* logout-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "logout-24.png"; path = "../src/assets/mypage/logout-24.png"; sourceTree = "<group>"; };
+		A0DEF02BAA14DA06716867A7 /* Pods-GGurumi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi.debug.xcconfig"; path = "Target Support Files/Pods-GGurumi/Pods-GGurumi.debug.xcconfig"; sourceTree = "<group>"; };
 		A23BE8E629374173936C658F /* stretching.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = stretching.mp4; path = ../src/assets/videoTest/stretching.mp4; sourceTree = "<group>"; };
 		A265F2DBEBD14D3C94DCDF10 /* profile-add-20.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "profile-add-20.png"; path = "../src/assets/mypage/profile-add-20.png"; sourceTree = "<group>"; };
 		A568F09E8B974B35A5C79905 /* heart-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "heart-24.png"; path = "../src/assets/mypage/heart-24.png"; sourceTree = "<group>"; };
@@ -149,30 +129,24 @@
 		AD76564B4AB44E14A491426C /* profile-100.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "profile-100.png"; path = "../src/assets/mypage/profile-100.png"; sourceTree = "<group>"; };
 		AE0C409C63EC4626AF357AE2 /* instasave3.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave3.mp4; path = ../src/assets/videoTest/instasave3.mp4; sourceTree = "<group>"; };
 		AFE978EDC1B54CFD8ECD97E7 /* heart-fill-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "heart-fill-24.png"; path = "../src/assets/heart-fill-24.png"; sourceTree = "<group>"; };
-		B2D24F09A86644C3BF05E9E0 /* test6.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test6.mp4; path = ../src/assets/test6.mp4; sourceTree = "<group>"; };
-		B52709CEE05148EEA3FB0792 /* test10.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test10.mp4; path = ../src/assets/test10.mp4; sourceTree = "<group>"; };
 		B5A54FBB2A0A1B4B00CF7E90 /* libreact-native-cameraroll.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-cameraroll.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EB0AE845AB4FD2A1974BC3 /* download-white-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "download-white-24.png"; path = "../src/assets/download-white-24.png"; sourceTree = "<group>"; };
-		B81CE856037C4692819BBF54 /* test5.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test5.mp4; path = ../src/assets/test5.mp4; sourceTree = "<group>"; };
 		C0B6B2A6594F4C11882F63DF /* video-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "video-24.png"; path = "../src/assets/video/video-24.png"; sourceTree = "<group>"; };
 		C1441ADE823847B6A6D680CE /* instasave6.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave6.mp4; path = ../src/assets/videoTest/instasave6.mp4; sourceTree = "<group>"; };
 		C41C268431484483898D765F /* time-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "time-24.png"; path = "../src/assets/video/time-24.png"; sourceTree = "<group>"; };
-		C5B134622C4F4C349BD815EF /* test8.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test8.mp4; path = ../src/assets/test8.mp4; sourceTree = "<group>"; };
 		C71D81873A774B54B9C238FB /* replay-36.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "replay-36.png"; path = "../src/assets/video/replay-36.png"; sourceTree = "<group>"; };
 		CAE2DCB01CC94013A973CA9E /* mirror-mode-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "mirror-mode-24.png"; path = "../src/assets/video/mirror-mode-24.png"; sourceTree = "<group>"; };
 		D2CA690CF33E4C72B3546854 /* x-white-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "x-white-24.png"; path = "../src/assets/video/x-white-24.png"; sourceTree = "<group>"; };
 		D894D7CD103148EAB8618434 /* isolation_4_pre.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = isolation_4_pre.mp4; path = ../src/assets/videoTest/isolation_4_pre.mp4; sourceTree = "<group>"; };
-		D93EDCD412EF409A8FD1D7F0 /* test2.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test2.mp4; path = ../src/assets/test2.mp4; sourceTree = "<group>"; };
+		DAD8D0269DE7F3A7C2BB3696 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi-GGurumiTests.debug.xcconfig"; path = "Target Support Files/Pods-GGurumi-GGurumiTests/Pods-GGurumi-GGurumiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB02854BD7F842F3B0716E55 /* screen-scaledown-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "screen-scaledown-24.png"; path = "../src/assets/video/screen-scaledown-24.png"; sourceTree = "<group>"; };
 		E29D693DDFCA4BD8A606F440 /* start-36.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "start-36.png"; path = "../src/assets/video/start-36.png"; sourceTree = "<group>"; };
 		E55718AC21774828B18493D6 /* check-30.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "check-30.png"; path = "../src/assets/mypage/check-30.png"; sourceTree = "<group>"; };
 		EA4600F9CEF6430C8E2343F2 /* Because_of_you.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Because_of_you.mp4; path = ../src/assets/videoTest/Because_of_you.mp4; sourceTree = "<group>"; };
 		EAC49FF0059B4E1D8321D17D /* instasave.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = instasave.mp4; path = ../src/assets/videoTest/instasave.mp4; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EE0D982A6D384973AB95A854 /* download-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "download-24.png"; path = "../src/assets/mypage/download-24.png"; sourceTree = "<group>"; };
-		EE6E62CE5C4F4A41AF2A2E22 /* test4.mp4 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = test4.mp4; path = ../src/assets/test4.mp4; sourceTree = "<group>"; };
 		F735F53CA5444F56B513C01B /* x-24.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "x-24.png"; path = "../src/assets/video/x-24.png"; sourceTree = "<group>"; };
-		F76ABAB507734337868F96BE /* short-video-48.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "short-video-48.png"; path = "../src/assets/bottomRoutes/short-video-48.png"; sourceTree = "<group>"; };
+		FE7A58D5D6E8B3255A48C3F5 /* Pods-GGurumi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGurumi.release.xcconfig"; path = "Target Support Files/Pods-GGurumi/Pods-GGurumi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-GGurumi-GGurumiTests.a in Frameworks */,
+				F54AED8ABD91BD2341561C07 /* libPods-GGurumi-GGurumiTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-GGurumi.a in Frameworks */,
+				63F7396FC28758E433816404 /* libPods-GGurumi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,8 +204,8 @@
 			children = (
 				B5A54FBB2A0A1B4B00CF7E90 /* libreact-native-cameraroll.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-GGurumi.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-GGurumi-GGurumiTests.a */,
+				8CFC84ED56447295BC8DBCFF /* libPods-GGurumi.a */,
+				0027B07CD173DA2418B79C37 /* libPods-GGurumi-GGurumiTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,10 +245,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-GGurumi.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-GGurumi.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-GGurumi-GGurumiTests.release.xcconfig */,
+				A0DEF02BAA14DA06716867A7 /* Pods-GGurumi.debug.xcconfig */,
+				FE7A58D5D6E8B3255A48C3F5 /* Pods-GGurumi.release.xcconfig */,
+				DAD8D0269DE7F3A7C2BB3696 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */,
+				01478A32B9EE338E69DD8A6C /* Pods-GGurumi-GGurumiTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -288,15 +262,12 @@
 				7B9DE5C7AED54C958498B8AD /* home-white-48.png */,
 				24B643090DA7404497AEF6EA /* mypage-48.png */,
 				25A7B3CC67F54EFEB3EAD692 /* mypage-white-48.png */,
-				F76ABAB507734337868F96BE /* short-video-48.png */,
-				94291AF47D374ABD90365EC9 /* short-video-white-48.png */,
 				B6EB0AE845AB4FD2A1974BC3 /* download-white-24.png */,
 				5942512AEBDD4C58A96515BD /* heart-black-24.png */,
 				AFE978EDC1B54CFD8ECD97E7 /* heart-fill-24.png */,
 				382D4F2840BF43E8AAEABA11 /* heart-white-24.png */,
 				7F055138822C43639DA75BE2 /* arrow-gray-24.png */,
 				E55718AC21774828B18493D6 /* check-30.png */,
-				EE0D982A6D384973AB95A854 /* download-24.png */,
 				A568F09E8B974B35A5C79905 /* heart-24.png */,
 				9E1CDC81B2634E8795998CAD /* logout-24.png */,
 				741591898A5C4EED86CC6D49 /* pencil-24.png */,
@@ -306,16 +277,6 @@
 				5215875AE44E4B0195D2E1E6 /* notfound.mp4 */,
 				81A04684D64046149D180C2E /* notfound.png */,
 				5380C33492A742ADB8F865F2 /* search-24.png */,
-				4AA60E2FF09D4AA5A6D6D845 /* test1.mp4 */,
-				B52709CEE05148EEA3FB0792 /* test10.mp4 */,
-				D93EDCD412EF409A8FD1D7F0 /* test2.mp4 */,
-				8561EF1504574321901B505F /* test3.mp4 */,
-				EE6E62CE5C4F4A41AF2A2E22 /* test4.mp4 */,
-				B81CE856037C4692819BBF54 /* test5.mp4 */,
-				B2D24F09A86644C3BF05E9E0 /* test6.mp4 */,
-				3E71F0B5422D42C1980CD8BB /* test7.mp4 */,
-				C5B134622C4F4C349BD815EF /* test8.mp4 */,
-				1672DEFC253840D2A5A8D15A /* test9.mp4 */,
 				8BC948E56211406DAF7ADDFE /* arrow-bottom-24.png */,
 				21564CFB3983465388644309 /* arrow-top-24.png */,
 				9C02B76DB3994071B62BFA78 /* back-24.png */,
@@ -357,12 +318,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GGurumiTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				7D2B2BB510C3E4AC39754266 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				5674471B6D8990C5A27A97A3 /* [CP] Embed Pods Frameworks */,
+				FC4F6AF8944A2972CFC404E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,14 +339,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GGurumi" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				2D6BC12BA8321BDA5B2131A2 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				FFCF5C9F1444948CFF1CCAA2 /* [CP] Embed Pods Frameworks */,
+				B4D0241C2172CFA7C5567192 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -452,15 +413,12 @@
 				0E7307B364AE4F65B740C032 /* home-white-48.png in Resources */,
 				A7119A4083044216A33EBC13 /* mypage-48.png in Resources */,
 				E8024F381CBF4CF4B8C2CFF6 /* mypage-white-48.png in Resources */,
-				40CB437A78824F46AD763D4D /* short-video-48.png in Resources */,
-				94606A048B3142DAA45B9012 /* short-video-white-48.png in Resources */,
 				F8DE31BC118C4B84B6BDEF0B /* download-white-24.png in Resources */,
 				C8078EBC7CAC42569F26CFC6 /* heart-black-24.png in Resources */,
 				439A85EA8DAD4D85B7AE7F13 /* heart-fill-24.png in Resources */,
 				7E38D556D04A491DB74EB5A0 /* heart-white-24.png in Resources */,
 				B5FBB195DFA24E5DAC7B5E73 /* arrow-gray-24.png in Resources */,
 				D18E5F360BC14A4BB199F40D /* check-30.png in Resources */,
-				C961B56F306A4A94A11FC52A /* download-24.png in Resources */,
 				E190CE2A846B4651A3429F77 /* heart-24.png in Resources */,
 				5B6937D112AC4C94842A2F37 /* logout-24.png in Resources */,
 				40C493229E5845C2B88BE2B3 /* pencil-24.png in Resources */,
@@ -470,16 +428,6 @@
 				732124CA0E974536BDACA096 /* notfound.mp4 in Resources */,
 				F153FAB83B584BF4A973005A /* notfound.png in Resources */,
 				E6A3F2386A8048CFB7C9C087 /* search-24.png in Resources */,
-				F6916DD39BBE46CBAE78F250 /* test1.mp4 in Resources */,
-				7A45317A5C7A418BA071E17B /* test10.mp4 in Resources */,
-				C7205DED40A7498795DC7FD7 /* test2.mp4 in Resources */,
-				B6F02FA60BA74025A5856B4C /* test3.mp4 in Resources */,
-				45E4043BF2CE4C298245CA5A /* test4.mp4 in Resources */,
-				9BF7FE690CF340AB9888EF51 /* test5.mp4 in Resources */,
-				9CBDE3B20BC94B5A9471C744 /* test6.mp4 in Resources */,
-				188B2DC963A04641A122F7FF /* test7.mp4 in Resources */,
-				F79C24E591084A59B145A938 /* test8.mp4 in Resources */,
-				63A45E8D53D843CD8C7C3816 /* test9.mp4 in Resources */,
 				B87004C26EF941C4A012A6CC /* arrow-bottom-24.png in Resources */,
 				063F6EEC2C0D4DE7AEF1B5DD /* arrow-top-24.png in Resources */,
 				76112D71A23441F5BFB295ED /* back-24.png in Resources */,
@@ -532,46 +480,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GGurumi-GGurumiTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		2D6BC12BA8321BDA5B2131A2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -593,7 +502,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+		5674471B6D8990C5A27A97A3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -610,7 +519,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GGurumi-GGurumiTests/Pods-GGurumi-GGurumiTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		7D2B2BB510C3E4AC39754266 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GGurumi-GGurumiTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4D0241C2172CFA7C5567192 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -627,7 +558,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+		FC4F6AF8944A2972CFC404E0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -663,6 +594,23 @@
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FFCF5C9F1444948CFF1CCAA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GGurumi/Pods-GGurumi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -696,7 +644,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */;
+			baseConfigurationReference = DAD8D0269DE7F3A7C2BB3696 /* Pods-GGurumi-GGurumiTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -723,7 +671,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-GGurumi-GGurumiTests.release.xcconfig */;
+			baseConfigurationReference = 01478A32B9EE338E69DD8A6C /* Pods-GGurumi-GGurumiTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -747,7 +695,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-GGurumi.debug.xcconfig */;
+			baseConfigurationReference = A0DEF02BAA14DA06716867A7 /* Pods-GGurumi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -779,7 +727,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-GGurumi.release.xcconfig */;
+			baseConfigurationReference = FE7A58D5D6E8B3255A48C3F5 /* Pods-GGurumi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

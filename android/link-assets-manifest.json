@@ -26,14 +26,6 @@
       "sha1": "559e2236a353b58e3c6f227a45f74c36d1fa661e"
     },
     {
-      "path": "src/assets/bottomRoutes/short-video-48.png",
-      "sha1": "6de9c3a9445a207938800ffad7216799e10087c7"
-    },
-    {
-      "path": "src/assets/bottomRoutes/short-video-white-48.png",
-      "sha1": "759cd4f9a3247f3837a021c19a503ff338ecd4c0"
-    },
-    {
       "path": "src/assets/download-white-24.png",
       "sha1": "c2b8d9a6bd9d9274fe551167f98188af9ba91cda"
     },
@@ -56,10 +48,6 @@
     {
       "path": "src/assets/mypage/check-30.png",
       "sha1": "90e5c51ce15506a247e0f6429d929fd9f9de314f"
-    },
-    {
-      "path": "src/assets/mypage/download-24.png",
-      "sha1": "d9f3772954fbd95d0333a5c8bafea4a770a3d422"
     },
     {
       "path": "src/assets/mypage/heart-24.png",
@@ -96,46 +84,6 @@
     {
       "path": "src/assets/search-24.png",
       "sha1": "dc98ecade5a3b72bce73db07737542ff37d2731a"
-    },
-    {
-      "path": "src/assets/test1.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test10.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test2.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test3.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test4.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test5.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test6.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test7.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test8.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
-    },
-    {
-      "path": "src/assets/test9.mp4",
-      "sha1": "faec5f44c76b9d065290d3915a794a5a975b5c3d"
     },
     {
       "path": "src/assets/video/arrow-bottom-24.png",
