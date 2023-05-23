@@ -22,10 +22,10 @@ export default function BtnVideoTimeScale({
       orientation: WINDOW_HEIGHT < (WINDOW_WIDTH / 2) * 3,
     });
     aniScreen(WINDOW_HEIGHT, WINDOW_WIDTH, 1);
-    aniOpacityTimeFn(1);
-    setTimeout(() => {
-      aniOpacityTimeFn(0);
-    }, 5000);
+    // aniOpacityTimeFn(1);
+    // setTimeout(() => {
+    //   aniOpacityTimeFn(0);
+    // }, 5000);
   };
   const handleScaleDown = () => {
     aniScreen(WINDOW_WIDTH, videoHeight2, 0);
@@ -36,10 +36,10 @@ export default function BtnVideoTimeScale({
       force: false,
       orientation: WINDOW_HEIGHT < (WINDOW_WIDTH / 2) * 3,
     });
-    aniOpacityTimeFn(1);
-    setTimeout(() => {
-      aniOpacityTimeFn(0);
-    }, 5000);
+    // aniOpacityTimeFn(1);
+    // setTimeout(() => {
+    //   aniOpacityTimeFn(0);
+    // }, 5000);
   };
 
   return (

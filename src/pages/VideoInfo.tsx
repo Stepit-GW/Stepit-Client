@@ -240,6 +240,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
     }).start();
   };
 
+  const [cameraShow, setCameraShow] = useState(true);
   const videoHeight = (WINDOW_WIDTH / 3) * 2;
   useEffect(() => {
     Voice.onSpeechStart = _onSpeechStart;
@@ -293,10 +294,10 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
           <Pressable
             style={Styles(window.ipad, window.force).bottom}
             onPress={() => {
-              aniOpacityTimeFn(1);
-              setTimeout(() => {
-                aniOpacityTimeFn(0);
-              }, 5000);
+              // aniOpacityTimeFn(1);
+              // setTimeout(() => {
+              //   aniOpacityTimeFn(0);
+              // }, 5000);
             }}>
             <Animated.View style={{opacity: aniOpacityTime}}>
               <BtnVideoPlay
@@ -379,9 +380,10 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
       <Animated.View
         style={{
           position: 'absolute',
-          top: MARGIN_VER + 10,
+          top: window.ipad ? MARGIN_VER + 10 : MARGIN_VER * 2 + 8,
           right: MARGIN_HOR,
 
+          display: cameraShow ? 'flex' : 'none',
           opacity: aniOpacity,
           zIndex: 999,
         }}>
@@ -435,6 +437,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
+                setCameraShow(true);
                 setVideoScreen(videoIdFilter(videoData));
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
                 aniTopFn(startTop, true);
@@ -453,6 +456,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
                   <Accodian
                     key={idx}
                     idx={idx}
+                    setCameraShow={setCameraShow}
                     videoScreen={videoData}
                     setVideoScreen={setVideoScreen}
                     setVideoPause={setVideoPause}
@@ -587,7 +591,7 @@ const Styles = (ipad: boolean, force: boolean) =>
       paddingHorizontal: force ? MARGIN_HOR * 3 : MARGIN_HOR,
 
       position: 'absolute',
-      bottom: 15,
+      // bottom: 15,
     },
 
     tutorialTitle: {

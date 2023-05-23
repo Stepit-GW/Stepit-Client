@@ -16,6 +16,16 @@ export default function BtnVideoLine({
   aniOpacityTimeFn,
 }: any): JSX.Element {
   const window = useRecoilValue(windowState);
+  const rateDatas = [
+    '0.25',
+    '0.50',
+    '0.75',
+    '1.00',
+    '1.25',
+    '1.50',
+    '1.75',
+    '2.00',
+  ];
 
   return (
     <View style={Styles(window.force).lineBox}>
@@ -28,18 +38,9 @@ export default function BtnVideoLine({
               styles.realLineBox,
               Styles(window.force).checkBottom,
               styles.rateLineBox,
-              window.force && {top: -5},
+              window.force ? {top: -10} : {top: -7},
             ]}>
-            {[
-              '0.25',
-              '0.50',
-              '0.75',
-              '1.00',
-              '1.25',
-              '1.50',
-              '1.75',
-              '2.00',
-            ].map((data: any, idx: number) => {
+            {rateDatas.map((data: any, idx: number) => {
               return (
                 <Pressable
                   key={idx}
@@ -48,6 +49,19 @@ export default function BtnVideoLine({
                     idx === 0 && {marginLeft: 15},
                     idx === 7 && {marginRight: 15},
                   ]}
+                  onTouchMove={e => {
+                    if (window.force) {
+                      const stair = WINDOW_HEIGHT / 8;
+                      const move = e.nativeEvent.pageY;
+
+                      setRate(Number(rateDatas[Math.floor(move / stair)]));
+                    } else {
+                      const stair = WINDOW_WIDTH / 8;
+                      const move = e.nativeEvent.pageX;
+
+                      setRate(Number(rateDatas[Math.floor(move / stair)]));
+                    }
+                  }}
                   onPress={() => {
                     setRate(Number(data));
                   }}>
@@ -74,13 +88,17 @@ export default function BtnVideoLine({
             </View>
           </View>
           <View
-            style={[styles.realLineBox, Styles(window.force).checkBottom]}
-            onTouchMove={e => {
+            style={[
+              styles.realLineBox,
+              Styles(window.force).checkBottom,
+              // {backgroundColor: 'blue'},
+            ]}
+            onTouchStart={e => {
+              console.log(e.nativeEvent.pageX);
               if (window.force) {
                 const stair = WINDOW_HEIGHT / allTime;
                 const move = e.nativeEvent.pageY;
 
-                console.log(move / stair);
                 videoRef.current.seek(Math.round(move / stair));
               } else {
                 const stair = WINDOW_WIDTH / allTime;
@@ -88,14 +106,33 @@ export default function BtnVideoLine({
 
                 videoRef.current.seek(Math.round(move / stair));
               }
-              aniOpacityTimeFn(1);
+            }}
+            onTouchMove={e => {
+              console.log(e.nativeEvent.pageX);
+              if (window.force) {
+                const stair = WINDOW_HEIGHT / allTime;
+                const move = e.nativeEvent.pageY;
+
+                videoRef.current.seek(Math.round(move / stair));
+              } else {
+                const stair = WINDOW_WIDTH / allTime;
+                const move = e.nativeEvent.pageX;
+
+                videoRef.current.seek(Math.round(move / stair));
+              }
+              // aniOpacityTimeFn(1);
             }}
             onTouchEnd={() => {
-              setTimeout(() => {
-                aniOpacityTimeFn(0);
-              }, 5000);
+              // setTimeout(() => {
+              //   aniOpacityTimeFn(0);
+              // }, 5000);
             }}>
-            <View style={{width: (currentTime / allTime) * 100 + '%'}}>
+            <View
+              style={{
+                width: (currentTime / allTime) * 100 + '%',
+                height: '100%',
+                justifyContent: 'center',
+              }}>
               <View style={Styles(window.force).circle} />
             </View>
           </View>
@@ -137,7 +174,7 @@ const styles = StyleSheet.create({
     height: 1,
 
     opacity: 0.5,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     borderWidth: 1,
     borderColor: 'white',
   },
@@ -153,7 +190,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   rateText: {
-    marginBottom: 5,
+    // marginBottom: 5,
     color: 'white', //line
     fontWeight: '700',
   },
@@ -168,11 +205,12 @@ const styles = StyleSheet.create({
     borderColor: 'white', //line
   },
 
+  // 터치 영역 조절함
   realLineBox: {
     width: '100%',
     paddingRight: 0,
     position: 'absolute',
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
 });
 
@@ -180,15 +218,20 @@ const Styles = (ori: boolean) =>
   StyleSheet.create({
     lineBox: {
       width: '100%',
-      height: ori ? 24 : 10,
-      marginBottom: ori ? 10 : 0,
+      height: ori ? 24 : 30,
+      // marginBottom: ori ? 10 : 0,
+      alignSelf: 'center',
       flexDirection: 'row',
+      // backgroundColor: 'red',
     },
 
     circle: {
       width: ori ? 14 : 10,
       height: ori ? 14 : 10,
+
       alignSelf: 'flex-end',
+      justifyContent: 'center',
+
       borderRadius: ori ? 14 : 10,
       backgroundColor: 'white', //line
     },
@@ -197,22 +240,27 @@ const Styles = (ori: boolean) =>
       height: ori ? 22 : 10,
     },
 
+    // 터치 영역 조절함
     checkBottom: {
+      height: '100%',
       position: 'absolute',
-      bottom: ori ? -6 : -3,
+      // padding: 6,
+      // bottom: ori ? -6 : -3,
       zIndex: 999,
     },
     circleBottom: {
       position: 'absolute',
-      bottom: ori ? -10 : -3,
+      // bottom: ori ? -10 : -3,
       zIndex: 998,
     },
 
     realLineBox: {
       width: '100%',
       paddingRight: 0,
+
       position: 'absolute',
-      alignSelf: 'flex-end',
+      alignSelf: 'center',
+      backgroundColor: 'blue',
     },
   });
 

@@ -20,6 +20,7 @@ import {videoIdFilter} from '@/utils/videoFilter';
 
 export default function Accodian({
   idx,
+  setCameraShow,
   videoScreen,
   setVideoScreen,
   setVideoPause,
@@ -36,6 +37,7 @@ export default function Accodian({
   const videoHeight = (WINDOW_WIDTH / 3) * 2;
 
   const startTop = WINDOW_HEIGHT - (WINDOW_WIDTH / 3) * 2;
+
   const [height, setHeight] = useState(false);
   const aniHeight = useRef<Animated.Value>(new Animated.Value(0)).current;
   const aniHeightFn = (t: number) => {
@@ -100,10 +102,11 @@ export default function Accodian({
               key={idx2}
               style={[styles.video, {display: height ? 'flex' : 'none'}]}
               onPress={() => {
-                aniOpacityTimeFn(1);
-                setTimeout(() => {
-                  aniOpacityTimeFn(0);
-                }, 3000);
+                setCameraShow(false);
+                // aniOpacityTimeFn(1);
+                // setTimeout(() => {
+                //   aniOpacityTimeFn(0);
+                // }, 5000);
                 if (data.stageTitle === '튜토리얼') {
                   setVideoTutorial(true);
                   aniTopFn(0, false);

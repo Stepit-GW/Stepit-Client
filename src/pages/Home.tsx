@@ -105,15 +105,9 @@ export default function Home({navigation}: any): JSX.Element {
           //   // console.log(move > WINDOW_HEIGHT * 0.5);
           //   // if (move > WINDOW_HEIGHT * 0.5) aniOpacityFn(1, 400);
           // }}
-
-          // onMomentumScrollBegin={e => {
-          //   console.log(e.nativeEvent.contentOffset.y);
-          // }}
           stickyHeaderIndices={[-1, -1]}
           onScroll={e => {
-            // console.log(e.nativeEvent.contentOffset.y);
             const move = e.nativeEvent.contentOffset.y;
-            // console.log(move);
             if (move <= 0) aniOpacityFn(1, 100);
             else aniOpacityFn(0, 100);
             setScroll(move);
@@ -130,12 +124,11 @@ export default function Home({navigation}: any): JSX.Element {
               dotColor={'white'}
               inactiveDotColor={'rgba(0, 0, 0, 0.6)'}
               dotStyle={{
-                width: 10,
-                height: 10,
-                marginBottom: 24,
+                width: window.ipad ? 10 : 7,
+                height: window.ipad ? 10 : 7,
+                marginBottom: window.ipad ? 24 : 12,
                 borderRadius: 10,
               }}
-
               // autoplay
               // circleLoop
             />
@@ -151,7 +144,7 @@ export default function Home({navigation}: any): JSX.Element {
               ]}
               style={{
                 width: '100%',
-                height: '20%',
+                height: window.ipad ? '20%' : '25%',
                 position: 'absolute',
                 bottom: 0,
               }}
@@ -332,7 +325,7 @@ const Styles = (ipad: boolean) =>
       marginLeft: 10,
       color: 'white',
       fontWeight: '800',
-      fontSize: ipad ? 16 : 18,
+      fontSize: ipad ? 16 : 14,
     },
 
     videoBox: {

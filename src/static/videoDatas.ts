@@ -210,114 +210,39 @@ export const videoShortDatas = [
 
 export const videoDetailDatas = [
   {
-    id: 1,
+    id: 100,
     kind: 'Lesson',
-    stage: [
-      {
-        stageId: 1,
-        stageTitle: '스트레칭',
-        videoDetails: [
-          {
-            id: 100,
-            kind: 'detail',
-          },
-        ],
-      },
-    ],
+    stage: [],
   },
   {
-    id: 2,
+    id: 101,
     kind: 'Lesson',
-    stage: [
-      {
-        stageId: 1,
-        stageTitle: '아이솔레이션 - 목',
-        videoDetails: [
-          {
-            id: 101,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 1,
-        stageTitle: '아이솔레이션 - 어깨',
-        videoDetails: [
-          {
-            id: 102,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 1,
-        stageTitle: '아이솔레이션 - 가슴',
-        videoDetails: [
-          {
-            id: 103,
-            kind: 'detail',
-          },
-        ],
-      },
-      {
-        stageId: 1,
-        stageTitle: '아이솔레이션 - 골반',
-        videoDetails: [
-          {
-            id: 104,
-            kind: 'detail',
-          },
-        ],
-      },
-    ],
+    stage: [],
   },
   {
-    id: 3,
+    id: 102,
     kind: 'Lesson',
-    stage: [
-      {
-        stageId: 1,
-        stageTitle: '웨이브',
-        videoDetails: [
-          {
-            id: 105,
-            kind: 'detail',
-          },
-        ],
-      },
-    ],
+    stage: [],
   },
   {
-    id: 4,
+    id: 103,
     kind: 'Lesson',
-    stage: [
-      {
-        stageId: 1,
-        stageTitle: '팔 뻗기',
-        videoDetails: [
-          {
-            id: 106,
-            kind: 'detail',
-          },
-        ],
-      },
-    ],
+    stage: [],
   },
   {
-    id: 10,
+    id: 104,
     kind: 'Lesson',
-    stage: [
-      {
-        stageId: 1,
-        stageTitle: '스트레칭',
-        videoDetails: [
-          {
-            id: 100,
-            kind: 'detail',
-          },
-        ],
-      },
-    ],
+    stage: [],
+  },
+  {
+    id: 105,
+    kind: 'Lesson',
+    stage: [],
+  },
+  {
+    id: 106,
+    kind: 'Lesson',
+    stage: [],
   },
   {
     id: 800,

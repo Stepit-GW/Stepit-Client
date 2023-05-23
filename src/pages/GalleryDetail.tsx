@@ -41,6 +41,15 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
   const [allTime, setAllTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
+  const aniOpacityTime = useRef<Animated.Value>(new Animated.Value(1)).current;
+  const aniOpacityTimeFn = (o: number) => {
+    Animated.timing(aniOpacityTime, {
+      toValue: o,
+      duration: 400,
+      useNativeDriver: false,
+    }).start();
+  };
+
   useEffect(() => {
     scrollRef.current.scrollTo({y: 0});
   }, []);
@@ -194,7 +203,7 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
           rate={1}
           setRate={() => {}}
           rateShow={false}
-          aniOpacityTimeFn={() => {}}
+          aniOpacityTimeFn={aniOpacityTimeFn}
         />
       </View>
     </View>

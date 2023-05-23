@@ -176,7 +176,7 @@ const Styles = (ipad: boolean) =>
       marginLeft: 10,
       color: 'white',
       fontWeight: '800',
-      fontSize: ipad ? 16 : 18,
+      fontSize: ipad ? 16 : 14,
     },
 
     videoBox: {
