@@ -223,8 +223,8 @@ const RateStyle = (ori: boolean, rate: boolean) =>
       height: ori ? 14 : 10,
 
       borderWidth: 2,
-      borderColor: 'red', //line
+      borderColor: rate ? 'red' : 'white', //line
       borderRadius: ori ? 14 : 10,
-      // backgroundColor: 'red', //line
+      backgroundColor: 'red', //line
     },
   });

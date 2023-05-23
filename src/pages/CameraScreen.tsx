@@ -166,13 +166,14 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
           </Pressable>
           <View
             style={{
-              width: '50%',
-              height: (((WINDOW_WIDTH / 2) * 1) / 3) * 2,
+              width: '25%',
+              height: (((WINDOW_WIDTH / 4) * 1) / 3) * 4.5,
+              // height: (((WINDOW_WIDTH / 2) * 1) / 3) * 2,
               opacity: 0.8,
 
               position: 'absolute',
               right: MARGIN_HOR,
-              top: MARGIN_VER * 3,
+              top: MARGIN_VER * 3 - 10,
               backgroundColor: 'black',
             }}
           />
@@ -183,13 +184,13 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             //   uri: video.url,
             // }}
             style={{
-              width: '50%',
-              height: (((WINDOW_WIDTH / 2) * 1) / 3) * 2,
+              width: '25%',
+              height: (((WINDOW_WIDTH / 4) * 1) / 3) * 4.5,
               opacity: 0.8,
 
               position: 'absolute',
               right: MARGIN_HOR,
-              top: MARGIN_VER * 3,
+              top: MARGIN_VER * 3 - 10,
             }}
             onLoad={(e: any) => {
               setAllTime(e.duration);
@@ -236,8 +237,8 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
 
 const styles = StyleSheet.create({
   recoding: {
-    width: 56,
-    height: 56,
+    width: 62,
+    height: 62,
     marginLeft: WINDOW_WIDTH / 2 - 28,
     marginBottom: 48,
 
@@ -245,18 +246,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+    borderWidth: 3,
+    borderColor: 'white',
     borderRadius: 48,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
   },
   stop: {
-    width: 36,
-    height: 36,
+    width: 26,
+    height: 26,
     // marginBottom: 52,
+    borderRadius: 5,
     backgroundColor: 'red',
   },
   start: {
-    width: 48,
-    height: 48,
+    width: 50,
+    height: 50,
     // marginBottom: 48,
 
     borderRadius: 48,
@@ -264,18 +268,18 @@ const styles = StyleSheet.create({
   },
 
   count: {
-    width: 40,
-    height: 40,
+    width: 60,
+    height: 60,
 
     position: 'absolute',
-    top: WINDOW_HEIGHT / 2,
+    top: WINDOW_HEIGHT / 2 - 20,
     left: WINDOW_WIDTH / 2 - 20,
 
     zIndex: 999,
   },
   countText: {
     color: 'white',
-    fontSize: 40,
+    fontSize: 60,
     textAlign: 'center',
   },
 });

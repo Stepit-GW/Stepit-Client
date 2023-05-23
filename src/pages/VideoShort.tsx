@@ -79,7 +79,7 @@ export default function VideoShort({navigation}: any): JSX.Element {
                   setVideoShortTf([true, true, true, true, true, true]);
                   navigation.navigate('CameraScreen', {
                     id: video.id,
-                    shortId: idx,
+                    shortId: -1,
                   });
                 }}>
                 <Image

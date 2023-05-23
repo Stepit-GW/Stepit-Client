@@ -37,7 +37,7 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
 
   const scrollRef = useRef<any>();
   const videoRef = useRef<any>();
-  const [videoPause, setVideoPause] = useState(true);
+  const [videoPause, setVideoPause] = useState(false);
   const [allTime, setAllTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -89,7 +89,6 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
                   setGallery(newGallery);
                   navigation.pop();
                 } else {
-                  console.log('b');
                   newGallery[galleryIdx].uriLst = gallery[
                     galleryIdx
                   ].uriLst.filter((data: any, idx: number) => {
@@ -164,7 +163,8 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
                 ]}
                 onPress={() => {
                   setCurrentIdx(idx);
-                  setVideoPause(true);
+                  // videoRef.current.seek(0);
+                  setVideoPause(false);
                 }}>
                 <Text
                   style={currentIdx === idx ? styles.boxText2 : styles.boxText}>

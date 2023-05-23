@@ -1,6 +1,11 @@
 import {videoShortState} from '@/recoil/videoShortState';
 import {windowState} from '@/recoil/windowState';
-import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
+import {
+  MARGIN_HOR,
+  MARGIN_VER,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from '@/static/commonValue';
 import {commonStyles} from '@/styles/commonStyles';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
@@ -20,6 +25,7 @@ const BtnVideoTitle = React.forwardRef(
     {
       children,
       title,
+      aniOpacity,
       aniOpacityT,
       _Speech,
       videoStageTf,
@@ -123,6 +129,9 @@ const BtnVideoTitle = React.forwardRef(
               {title}
             </Animated.Text>
           </View>
+          {/* <Animated.View style={[commonStyles.row, {opacity: aniOpacity}]}>
+            {children}
+          </Animated.View> */}
           <Animated.View style={[commonStyles.row, {opacity: aniOpacityT}]}>
             {children}
           </Animated.View>

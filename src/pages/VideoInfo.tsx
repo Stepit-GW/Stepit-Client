@@ -12,7 +12,12 @@ import {
   View,
 } from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
-import {MARGIN_HOR, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
+import {
+  MARGIN_HOR,
+  MARGIN_VER,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from '@/static/commonValue';
 import LinearGradientVideo from '@/components/videoInfo/LinearGradientVideo';
 import {windowState} from '@/recoil/windowState';
 import {useRecoilState} from 'recoil';
@@ -28,7 +33,7 @@ import VideoScreen from '@/components/videoInfo/VideoScreen';
 
 import Voice from 'react-native-voice';
 
-export default function VideoInfo({route}: any): JSX.Element {
+export default function VideoInfo({route, navigation}: any): JSX.Element {
   const id = route.params.id;
   const shortId = route.params.shortId;
   const [num, setNum] = useState(0);
@@ -174,7 +179,6 @@ export default function VideoInfo({route}: any): JSX.Element {
   const _onSpeechResults = (event: any) => {
     console.log('_onSpeechResults');
     const text = event.value[0].split(' ');
-    console.log(text);
     if (
       text[text.length - 1] === '멈춰' ||
       text[text.length - 1] === '먼저' ||
@@ -203,7 +207,11 @@ export default function VideoInfo({route}: any): JSX.Element {
       text[text.length - 1] === '영상재생'
     )
       setVideoPause(false);
-    else if (text[text.length - 1] === '거울') {
+    else if (
+      text[text.length - 1] === '거울' ||
+      text[text.length - 1] === '거울모드' ||
+      text[text.length - 1] === '반전'
+    ) {
       mirror = !mirror;
       setMirror(mirror);
     }
@@ -232,6 +240,7 @@ export default function VideoInfo({route}: any): JSX.Element {
     }).start();
   };
 
+  const videoHeight = (WINDOW_WIDTH / 3) * 2;
   useEffect(() => {
     Voice.onSpeechStart = _onSpeechStart;
     Voice.onSpeechEnd = _onSpeechEnd;
@@ -334,6 +343,7 @@ export default function VideoInfo({route}: any): JSX.Element {
 
       <BtnVideoTitle
         title={videoScreen.title}
+        aniOpacity={aniOpacity}
         aniOpacityT={aniOpacityT}
         _Speech={_onSpeechEnd}
         videoStageTf={videoStageTf}
@@ -366,6 +376,34 @@ export default function VideoInfo({route}: any): JSX.Element {
           </>
         )}
       </BtnVideoTitle>
+      <Animated.View
+        style={{
+          position: 'absolute',
+          top: MARGIN_VER + 10,
+          right: MARGIN_HOR,
+
+          opacity: aniOpacity,
+          zIndex: 999,
+        }}>
+        <Pressable
+          style={{}}
+          onPress={() => {
+            navigation.navigate('CameraScreen', {
+              id: videoData.id,
+              shortId: 0,
+            });
+          }}>
+          <Image
+            source={require('@/assets/video/camera-24.png')}
+            style={{
+              width: 24,
+              height: 24,
+              // marginTop: MARGIN_VER,
+              // marginRight: MARGIN_HOR,
+            }}
+          />
+        </Pressable>
+      </Animated.View>
 
       {/* <Pressable style={{}}> */}
       <VideoScreen

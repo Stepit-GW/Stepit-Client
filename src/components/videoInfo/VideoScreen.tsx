@@ -89,7 +89,8 @@ export default function VideoScreen({
           onProgress={(e: any) => {
             setCurrentTime(e.currentTime);
           }}
-          repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
+          repeat={true}
+          // repeat={videoScreen.kind !== 'detail'} // video가 끝나면 다시 재생할 지 여부
           onAnimatedValueUpdate={() => {}}
           muted={false}
           controls={false} //바텀바가 나옴

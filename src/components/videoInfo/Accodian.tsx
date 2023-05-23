@@ -184,6 +184,8 @@ const styles = StyleSheet.create({
     height: 76,
     paddingTop: 20,
     paddingHorizontal: 10,
+
+    alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: 'white',
   },

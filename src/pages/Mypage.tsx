@@ -58,9 +58,10 @@ export default function Mypage({navigation}: any): JSX.Element {
                 }}>
                 <View style={styles.videoBottom}>
                   <Text style={Styles(window.ipad).videoLeft}>
-                    {video.title === 'Because Of You'
+                    {video.title}
+                    {/* {video.title === 'Because Of You'
                       ? 'Because...'
-                      : video.title}
+                      : video.title} */}
                   </Text>
 
                   {/* {video.level !== undefined && (
@@ -156,8 +157,8 @@ const Styles = (ipad: boolean) =>
       zIndex: 900,
     },
     videoRightBox: {
-      width: ipad ? 30 : 20,
-      height: ipad ? 30 : 20,
+      width: ipad ? 24 : 20,
+      height: ipad ? 24 : 20,
       marginRight: 14,
 
       justifyContent: 'center',
@@ -169,13 +170,13 @@ const Styles = (ipad: boolean) =>
       color: 'white',
       textAlign: 'center',
       fontWeight: '500',
-      fontSize: ipad ? 18 : 12,
+      fontSize: ipad ? 14 : 12,
     },
     videoLeft: {
-      marginLeft: 6,
+      marginLeft: 10,
       color: 'white',
       fontWeight: '800',
-      fontSize: ipad ? 24 : 18,
+      fontSize: ipad ? 16 : 18,
     },
 
     videoBox: {

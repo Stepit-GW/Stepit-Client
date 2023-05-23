@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import {commonStyles} from '@/styles/commonStyles';
 import {useRecoilValue} from 'recoil';
 import {MARGIN_HOR} from '@/static/commonValue';
@@ -16,32 +16,28 @@ export default function BtnVideoSetting({
 
   return (
     <View style={Styles(window.force).bottomBox}>
-      <View style={styles.bottomBtn}>
+      <Pressable
+        style={styles.bottomBtn}
+        onPress={() => {
+          setMirror(!mirror);
+        }}>
         <Image
           source={require('@/assets/video/mirror-mode-24.png')}
           style={{width: window.ipad ? 40 : 24, height: window.ipad ? 40 : 24}}
         />
-        <Text
-          style={styles.bottomText}
-          onPress={() => {
-            setMirror(!mirror);
-          }}>
-          거울모드
-        </Text>
-      </View>
-      <View style={styles.bottomBtn}>
+        <Text style={styles.bottomText}>거울모드</Text>
+      </Pressable>
+      <Pressable
+        style={styles.bottomBtn}
+        onPress={() => {
+          setRateShow(!rateShow);
+        }}>
         <Image
           source={require('@/assets/video/double-speed-24.png')}
           style={{width: window.ipad ? 40 : 24, height: window.ipad ? 40 : 24}}
         />
-        <Text
-          style={styles.bottomText}
-          onPress={() => {
-            setRateShow(!rateShow);
-          }}>
-          배속({rate}x)
-        </Text>
-      </View>
+        <Text style={styles.bottomText}>배속({rate}x)</Text>
+      </Pressable>
     </View>
   );
 }

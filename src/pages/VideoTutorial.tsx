@@ -16,7 +16,7 @@ import {useRecoilState} from 'recoil';
 import {videoIdFilter} from '@/utils/videoFilter';
 
 import BtnVideoLine from '@/components/video/BtnVideoLine';
-import BtncurrentTimeScale from '@/components/video/BtnVideoTimeScale';
+import BtnVideoTimeScale from '@/components/video/BtnVideoTimeScale';
 import BtnVideoSetting from '@/components/video/BtnVideoSetting';
 import BtnVideoTitle from '@/components/video/BtnVideoTitle';
 import BtnVideoPlay from '@/components/video/BtnVideoPlay';
@@ -81,54 +81,24 @@ export default function VideoTutorial({route}: any): JSX.Element {
   const [allTime, setAllTime] = useState<any>(0);
   const [currentTime, setCurrentTime] = useState<any>(0);
   const [videoData, setVideoData] = useState<any>({stage: []});
+
+  const aniOpacityTime = useRef<Animated.Value>(new Animated.Value(1)).current;
+  const aniOpacityTimeFn = (o: number) => {
+    Animated.timing(aniOpacityTime, {
+      toValue: o,
+      duration: 400,
+      useNativeDriver: false,
+    }).start();
+  };
   useEffect(() => {
     // const video = videoIdFilter({id: id});
     // url: setVideoData(video);
-    setVideoScreen(videoIdFilter({id: id, kind: 'detail'}));
+    // setVideoScreen(videoIdFilter({id: id, kind: 'detail'}));
+    // aniOpacityTimeFn(1);
+    // setTimeout(() => {
+    //   aniOpacityTimeFn(0);
+    // }, 5000);
   }, []);
-
-  //record
-  // const [isRecord, setIsRecord] = useState<boolean>(false);
-  // const [text, setText] = useState<string>('');
-  // const _onSpeechStart = () => {
-  //   console.log('_onSpeechStart2');
-  //   setText('');
-  // };
-  // const _onSpeechResults = (event: any) => {
-  //   console.log('_onSpeechResults2');
-  //   const text = event.value[0].split(' ');
-  //   if (
-  //     text[text.length - 1] === '멈춰' ||
-  //     text[text.length - 1] === '멍청' ||
-  //     text[text.length - 1] === '정지'
-  //   )
-  //     setVideoPause(true);
-  //   else if (text[text.length - 1] === '시작') setVideoPause(false);
-  // };
-  // const _onSpeechError = (event: any) => {
-  //   console.log(event.error);
-  // };
-  // const _onRecordVoice = () => {
-  //   console.log('onRecordVoice2');
-  //   Voice.start('ko-KR'); // en-US
-  //   setIsRecord(true);
-  // };
-  // const _onSpeechEnd = () => {
-  //   console.log('_onSpeechEnd2');
-  //   Voice.stop();
-  //   setIsRecord(false);
-  // };
-
-  // useEffect(() => {
-  //   Voice.onSpeechStart = _onSpeechStart;
-  //   Voice.onSpeechEnd = _onSpeechEnd;
-  //   Voice.onSpeechResults = _onSpeechResults;
-  //   Voice.onSpeechError = _onSpeechError;
-
-  //   return () => {
-  //     Voice.destroy().then(Voice.removeAllListeners);
-  //   };
-  // }, []);
 
   return (
     <>
@@ -150,16 +120,24 @@ export default function VideoTutorial({route}: any): JSX.Element {
 
               zIndex: zIndex ? 0 : 903,
               transform: rotate,
+              opacity: aniOpacityTime,
             },
           ]}>
-          <View style={Styles(window.ipad, window.force).bottom}>
+          <Pressable
+            style={Styles(window.ipad, window.force).bottom}
+            onPress={() => {
+              // aniOpacityTimeFn(1);
+              // setTimeout(() => {
+              //   aniOpacityTimeFn(0);
+              // }, 5000);
+            }}>
             <BtnVideoPlay
               videoRef={videoRef}
               videoPause={videoPause}
               setVideoPause={setVideoPause}
               radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
             />
-            <BtncurrentTimeScale
+            <BtnVideoTimeScale
               aniScreen={aniScreen}
               moveTime={[
                 String(Math.floor(currentTime / 60)).padStart(1, '0'),
@@ -170,6 +148,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
                 String(Math.round(allTime % 60)).padStart(2, '0'),
               ]}
               rateShow={rateShow}
+              aniOpacityTimeFn={aniOpacityTimeFn}
             />
             <BtnVideoLine
               videoRef={videoRef}
@@ -180,6 +159,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
               rate={rate}
               setRate={setRate}
               rateShow={rateShow}
+              aniOpacityTimeFn={aniOpacityTimeFn}
             />
             <BtnVideoSetting
               rate={rate}
@@ -188,7 +168,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
               rateShow={rateShow}
               setRateShow={setRateShow}
             />
-          </View>
+          </Pressable>
         </Animated.View>
       </Animated.View>
 
