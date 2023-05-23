@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import {MARGIN_VER, TOP_HEIGHT, WINDOW_WIDTH} from '@/static/commonValue';
 import Title from '@/components/Title';
@@ -28,59 +29,61 @@ export default function Mypage({navigation}: any): JSX.Element {
           <View />
         </View>
 
-        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          {gallery.map((data: any, idx: number) => {
-            const video = videoIdFilter({id: data.id});
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            {gallery.map((data: any, idx: number) => {
+              const video = videoIdFilter({id: data.id});
 
-            return (
-              <Pressable
-                key={idx}
-                style={[
-                  Styles(window.ipad).videoBox,
-                  {
-                    marginBottom: 25,
-                    marginRight:
-                      idx === gallery.length - 1
-                        ? window.ipad
+              return (
+                <Pressable
+                  key={idx}
+                  style={[
+                    Styles(window.ipad).videoBox,
+                    {
+                      marginBottom: 25,
+                      marginRight:
+                        idx === gallery.length - 1
+                          ? window.ipad
+                            ? idx % 4 === 3
+                              ? 0
+                              : (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                            : MARGIN_VER * 2 - 10
+                          : window.ipad
                           ? idx % 4 === 3
                             ? 0
                             : (WINDOW_WIDTH - 4 * 180 - 40) / 3
-                          : MARGIN_VER * 2 - 10
-                        : window.ipad
-                        ? idx % 4 === 3
+                          : idx % 2 === 1
                           ? 0
-                          : (WINDOW_WIDTH - 4 * 180 - 40) / 3
-                        : 10,
-                  },
-                ]}
-                onPress={() => {
-                  navigation.navigate('GalleryDetail', {galleryIdx: idx});
-                }}>
-                <View style={styles.videoBottom}>
-                  <Text style={Styles(window.ipad).videoLeft}>
-                    {video.title}
-                    {/* {video.title === 'Because Of You'
-                      ? 'Because...'
-                      : video.title} */}
-                  </Text>
+                          : WINDOW_WIDTH - 2 * 150 - 40 - 20,
+                      marginLeft: !window.ipad && idx % 2 === 0 ? 10 : 0,
+                    },
+                  ]}
+                  onPress={() => {
+                    navigation.navigate('GalleryDetail', {galleryIdx: idx});
+                  }}>
+                  <View style={styles.videoBottom}>
+                    <Text style={Styles(window.ipad).videoLeft}>
+                      {video.title}
+                    </Text>
 
-                  {/* {video.level !== undefined && (
+                    {/* {video.level !== undefined && (
                     <View style={Styles(window.ipad).videoRightBox}>
                       <Text style={Styles(window.ipad).videoRight}>
                         {video.level}
                       </Text>
                     </View>
                   )} */}
-                </View>
+                  </View>
 
-                <Image
-                  source={{uri: video.imgUrl}}
-                  style={[commonStyles.img100, {opacity: 0.8}]}
-                />
-              </Pressable>
-            );
-          })}
-        </View>
+                  <Image
+                    source={{uri: video.imgUrl}}
+                    style={[commonStyles.img100, {opacity: 0.8}]}
+                  />
+                </Pressable>
+              );
+            })}
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -116,62 +119,22 @@ const styles = StyleSheet.create({
 
 const Styles = (ipad: boolean) =>
   StyleSheet.create({
-    titleBox: {
-      width: '100%',
-      height: (ipad ? 54 : 36) + MARGIN_VER * 2,
-      paddingTop: MARGIN_VER * 2,
+    // videoRightBox: {
+    //   width: ipad ? 24 : 20,
+    //   height: ipad ? 24 : 20,
+    //   marginRight: 14,
 
-      position: 'absolute',
-      top: 0,
-
-      flexDirection: 'row',
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      zIndex: 1,
-    },
-    title: {
-      width: ipad ? 120 : 80,
-      height: ipad ? 32 : 20,
-    },
-
-    scrollTitle: {
-      marginLeft: MARGIN_VER,
-      marginBottom: 20,
-
-      color: 'black',
-      fontSize: ipad ? 22 : 16,
-      fontWeight: '700',
-    },
-    videoTitle: {
-      width: '100%',
-      marginTop: 7,
-      paddingHorizontal: 10,
-
-      position: 'absolute',
-      top: 0,
-
-      color: 'white',
-      fontWeight: '800',
-      fontSize: ipad ? 20 : 14,
-
-      zIndex: 900,
-    },
-    videoRightBox: {
-      width: ipad ? 24 : 20,
-      height: ipad ? 24 : 20,
-      marginRight: 14,
-
-      justifyContent: 'center',
-      borderColor: 'white',
-      borderWidth: 1,
-      borderRadius: 20,
-    },
-    videoRight: {
-      color: 'white',
-      textAlign: 'center',
-      fontWeight: '500',
-      fontSize: ipad ? 14 : 12,
-    },
+    //   justifyContent: 'center',
+    //   borderColor: 'white',
+    //   borderWidth: 1,
+    //   borderRadius: 20,
+    // },
+    // videoRight: {
+    //   color: 'white',
+    //   textAlign: 'center',
+    //   fontWeight: '500',
+    //   fontSize: ipad ? 14 : 12,
+    // },
     videoLeft: {
       marginLeft: 10,
       color: 'white',

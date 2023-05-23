@@ -6,7 +6,7 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
-import {searchDatas} from '@/static/home/searchDatas';
+import {searchDatas} from '@/static/searchDatas';
 import {useRecoilState} from 'recoil';
 import {windowState} from '@/recoil/windowState';
 // import Video from 'react-native-video';
@@ -127,6 +127,7 @@ export default function TitleAnimated({
 const styles = StyleSheet.create({
   search: {
     position: 'absolute',
+    zIndex: 999,
   },
 });
 
@@ -158,5 +159,6 @@ export const Styles = (ipad: boolean, color: boolean) =>
       borderRadius: 88,
 
       fontSize: ipad ? 18 : 12,
+      backgroundColor: 'white',
     },
   });

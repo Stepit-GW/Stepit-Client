@@ -59,6 +59,7 @@ export default function Home({navigation}: any): JSX.Element {
   const [resultDatas, setResultDatas] = useState([]);
   const setBottomBar = useSetRecoilState(bottomBarState);
 
+  const [scroll, setScroll] = useState<number>(0);
   const [videoDatas, setVideoDatas] = useState<any>(videoHomeDatas);
   useEffect(() => {
     const homeVideos = videoHomeDatas;
@@ -69,9 +70,6 @@ export default function Home({navigation}: any): JSX.Element {
     }
     setVideoDatas(homeVideos);
   }, []);
-
-  const [scroll, setScroll] = useState<number>(0);
-  const [dotStyle, setDotStyle] = useState<any>(0);
 
   return (
     <View
@@ -192,9 +190,6 @@ export default function Home({navigation}: any): JSX.Element {
                               idx === 0 && {marginBottom: 4},
                             ]}>
                             {video.title}
-                            {/* {video.title === 'Because Of You'
-                                ? 'Because...'
-                                : video.title} */}
                           </Text>
                           {video.level !== undefined && (
                             <View style={Styles(window.ipad).videoRightBox}>

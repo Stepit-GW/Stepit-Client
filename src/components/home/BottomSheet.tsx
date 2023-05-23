@@ -18,36 +18,81 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from '@/static/commonValue';
+import {useNavigation} from '@react-navigation/native';
+import {videoIdFilter} from '@/utils/videoFilter';
+import {useRecoilState} from 'recoil';
+import {windowState} from '@/recoil/windowState';
+import {galleryState} from '@/recoil/galleryState';
 // import Video from 'react-native-video';
 
 export default function BottomSheet({aniTop, resultDatas}: any): JSX.Element {
+  const navigation = useNavigation<any>();
+  const [window, setWindow] = useRecoilState(windowState);
+  const [gallery, setGallery] = useRecoilState(galleryState);
+
   return (
     <Animated.View
       style={{
         width: '100%',
         height: WINDOW_HEIGHT,
+        paddingHorizontal: MARGIN_HOR,
+
         position: 'absolute',
         top: aniTop,
         backgroundColor: 'white',
         zIndex: 1,
       }}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.scrollBox}>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {resultDatas.map((data: any, idx: number) => {
+            const video = videoIdFilter({id: data.id});
+
             return (
-              <View style={styles.video} key={idx}>
-                <Text style={styles.videoTitle}>{data.title}</Text>
+              <Pressable
+                key={idx}
+                style={[
+                  Styles(window.ipad).videoBox,
+                  {
+                    marginBottom: 25,
+                    marginRight:
+                      idx === gallery.length - 1
+                        ? window.ipad
+                          ? idx % 4 === 3
+                            ? 0
+                            : (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                          : MARGIN_VER * 2 - 10
+                        : window.ipad
+                        ? idx % 4 === 3
+                          ? 0
+                          : (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                        : idx % 2 === 1
+                        ? 0
+                        : WINDOW_WIDTH - 2 * 150 - 40 - 20,
+                    marginLeft: !window.ipad && idx % 2 === 0 ? 10 : 0,
+                  },
+                ]}
+                onPress={() => {
+                  navigation.navigate('VideoInfo', {id: data.id});
+                }}>
                 <View style={styles.videoBottom}>
-                  <View style={styles.videoLeftBox}>
-                    <Text style={styles.videoLeft}>{data.level}</Text>
-                  </View>
-                  <Text style={styles.videoRight}>{data.time}</Text>
+                  <Text style={Styles(window.ipad).videoLeft}>
+                    {video.title}
+                  </Text>
+
+                  {video.level !== undefined && (
+                    <View style={Styles(window.ipad).videoRightBox}>
+                      <Text style={Styles(window.ipad).videoRight}>
+                        {video.level}
+                      </Text>
+                    </View>
+                  )}
                 </View>
+
                 <Image
-                  source={require('@/assets/notfound.png')}
-                  style={commonStyles.img100}
+                  source={{uri: video.imgUrl}}
+                  style={[commonStyles.img100, {opacity: 0.8}]}
                 />
-              </View>
+              </Pressable>
             );
           })}
         </View>
@@ -60,40 +105,20 @@ const styles = StyleSheet.create({
   scroll: {
     marginTop: MARGIN_VER * 2 + TOP_HEIGHT + 20,
   },
-  scrollBox: {
-    paddingHorizontal: MARGIN_HOR,
+  title: {
+    width: '100%',
+    height: TOP_HEIGHT,
+    marginBottom: MARGIN_VER,
 
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
-
-  video: {
-    width: 165,
-    height: 220,
-    marginBottom: 20,
-
-    overflow: 'hidden',
-    borderRadius: 10,
-    backgroundColor: 'yellow',
+  titleText: {
+    fontSize: 16,
+    fontWeight: '700',
   },
 
-  videoTitle: {
-    width: '100%',
-    marginTop: 10,
-    paddingHorizontal: 6,
-
-    position: 'absolute',
-    top: 0,
-
-    color: 'white',
-    // textAlign: 'center',
-    fontWeight: '800',
-    fontSize: 14,
-    lineHeight: 17,
-
-    zIndex: 901,
-  },
   videoBottom: {
     width: '100%',
     flexDirection: 'row',
@@ -101,30 +126,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     position: 'absolute',
-    bottom: 5,
-
-    zIndex: 901,
-    // backgroundColor: 'red',
-  },
-  videoLeftBox: {
-    width: 24,
-    height: 24,
-    marginLeft: 6,
-    justifyContent: 'center',
-
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 24,
-  },
-  videoLeft: {
-    color: 'white',
-    textAlign: 'center',
-
-    fontWeight: '500',
-    fontSize: 12,
-  },
-  videoRight: {
-    marginRight: 6,
-    color: 'white',
+    left: 3,
+    bottom: 9,
+    zIndex: 900,
   },
 });
+
+const Styles = (ipad: boolean) =>
+  StyleSheet.create({
+    videoRightBox: {
+      width: ipad ? 24 : 20,
+      height: ipad ? 24 : 20,
+      marginRight: 14,
+
+      justifyContent: 'center',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 20,
+    },
+    videoRight: {
+      color: 'white',
+      textAlign: 'center',
+      fontWeight: '500',
+      fontSize: ipad ? 14 : 12,
+    },
+    videoLeft: {
+      marginLeft: 10,
+      color: 'white',
+      fontWeight: '800',
+      fontSize: ipad ? 16 : 14,
+    },
+
+    videoBox: {
+      width: ipad ? 180 : 150,
+      height: ipad ? 240 : 200,
+
+      overflow: 'hidden',
+      borderRadius: 15,
+      backgroundColor: 'black',
+    },
+  });
