@@ -34,6 +34,8 @@ import {videoIdFilter} from '@/utils/videoFilter';
 import {SliderBox} from 'react-native-image-slider-box';
 import LinearGradient from 'react-native-linear-gradient';
 
+const height1 = (WINDOW_WIDTH / 4) * 3;
+const height2 = (WINDOW_WIDTH / 10) * 11;
 export default function Home({navigation}: any): JSX.Element {
   const [window] = useRecoilState(windowState);
 
@@ -59,6 +61,9 @@ export default function Home({navigation}: any): JSX.Element {
   const [resultDatas, setResultDatas] = useState([]);
   const setBottomBar = useSetRecoilState(bottomBarState);
 
+  const [bannerItem, setBannerItem] = useState<any>(
+    videoIdFilter({id: videoBannerDatas[0]}),
+  );
   const [scroll, setScroll] = useState<number>(0);
   const [videoDatas, setVideoDatas] = useState<any>(videoHomeDatas);
   useEffect(() => {
@@ -110,17 +115,27 @@ export default function Home({navigation}: any): JSX.Element {
             else aniOpacityFn(0, 120);
             setScroll(move);
           }}>
-          <View style={styles.slider}>
+          <View style={Styles(window.ipad).slider}>
             <SliderBox
-              style={{width: '100%', height: '100%', opacity: 1}}
+              style={{
+                width: '100%',
+                height: '100%',
+                opacity: 1,
+              }}
+              // resizeMode={'contain'}
+              // ImageComponentStyle={{height: '100%'}}
               images={bannerDatas}
               onCurrentImagePressed={(idx: number) => {
                 navigation.navigate('VideoInfo', {
                   id: videoBannerDatas[idx],
                 });
               }}
+              currentImageEmitter={(idx: number) => {
+                const video = videoIdFilter({id: videoBannerDatas[idx]});
+                setBannerItem(video);
+              }}
               dotColor={'white'}
-              inactiveDotColor={'rgba(0, 0, 0, 0.6)'}
+              inactiveDotColor={'rgba(200, 200, 200, 0.8)'}
               dotStyle={{
                 width: window.ipad ? 10 : 7,
                 height: window.ipad ? 10 : 7,
@@ -130,23 +145,29 @@ export default function Home({navigation}: any): JSX.Element {
               // autoplay
               // circleLoop
             />
+
             <LinearGradient
               colors={[
-                'rgba(255, 255, 255, 0)',
+                // 'red',
                 // 'rgba(255, 255, 255, 0)',
-                // 'rgba(255, 255, 255, 0)',
-                // 'rgba(255, 255, 255, 0.1)',
-                // 'rgba(255, 255, 255, 0.1)',
+                'transparent',
                 'rgba(255, 255, 255, 0.1)',
                 'rgba(255, 255, 255, 1)',
               ]}
               style={{
                 width: '100%',
                 height: window.ipad ? '20%' : '25%',
+                paddingHorizontal: MARGIN_HOR,
                 position: 'absolute',
                 bottom: 0,
-              }}
-            />
+              }}>
+              <Text style={Styles(window.ipad).bannerTitle}>
+                {bannerItem.title}
+              </Text>
+              <Text style={Styles(window.ipad).bannerSubTitle}>
+                {bannerItem.subTitle}
+              </Text>
+            </LinearGradient>
           </View>
 
           {videoDatas.map((data: any, idx: number) => {
@@ -169,7 +190,9 @@ export default function Home({navigation}: any): JSX.Element {
                             marginRight:
                               videoIdx === data.videos.length - 1
                                 ? window.ipad
-                                  ? (WINDOW_WIDTH - 4 * 180 - 40) / 3
+                                  ? MARGIN_VER * 2 +
+                                    10 -
+                                    (WINDOW_WIDTH - 4 * 180 - 40) / 3
                                   : MARGIN_VER * 2 - 10
                                 : window.ipad
                                 ? (WINDOW_WIDTH - 4 * 180 - 40) / 3
@@ -203,7 +226,7 @@ export default function Home({navigation}: any): JSX.Element {
                         <Image
                           source={{
                             uri:
-                              idx === 0
+                              idx === 2
                                 ? 'https://i.ibb.co/XjBZvg0/Group-4038.png'
                                 : video.imgUrl,
                           }}
@@ -229,13 +252,6 @@ const styles = StyleSheet.create({
   scroll: {
     // paddingTop: 34,
   },
-  slider: {
-    width: WINDOW_WIDTH,
-    height: (WINDOW_WIDTH / 4) * 3,
-    // height: (WINDOW_WIDTH / 4) * 2.3,
-    marginBottom: 18,
-    backgroundColor: 'white',
-  },
   scrollImgBox: {
     paddingBottom: 34,
   },
@@ -260,6 +276,27 @@ const styles = StyleSheet.create({
 
 const Styles = (ipad: boolean) =>
   StyleSheet.create({
+    bannerTitle: {
+      marginBottom: 6,
+      lineHeight: 36,
+      color: 'white',
+      fontWeight: '800',
+      fontSize: ipad ? 30 : 26,
+    },
+    bannerSubTitle: {
+      color: 'white',
+      fontWeight: '600',
+      fontSize: ipad ? 20 : 14,
+    },
+
+    slider: {
+      width: WINDOW_WIDTH,
+      height: ipad ? height1 : height2,
+      // height: (WINDOW_WIDTH / 4) * 2.3,
+      marginBottom: 18,
+      backgroundColor: 'white',
+    },
+
     titleBox: {
       width: '100%',
       height: (ipad ? 54 : 36) + MARGIN_VER * 2,

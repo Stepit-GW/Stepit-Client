@@ -121,6 +121,7 @@ export default function Tutorial({
               style={[
                 styles.video,
                 {
+                  alignItems: 'center',
                   display: height ? 'flex' : 'none',
                 },
               ]}
@@ -161,6 +162,7 @@ const styles = StyleSheet.create({
     height: 56,
     overflow: 'hidden',
     borderRadius: 5,
+    backgroundColor: 'black',
   },
 
   boxName: {

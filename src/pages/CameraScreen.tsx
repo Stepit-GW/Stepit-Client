@@ -94,7 +94,8 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             return data.id === id;
           });
           if (newGallery.length === 1) {
-            let newUriLst = [...newGallery[0].uriLst, data.uri];
+            //
+            let newUriLst = [data.uri, ...newGallery[0].uriLst];
             newGallery[0].uriLst = newUriLst;
             pastGalleryList.unshift(newGallery[0]);
           } else {

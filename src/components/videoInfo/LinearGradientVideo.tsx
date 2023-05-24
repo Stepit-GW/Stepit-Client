@@ -20,10 +20,11 @@ export default function LinearGradientVideo({videoScreen}: any): JSX.Element {
             />
             <Text style={styles.timeText}>
               &nbsp;
-              {videoScreen.time.split(':')[0] +
-                '분 ' +
-                videoScreen.time.split(':')[1] +
-                '초'}
+              {
+                // videoScreen.time.split(':')[0] +
+                //   '분 ' +
+                videoScreen.time.split(':')[1] + '초'
+              }
             </Text>
           </>
         )}

@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     height: 56,
     overflow: 'hidden',
     borderRadius: 5,
+    backgroundColor: 'black',
   },
 
   boxName: {
