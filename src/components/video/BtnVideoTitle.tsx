@@ -123,7 +123,6 @@ const BtnVideoTitle = React.forwardRef(
                 opacity: aniOpacityT,
 
                 fontSize: 16,
-                // fontSize: window.ipad ? 24 : 16,
                 fontWeight: '600',
               }}>
               {title}

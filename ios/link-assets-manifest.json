@@ -150,56 +150,12 @@
       "sha1": "e0c6185c782e3b95bd489b8e5dd0ba18e92c21a3"
     },
     {
-      "path": "src/assets/videoTest/Because_of_you.mp4",
-      "sha1": "6ff4dd560423a7ef2ad40b741820c428c7a20f26"
-    },
-    {
-      "path": "src/assets/videoTest/arm_straight.mp4",
-      "sha1": "3ab0b4baf54e9dc9b0caf4112b6df4ca50d8046b"
-    },
-    {
       "path": "src/assets/videoTest/flower.mp4",
       "sha1": "064d791d79eeb2c3390c1d156593594a42fd46f5"
     },
     {
-      "path": "src/assets/videoTest/instasave.mp4",
-      "sha1": "445e23b8f01fa3bb936419afe83805cb6aef8ba2"
-    },
-    {
-      "path": "src/assets/videoTest/instasave2.mp4",
-      "sha1": "8da8a767686a93b9251ad9ec4f654c9800b8d9b3"
-    },
-    {
-      "path": "src/assets/videoTest/instasave3.mp4",
-      "sha1": "55bf7d9db3f68736f2e529f520e4d2d09cbadb08"
-    },
-    {
-      "path": "src/assets/videoTest/instasave4.mp4",
-      "sha1": "f336fd68ef948d2ad130a9608fac2a0968a9efe1"
-    },
-    {
-      "path": "src/assets/videoTest/instasave5.mp4",
-      "sha1": "162e398ce3d812c0951952789f548a982f997c6a"
-    },
-    {
-      "path": "src/assets/videoTest/instasave6.mp4",
-      "sha1": "27ecf8451fa8866c63fa3803fa619ad514c0aab7"
-    },
-    {
-      "path": "src/assets/videoTest/isolation_4.mp4",
-      "sha1": "e24c25870c96f0c8b878064d320b5fd4104fc8a9"
-    },
-    {
-      "path": "src/assets/videoTest/isolation_4_pre.mp4",
-      "sha1": "30cd91f49bbd07c8e8eb61a49d3a8ac8bb550be1"
-    },
-    {
       "path": "src/assets/videoTest/stretching.mp4",
       "sha1": "95cf866e42cd710690619f0e3ed1a29641e9ceb6"
-    },
-    {
-      "path": "src/assets/videoTest/stretching_pre.mp4",
-      "sha1": "1e091631d272bbabc60e1c180c02e2bb7bbf5a2f"
     },
     {
       "path": "src/assets/videoTest/wave.mp4",

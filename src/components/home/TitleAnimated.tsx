@@ -54,8 +54,13 @@ export default function TitleAnimated({
   const searchFn = (e: any) => {
     const word = e.nativeEvent.text;
     const res = searchDatas.filter((v: any) => {
-      return v.keyword === word;
+      const res2 = v.keyword.filter((v2: any) => {
+        return v2 === word;
+      });
+      return res2.length !== 0;
+      // return v.keyword === word;
     });
+    console.log(res);
     if (res.length !== 0) {
       setResultDatas(res[0].results);
       return;
@@ -117,8 +122,9 @@ export default function TitleAnimated({
           Styles(window.ipad, color).input,
           {width: WINDOW_WIDTH - ((window.ipad ? 40 : 24) + 24) - MARGIN_HOR},
         ]}
-        placeholder={'걸그룹 명을 검색해 주세요'}
-        onChange={searchFn}
+        placeholder={'곡 제목을 검색해주세요.'}
+        onEndEditing={searchFn}
+        // onChange={searchFn}
       />
     </Animated.View>
   );

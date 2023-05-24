@@ -242,7 +242,6 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
   };
 
   const [cameraShow, setCameraShow] = useState(true);
-  const videoHeight = (WINDOW_WIDTH / 3) * 2;
   useEffect(() => {
     Voice.onSpeechStart = _onSpeechStart;
     Voice.onSpeechEnd = _onSpeechEnd;
@@ -389,9 +388,10 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
         <Pressable
           style={{}}
           onPress={() => {
+            setVideoPause(true);
             navigation.navigate('CameraScreen', {
               id: videoData.id,
-              shortId: 0,
+              shortId: -1,
             });
           }}>
           <Image
@@ -436,6 +436,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
             onTouchMove={e => {
               const move = e.nativeEvent.pageY;
               if (preMove - move < 0 && scrollH <= 0) {
+                setVideoPause(false);
                 setCameraShow(true);
                 setVideoScreen(videoIdFilter(videoData));
                 aniVideoFn(videoHeight1, WINDOW_HEIGHT - videoHeight1, 1, 0);
