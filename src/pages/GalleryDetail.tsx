@@ -70,8 +70,11 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
         </Pressable>
         {currentIdx !== 0 && (
           <View style={styles.topBoxRight}>
+            {/* <Pressable style={styles.topBoxRight}> */}
             <Pressable
-              style={{marginRight: MARGIN_HOR}}
+              style={{
+                marginRight: MARGIN_HOR,
+              }}
               onPress={async () => {
                 try {
                   const result = await CameraRoll.save(
@@ -84,32 +87,49 @@ export default function GalleryDetail({route, navigation}: any): JSX.Element {
               }}>
               <Image
                 source={require('@/assets/mypage/download-white-24.png')}
-                style={commonStyles.img}
+                style={Styles(window.ipad).img}
               />
             </Pressable>
             <Pressable
-              style={{paddingRight: MARGIN_HOR * 2}}
+              // style={{}}
               onPress={() => {
-                let newGallery = gallery;
-                if (newGallery[galleryIdx].uriLst.length === 2) {
-                  newGallery = newGallery.filter((data: any) => {
-                    return data.id !== gallery[galleryIdx].id;
-                  });
-                  setGallery(newGallery);
-                  navigation.pop();
-                } else {
-                  newGallery[galleryIdx].uriLst = gallery[
-                    galleryIdx
-                  ].uriLst.filter((data: any, idx: number) => {
-                    return idx !== currentIdx;
-                  });
-                  setGallery(newGallery);
-                  setCurrentIdx(0);
-                }
+                Alert.alert(
+                  '정말 삭제하시나요?',
+                  '',
+                  [
+                    {
+                      text: '아니요',
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {
+                      text: '네',
+                      onPress: () => {
+                        let newGallery = gallery;
+                        if (newGallery[galleryIdx].uriLst.length === 2) {
+                          navigation.pop();
+                          newGallery = newGallery.filter((data: any) => {
+                            return data.id !== gallery[galleryIdx].id;
+                          });
+                          setGallery(newGallery);
+                        } else {
+                          newGallery[galleryIdx].uriLst = gallery[
+                            galleryIdx
+                          ].uriLst.filter((data: any, idx: number) => {
+                            return idx !== currentIdx;
+                          });
+                          setGallery(newGallery);
+                          setCurrentIdx(0);
+                        }
+                      },
+                    },
+                  ],
+                  {cancelable: false},
+                );
               }}>
               <Image
                 source={require('@/assets/mypage/trash-white-24.png')}
-                style={commonStyles.img}
+                style={Styles(window.ipad).img}
               />
             </Pressable>
           </View>
@@ -215,19 +235,17 @@ const styles = StyleSheet.create({
   topBox: {
     width: '100%',
     marginTop: MARGIN_VER * 2,
-    marginBottom: 25,
-    marginHorizontal: MARGIN_HOR,
+    paddingHorizontal: MARGIN_HOR - 10,
 
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
 
     position: 'absolute',
-    zIndex: 999,
+    zIndex: 998,
   },
   topBoxRight: {
     flexDirection: 'row',
-    marginRight: MARGIN_HOR,
   },
 
   topScroll: {
@@ -239,7 +257,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
 
-    zIndex: 999,
+    zIndex: 997,
     transform: [{scaleY: -1}],
   },
 

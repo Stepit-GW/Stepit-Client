@@ -25,7 +25,7 @@ export default function Mypage({navigation}: any): JSX.Element {
       <View style={[commonStyles.containerView, commonStyles.paddingHor]}>
         <View style={styles.title}>
           <View />
-          <Text style={styles.titleText}>내 앨범</Text>
+          <Text style={Styles(window.ipad).titleText}>내 앨범</Text>
           <View />
         </View>
 
@@ -99,10 +99,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  titleText: {
-    fontSize: 16,
-    fontWeight: '700',
-  },
 
   videoBottom: {
     width: '100%',
@@ -119,6 +115,11 @@ const styles = StyleSheet.create({
 
 const Styles = (ipad: boolean) =>
   StyleSheet.create({
+    titleText: {
+      fontSize: ipad ? 20 : 16,
+      fontWeight: '700',
+    },
+
     // videoRightBox: {
     //   width: ipad ? 24 : 20,
     //   height: ipad ? 24 : 20,
