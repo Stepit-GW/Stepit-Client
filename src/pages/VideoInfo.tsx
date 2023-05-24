@@ -40,6 +40,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
   const reload = () => {
     setNum(num + 1);
   };
+  const [timeoutId, setTimeoutId] = useState(-1);
 
   const videoRef = useRef<any>(null);
   const [window] = useRecoilState(windowState);
@@ -248,10 +249,6 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
     Voice.onSpeechResults = _onSpeechResults;
     Voice.onSpeechError = _onSpeechError;
 
-    // setTimeout(() => {
-    //   aniOpacityTimeFn(0);
-    // }, 3000);
-
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
@@ -294,10 +291,12 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
           <Pressable
             style={Styles(window.ipad, window.force).bottom}
             onPress={() => {
-              // aniOpacityTimeFn(1);
-              // setTimeout(() => {
-              //   aniOpacityTimeFn(0);
-              // }, 5000);
+              clearTimeout(timeoutId);
+              aniOpacityTimeFn(1);
+              const newTimeoutId = setTimeout(() => {
+                aniOpacityTimeFn(0);
+              }, 5000);
+              setTimeoutId(newTimeoutId);
             }}>
             <Animated.View style={{opacity: aniOpacityTime}}>
               <BtnVideoPlay
@@ -467,6 +466,8 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
                     aniVideoFn={aniVideoFn}
                     aniTopFn={aniTopFn}
                     reload={reload}
+                    timeoutId={timeoutId}
+                    setTimeoutId={setTimeoutId}
                     aniOpacityTimeFn={aniOpacityTimeFn}
                   />
                 );

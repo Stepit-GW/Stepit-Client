@@ -106,8 +106,8 @@ export default function Home({navigation}: any): JSX.Element {
           stickyHeaderIndices={[-1, -1]}
           onScroll={e => {
             const move = e.nativeEvent.contentOffset.y;
-            if (move <= 0) aniOpacityFn(1, 100);
-            else aniOpacityFn(0, 100);
+            if (move <= 0) aniOpacityFn(1, 120);
+            else aniOpacityFn(0, 120);
             setScroll(move);
           }}>
           <View style={styles.slider}>

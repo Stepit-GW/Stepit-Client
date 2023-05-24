@@ -31,6 +31,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
   const [window] = useRecoilState(windowState);
   const videoHeight = (WINDOW_WIDTH / 3) * 2;
   const btnOpacity = {opacity: window.force ? 0 : 1};
+  const [timeoutId, setTimeoutId] = useState(-1);
 
   const [zIndex, setZIndex] = useState(true);
 
@@ -70,7 +71,7 @@ export default function VideoTutorial({route}: any): JSX.Element {
 
   const [videoScreen, setVideoScreen] = useState<any>({
     kind: 'step',
-    url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
+    // url: 'https://www.dropbox.com/s/bhubemuj35zztwr/test.mp4?raw=1',
     testUrl: require('@/assets/notfound.mp4'),
   });
 
@@ -91,13 +92,15 @@ export default function VideoTutorial({route}: any): JSX.Element {
     }).start();
   };
   useEffect(() => {
-    // const video = videoIdFilter({id: id});
-    // url: setVideoData(video);
-    // setVideoScreen(videoIdFilter({id: id, kind: 'detail'}));
-    // aniOpacityTimeFn(1);
-    // setTimeout(() => {
-    //   aniOpacityTimeFn(0);
-    // }, 5000);
+    const video = videoIdFilter({id: id});
+    url: setVideoData(video);
+    setVideoScreen(videoIdFilter({id: id, kind: 'detail'}));
+
+    aniOpacityTimeFn(1);
+    const newTimeoutId = setTimeout(() => {
+      aniOpacityTimeFn(0);
+    }, 5000);
+    setTimeoutId(newTimeoutId);
   }, []);
 
   return (
@@ -126,10 +129,12 @@ export default function VideoTutorial({route}: any): JSX.Element {
           <Pressable
             style={Styles(window.ipad, window.force).bottom}
             onPress={() => {
-              // aniOpacityTimeFn(1);
-              // setTimeout(() => {
-              //   aniOpacityTimeFn(0);
-              // }, 5000);
+              clearTimeout(timeoutId);
+              aniOpacityTimeFn(1);
+              const newTimeoutId = setTimeout(() => {
+                aniOpacityTimeFn(0);
+              }, 5000);
+              setTimeoutId(newTimeoutId);
             }}>
             <BtnVideoPlay
               videoRef={videoRef}

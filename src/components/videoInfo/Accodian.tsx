@@ -31,6 +31,8 @@ export default function Accodian({
   aniVideoFn,
   aniTopFn,
   reload,
+  timeoutId,
+  setTimeoutId,
   aniOpacityTimeFn,
 }: any): JSX.Element {
   const [, setVideoTutorial] = useRecoilState(videoTutorialState);
@@ -103,10 +105,14 @@ export default function Accodian({
               style={[styles.video, {display: height ? 'flex' : 'none'}]}
               onPress={() => {
                 setCameraShow(false);
-                // aniOpacityTimeFn(1);
-                // setTimeout(() => {
-                //   aniOpacityTimeFn(0);
-                // }, 5000);
+
+                clearTimeout(timeoutId);
+                aniOpacityTimeFn(1);
+                const newTimeoutId = setTimeout(() => {
+                  aniOpacityTimeFn(0);
+                }, 5000);
+                setTimeoutId(newTimeoutId);
+
                 if (data.stageTitle === '튜토리얼') {
                   setVideoTutorial(true);
                   aniTopFn(0, false);
