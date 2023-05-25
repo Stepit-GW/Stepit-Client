@@ -31,7 +31,6 @@ import {
 import {videoIdFilter} from '@/utils/videoFilter';
 import Video from 'react-native-video';
 
-import {SliderBox} from 'react-native-image-slider-box';
 import LinearGradient from 'react-native-linear-gradient';
 import {bannerState} from '@/recoil/bannerState';
 
@@ -73,6 +72,8 @@ export default function Home({navigation}: any): JSX.Element {
     }
     setVideoDatas(homeVideos);
   }, []);
+
+  const [page, setPage] = useState(0);
 
   return (
     <View
@@ -174,7 +175,6 @@ export default function Home({navigation}: any): JSX.Element {
                 width: '100%',
                 height: window.ipad ? '20%' : '25%',
                 paddingHorizontal: MARGIN_HOR,
-                paddingHorizontal: MARGIN_HOR,
                 position: 'absolute',
                 bottom: 0,
               }}>
@@ -193,13 +193,15 @@ export default function Home({navigation}: any): JSX.Element {
                 }
               </Text>
             </LinearGradient>
-            <View style={styles.dotBox}>
+            <View style={Styles(window.ipad).dotBox}>
               {[...Array(4)].map((data: any, idx: number) => {
                 return (
                   <View
                     style={[
-                      styles.dot,
-                      idx === page / WINDOW_WIDTH && {backgroundColor: 'white'},
+                      Styles(window.ipad).dot,
+                      idx === Math.round(page / WINDOW_WIDTH) && {
+                        backgroundColor: 'white',
+                      },
                     ]}
                   />
                 );
@@ -314,20 +316,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
   },
-
-  dotBox: {
-    width: WINDOW_WIDTH,
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: 0,
-    zIndex: 999,
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    backgroundColor: 'rgba(180, 180, 180, 0.8)',
-    borderRadius: 8,
-  },
 });
 
 const Styles = (ipad: boolean) =>
@@ -423,5 +411,24 @@ const Styles = (ipad: boolean) =>
       overflow: 'hidden',
       borderRadius: 15,
       backgroundColor: 'black',
+    },
+
+    dotBox: {
+      width: WINDOW_WIDTH,
+      paddingBottom: ipad ? 28 : 22,
+
+      flexDirection: 'row',
+      justifyContent: 'center',
+
+      position: 'absolute',
+      bottom: 0,
+      zIndex: 999,
+    },
+    dot: {
+      width: ipad ? 10 : 8,
+      height: ipad ? 10 : 8,
+      marginHorizontal: ipad ? 10 : 8,
+      backgroundColor: 'rgba(250, 250, 250, 0.6)',
+      borderRadius: 8,
     },
   });
