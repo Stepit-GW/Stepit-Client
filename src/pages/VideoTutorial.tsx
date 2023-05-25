@@ -141,6 +141,11 @@ export default function VideoTutorial({route}: any): JSX.Element {
               videoPause={videoPause}
               setVideoPause={setVideoPause}
               radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
+              timeout={{
+                timeoutId,
+                setTimeoutId,
+              }}
+              aniOpacityTimeFn={aniOpacityTimeFn}
             />
             <BtnVideoTimeScale
               aniScreen={aniScreen}
@@ -164,6 +169,10 @@ export default function VideoTutorial({route}: any): JSX.Element {
               rate={rate}
               setRate={setRate}
               rateShow={rateShow}
+              timeout={{
+                timeoutId,
+                setTimeoutId,
+              }}
               aniOpacityTimeFn={aniOpacityTimeFn}
             />
             <BtnVideoSetting
@@ -172,6 +181,11 @@ export default function VideoTutorial({route}: any): JSX.Element {
               setMirror={setMirror}
               rateShow={rateShow}
               setRateShow={setRateShow}
+              timeout={{
+                timeoutId,
+                setTimeoutId,
+              }}
+              aniOpacityTimeFn={aniOpacityTimeFn}
             />
           </Pressable>
         </Animated.View>
@@ -198,6 +212,12 @@ export default function VideoTutorial({route}: any): JSX.Element {
             <Pressable
               style={btnOpacity}
               onPress={() => {
+                clearTimeout(timeoutId);
+                aniOpacityTimeFn(1);
+                const newTimeoutId = setTimeout(() => {
+                  aniOpacityTimeFn(0);
+                }, 5000);
+                setTimeoutId(newTimeoutId);
                 setRateShow(!rateShow);
               }}>
               <Image

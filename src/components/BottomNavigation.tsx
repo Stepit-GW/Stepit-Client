@@ -22,9 +22,9 @@ export default function BottomNavigation(): JSX.Element {
               unmountOnBlur: true,
               headerShown: false,
               tabBarStyle: {
-                paddingBottom: 5,
+                paddingBottom: 18,
                 backgroundColor: data.name === '탐색' ? 'black' : 'white',
-                height: 62,
+                height: 68,
               },
               tabBarLabel: ({focused}) => (
                 <Text style={{display: 'none'}}>{data.name}</Text>

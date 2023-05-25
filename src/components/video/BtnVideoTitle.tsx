@@ -67,11 +67,11 @@ const BtnVideoTitle = React.forwardRef(
           style={{
             width: '100%',
             height: window.ipad ? 54 : 36,
+            marginTop: 10,
             paddingHorizontal: window.force ? MARGIN_HOR * 3 : MARGIN_HOR,
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            // backgroundColor: 'red',
           }}>
           <View style={commonStyles.row}>
             {!window.force && (

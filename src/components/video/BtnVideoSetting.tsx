@@ -11,6 +11,8 @@ export default function BtnVideoSetting({
   setMirror,
   rateShow,
   setRateShow,
+  timeout,
+  aniOpacityTimeFn,
 }: any): JSX.Element {
   const window = useRecoilValue(windowState);
 
@@ -30,6 +32,12 @@ export default function BtnVideoSetting({
       <Pressable
         style={styles.bottomBtn}
         onPress={() => {
+          clearTimeout(timeout.timeoutId);
+          aniOpacityTimeFn(1);
+          const newTimeoutId = setTimeout(() => {
+            aniOpacityTimeFn(0);
+          }, 5000);
+          timeout.setTimeoutId(newTimeoutId);
           setRateShow(!rateShow);
         }}>
         <Image

@@ -303,6 +303,11 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
                 videoPause={videoPause}
                 setVideoPause={setVideoPause}
                 radioTime={Math.round(currentTime) / Math.round(allTime) === 1}
+                timeout={{
+                  timeoutId,
+                  setTimeoutId,
+                }}
+                aniOpacityTimeFn={aniOpacityTimeFn}
               />
               <BtnVideoTimeScale
                 aniScreen={aniScreen}
@@ -326,6 +331,10 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
                 rate={rate}
                 setRate={setRate}
                 rateShow={rateShow}
+                timeout={{
+                  timeoutId,
+                  setTimeoutId,
+                }}
                 aniOpacityTimeFn={aniOpacityTimeFn}
               />
               <BtnVideoSetting
@@ -334,6 +343,11 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
                 setMirror={setMirror}
                 rateShow={rateShow}
                 setRateShow={setRateShow}
+                timeout={{
+                  timeoutId,
+                  setTimeoutId,
+                }}
+                aniOpacityTimeFn={aniOpacityTimeFn}
               />
             </Animated.View>
           </Pressable>
@@ -365,6 +379,12 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
             <Pressable
               style={btnOpacity}
               onPress={() => {
+                clearTimeout(timeoutId);
+                aniOpacityTimeFn(1);
+                const newTimeoutId = setTimeout(() => {
+                  aniOpacityTimeFn(0);
+                }, 5000);
+                setTimeoutId(newTimeoutId);
                 setRateShow(!rateShow);
               }}>
               <Image
@@ -378,7 +398,7 @@ export default function VideoInfo({route, navigation}: any): JSX.Element {
       <Animated.View
         style={{
           position: 'absolute',
-          top: window.ipad ? MARGIN_VER + 10 : MARGIN_VER * 2 + 8,
+          top: window.ipad ? MARGIN_VER * 2 : MARGIN_VER * 2 + 8,
           right: MARGIN_HOR,
 
           display: cameraShow ? 'flex' : 'none',
@@ -575,7 +595,7 @@ const styles = StyleSheet.create({
     }),
 
     position: 'absolute',
-    borderRadius: 28,
+    // borderRadius: 28,
     backgroundColor: 'white',
     // backgroundColor: 'green',
   },

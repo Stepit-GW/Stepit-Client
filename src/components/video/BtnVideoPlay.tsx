@@ -9,6 +9,8 @@ export default function BtnVideoPlay({
   videoPause,
   setVideoPause,
   radioTime,
+  timeout,
+  aniOpacityTimeFn,
 }: any): JSX.Element {
   const window = useRecoilValue(windowState);
   const videoHeight1 = window.force
@@ -17,13 +19,19 @@ export default function BtnVideoPlay({
       : window.height / 1.8
     : window.ipad
     ? ((WINDOW_WIDTH / 3) * 2) / 1.2
-    : ((WINDOW_WIDTH / 3) * 2) / 1.6;
+    : ((WINDOW_WIDTH / 3) * 2) / 2;
 
   return (
     <View style={Styles(videoHeight1, window.force).topBox}>
       <View />
       <Pressable
         onPress={() => {
+          clearTimeout(timeout.timeoutId);
+          aniOpacityTimeFn(1);
+          const newTimeoutId = setTimeout(() => {
+            aniOpacityTimeFn(0);
+          }, 5000);
+          timeout.setTimeoutId(newTimeoutId);
           setVideoPause(!videoPause);
         }}>
         {radioTime ? (
@@ -76,6 +84,5 @@ const Styles = (height: number, ori: boolean) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      //   backgroundColor: 'red',
     },
   });

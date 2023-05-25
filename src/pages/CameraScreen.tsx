@@ -134,9 +134,10 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
             style={{
               width: '100%',
               height: 24,
-              marginTop: MARGIN_VER * 2,
+              marginTop: window.ipad ? MARGIN_VER * 3 : MARGIN_VER * 2 + 10,
               marginLeft: MARGIN_HOR,
               position: 'absolute',
+              // backgroundColor: 'red',
             }}
             onPress={() => {
               navigation.pop();
@@ -191,7 +192,7 @@ export default function CameraScreen({navigation, route}: any): JSX.Element {
 
               position: 'absolute',
               right: MARGIN_HOR,
-              top: MARGIN_VER * 3 - 10,
+              top: window.ipad ? MARGIN_VER + 10 : MARGIN_VER * 3 - 10,
             }}
             onLoad={(e: any) => {
               setAllTime(e.duration);

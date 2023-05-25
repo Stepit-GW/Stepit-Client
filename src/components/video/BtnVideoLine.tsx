@@ -13,6 +13,7 @@ export default function BtnVideoLine({
   rate,
   setRate,
   rateShow,
+  timeout,
   aniOpacityTimeFn,
 }: any): JSX.Element {
   const window = useRecoilValue(windowState);
@@ -50,6 +51,13 @@ export default function BtnVideoLine({
                     idx === 7 && {marginRight: 15},
                   ]}
                   onTouchMove={e => {
+                    clearTimeout(timeout.timeoutId);
+                    aniOpacityTimeFn(1);
+                    const newTimeoutId = setTimeout(() => {
+                      aniOpacityTimeFn(0);
+                    }, 5000);
+                    timeout.setTimeoutId(newTimeoutId);
+
                     if (window.force) {
                       const stair = WINDOW_HEIGHT / 8;
                       const move = e.nativeEvent.pageY;
@@ -94,7 +102,6 @@ export default function BtnVideoLine({
               // {backgroundColor: 'blue'},
             ]}
             onTouchStart={e => {
-              console.log(e.nativeEvent.pageX);
               if (window.force) {
                 const stair = WINDOW_HEIGHT / allTime;
                 const move = e.nativeEvent.pageY;
@@ -108,7 +115,13 @@ export default function BtnVideoLine({
               }
             }}
             onTouchMove={e => {
-              console.log(e.nativeEvent.pageX);
+              clearTimeout(timeout.timeoutId);
+              aniOpacityTimeFn(1);
+              const newTimeoutId = setTimeout(() => {
+                aniOpacityTimeFn(0);
+              }, 5000);
+              timeout.setTimeoutId(newTimeoutId);
+
               if (window.force) {
                 const stair = WINDOW_HEIGHT / allTime;
                 const move = e.nativeEvent.pageY;
@@ -147,6 +160,13 @@ export default function BtnVideoLine({
               key={idx}
               style={[styles.realLineBox, Styles(window.force).circleBottom]}
               onPress={() => {
+                clearTimeout(timeout.timeoutId);
+                aniOpacityTimeFn(1);
+                const newTimeoutId = setTimeout(() => {
+                  aniOpacityTimeFn(0);
+                }, 5000);
+                timeout.setTimeoutId(newTimeoutId);
+
                 videoRef.current.seek(data.time);
                 setTimeout(() => {
                   setVideoPause(true);
@@ -222,7 +242,6 @@ const Styles = (ori: boolean) =>
       // marginBottom: ori ? 10 : 0,
       alignSelf: 'center',
       flexDirection: 'row',
-      // backgroundColor: 'red',
     },
 
     circle: {
@@ -271,8 +290,8 @@ const RateStyle = (ori: boolean, rate: boolean) =>
       height: ori ? 14 : 10,
 
       borderWidth: 2,
-      borderColor: rate ? 'red' : 'white', //line
+      borderColor: 'white', //line
       borderRadius: ori ? 14 : 10,
-      backgroundColor: 'red', //line
+      backgroundColor: '#7476c0', //line
     },
   });

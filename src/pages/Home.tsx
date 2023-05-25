@@ -32,7 +32,6 @@ import {videoIdFilter} from '@/utils/videoFilter';
 import Video from 'react-native-video';
 
 import LinearGradient from 'react-native-linear-gradient';
-import {bannerState} from '@/recoil/bannerState';
 
 const height1 = (WINDOW_WIDTH / 4) * 3;
 const height2 = (WINDOW_WIDTH / 10) * 11;

@@ -87,7 +87,9 @@ export default function VideoShort({navigation}: any): JSX.Element {
                   style={{
                     width: 24,
                     height: 24,
-                    marginTop: MARGIN_VER * 2,
+                    marginTop: window.ipad
+                      ? MARGIN_VER * 2
+                      : MARGIN_VER * 2 + 10,
                     marginRight: MARGIN_HOR,
                   }}
                 />
