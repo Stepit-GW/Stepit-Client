@@ -62,10 +62,6 @@ export default function Home({navigation}: any): JSX.Element {
   const [resultDatas, setResultDatas] = useState([]);
   const setBottomBar = useSetRecoilState(bottomBarState);
 
-  const [page, setPage] = useState(0);
-  // const [bannerItem, setBannerItem] = useState<any>(
-  //   videoIdFilter({id: videoBannerDatas[0]}),
-  // );
   const [scroll, setScroll] = useState<number>(0);
   const [videoDatas, setVideoDatas] = useState<any>(videoHomeDatas);
   useEffect(() => {
@@ -177,6 +173,7 @@ export default function Home({navigation}: any): JSX.Element {
               style={{
                 width: '100%',
                 height: window.ipad ? '20%' : '25%',
+                paddingHorizontal: MARGIN_HOR,
                 paddingHorizontal: MARGIN_HOR,
                 position: 'absolute',
                 bottom: 0,
